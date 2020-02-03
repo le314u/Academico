@@ -1,0 +1,16 @@
+Integrantes:
+	Lucas Mateus Fernandes
+	Joao Pedro Mendonça
+
+Observações:
+	O trabalho foi separado em 3 arquivos: Matriz,Threads e Main
+	Arquivo Threads é responsavel por criar as Structs para cada thread e as threads em si
+	Arquivo Matriz é responsavel por ler os Arquivos de entrada e alocar espaço Para as Matrizes(1,2,3) e salvar o arquivo 
+	Arquivo Main está o mais limpo possivel 
+
+Strutura de Dados:
+	Todas Threads tem acesso a uma unica struct "Matrix" que contem as 3 matrizes
+	E dados específicos presente na struct "DadosThread" como por exemplo:
+							iLinha;//Linha que vai multiplicar              
+							iColuna;//Coluna que vai multiplicar 
+							igualdade;//numero de colunas de m1 e de linhas de m2  

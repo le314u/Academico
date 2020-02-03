@@ -1,0 +1,41 @@
+//Lucas Mateus Fernandes
+//0035411
+
+//Marcus Vinicius Braga Terçariol da Silva 
+//0040889
+
+a) Informe a complexidade de cada função implementada usando a tabela hash
+    hash                        O(1)
+    addEConjunto                O(N)        | N=#Conjunto1 
+    interscecao                 O(N*M)      | N=#Conjunto1 M=#Conjunto2
+    uniao                       O(N+M)      | N=#Conjunto1 M=#Conjunto2
+    pertinenciaConjunto         O(N)        | N=#Conjunto1
+    criarConjunto               O(N^2)      | N=#Conjunto1      (Pois é o somatoriode 1 Até N) pois quanto mais elementos mais colisao
+    rmEConjunto                 O(N)        | N=#Conjunto1
+
+b) Informe a complexidade de cada função supondo a troca da estrutura tabela hash por árvore Rubro-Negra
+    hash                        INEXISTENTE
+    addEConjunto                O(Log N)            | N=#Conjunto1 
+    interscecao                 O(N + M log M)      | N=#Conjunto1 M=#Conjunto2
+    uniao                       O(N + M)            | N=#Conjunto1 M=#Conjunto2
+    pertinenciaConjunto         O(N)                | N=#Conjunto1
+    criarConjunto               O(N log N)          | N=#Conjunto1      (Pois é o somatoriode 1 Até N)
+    rmEConjunto                 O(log N)            | N=#Conjunto1
+
+c) Informe a complexidade de cada função supondo a troca da estrutura tabela hash por vetor
+    hash                        INEXISTENTE
+    addEConjunto                O(1)                | N=#Conjunto1 
+    interscecao                 O(N + M * N)        | N=#Conjunto1 M=#Conjunto2
+    uniao                       O(N + M * N)        | N=#Conjunto1 M=#Conjunto2
+    pertinenciaConjunto         O(N)                | N=#Conjunto1
+    criarConjunto               O(N)                | N=#Conjunto1      (Pois é o somatoriode 1 Até N)
+    rmEConjunto                 O(N)                | N=#Conjunto1
+
+d) Informe a complexidade de cada função supondo a troca da estrutura tabela hash por lista encadeada
+    hash                        INEXISTENTE
+    addEConjunto                O(N)                | N=#Conjunto1 
+    interscecao                 O(N + M * N)        | N=#Conjunto1 M=#Conjunto2
+    uniao                       O(N + M * N)        | N=#Conjunto1 M=#Conjunto2
+    pertinenciaConjunto         O(N)                | N=#Conjunto1
+    criarConjunto               O(N)                | N=#Conjunto1      (Pois é o somatoriode 1 Até N)
+    rmEConjunto                 O(N)                | N=#Conjunto1

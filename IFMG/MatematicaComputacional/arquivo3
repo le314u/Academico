@@ -1,0 +1,13 @@
+# Lista de pontos tabelados entre [0, 10]
+# Função original f(x) = x^4 + x + 1
+n 5
+x 0 3 5 10 12
+y 1 85 631 10011 20749
+# Intervalo da integral definida em [3,5]
+a 3
+b 5
+# Lista de pontos a interpolar
+i 4
+p 2 4 7 8  
+# Computar integral com 300 trapezios
+t 300

@@ -1,0 +1,9 @@
+Anotaçoes Grafos
+
+Grafo é um sistema G(V,E) onde V é um conjutno de Vertices e E é um conjunto de pares chamados arestas
+Digrafo é um Grafo onde E é um conjunto de pares *ordenados*
+antecessor = predecessor
+sucessor
+2 vertices pertencentes a mesma aresta são vizinhos ou adjacentes
+Um arco qe faz parte de u mvertice é incidente a ele
+Duas arestas que tem um vertice em comum são incidentes

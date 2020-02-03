@@ -1,0 +1,21 @@
+Dado um AFD 
+Faz a matriz
+Verifica se é final  e marca  com 'x' todos que 'forem diferentes dele' 
+
+Para cada Celula faz uam tabela de transiçao
+
+            LetraA  LetraB
+estado1     e1      e2
+estado2     e3      e4
+
+
+    se e1 diferente de e3 -> estado1 diferente estado2
+    se e2 diferente de e4 -> estado1 diferente estado2
+
+    mas o contrario não quer dizer nada
+
+    se eestado1 diferente estado2-> não sei nada sobre e3 e e4 ou sobre e1 e e2
+
+    
+    Se as celulas e1 e e3 forem iguais porem e2 e e4 nao tivermos certeza temos que cololocar um link em (e2,e4) referente a (estado1,estado2)
+    ou seja se marcarmos o estado (e2,e3) temos que marcar tambem (estado1,estado2) mas se marcarmos (estado1,estado2) não necessariamente temos que marcar (e2,e4)

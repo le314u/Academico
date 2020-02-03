@@ -1,0 +1,1805 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'Contador23:inst3|UniB3'
+Slack : -0.369
+TNS   : -0.369
+
+Type  : Slow 1200mV 85C Model Setup 'Contador23:inst3|UniB4'
+Slack : -0.339
+TNS   : -0.339
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst21'
+Slack : -0.143
+TNS   : -0.143
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst8'
+Slack : -0.093
+TNS   : -0.093
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst15'
+Slack : -0.091
+TNS   : -0.091
+
+Type  : Slow 1200mV 85C Model Setup 'contador31:inst1|UniB4'
+Slack : -0.082
+TNS   : -0.082
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst5'
+Slack : -0.046
+TNS   : -0.046
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst17'
+Slack : -0.038
+TNS   : -0.038
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst'
+Slack : -0.003
+TNS   : -0.003
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst13'
+Slack : 0.003
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst29'
+Slack : 0.013
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst37'
+Slack : 0.014
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst33'
+Slack : 0.022
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst39'
+Slack : 0.051
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst23'
+Slack : 0.056
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst25'
+Slack : 0.066
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Contador59:inst7|UniB2'
+Slack : 0.068
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Contador23:inst3|UniB1'
+Slack : 0.080
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'ClockInterno'
+Slack : 0.083
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Contador59:inst7|UniB3'
+Slack : 0.088
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Contador59:inst7|DezB1'
+Slack : 0.197
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst41'
+Slack : 0.210
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Contador23:inst3|DezB1'
+Slack : 0.210
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Contador59:inst7|DezB2'
+Slack : 0.210
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'contador31:inst1|DezB1'
+Slack : 0.210
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst27'
+Slack : 0.242
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst3'
+Slack : 0.262
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst31'
+Slack : 0.262
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst35'
+Slack : 0.264
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst19'
+Slack : 0.277
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst6'
+Slack : 0.279
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Clock:inst2|inst11'
+Slack : 0.280
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'contador31:inst1|UniB2'
+Slack : 0.282
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Contador23:inst3|UniB2'
+Slack : 0.291
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'contador31:inst1|UniB3'
+Slack : 0.291
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Contador59:inst7|UniB1'
+Slack : 0.355
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'Contador59:inst7|UniB4'
+Slack : 0.442
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'CLK_LSB'
+Slack : 1.993
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Contador23:inst3|UniB4'
+Slack : -2.414
+TNS   : -2.503
+
+Type  : Slow 1200mV 85C Model Hold 'Contador23:inst3|UniB3'
+Slack : -2.406
+TNS   : -2.581
+
+Type  : Slow 1200mV 85C Model Hold 'CLK_LSB'
+Slack : -2.351
+TNS   : -2.351
+
+Type  : Slow 1200mV 85C Model Hold 'contador31:inst1|UniB4'
+Slack : -1.851
+TNS   : -1.851
+
+Type  : Slow 1200mV 85C Model Hold 'contador31:inst1|UniB3'
+Slack : -1.551
+TNS   : -1.612
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst37'
+Slack : -1.140
+TNS   : -1.140
+
+Type  : Slow 1200mV 85C Model Hold 'contador31:inst1|DezB1'
+Slack : -0.729
+TNS   : -0.729
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst29'
+Slack : -0.598
+TNS   : -0.598
+
+Type  : Slow 1200mV 85C Model Hold 'Contador59:inst7|DezB2'
+Slack : -0.402
+TNS   : -0.402
+
+Type  : Slow 1200mV 85C Model Hold 'ClockInterno'
+Slack : -0.214
+TNS   : -0.214
+
+Type  : Slow 1200mV 85C Model Hold 'Contador59:inst7|UniB4'
+Slack : -0.207
+TNS   : -0.207
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst25'
+Slack : -0.099
+TNS   : -0.099
+
+Type  : Slow 1200mV 85C Model Hold 'Contador23:inst3|UniB2'
+Slack : -0.083
+TNS   : -0.083
+
+Type  : Slow 1200mV 85C Model Hold 'Contador59:inst7|UniB1'
+Slack : -0.075
+TNS   : -0.075
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst6'
+Slack : 0.004
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst19'
+Slack : 0.006
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst11'
+Slack : 0.007
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'contador31:inst1|UniB2'
+Slack : 0.008
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst3'
+Slack : 0.016
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst31'
+Slack : 0.016
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst35'
+Slack : 0.024
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Contador59:inst7|UniB2'
+Slack : 0.025
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst27'
+Slack : 0.027
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst33'
+Slack : 0.035
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Contador59:inst7|DezB1'
+Slack : 0.061
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst'
+Slack : 0.063
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst23'
+Slack : 0.064
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst13'
+Slack : 0.073
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst17'
+Slack : 0.078
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst5'
+Slack : 0.090
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Contador59:inst7|UniB3'
+Slack : 0.106
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst8'
+Slack : 0.130
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst39'
+Slack : 0.134
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst15'
+Slack : 0.148
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst21'
+Slack : 0.176
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Contador23:inst3|UniB1'
+Slack : 0.190
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock:inst2|inst41'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Contador23:inst3|DezB1'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'contador31:inst1|UniB2'
+Slack : -2.835
+TNS   : -2.835
+
+Type  : Slow 1200mV 85C Model Recovery 'contador31:inst1|UniB3'
+Slack : -2.827
+TNS   : -4.813
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador59:inst7|UniB2'
+Slack : -2.391
+TNS   : -2.391
+
+Type  : Slow 1200mV 85C Model Recovery 'contador31:inst1|DezB1'
+Slack : -2.354
+TNS   : -3.950
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador59:inst7|UniB3'
+Slack : -2.162
+TNS   : -2.162
+
+Type  : Slow 1200mV 85C Model Recovery 'contador31:inst1|UniB4'
+Slack : -2.130
+TNS   : -4.067
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador59:inst7|UniB1'
+Slack : -2.064
+TNS   : -2.064
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador23:inst3|UniB3'
+Slack : -1.939
+TNS   : -2.036
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador23:inst3|UniB1'
+Slack : -1.858
+TNS   : -1.858
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador23:inst3|UniB2'
+Slack : -1.687
+TNS   : -1.687
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador59:inst7|DezB1'
+Slack : -1.325
+TNS   : -1.325
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador23:inst3|UniB4'
+Slack : -1.174
+TNS   : -1.241
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador59:inst7|DezB2'
+Slack : -1.155
+TNS   : -1.546
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador59:inst7|UniB4'
+Slack : -0.966
+TNS   : -0.966
+
+Type  : Slow 1200mV 85C Model Recovery 'Clock:inst2|inst29'
+Slack : -0.881
+TNS   : -0.881
+
+Type  : Slow 1200mV 85C Model Recovery 'Contador23:inst3|DezB1'
+Slack : -0.818
+TNS   : -0.818
+
+Type  : Slow 1200mV 85C Model Recovery 'Clock:inst2|inst37'
+Slack : -0.397
+TNS   : -0.397
+
+Type  : Slow 1200mV 85C Model Recovery 'CLK_LSB'
+Slack : -0.003
+TNS   : -0.003
+
+Type  : Slow 1200mV 85C Model Removal 'CLK_LSB'
+Slack : -2.986
+TNS   : -2.986
+
+Type  : Slow 1200mV 85C Model Removal 'Contador23:inst3|UniB4'
+Slack : -2.204
+TNS   : -2.204
+
+Type  : Slow 1200mV 85C Model Removal 'Contador23:inst3|UniB3'
+Slack : -2.196
+TNS   : -2.196
+
+Type  : Slow 1200mV 85C Model Removal 'Clock:inst2|inst37'
+Slack : -1.757
+TNS   : -1.757
+
+Type  : Slow 1200mV 85C Model Removal 'contador31:inst1|UniB4'
+Slack : -1.740
+TNS   : -1.759
+
+Type  : Slow 1200mV 85C Model Removal 'contador31:inst1|UniB3'
+Slack : -1.440
+TNS   : -1.440
+
+Type  : Slow 1200mV 85C Model Removal 'Contador59:inst7|DezB2'
+Slack : -1.235
+TNS   : -1.235
+
+Type  : Slow 1200mV 85C Model Removal 'Clock:inst2|inst29'
+Slack : -1.215
+TNS   : -1.215
+
+Type  : Slow 1200mV 85C Model Removal 'contador31:inst1|DezB1'
+Slack : -0.618
+TNS   : -0.618
+
+Type  : Slow 1200mV 85C Model Removal 'Contador59:inst7|UniB1'
+Slack : 0.033
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'Contador23:inst3|UniB2'
+Slack : 0.099
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'Contador59:inst7|UniB3'
+Slack : 0.135
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'Contador59:inst7|UniB4'
+Slack : 0.142
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'Contador23:inst3|DezB1'
+Slack : 0.153
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'Contador23:inst3|UniB1'
+Slack : 0.293
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'Contador59:inst7|UniB2'
+Slack : 0.358
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'Contador59:inst7|DezB1'
+Slack : 0.516
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'contador31:inst1|UniB2'
+Slack : 0.674
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK_LSB'
+Slack : -3.000
+TNS   : -4.353
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'ClockInterno'
+Slack : -3.000
+TNS   : -4.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'contador31:inst1|UniB3'
+Slack : -1.285
+TNS   : -3.855
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'contador31:inst1|UniB4'
+Slack : -1.285
+TNS   : -3.855
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst29'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst37'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador23:inst3|UniB3'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador23:inst3|UniB4'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador59:inst7|DezB2'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'contador31:inst1|DezB1'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst11'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst13'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst15'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst17'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst19'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst21'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst23'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst25'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst27'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst3'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst31'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst33'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst35'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst39'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst41'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst5'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst6'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock:inst2|inst8'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador23:inst3|DezB1'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador23:inst3|UniB1'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador23:inst3|UniB2'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador59:inst7|DezB1'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador59:inst7|UniB1'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador59:inst7|UniB2'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador59:inst7|UniB3'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Contador59:inst7|UniB4'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'contador31:inst1|UniB2'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Setup 'Contador23:inst3|UniB3'
+Slack : -0.250
+TNS   : -0.250
+
+Type  : Slow 1200mV 0C Model Setup 'Contador23:inst3|UniB4'
+Slack : -0.219
+TNS   : -0.219
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst21'
+Slack : -0.093
+TNS   : -0.093
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst8'
+Slack : -0.051
+TNS   : -0.051
+
+Type  : Slow 1200mV 0C Model Setup 'contador31:inst1|UniB4'
+Slack : -0.037
+TNS   : -0.037
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst15'
+Slack : -0.032
+TNS   : -0.032
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst17'
+Slack : -0.011
+TNS   : -0.011
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst5'
+Slack : -0.001
+TNS   : -0.001
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst13'
+Slack : 0.032
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst37'
+Slack : 0.038
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst'
+Slack : 0.046
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst29'
+Slack : 0.062
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst33'
+Slack : 0.068
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst25'
+Slack : 0.079
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst23'
+Slack : 0.093
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst39'
+Slack : 0.096
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Contador59:inst7|UniB2'
+Slack : 0.098
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Contador23:inst3|UniB1'
+Slack : 0.108
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Contador59:inst7|UniB3'
+Slack : 0.114
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'ClockInterno'
+Slack : 0.190
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Contador59:inst7|DezB1'
+Slack : 0.202
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst27'
+Slack : 0.260
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst3'
+Slack : 0.278
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst31'
+Slack : 0.278
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst35'
+Slack : 0.280
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'contador31:inst1|UniB3'
+Slack : 0.281
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Contador23:inst3|UniB2'
+Slack : 0.289
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'contador31:inst1|UniB2'
+Slack : 0.290
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst19'
+Slack : 0.293
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst6'
+Slack : 0.293
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst11'
+Slack : 0.294
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Clock:inst2|inst41'
+Slack : 0.297
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Contador23:inst3|DezB1'
+Slack : 0.297
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Contador59:inst7|DezB2'
+Slack : 0.297
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'contador31:inst1|DezB1'
+Slack : 0.297
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Contador59:inst7|UniB1'
+Slack : 0.349
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'Contador59:inst7|UniB4'
+Slack : 0.434
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'CLK_LSB'
+Slack : 1.954
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'CLK_LSB'
+Slack : -2.233
+TNS   : -2.233
+
+Type  : Slow 1200mV 0C Model Hold 'Contador23:inst3|UniB4'
+Slack : -2.174
+TNS   : -2.249
+
+Type  : Slow 1200mV 0C Model Hold 'Contador23:inst3|UniB3'
+Slack : -2.164
+TNS   : -2.304
+
+Type  : Slow 1200mV 0C Model Hold 'contador31:inst1|UniB4'
+Slack : -1.623
+TNS   : -1.623
+
+Type  : Slow 1200mV 0C Model Hold 'contador31:inst1|UniB3'
+Slack : -1.362
+TNS   : -1.389
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst37'
+Slack : -1.027
+TNS   : -1.027
+
+Type  : Slow 1200mV 0C Model Hold 'contador31:inst1|DezB1'
+Slack : -0.621
+TNS   : -0.621
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst29'
+Slack : -0.558
+TNS   : -0.558
+
+Type  : Slow 1200mV 0C Model Hold 'Contador59:inst7|DezB2'
+Slack : -0.331
+TNS   : -0.331
+
+Type  : Slow 1200mV 0C Model Hold 'ClockInterno'
+Slack : -0.271
+TNS   : -0.271
+
+Type  : Slow 1200mV 0C Model Hold 'Contador59:inst7|UniB4'
+Slack : -0.160
+TNS   : -0.160
+
+Type  : Slow 1200mV 0C Model Hold 'Contador59:inst7|UniB1'
+Slack : -0.051
+TNS   : -0.051
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst25'
+Slack : -0.050
+TNS   : -0.050
+
+Type  : Slow 1200mV 0C Model Hold 'Contador23:inst3|UniB2'
+Slack : -0.047
+TNS   : -0.047
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst19'
+Slack : 0.020
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst6'
+Slack : 0.020
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst11'
+Slack : 0.024
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst3'
+Slack : 0.031
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst31'
+Slack : 0.031
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Contador59:inst7|UniB2'
+Slack : 0.034
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst33'
+Slack : 0.035
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst35'
+Slack : 0.038
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'contador31:inst1|UniB2'
+Slack : 0.038
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst27'
+Slack : 0.044
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Contador59:inst7|DezB1'
+Slack : 0.054
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst23'
+Slack : 0.059
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst'
+Slack : 0.062
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst17'
+Slack : 0.093
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst5'
+Slack : 0.094
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst13'
+Slack : 0.097
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Contador59:inst7|UniB3'
+Slack : 0.117
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst15'
+Slack : 0.137
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst39'
+Slack : 0.138
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst8'
+Slack : 0.138
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst21'
+Slack : 0.176
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Contador23:inst3|UniB1'
+Slack : 0.179
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock:inst2|inst41'
+Slack : 0.398
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Contador23:inst3|DezB1'
+Slack : 0.398
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'contador31:inst1|UniB3'
+Slack : -2.498
+TNS   : -4.216
+
+Type  : Slow 1200mV 0C Model Recovery 'contador31:inst1|UniB2'
+Slack : -2.472
+TNS   : -2.472
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador59:inst7|UniB2'
+Slack : -2.095
+TNS   : -2.095
+
+Type  : Slow 1200mV 0C Model Recovery 'contador31:inst1|DezB1'
+Slack : -2.037
+TNS   : -3.401
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador59:inst7|UniB3'
+Slack : -1.855
+TNS   : -1.855
+
+Type  : Slow 1200mV 0C Model Recovery 'contador31:inst1|UniB4'
+Slack : -1.800
+TNS   : -3.462
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador59:inst7|UniB1'
+Slack : -1.764
+TNS   : -1.764
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador23:inst3|UniB3'
+Slack : -1.689
+TNS   : -1.713
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador23:inst3|UniB1'
+Slack : -1.563
+TNS   : -1.563
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador23:inst3|UniB2'
+Slack : -1.425
+TNS   : -1.425
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador59:inst7|DezB1'
+Slack : -1.080
+TNS   : -1.080
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador23:inst3|UniB4'
+Slack : -0.955
+TNS   : -0.955
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador59:inst7|DezB2'
+Slack : -0.946
+TNS   : -1.201
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador59:inst7|UniB4'
+Slack : -0.765
+TNS   : -0.765
+
+Type  : Slow 1200mV 0C Model Recovery 'Clock:inst2|inst29'
+Slack : -0.686
+TNS   : -0.686
+
+Type  : Slow 1200mV 0C Model Recovery 'Contador23:inst3|DezB1'
+Slack : -0.640
+TNS   : -0.640
+
+Type  : Slow 1200mV 0C Model Recovery 'Clock:inst2|inst37'
+Slack : -0.267
+TNS   : -0.267
+
+Type  : Slow 1200mV 0C Model Recovery 'CLK_LSB'
+Slack : 0.148
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'CLK_LSB'
+Slack : -2.815
+TNS   : -2.815
+
+Type  : Slow 1200mV 0C Model Removal 'Contador23:inst3|UniB4'
+Slack : -1.979
+TNS   : -1.979
+
+Type  : Slow 1200mV 0C Model Removal 'Contador23:inst3|UniB3'
+Slack : -1.969
+TNS   : -1.969
+
+Type  : Slow 1200mV 0C Model Removal 'Clock:inst2|inst37'
+Slack : -1.622
+TNS   : -1.622
+
+Type  : Slow 1200mV 0C Model Removal 'contador31:inst1|UniB4'
+Slack : -1.552
+TNS   : -1.569
+
+Type  : Slow 1200mV 0C Model Removal 'contador31:inst1|UniB3'
+Slack : -1.291
+TNS   : -1.291
+
+Type  : Slow 1200mV 0C Model Removal 'Clock:inst2|inst29'
+Slack : -1.153
+TNS   : -1.153
+
+Type  : Slow 1200mV 0C Model Removal 'Contador59:inst7|DezB2'
+Slack : -1.109
+TNS   : -1.109
+
+Type  : Slow 1200mV 0C Model Removal 'contador31:inst1|DezB1'
+Slack : -0.550
+TNS   : -0.550
+
+Type  : Slow 1200mV 0C Model Removal 'Contador59:inst7|UniB1'
+Slack : 0.028
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'Contador23:inst3|UniB2'
+Slack : 0.093
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'Contador59:inst7|UniB3'
+Slack : 0.123
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'Contador59:inst7|UniB4'
+Slack : 0.133
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'Contador23:inst3|DezB1'
+Slack : 0.146
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'Contador23:inst3|UniB1'
+Slack : 0.256
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'Contador59:inst7|UniB2'
+Slack : 0.314
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'Contador59:inst7|DezB1'
+Slack : 0.461
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'contador31:inst1|UniB2'
+Slack : 0.605
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK_LSB'
+Slack : -3.000
+TNS   : -4.381
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'ClockInterno'
+Slack : -3.000
+TNS   : -4.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'contador31:inst1|UniB3'
+Slack : -1.285
+TNS   : -3.855
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'contador31:inst1|UniB4'
+Slack : -1.285
+TNS   : -3.855
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst29'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst37'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador23:inst3|UniB3'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador23:inst3|UniB4'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|DezB2'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'contador31:inst1|DezB1'
+Slack : -1.285
+TNS   : -2.570
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst11'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst13'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst15'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst17'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst19'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst21'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst23'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst25'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst27'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst3'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst31'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst33'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst35'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst39'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst41'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst5'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst6'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst8'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador23:inst3|DezB1'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador23:inst3|UniB1'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador23:inst3|UniB2'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|DezB1'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|UniB1'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|UniB2'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|UniB3'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|UniB4'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'contador31:inst1|UniB2'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst21'
+Slack : 0.236
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst15'
+Slack : 0.240
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst8'
+Slack : 0.255
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'contador31:inst1|UniB4'
+Slack : 0.271
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst'
+Slack : 0.288
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst5'
+Slack : 0.293
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst29'
+Slack : 0.295
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst33'
+Slack : 0.297
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst39'
+Slack : 0.312
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst23'
+Slack : 0.317
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador59:inst7|UniB2'
+Slack : 0.334
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst37'
+Slack : 0.340
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador23:inst3|UniB3'
+Slack : 0.340
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador23:inst3|UniB1'
+Slack : 0.343
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst13'
+Slack : 0.345
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador59:inst7|UniB3'
+Slack : 0.350
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador23:inst3|UniB4'
+Slack : 0.357
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst17'
+Slack : 0.362
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst27'
+Slack : 0.397
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador59:inst7|DezB1'
+Slack : 0.408
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst35'
+Slack : 0.409
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst3'
+Slack : 0.410
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst31'
+Slack : 0.410
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst11'
+Slack : 0.417
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst19'
+Slack : 0.417
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst6'
+Slack : 0.417
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst25'
+Slack : 0.428
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'contador31:inst1|UniB2'
+Slack : 0.443
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador23:inst3|UniB2'
+Slack : 0.455
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'contador31:inst1|UniB3'
+Slack : 0.470
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador59:inst7|UniB1'
+Slack : 0.492
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador59:inst7|UniB4'
+Slack : 0.516
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador59:inst7|DezB2'
+Slack : 0.568
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock:inst2|inst41'
+Slack : 0.624
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'ClockInterno'
+Slack : 0.624
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'Contador23:inst3|DezB1'
+Slack : 0.624
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'contador31:inst1|DezB1'
+Slack : 0.624
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'CLK_LSB'
+Slack : 1.174
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Contador23:inst3|UniB4'
+Slack : -1.340
+TNS   : -1.427
+
+Type  : Fast 1200mV 0C Model Hold 'Contador23:inst3|UniB3'
+Slack : -1.336
+TNS   : -1.469
+
+Type  : Fast 1200mV 0C Model Hold 'CLK_LSB'
+Slack : -1.105
+TNS   : -1.105
+
+Type  : Fast 1200mV 0C Model Hold 'contador31:inst1|UniB4'
+Slack : -0.992
+TNS   : -1.004
+
+Type  : Fast 1200mV 0C Model Hold 'contador31:inst1|UniB3'
+Slack : -0.835
+TNS   : -0.939
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst37'
+Slack : -0.587
+TNS   : -0.639
+
+Type  : Fast 1200mV 0C Model Hold 'ClockInterno'
+Slack : -0.450
+TNS   : -0.450
+
+Type  : Fast 1200mV 0C Model Hold 'contador31:inst1|DezB1'
+Slack : -0.434
+TNS   : -0.434
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst29'
+Slack : -0.289
+TNS   : -0.301
+
+Type  : Fast 1200mV 0C Model Hold 'Contador59:inst7|DezB2'
+Slack : -0.289
+TNS   : -0.289
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst25'
+Slack : -0.198
+TNS   : -0.198
+
+Type  : Fast 1200mV 0C Model Hold 'Contador59:inst7|UniB4'
+Slack : -0.158
+TNS   : -0.158
+
+Type  : Fast 1200mV 0C Model Hold 'Contador23:inst3|UniB2'
+Slack : -0.108
+TNS   : -0.108
+
+Type  : Fast 1200mV 0C Model Hold 'Contador59:inst7|UniB1'
+Slack : -0.100
+TNS   : -0.100
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst17'
+Slack : -0.085
+TNS   : -0.085
+
+Type  : Fast 1200mV 0C Model Hold 'contador31:inst1|UniB2'
+Slack : -0.068
+TNS   : -0.068
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst13'
+Slack : -0.063
+TNS   : -0.063
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst19'
+Slack : -0.037
+TNS   : -0.037
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst6'
+Slack : -0.037
+TNS   : -0.037
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst11'
+Slack : -0.034
+TNS   : -0.034
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst3'
+Slack : -0.034
+TNS   : -0.034
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst31'
+Slack : -0.034
+TNS   : -0.034
+
+Type  : Fast 1200mV 0C Model Hold 'Contador59:inst7|UniB2'
+Slack : -0.029
+TNS   : -0.029
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst35'
+Slack : -0.028
+TNS   : -0.028
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst27'
+Slack : -0.022
+TNS   : -0.022
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst33'
+Slack : -0.020
+TNS   : -0.020
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst5'
+Slack : -0.020
+TNS   : -0.020
+
+Type  : Fast 1200mV 0C Model Hold 'Contador59:inst7|UniB3'
+Slack : -0.009
+TNS   : -0.009
+
+Type  : Fast 1200mV 0C Model Hold 'Contador59:inst7|DezB1'
+Slack : -0.006
+TNS   : -0.006
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst'
+Slack : -0.004
+TNS   : -0.004
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst23'
+Slack : 0.004
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst8'
+Slack : 0.013
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst39'
+Slack : 0.020
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst21'
+Slack : 0.035
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst15'
+Slack : 0.038
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Contador23:inst3|UniB1'
+Slack : 0.042
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Clock:inst2|inst41'
+Slack : 0.206
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Contador23:inst3|DezB1'
+Slack : 0.206
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'contador31:inst1|UniB2'
+Slack : -0.901
+TNS   : -0.901
+
+Type  : Fast 1200mV 0C Model Recovery 'contador31:inst1|UniB3'
+Slack : -0.893
+TNS   : -1.680
+
+Type  : Fast 1200mV 0C Model Recovery 'contador31:inst1|UniB4'
+Slack : -0.777
+TNS   : -1.315
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador59:inst7|UniB2'
+Slack : -0.706
+TNS   : -0.706
+
+Type  : Fast 1200mV 0C Model Recovery 'contador31:inst1|DezB1'
+Slack : -0.664
+TNS   : -0.951
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador59:inst7|UniB3'
+Slack : -0.582
+TNS   : -0.582
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador59:inst7|UniB1'
+Slack : -0.529
+TNS   : -0.529
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador23:inst3|UniB3'
+Slack : -0.459
+TNS   : -0.459
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador23:inst3|UniB1'
+Slack : -0.416
+TNS   : -0.416
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador23:inst3|UniB2'
+Slack : -0.324
+TNS   : -0.324
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador59:inst7|DezB1'
+Slack : -0.174
+TNS   : -0.174
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador23:inst3|UniB4'
+Slack : -0.079
+TNS   : -0.079
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador59:inst7|DezB2'
+Slack : -0.072
+TNS   : -0.072
+
+Type  : Fast 1200mV 0C Model Recovery 'Clock:inst2|inst29'
+Slack : -0.018
+TNS   : -0.018
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador59:inst7|UniB4'
+Slack : 0.016
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'CLK_LSB'
+Slack : 0.105
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'Contador23:inst3|DezB1'
+Slack : 0.107
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'Clock:inst2|inst37'
+Slack : 0.250
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'CLK_LSB'
+Slack : -1.418
+TNS   : -1.418
+
+Type  : Fast 1200mV 0C Model Removal 'Contador23:inst3|UniB4'
+Slack : -1.232
+TNS   : -1.232
+
+Type  : Fast 1200mV 0C Model Removal 'Contador23:inst3|UniB3'
+Slack : -1.228
+TNS   : -1.228
+
+Type  : Fast 1200mV 0C Model Removal 'contador31:inst1|UniB4'
+Slack : -0.875
+TNS   : -0.911
+
+Type  : Fast 1200mV 0C Model Removal 'Clock:inst2|inst37'
+Slack : -0.845
+TNS   : -0.845
+
+Type  : Fast 1200mV 0C Model Removal 'contador31:inst1|UniB3'
+Slack : -0.718
+TNS   : -0.718
+
+Type  : Fast 1200mV 0C Model Removal 'Contador59:inst7|DezB2'
+Slack : -0.649
+TNS   : -0.649
+
+Type  : Fast 1200mV 0C Model Removal 'Clock:inst2|inst29'
+Slack : -0.547
+TNS   : -0.547
+
+Type  : Fast 1200mV 0C Model Removal 'contador31:inst1|DezB1'
+Slack : -0.317
+TNS   : -0.317
+
+Type  : Fast 1200mV 0C Model Removal 'Contador59:inst7|UniB1'
+Slack : -0.007
+TNS   : -0.007
+
+Type  : Fast 1200mV 0C Model Removal 'Contador23:inst3|UniB2'
+Slack : 0.033
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'Contador59:inst7|UniB4'
+Slack : 0.047
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'Contador59:inst7|UniB3'
+Slack : 0.048
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'Contador23:inst3|DezB1'
+Slack : 0.052
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'Contador23:inst3|UniB1'
+Slack : 0.136
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'Contador59:inst7|UniB2'
+Slack : 0.170
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'Contador59:inst7|DezB1'
+Slack : 0.245
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'contador31:inst1|UniB2'
+Slack : 0.323
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK_LSB'
+Slack : -3.000
+TNS   : -5.064
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'ClockInterno'
+Slack : -3.000
+TNS   : -4.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'contador31:inst1|UniB3'
+Slack : -1.000
+TNS   : -3.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'contador31:inst1|UniB4'
+Slack : -1.000
+TNS   : -3.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst29'
+Slack : -1.000
+TNS   : -2.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst37'
+Slack : -1.000
+TNS   : -2.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador23:inst3|UniB3'
+Slack : -1.000
+TNS   : -2.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador23:inst3|UniB4'
+Slack : -1.000
+TNS   : -2.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|DezB2'
+Slack : -1.000
+TNS   : -2.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'contador31:inst1|DezB1'
+Slack : -1.000
+TNS   : -2.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst11'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst13'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst15'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst17'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst19'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst21'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst23'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst25'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst27'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst3'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst31'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst33'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst35'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst39'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst41'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst5'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst6'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock:inst2|inst8'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador23:inst3|DezB1'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador23:inst3|UniB1'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador23:inst3|UniB2'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|DezB1'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|UniB1'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|UniB2'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|UniB3'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Contador59:inst7|UniB4'
+Slack : -1.000
+TNS   : -1.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'contador31:inst1|UniB2'
+Slack : -1.000
+TNS   : -1.000
+
+------------------------------------------------------------

@@ -1,0 +1,13 @@
+# Lista de pontos tabelados entre [-1.32, 0]
+# Função original f(x) = 9x^2 + 5x -9
+n 3
+x -1.32 -0.28 0
+y 0 -9.69 -9
+# Intervalo da integral definida em [-1,0.6]
+a -1
+b 0.6
+# Lista de pontos a interpolar
+i 3
+p 0.1 0.4 0.5
+# Computar integral com 100 trapezios
+t 100

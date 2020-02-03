@@ -1,0 +1,9 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/lucas/OneDrive/Área de Trabalho/Faculdade-master/IFMG/LAB EletronicaDigital/Trabalho/Mux/Mux.bdf
+source_file = 1, C:/Users/lucas/OneDrive/Área de Trabalho/Faculdade-master/IFMG/LAB EletronicaDigital/Trabalho/Mux/db/Mux.cbx.xml
+design_name = Mux
+instance = comp, \Saida~output\, Saida~output, Mux, 1
+instance = comp, \Entrada2~input\, Entrada2~input, Mux, 1
+instance = comp, \Entrada1~input\, Entrada1~input, Mux, 1
+instance = comp, \Controle~input\, Controle~input, Mux, 1
+instance = comp, \inst3~0\, inst3~0, Mux, 1

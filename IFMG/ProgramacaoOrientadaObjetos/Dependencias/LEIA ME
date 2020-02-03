@@ -1,0 +1,29 @@
+============================================================
+DEVELOPERS
+=============================================================
+Nome: Lucas Mateus Fernandes			RA:0035411
+	: Marco Tulio Nogueira Cambraia		
+Projeto presente em <https://github.com/1ldomal2>
+
+
+
+
+============================================================
+ESTRUTURA ARQUIVOS
+=============================================================
+
+Dagrama de classe : /UML
+Java Doc 		  :/JAVADOC
+ArquivosFonte	  :/Projeto
+URNA.BAT		  :/URNA exe/bin/Dependencias.BAT
+CENTRAL.BAT		  :/CENTRAL exe/bin/Dependencias.BAT
+
+
+
+
+============================================================
+COMO EXECUTAR
+=============================================================
+
+Como executar Urna: /URNA exe/bin/Dependencias
+Como executar Central: /CENTRAL exe/bin/Dependencias

@@ -1,0 +1,400 @@
+\documentclass[12pt]{article}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{indentfirst}
+
+\usepackage{graphicx,url}
+ \usepackage{float}
+
+
+\usepackage{xfrac}
+\usepackage[T1]{fontenc}
+
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+%%\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{graphicx}
+
+
+\topmargin -1cm
+\headheight 2cm
+\headsep 0.5cm %% separa cabec do texto
+\textheight 24cm
+\textwidth 16.3cm
+\oddsidemargin 1mm
+\evensidemargin 1mm
+\baselineskip -13pt
+
+\pagestyle{empty}
+\newcommand{\keyword}[1]{\textsf{#1}}
+
+\newcommand{\ccs}{Claudio Cesar de S\?a}
+\newcommand{\logcc}{\hbox{C\kern-.222em\lower.90ex\hbox{C}\kern-.145em S}}
+
+\restylefloat{figure,table}
+
+\title{\textbf{Ajuda Hotéis Molezinha}}
+	\date{11 de Dezembro de 2017}
+	\author{Leandro Souza Pinheiro \and Lucas Mateus Fernandes}
+	
+\begin{document}
+
+	\maketitle
+	\newpage
+	\tableofcontents %%Sumário
+
+
+				\section{Requisitos Minimos}
+					O software "Hoteis\_Molezinha" foi desenvoldido para ambientes Linux, o seu uso em outros sistemas operacionais é instavel e por isso é desaconselhavel.
+				\section{Primeira Utilização}
+					Ao iniciar o software será criada uma pasta chamada Arquivos no mesmo diretorio do do executavel, dentro  da pasta Arquivos contem todos os arquivos de backup.\\
+					Apenas ao iniciar o Aplicativo pela primeira vez será escolhida a forma de manipulação, podendo ser arquivos binarios com a extensão .bin ou arquivos texto com a extensão .txt. Contudo há outras opçoes que não foram implementadas nesta vesão.\\
+					Dentro de "Arquivos/Configuracoes.txt" ficará salvo 1 caso esteja em Modo Texto e 2 para Modo Binário.\\
+					Após a coniguração inicial é pedido ao usario para que digite o Código Nome de Usuario e Senha para que possa ser efetuado o login com as permissoes adequadas.\\
+					Por padrão já estão cadastradas duas contas que não podem ser alteradas.\\
+
+					\newpage
+					\begin{table}[h]
+						\begin{center}
+							\begin{tabular}{|c|c|}
+								\hline
+									Codigo:1&Codigo:666\\
+									Nome de usuario:1&Nome de usuario:Da50\\
+									Senha:1&Senha:Manoel\\
+								\hline
+							\end{tabular}
+						\end{center}
+					\end{table}
+				
+
+				Ao efetuar o login é mostrado a tela com 6 opções de menu, onde será pedido para digitar de 1 a 5, sendo elas:
+
+				\begin{itemize}
+					\item Registros
+					\item Reserva
+					\item Pesquisas
+					\item FeedBack
+					\item Importar/Exportar XML
+				\end{itemize}
+
+				No menu registro é possivel Ler, Criar, Editar e Apagar, mas antes é preciso informar a opção referente ao módulo que deve ser: Hotel, Hospedes, Acomodações, Categoria, Produtos, Fornecedores e Funcionários.\\
+
+				\newpage
+				\section{Registro}
+				\subsection{Hotel}
+				Para Criar um Hotel é preciso informar alguns dados essenciais sendo eles:\\
+				\begin{table}[h]%%Tabela
+					\begin{tabular}{|c|c|}
+						\hline
+						Nome Fatansia & Onde deve ser informado qualquer tipo de caracte exceto o e \\ & [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Razao Social & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Inscricao Estadual & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						CNPJ & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Logradouro & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Numero & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Bairro & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Cidade & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Telefone & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Email & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Dono Gerente & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Telefone Gerente & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Check in & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Check out & Onde deve ser informado qualquer tipo de caractere exceto \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Lucro & Onde deve ser informado apenas um numero inteiro.\\
+						\hline
+					\end{tabular}
+				\end{table}
+
+			
+
+				Ao Editar um hotel o usuário deve informar o Código do hotel a ser editado, que pode ser visto no menu Ler,ao inserir um Código valido(considera-se valido um código já cadastrado que nao tenha nenhuma acomodação vinculada a ele) e confirma sua ação,feito isso é preciso preencher novamente todas as informações presentes no menu criar que são elas (Nome Fantasia, Razao Social, Inscricao Estadual, CNPJ, 	Logradouro, Numero, Bairro, Cidade, 	Telefone, 	Email, 	Dono Gerente, 	Telefone Gerente, 	Check in, 	Check out, 	Lucro).\\
+
+				Ao Apagar um hotel o usuário deve informar o Código do hotel a ser apagado,e confirmar sua ação. \\
+
+
+				\newpage
+				\subsection{Hospede}
+				Para Criar um Hospede é preciso informar alguns dados essenciais sendo eles:\\
+				\begin{table}[h]%%Tabela
+					\begin{tabular}{|c|c|}
+						\hline
+						Nome  &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						CPF &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Logradouro &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Numero &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Bairro &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Cidade &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Telefone &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Email &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Sexo &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Estado Civil &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+						Data Nascimento &Onde deve ser informado qualquer tipo de caractere exceto  \\ & o [espaço] com no maximo 80 caracteres.\\
+						\hline
+					\end{tabular}
+				\end{table}
+
+				Ao Editar um hospede o usuário deve informar o Código do hospede a ser editado, que pode ser visto no menu Ler,ao inserir um Código valido(considera-se valido um código já cadastrado) e confirma sua ação,feito isso é preciso preencher novamente todas as informaçoes presentes no menu criar que são elas (Nome, CPF,Logradouro
+				Numero, Bairro, Cidade,Telefone, Email, Sexo, Estado\_Civil, Data\_Nascimento).\\
+
+				Ao Apagar um hospede o usuário deve informar o Código do hotel a ser apagado,e confirmar sua ação. \\
+
+
+				\newpage
+				\subsection{Acomodacoes}
+				Para Criar um Acomodacoes é preciso ja ter um hotel e uma categoria cadastradas e informar alguns dados essenciais sendo eles:\\
+				\begin{table}[h]%%Tabela
+					\begin{tabular}{|c|c|}
+					\hline
+					Descrição & Onde deve ser informado qualquer tipo de caractere exceto o \\& [espaço] com no maximo 999 caracteres.\\
+					\hline
+					Televisao & Onde deve ser informado um numero inteiro referente a quantidade.\\
+					\hline
+					Ar Condicionado & Onde deve ser informado um numero inteiro referente a quantidade.\\
+					\hline
+					Frigobar & Onde deve ser informado um numero inteiro referente a quantidade.\\
+					\hline
+					Internet & Onde deve ser informado um numero inteiro referente a quantidade.\\
+					\hline
+					Banheira & Onde deve ser informado um numero inteiro referente a quantidade.\\
+					\hline
+					Código Categoria & Onde deve ser informado a uma categoria ja criada.\\
+					\hline
+					Código Hotel & Onde deve ser informado a uma categoria ja criada.\\
+					\hline
+					\end{tabular}
+				\end{table}
+
+				Ao Editar uma Acomodacoes o usuário deve informar o Código do Acomodacoes a ser editado, que pode ser visto no menu Ler,ao inserir um Código valido(considera-se valido um código já cadastrado) e confirma sua ação,feito isso é preciso preencher novamente todas as informações presentes no menu criar, que são elas (Descrição, Televisao, Ar Condicionado, Frigobar, Internet, Banheira, Código Categoria, Código Hotel).\\
+
+				Ao Apagar um Acomodacoes o usuário deve informar o Código da Acomodacoes a ser apagado,e confirmar sua ação.\\
+
+
+				\newpage
+				\subsection{Código Categoria}
+					Para Criar um Código Categoria é preciso informar alguns dados essenciais sendo eles:
+				\begin{table}[h]%%Tabela
+					\begin{tabular}{|c|c|}
+					\hline
+					Descrição  & Onde deve ser informado qualquer tipo de \\& caractere exceto o [espaço] com no maximo 999 caracteres.\\
+					\hline
+					Valor Diaria  & Onde deve ser informado um numero flutuante \\& referente ao valor diaria.\\
+					\hline
+					Capacidade Adulto  & Onde deve ser informado um numero inteiro \\& referente a quantidade.\\
+					\hline
+					Capacidade Crianças & Onde deve ser informado um numero inteiro \\& referente a quantidade.\\
+					\hline
+					\end{tabular}
+				\end{table}
+				Ao Editar uma Acomodacoes o usuário deve informar o Código da Categoria a ser editada, que pode ser visto no menu Ler,ao inserir um Código valido(considera-se valido um código já cadastrado) e confirma sua ação,feito isso é preciso preencher novamente todas as informações presentes no menu criar, que são elas (Nome, Descrição, Valor Diaria, Capacidade de Adulto, Capacidade de Crianças).\\
+
+				Ao Apagar uma Categoria o usuário deve informar o Código da Categoria a ser apagada,e confirmar sua ação. \\
+
+
+
+
+				\newpage
+				\subsection{Produtos}
+				Para Criar um Produto é preciso ja ter um hotel cadastrado e informar alguns dados essenciais sendo eles:
+				\begin{table}[h]%%Tabela
+					\begin{tabular}{|c|c|}
+					\hline
+					Estoque  & Onde deve ser informado um numero Natural referente a \\& quantidade atual do produto em estoque.\\
+					\hline
+					Estoque Minimo  & Onde deve ser informado um numero  Natural  referente a \\& quantidade minima que se pode ter em estoque.\\
+					\hline
+					Descrição  & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 999 caracteres.\\
+					\hline
+					Preço Custo  & Onde deve ser informado um numero racional com 2 \\& casas depois da virgula referente ao valor unítario de compra.\\
+					\hline
+					Preço Venda  & Onde deve ser informado um numero racional com 2 \\& casas depois da virgula referente ao valor unítario de venda.\\
+					\hline
+					Código Hotel  & Onde deve ser informado um numero inteiro referente ao \\& hotel em que o produto está vinculado.\\
+					\hline
+					\end{tabular}
+				\end{table}
+
+				Ao Editar um Produto o usuário deve informar o Código do Produto a ser editado, que pode ser visto no menu Ler,ao inserir um Código valido(considera-se valido um código já cadastrado) e confirma sua ação,feito isso é preciso preencher novamente todas as informações presentes no menu criar, que são elas (Estoque, Estoque Minimo, Descrição, Preço Custo, Preço Venda, Código Hotel).
+
+				Ao Apagar um Produto o usuário deve informar o Código do Produto a ser apagado,e confirmar sua ação. 
+
+
+				\newpage
+				\subsection{Fornecedores}
+				\begin{table}[h]%%Tabela
+					\begin{tabular}{|c|c|}
+					\hline
+					Nome Fantasia  & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 80 caracteres.\\
+					\hline
+					Razão Social  & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 80 caracteres.\\
+					\hline
+					Inscricao Estadual  & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 80 caracteres.\\
+					\hline
+					CNPJ & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 80 caracteres.\\
+					\hline
+					Logradouro & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 80 caracteres.\\
+					\hline					
+					Numero & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 80 caracteres.\\
+					\hline					
+					Bairro & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 80 caracteres.\\
+					\hline
+					Cidade & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 80 caracteres.\\
+					\hline
+					Telefone & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 80 caracteres.\\
+					\hline
+					Email & Onde deve ser informado qualquer tipo de caractere exceto \\& o [espaço] com no maximo 80 caracteres.\\
+					\hline
+					\end{tabular}
+				\end{table}
+
+				Ao Editar um Fornecedor o usuário deve informar o Código do Fornecedor a ser editado, que pode ser visto no menu Ler,ao inserir um Código valido (considera-se valido um código já cadastrado) e confirma sua ação,feito isso é preciso preencher novamente todas as informações presentes no menu criar, que são elas (Nome Fantasia, Razão Socia, Inscricao Estadual, CNPJ, Logradouro, Numero, Bairro, Cidade, Telefone, Email).
+
+				Ao Apagar um Fornecedor o usuário deve informar o Código do Fornecedor a ser apagado,e confirmar sua ação. 
+
+				\newpage
+				\subsection{Funcionários}
+				\begin{table}[h]%%Tabela
+					\begin{tabular}{|c|c|}
+					\hline
+					Nome  & Onde deve ser informado qualquer tipo de \\& exceto o [espaço] caractere com no maximo 80 caracteres.\\
+					\hline
+					Usuario  & Onde deve ser informado qualquer tipo \\& caractere exceto o [espaço] de com no maximo 80 caracteres.\\
+					\hline
+					Senha  & Onde deve ser informado qualquer tipo \\& caractere exceto o [espaço] de com no maximo 80 caracteres.\\
+					\hline
+					Permissões &  					Onde deve ser digitado 1 para cada permissão concedida e 0 para  negada\\& 					no total são 4 permissoes [ Ler, Criar, Editar, Apagar] )(Nos arquivos .xml\\& 					 o conjunto das 4 permissoes formará em binário um valor entre 0 e 15).\\ 					
+					\hline
+					\end{tabular}
+				\end{table}
+
+				Ao Editar um Funcionário o usuário deve informar o Código do Funcionário a ser editado, que pode ser visto no menu Ler,ao inserir um Código valido (considera-se valido um código já cadastrado) e confirma sua ação,feito isso é preciso preencher novamente todas as informações presentes no menu criar, que são elas (Nome Fantasia, Razão Socia, Inscricao Estadual, CNPJ, Logradouro, Numero, Bairro, Cidade, Telefone, Email).\\
+
+				Ao Apagar um Funcionário o usuário deve informar o Código do Funcionário a ser apagado,e confirmar sua ação. \\
+
+				\newpage
+				\section{Reserva}
+				O modo de reserva serve para realizar uma reserva em uma acomodação no nome de algum hospede já cadastrado cadastrado, porém so é possivel fazer a reserva dentro de um més ou seja não é possivel reservar durante um periodo que exceda um mês.\\
+				Tambem não é possivel realizar um reserva na mesma acomodação em que haja sombreamento de datas ou seja em uma acomodação que esteja ocupada em parte ou em seu todo durante certo periodo.\\
+				Ao entrar no modo de reserva é mostrado para o usuário 3 opçoes [ler,criar,cancelar].\\
+
+				\subsection{Ler Reserva}
+				Esta opção mostra para o usuario todas as reservas registradas mesmo que o periodo de reserva ja tenha expirado.\\
+				Mostrando os seguintes dados:
+
+				\begin{itemize}
+					\item Codigo
+					\item Nome Hospede
+					\item Codigo Acomodação
+					\item Data Entrada[Dia/Mes/Ano]
+					\item Data de vencimento da Fatura
+					\item Valor da Fatura
+					\item Pagamento
+					\item Valor da Conta
+					\item Modo de Pagamento
+				\end{itemize}
+
+				\newpage
+				\subsection{Criar Reserva}
+				Esta opção irá registrar uma nova reserva.\\
+				Para que a reserva seja efetuada será pedido que informe os seguintes dados:
+				\begin{table}[h]%%Tabela
+					\begin{tabular}{|c|c|}
+					\hline
+					Codigo do Hospede\\
+					\hline
+					Codigo da Acomodação\\
+					\hline
+					Data de Entrada(Dia)(Mês)(Ano)\\
+					\hline
+					Data de Saida(Dia)\\
+					\hline
+					Data Vencimento da fatura(Dia)(Mês)(Ano)\\
+					\hline
+					Valor da Fatura\\
+					\hline
+					Situação da Fatura\\(1 para pago 0 para pendente)\\
+					\hline
+					Forma de Pagamento da reserva\\
+					\hline
+					Codigo do Produto Consumido\\
+					\hline
+					Quantidade do produto referente ao codigo anterior\\
+					\hline
+					Forma de Pagamento dos produto\\
+					\hline
+					\end{tabular}
+				\end{table}
+				\subsection{Cancelar Reserva}
+				Para cancelar uma reserva é necessário que o yusuário informe o código da reserva que será cancelada.\\
+				Ao informar um codigo válido (um codigo de uma reserva já cadastrada) é pedido para que confirme digitando \textbf{1} e pressionando enter.
+
+				\newpage
+				\section{Pesquisa}
+				Para realizar uma pesquisa o usuário deve fazer um switch de opções a serem pesquisadas ( switch está relacionando ao fato de digitar 1 para cada opção que queira pesquisar e 0 para aquelas que não deseja realizar).\\
+				\begin{table}[h]%%Tabela
+					\begin{tabular}{|c|c|}
+					\hline
+					Data&Para pesquisar por data é necessário que seja informada uma data \\&referente a entrada (levando em consideração que o ano não pode\\& ser inferior ao ano de 2017) e o dia de saida\\&não pode ser  anterior ao dia de entrada.\\
+					\hline
+					Codigo Categoria&A pesquisa por codigo categoria  mostra uma lista com todas\\& as categorias já cadastradas, caso seja digitada um\\& codigo que não esteja cadastrado(na tela)\\& será pedido que re-informe o codigo.\\
+					\hline
+					Quantida de Pessoas&A pesquisa por quantidade de pessoas pede para o usuário \\& informar a quantidade de adultos que não pode ser inferior a 1  \\& e a quantidade de crianças.\\
+					\hline
+					Facilidade&Para realizar uma pesquisa por facilidades  o\\& usuário deve fazer um switch de opções a serem pesquisadas\\&(1 para pesquisar e 0 para não pesquisar).\\
+					\hline
+					\end{tabular}
+				\end{table}
+
+
+				\newpage
+				\subsection{FeedBack}
+				O módulo de FeedBack irá gerar um relátorio para o usuário uma lista de dados, no inicio é perguntado para o usuário onde ele deseja gerar o relátorio, que será na tela ou em formato CSV. Ao escolher a opção de listagem, é mostrado um segundo menu para o usuário para que escolha qual dos campos irá gerar a lista, as opções são:
+					\begin{table}[h]%%Tabela
+					\begin{tabular}{|c|c|}
+					\hline
+					Hospedes&Para gerar dados dos hospedes o usuário pode escolher duas formas de busca, \\&por códigos ou sexo, com isso será gerado para o usuário a lista com os \\&dados do hospede que se classifica com a busca desejada.\\
+					\hline
+					Acomodações&Para gerar dados das acomodações o usuário pode escolher três formas de busca, \\&por códigos categoria, código acomodação ou por data disponivel com isso \\&será gerado para o usuário a lista com os dados \\&da acomodação que se classifica com a busca desejada.\\
+					\hline
+					Reservas&Para gerar dados das reservas o usuário pode escolher três formas de busca, \\&por códigos da acomodação, código hospede ou por data reservada com isso \\&será gerado para o usuário a lista com os dados \\&das resevas que se classifica com a busca desejada.\\
+					\hline
+					Produtos&Para gerar dados dos Produtos que estão em estoque mínimo o usuário informa \\&um range de códigos com isso será gerado para o usuário a lista com os \\&dados do Produtos que se classifica com a busca desejada.\\&Para gerar dados dos Produtos o usuário informa um range de códigos com\\& isso será gerado para o usuário a lista com os dados do Produtos que se \\&classifica com a busca desejada.\\
+					\hline
+					\end{tabular}
+				\end{table}	
+				\section{Importação/Exportação XML}
+				A importação serve para fazer a transferencia de dados no formato de .xml porêm há outras formas de importar/exportar (copiando a pasta Arquivos).\\
+				\subsection{Importação}
+				Para Importar é necessário informar a localização do arquivo xml porem quando importamos todo os dados importados sobrescrevem os antigos.\\
+				\subsection{Exportação}
+				Para exportar é necessário fazer um switch de quais  classe de dados seram exportadas.\\Ao digitar 1 significa que tal classe será exportada e ao digitar 0 não será exportada. 
+				
+	\end{document}

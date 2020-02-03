@@ -1,0 +1,13 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/lucas/OneDrive/Área de Trabalho/Faculdade-master/IFMG/LAB EletronicaDigital/Trabalho/Contador31/contador31.bdf
+source_file = 1, C:/Users/lucas/OneDrive/Área de Trabalho/Faculdade-master/IFMG/LAB EletronicaDigital/Trabalho/Contador31/db/contador31.cbx.xml
+source_file = 1, C:/Users/lucas/OneDrive/Área de Trabalho/Faculdade-master/IFMG/LAB EletronicaDigital/Trabalho/Contador31/se10.bdf
+design_name = contador31
+instance = comp, \UnidaB1~output\, UnidaB1~output, contador31, 1
+instance = comp, \UnidaB2~output\, UnidaB2~output, contador31, 1
+instance = comp, \UnidaB3~output\, UnidaB3~output, contador31, 1
+instance = comp, \UnidaB4~output\, UnidaB4~output, contador31, 1
+instance = comp, \DezenaB1~output\, DezenaB1~output, contador31, 1
+instance = comp, \DezenaB2~output\, DezenaB2~output, contador31, 1
+instance = comp, \reset~input\, reset~input, contador31, 1
+instance = comp, \clock~input\, clock~input, contador31, 1

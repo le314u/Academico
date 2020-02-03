@@ -1,0 +1,13 @@
+# Lista de pontos tabelados entre [0, 10]
+# Função original f(x) = 3x^3 + 2x + 10
+n 4
+x 0 3 5 10
+y 10 97 395 3030
+# Intervalo da integral definida em [3,5]
+a 0
+b 10
+# Lista de pontos a interpolar
+i 4
+p -11 2 4 21
+# Computar integral com 205 trapezios
+t 205

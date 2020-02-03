@@ -1,0 +1,11 @@
+Nomes: Leandro Souza Pinheiro e Lucas Mateus Fernandes
+Disciplina: Matemática Computacional
+Turma: Ciência da Computação
+==========================================================
+
+
+Para compilar o trabalho deve-se utilizar o seguinte comando:
+gcc trapezium.c -lm -o exe
+
+OBS: É de suma importancia utilizar o argumento "-lm" para que a biblioteca Math seja compilada corretamente.
+

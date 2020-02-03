@@ -1,0 +1,13 @@
+# Lista de pontos tabelados entre [0, 13]
+# Função original f(x) = 5x^5 + 3x^2 + 5
+n 6
+x 0 3 5 10 12 13
+y 5 1247 15705 500305 1244597 1856977
+# Intervalo da integral definida em [0,5]
+a 0
+b 5
+# Lista de pontos a interpolar
+i 4
+p -11 2 4 21
+# Computar integral com 205 trapezios
+t 205

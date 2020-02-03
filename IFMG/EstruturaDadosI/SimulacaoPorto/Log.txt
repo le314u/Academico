@@ -1,0 +1,1454 @@
+
+
+
+
+
+°ØwAmUPorto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"True"
+}
+Travessa{
+	id:"1",
+	containers:"2"
+}
+Travessa{
+	id:"2",
+	containers:"0"
+}
+Travessa{
+	id:"3",
+	containers:"0"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"2",
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"4"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"4"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"4"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+
+
+
+
+Porto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"False"
+}
+Travessa{
+	id:"1",
+	containers:"4"
+}
+Travessa{
+	id:"2",
+	containers:"0"
+}
+Travessa{
+	id:"3",
+	containers:"0"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"2",
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"4"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"4"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"7"
+}
+
+
+
+
+Porto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"False"
+}
+Travessa{
+	id:"1",
+	containers:"5"
+}
+Travessa{
+	id:"2",
+	containers:"1"
+}
+Travessa{
+	id:"3",
+	containers:"0"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"2",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"4"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"7"
+}
+
+
+
+
+Porto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"False"
+}
+Travessa{
+	id:"1",
+	containers:"-1"
+}
+Travessa{
+	id:"2",
+	containers:"3"
+}
+Travessa{
+	id:"3",
+	containers:"0"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"2",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"13"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"7"
+}
+
+
+
+
+ÐxAmUPorto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"True"
+}
+Travessa{
+	id:"1",
+	containers:"4"
+}
+Travessa{
+	id:"2",
+	containers:"3"
+}
+Travessa{
+	id:"3",
+	containers:"0"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{
+		id:"6",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{
+		id:"5",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"2",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"13"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"7"
+}
+
+
+
+
+Porto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"True"
+}
+Travessa{
+	id:"1",
+	containers:"5"
+}
+Travessa{
+	id:"2",
+	containers:"5"
+}
+Travessa{
+	id:"3",
+	containers:"1"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{
+		id:"6",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"False",
+	nContainersFila:"0"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{
+		id:"5",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"6"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"2",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"13"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"7"
+}
+
+
+
+
+Porto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"True"
+}
+Travessa{
+	id:"1",
+	containers:"-1"
+}
+Travessa{
+	id:"2",
+	containers:"-1"
+}
+Travessa{
+	id:"3",
+	containers:"5"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{
+		id:"6",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"19"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{
+		id:"5",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"6"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"2",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"13"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"7"
+}
+
+
+
+
+Porto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"True"
+}
+Travessa{
+	id:"1",
+	containers:"4"
+}
+Travessa{
+	id:"2",
+	containers:"0"
+}
+Travessa{
+	id:"3",
+	containers:"-1"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{
+		id:"6",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"19"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{
+		id:"5",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"19"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"2",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"13"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"18"
+}
+
+
+
+
+Porto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"False"
+}
+Travessa{
+	id:"1",
+	containers:"5"
+}
+Travessa{
+	id:"2",
+	containers:"3"
+}
+Travessa{
+	id:"3",
+	containers:"0"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{
+		id:"6",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"19"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{
+		id:"5",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"19"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"2",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"29"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"18"
+}
+
+
+
+
+Porto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"False"
+}
+Travessa{
+	id:"1",
+	containers:"-1"
+}
+Travessa{
+	id:"2",
+	containers:"5"
+}
+Travessa{
+	id:"3",
+	containers:"2"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{
+		id:"6",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"19"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{
+		id:"5",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"19"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"2",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"29"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"18"
+}
+
+
+
+
+àxAmUPorto{
+ðxAmU	id:"1",
+ðxAmU	numeroAreaAtracamento:"4",
+ðxAmU	numeroTravessas:"5",
+ðxAmU	filaChegada:"False"
+ðxAmU}
+Travessa{
+	id:"1",
+	containers:"4"
+}
+Travessa{
+	id:"2",
+	containers:"-1"
+}
+Travessa{
+	id:"3",
+	containers:"2"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{
+		id:"8",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"5"
+	},
+	filaLocal:"True",
+	nContainersFila:"14"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{
+		id:"5",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"19"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"4",
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		unidadeTempo:"8"
+	},
+	filaLocal:"True",
+	nContainersFila:"16"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"18"
+}
+
+
+
+
+Porto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"False"
+}
+Travessa{
+	id:"1",
+	containers:"5"
+}
+Travessa{
+	id:"2",
+	containers:"3"
+}
+Travessa{
+	id:"3",
+	containers:"2"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{
+		id:"8",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"5"
+	},
+	filaLocal:"True",
+	nContainersFila:"19"
+}
+AreaAtracamento{
+	id:"2",
+	Navio{
+		id:"5",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"19"
+}
+AreaAtracamento{
+	id:"3",
+	Navio{
+		id:"4",
+		Pilha{
+			tamanho:"4",
+			containers:"2"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"3"
+		}
+		unidadeTempo:"8"
+	},
+	filaLocal:"True",
+	nContainersFila:"16"
+}
+AreaAtracamento{
+	id:"4",
+	Navio{
+		id:"1",
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"1"
+		}
+		unidadeTempo:"1"
+	},
+	filaLocal:"True",
+	nContainersFila:"18"
+}
+
+
+
+
+àxAmUPorto{
+	id:"1",
+	numeroAreaAtracamento:"4",
+	numeroTravessas:"5",
+	filaChegada:"False"
+}
+Travessa{
+	id:"1",
+	containers:"-1"
+}
+Travessa{
+	id:"2",
+	containers:"5"
+}
+Travessa{
+	id:"3",
+	containers:"4"
+}
+Travessa{
+	id:"4",
+	containers:"0"
+}
+Travessa{
+	id:"5",
+	containers:"0"
+}
+AreaAtracamento{
+	id:"1",
+	Navio{
+		id:"8",
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			containers:"0"
+		}
+		Pilha{
+			tamanho:"4",
+			con

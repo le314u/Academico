@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "avl.h": "c",
+        "listhash.h": "c",
+        "listahash.h": "c",
+        "tratamentostring.h": "c"
+    }
+}

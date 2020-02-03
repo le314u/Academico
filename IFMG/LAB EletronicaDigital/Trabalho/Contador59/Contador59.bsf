@@ -1,0 +1,99 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 64 64 224 256)
+	(text "Contador59" (rect 5 0 71 14)(font "Arial" (font_size 8)))
+	(text "inst" (rect 8 176 25 188)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clock" (rect 0 0 29 14)(font "Arial" (font_size 8)))
+		(text "clock" (rect 21 27 50 41)(font "Arial" (font_size 8)))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "reset" (rect 0 0 29 14)(font "Arial" (font_size 8)))
+		(text "reset" (rect 21 43 50 57)(font "Arial" (font_size 8)))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 160 120)
+		(output)
+		(text "DezenaB2" (rect 0 0 59 14)(font "Arial" (font_size 8)))
+		(text "DezenaB2" (rect 80 115 139 129)(font "Arial" (font_size 8)))
+		(line (pt 160 120)(pt 144 120))
+	)
+	(port
+		(pt 160 40)
+		(output)
+		(text "UnidaB2" (rect 0 0 47 14)(font "Arial" (font_size 8)))
+		(text "UnidaB2" (rect 92 35 139 49)(font "Arial" (font_size 8)))
+		(line (pt 160 40)(pt 144 40))
+	)
+	(port
+		(pt 160 56)
+		(output)
+		(text "UnidaB3" (rect 0 0 47 14)(font "Arial" (font_size 8)))
+		(text "UnidaB3" (rect 92 51 139 65)(font "Arial" (font_size 8)))
+		(line (pt 160 56)(pt 144 56))
+	)
+	(port
+		(pt 160 72)
+		(output)
+		(text "UnidaB4" (rect 0 0 47 14)(font "Arial" (font_size 8)))
+		(text "UnidaB4" (rect 92 67 139 81)(font "Arial" (font_size 8)))
+		(line (pt 160 72)(pt 144 72))
+	)
+	(port
+		(pt 160 104)
+		(output)
+		(text "DezenaB1" (rect 0 0 59 14)(font "Arial" (font_size 8)))
+		(text "DezenaB1" (rect 80 99 139 113)(font "Arial" (font_size 8)))
+		(line (pt 160 104)(pt 144 104))
+	)
+	(port
+		(pt 160 24)
+		(output)
+		(text "UnidaB1" (rect 0 0 47 14)(font "Arial" (font_size 8)))
+		(text "UnidaB1" (rect 92 19 139 33)(font "Arial" (font_size 8)))
+		(line (pt 160 24)(pt 144 24))
+	)
+	(port
+		(pt 160 136)
+		(output)
+		(text "DezenaB3" (rect 0 0 59 14)(font "Arial" (font_size 8)))
+		(text "DezenaB3" (rect 80 131 139 145)(font "Arial" (font_size 8)))
+		(line (pt 160 136)(pt 144 136))
+	)
+	(port
+		(pt 160 168)
+		(output)
+		(text "CicloCompleto" (rect 0 0 79 14)(font "Arial" (font_size 8)))
+		(text "CicloCompleto" (rect 60 163 139 177)(font "Arial" (font_size 8)))
+		(line (pt 160 168)(pt 144 168))
+	)
+	(drawing
+		(rectangle (rect 16 16 144 176))
+	)
+)

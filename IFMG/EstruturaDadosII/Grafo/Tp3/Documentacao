@@ -1,0 +1,23 @@
+2962 - A primeira entrada é 'largura altura nSensores'
+a acada par ordenado de inteiro havera um vertice que reprsenta um local possivel para se passar o vertice é representado da seguinte forma y * larguraTotal + x
+A proximas 'n' entradas são as localizações x y e o alcance dos sensores (raio) analiso quais vertices o sensor atinge (será levado em consideração um quadrado e não um circulo) se o raio é 5  pega um quadrado de 10x10
+Adiciono todos os vertices remove os que são inatingiveis por conta do vetor e ligo os que estão a uma unidade de distancia 
+Assumo 0,0 como entrada e (Largura-1, altura-1) como a obra de arte ou Entrada  (0,altura-1) e (largura-1,0) como a obra de arte
+verifico a conexidade da entrada até a obra de arte
+O Problema que evita a corretude das respostas é o fato do sensor ser considerado um quadrado e não um circulo
+
+
+1774 - Foi criada uma agm e somada o custo das arestas da agm
+
+2550 - 1º abordagem Durante a criação da agm por meio de kruskal é retornado uma floresta com as componentes conexas se a floresta tiver + de 1 arvore significa que que não é possivel montar uma arvore com todos os vertices
+       2º abordagem Verifica se partindo do vertice 0 eu chego em todos os demais se chegar cria uma Agm e verifica o somatorio de todas as arestas
+       ("Ambos metodos não passou no tempo")
+
+2666 - faz uma busca em largura e define o grau de distancia das cidades até a capital e qual a cidade anterior antes de chegar em cada cidade (existe apenas um pois é uma arvore)
+para cada cidade começando das mais distantes (faz N transiçõe da cidade mais longa para a cidade anterior sendo N o total devido pela cidade dividido pela carga da carruagem arredondado para cima ou seja a quantidade de vezes que tem que passar pela aquela cidade para tirar dinheiro) ou seja é N * custo da cidade * 2 (pois para tirar tem que chegar até ela 1 ida e 1 volta)
+
+1152 - Monta um grafo bidirecional e soma o custo de todas as arestas do grafo, cria uma agm e reduz a soma das arestas da agm com o custo total do grafo original ( Observar que a entrada udebug do uri esta com erro sintatico (a 7-8 instancia informa 59897 arestas e tem apenas 14744 arestas)
+
+2528 - Montar um Grafo com todas as arestas, retirar as arestas que envolve a cidade de Estadunido, aplica uma busca em largura de modo que defina o grau de Riacho de fevereiro partindo de Curytyba o que equivale ao tempo gasto pois cada aresta gasta 1
+
+

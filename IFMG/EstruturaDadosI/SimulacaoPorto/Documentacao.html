@@ -1,0 +1,121 @@
+<h1 id="simulador-de-porto">Simulador de Porto</h1>
+<h2 id="autor">Autor</h2>
+<p>Lucas Mateus Fernandes<br />
+Ra 0035411</p>
+<h2 id="modulos">Modulos</h2>
+<ul>
+<li>Log em Arquivo</li>
+<li><del>Tratamento de Log</del> <strong>(implementação futura)</strong></li>
+<li>Gerar Documentacao em Markdown</li>
+<li><del>Fluxo em thread</del> <strong>(Não é possivel garantir a ordem de execução o que atrapalharia na contagem de tempo)</strong></li>
+</ul>
+<h1 id="escopo-trabalho">Escopo trabalho</h1>
+<h2 id="estrutura-projeto">Estrutura Projeto</h2>
+<ul>
+<li>Um porto possui '4' Areas de Atracamento com uma grua cada</li>
+<li>A Grua é responsavel por desempilhar um container no navio e empilha-lo na travessa e a realização dos dois procedimentos consecutivos tem um custo de uma unidade de tempo</li>
+<li>Em todo o porto existem 5 travessas que podem ser acessadas por qualquer grua</li>
+<li>Cada Travessa tem am capacidade maxima de 5 containers empilhados</li>
+<li>Cada Area de atracamento possui seu proprio 'straddle carries' responsavel por retirar uma travessa Cheia e retornar com uma travessa vazia e tal operação gasta uma unidade de tempo</li>
+<li>Apenas um navio pode se posicionar em uma area de Atracamento</li>
+<li>Cada Area de Atracamento possui uma fila de espera com os navios a serem atracados nela</li>
+<li>Log armazena o que ocorre a cada unidade de tempo.
+<ul>
+<li>o ID dos navios que estão na fila;</li>
+<li>o tempo médio de espera para cada área de atracamento;</li>
+<li>a situação das áreas de atracamento (quantidade de contêiners em cada travessa);</li>
+<li>a movimentação dos veículos que transportaram as travessas para o pátio de armazenamento, ou seja, quantas vezes eles executaram o transporte das travessas do atracamento para o pátio..</li>
+</ul></li>
+</ul>
+<h3 id="estrutura-de-dados">Estrutura de Dados</h3>
+<ul>
+<li>Pilha Estatica para representar os containers na travessa</li>
+<li>Pilha Estatica representar o containers no Navio</li>
+<li>Fila Dinamica para representar os barcos que estão esperando para atracarem</li>
+<li>Fila Dinamica para realizar o processo de Escalonamento dos Barcos que chegam ao porto</li>
+<li>O porto é representado por uma Unica Struct</li>
+<li>Area de Atracamento é representada por uma unica Struct</li>
+<li>Travessa é representada por uma unica Struct</li>
+<li>Os straddle carries NÃO são representados por structs porem há processos que simulam o seu funcionamento</li>
+<li>Navio é representado por uma unica struct</li>
+<li>Containers são representados atraves de uma pilha de numeros inteiros</li>
+<li>As filas de barcos são representados por um TAD de fila dinamica sendo o elemento/item o proprio barco</li>
+</ul>
+<h2 id="observação">Observação</h2>
+<ul>
+<li><p>Dado a informação &quot;Cada navio tem a capacidade máxima de carregar até 16 contêiners, que podem ser distribuídos em até 4 pilhas.&quot; estou considerando que a capacidade de cada pilha de containers dentro do barco pode ter empilhado no maximo 4 containers e que os containers tem que ser divididos uniformemente entre as pilhas (&quot;isso evitaria que o peso do barco se concentrasse em um unico hemisferio do navio&quot;)</p></li>
+<li><p>Dado a informação &quot;O seu controle não deverá permitir que as travessas fiquem cheias por mais de uma unidade de tempo pois assim os navios ficarão esperando muito tempo na fila de espera para o atracamento.&quot; estou considerando que quando uma travessa fica cheia o transporte da travessa junto com a volta do carrinho com uma travessa vazia custa uma unidade de tempo</p></li>
+<li><p>Mesmo com a informação &quot;A cada unidade de tempo, de 0 a 3 navios podem chegar em uma das 4 (quatro) filas para atracamento, que deverão manter uma uniformidade de tamanho&quot; que da a entender que todos os navios chegaram em uma fila e logo em seguida da a entender que deve ser distribuidos uniformemente, como decisao de projeto, foi definido que os barcos chegam em uma unica fila denominada 'fila de espera ' e os barcos nesta fila são distribuidos nas filas locais de cada Area de atracamento afim de evitar que alguma area tenha grua ociosa;</p></li>
+<li><p>Mesmo que em nivel de programação seja sequencial assumisse que todas gruas e 'straddle carries' estão atuando de forma paralela.</p></li>
+</ul>
+<h2 id="arquivos">Arquivos</h2>
+<table style="width:97%;">
+<colgroup>
+<col width="2%" />
+<col width="15%" />
+<col width="79%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><a href="makefile" class="uri">makefile</a></td>
+<td>Compila os arquivos na sequência correta respeitando todas as dependências</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><a href="Objects/">Objects</a></td>
+<td>Pasta onde vão todos os codigos objetos '.o'</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><a href="Source/estruturaAreaAtracamento.c">estruturaAreaAtracamento.c</a></td>
+<td>Representaçao da Area de Atracamento</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><a href="Source/estruturaNavio.c">estruturaNavio.c</a></td>
+<td>Representacao de um Navio</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><a href="Source/estruturaPorto.c">estruturaPorto.c</a></td>
+<td>Representacao de um Porto</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><a href="Source/estruturaTravessa.c">estruturaTravessa.c</a></td>
+<td>Representacao de um Travessa</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><a href="Source/filaDinamica.c">filaDinamica.c</a></td>
+<td>TAD Fila de Navios Encadeada</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><a href="Source/main.c">main.c</a></td>
+<td>Possui o Fluxo Procedural mais Externo do programa</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><a href="Source/pilhaEstatica.c">pilhaEstatica.c</a></td>
+<td>TAD Pilha de inteiros estática</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><a href="Source/view.c">view.c</a></td>
+<td>Exibição do que esta acontecendo no porto em cada unidade de tempo</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><a href="Source/log.c">log.c</a></td>
+<td>Log em Json</td>
+</tr>
+</tbody>
+</table>
+<h2 id="diagrama-de-classe-dependencias-das-entidades">Diagrama de Classe / dependencias das entidades</h2>
+<div class="figure">
+<img src="Diagrama.png" />
+
+</div>
+<p>pilha.topo = -1 significa que ela esta indisponivel</p>

@@ -1,0 +1,13 @@
+Linguagens | máquinas reconhecedoras
+
+A maquina mais simples é uma maquina reconhecedora que pode ser expressa por um automato finito
+ou seja uma quintupla
+
+Se uma linguagem é regular pode ser representada por uma maquina (AF)
+
+
+
+
+
+
+Lema do bombeamento fala que o AF não tem memoria logo não da para contar 

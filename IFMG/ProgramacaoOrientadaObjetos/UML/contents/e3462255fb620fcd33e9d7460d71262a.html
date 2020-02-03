@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>PartidoDAO</title>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../assets/css/bootstrap.css">
+<link rel="stylesheet" href="../assets/css/jquery.bonsai.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/icon-font/icons.css">
+<script type="text/javascript" src="../assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.bonsai.js"></script>
+
+  </head>
+  <body>
+    <div>
+
+      <!-- Name Title -->
+
+      <h1>PartidoDAO</h1>
+
+      <!-- Type and Stereotype -->
+
+      <section style="margin-top: .5em;">
+        <span class="alert alert-info">
+          <span class="node-icon staruml-icon icon-UMLClass"></span>
+          UMLClass
+        </span>
+        
+      </section>
+
+      <!-- Path -->
+
+      <section style="margin-top: 10px">
+        
+        
+        
+          
+          <span class="label label-info"><a href='cf9c8b720f3815adeccaf3ef6e48c6c4.html'><span class='node-icon staruml-icon icon-Project'></span>Untitled</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='594af663de577680f35b13183109d675.html'><span class='node-icon staruml-icon icon-UMLModel'></span>Model</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='8eae0c77cf1869b79dc6b333f3ba37b6.html'><span class='node-icon staruml-icon icon-UMLPackage'></span>Comum</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='9322e7382d3a92dd9ad620a3facfb468.html'><span class='node-icon staruml-icon icon-UMLPackage'></span>DAO</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='e3462255fb620fcd33e9d7460d71262a.html'><span class='node-icon staruml-icon icon-UMLClass'></span>PartidoDAO</a></span>
+        
+      </section>
+
+      <!-- Diagram -->
+
+      
+
+      <!-- Description -->
+
+      
+      <section>
+        <h3>Description</h3>
+        <div>
+          
+            <p>Classe para objetos do tipo Partido, onde armazena um vetor &#39;this.Array&#39; com n Partidos
+@author Lucas Mateus Fernandes</p>
+          
+        </div>
+      </section>
+      
+
+      <!-- Specification -->
+
+      
+
+      <!-- Directed Relationship -->
+
+      
+
+      <!-- Undirected Relationship -->
+
+      
+
+      <!-- Classifier -->
+
+      
+        
+        
+<section class="element-list">
+    <h3>Generalized Elements</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='6b9565376ef5e47c90ef9177cef18969.html'><span class='node-icon staruml-icon icon-UMLClass'></span>DAO</a></li>
+        
+    </ul>
+</section>
+
+
+
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+      
+
+      <!-- Interface -->
+
+      
+
+      <!-- Component -->
+
+      
+
+      <!-- Node -->
+
+      
+
+      <!-- Actor -->
+
+      
+
+      <!-- Use Case -->
+
+      
+
+      <!-- Template Parameters -->
+
+      
+
+      <!-- Literals -->
+
+      
+
+      <!-- Attributes -->
+
+      
+      <section>
+        <h3>Attributes</h3>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Visibility</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="cc6e112db2de63ed866ffb514c33b208.html">TAMANHO</a></td>
+            <td>int</td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="167180af5c77d7f34f3dc399a1f431f7.html">Total</a></td>
+            <td>int</td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="856504bf242129eb5f640c92699c15d6.html">Array</a></td>
+            <td><a href='1ef7a8c9e9b1f6a7685fdcc2c8a21b11.html'>Partido</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="6f826d23d100b59c864f2acba001d96c.html">celulaVetor</a></td>
+            <td><a href='1ef7a8c9e9b1f6a7685fdcc2c8a21b11.html'>Partido</a></td>
+            <td></td>
+          </tr>
+          
+        </table>
+      </section>
+      
+
+      <!-- Operations -->
+
+      
+      <section>
+        <h3>Operations</h3>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Visibility</th>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="da2b200233bb1661c283b557860239fa.html">Receive(): void</a></td>
+            <td><p>Conexao com Google drive</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="abc3ad441f85017b808d2ae85b8c5ac9.html">ReadJson(Sjson: String): void</a></td>
+            <td><p>Le o Json
+@param String - Json
+@return Void  - Preenche &quot;this.Array&quot; de acordo com Json</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="e16205b19e3b20e9ab789e2e91482d79.html">makeJson(): String</a></td>
+            <td><p>Cria o Json
+@param Void
+@return String - contendo o Json de &quot;this.Array&quot;</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="3087c4e07793ea70a135ab1112c22e35.html">CriarPartido(Numero: String, Nome: String): boolean</a></td>
+            <td><p>Cria o Partido e o insere em &#39;this.array&#39;
+@param Numero - Numero do Partido
+@param Nome - Nome do partido
+@return Boolean - Confirmando se criou ou nao o partido</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="159a673b7a6d3fafad74917f1f017134.html">CriarPartido(partido: Partido): boolean</a></td>
+            <td><p>Cria Eleitor e insere em &#39;this.array&#39;
+@param Partido - Objeto Partido
+@return Boolean -  Confirma se inseriu ou nao o partido em this this.array</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="07df415f441e89d9aa3edbdc0c5972a7.html">DeletaPartito(partido: Partido): void</a></td>
+            <td><p>Deleta Partido de &#39;this.array&#39;
+@param Partido - Objeto partido
+@return Void</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="e7f847233f678e68cce4676c5e8eaff8.html">ObjectNumero(numero: int): Partido</a></td>
+            <td><p>Procura e retorna a partido que possui o numero &#39;x&#39; em &#39;this.array&#39;
+@param int - Numero do partido
+@return Partido - Retorona o Objeto partido presente em this.array que possui o numero &#39;x&#39;</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="6cc2557ffdd7b5ff68606fab280f375d.html">ObjectNome(nome: String): Partido</a></td>
+            <td><p>Procura e retorna a partido que possui o nome &#39;x&#39; em &#39;this.array&#39;
+@param String - Nome do partido
+@return Partido - Retorona o Objeto partido presente em this.array que possui o nome &#39;x&#39;</p></td>
+          </tr>
+          
+        </table>
+      </section>
+      
+
+      <!-- Receptions -->
+
+      
+
+      <!-- Extension Points -->
+
+      
+
+      <!-- Parameters -->
+
+      
+
+      <!-- Diagrams -->
+
+      
+      
+
+      <!-- Behavior -->
+
+      
+
+      <!-- Action -->
+
+      
+
+      <!-- Interaction -->
+
+      
+
+      <!-- CombinedFragment -->
+
+      
+
+      <!-- Activity -->
+
+      
+
+      <!-- State Machine -->
+
+      
+
+      <!-- State Machine -->
+
+      
+
+      <!-- State -->
+
+      
+
+      <!-- Vertex -->
+
+      
+
+      <!-- Transition -->
+
+      
+
+      <!-- Data Model (ERD) -->
+
+      
+
+      <!-- Columns (ERD) -->
+
+      
+
+      <!-- Related Entities (ERD) -->
+
+      
+
+      <!-- Data Flows (DFD) -->
+
+      
+
+      <!-- Flows (Flowchart) -->
+
+      
+
+      <!-- Properties -->
+
+      <section>
+        <h3>Properties</h3>
+        
+        <table class="table table-striped table-bordered">
+    <tr>
+        <th width="50%">Name</th>
+        <th width="50%">Value</th>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>name</td>
+        <td>PartidoDAO</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>stereotype</td>
+        <td><span class='label label-info'>null</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>visibility</td>
+        <td>public</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>isAbstract</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isFinalSpecialization</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isLeaf</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isActive</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+</table>                
+
+      </section>
+
+      <!-- Tags -->
+
+      
+
+      <!-- Constraints, Dependencies, Dependants -->
+
+      
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+      
+
+      <!-- Relationships -->
+
+      
+      
+<section class="element-list">
+    <h3>Relationships</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='0e4001f641c716f6b6e3b550926bbe4e.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(DAO—PartidoDAO)</a></li>
+        
+        <li><a href='867da12ba192c55b6e8224b6c2468bc9.html'><span class='node-icon staruml-icon icon-UMLGeneralization'></span>(PartidoDAO→DAO)</a></li>
+        
+    </ul>
+</section>
+
+
+
+      <!-- Owned Elements -->
+
+      
+      
+<section class="element-list">
+    <h3>Owned Elements</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='867da12ba192c55b6e8224b6c2468bc9.html'><span class='node-icon staruml-icon icon-UMLGeneralization'></span>(PartidoDAO→DAO)</a></li>
+        
+    </ul>
+</section>
+
+
+
+    </div>
+  </body>
+</html>

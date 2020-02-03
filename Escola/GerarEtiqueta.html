@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!--
+###################################################################
+# Nome:    Lucas Mateus Fernandes
+# E-mail:  lucasmfpiu@gmail.com
+# Git:     1ldomal2
+###################################################################
+# Gera etiquetas apartir de uma variavel Json
+###################################################################
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Gerar Etiquetas Pastas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class='Box'>
+        <div class='Pavilhao'> </div>
+        <div class='Turma'></div>
+        <div class='Turno'></div>
+        <div class='Localizacao'> </div>
+        
+        <form>
+            <div class = 'dimensao'>
+                Largura <input type="text" id = 'Largura' value = "40%" placeholder = '% px'>
+                Altura  <input type="text" id = 'Altura' placeholder = 'auto'>
+            </div>
+        </form>
+    </div>  
+
+    <div class='Box'>
+            <div class='Pavilhao'> </div>
+            <div class='Turma'></div>
+            <div class='Turno'></div>
+            <div class='Localizacao'> </div>
+            <form>
+                <div class = 'color'>
+                    Pavi  <input type="color" id = 'Cor1' value = '#ca01bc'>
+                    Turma  <input type="color" id = 'Cor2' value = '#d20000'>
+                    Turno  <input type="color" id = 'Cor3' value = '#edb300'>
+                    Local  <input type="color" id = 'Cor4' value = '#01b100'>
+                    <input type="button" id = 'Gerar' value = 'Personalizar' onclick = 'TrocaTamanho(Altura.value,Largura.value),TrocaCor(Cor1.value,1),TrocaCor(Cor2.value,2),TrocaCor(Cor3.value,3),TrocaCor(Cor4.value,4)'>
+                </div>
+             </form>
+        </div>   
+</body>
+<style>
+        .Box{color:black;
+            border: 1px dotted black;
+            width: 40%;
+            /* 20% = 4
+               40% = 2
+               80% = 1
+            */
+            padding: 10px;
+            display: inline-block;
+            margin: 5px 5px 5px 5px;
+        }
+        .Pavilhao {
+            color:darkmagenta;
+            float: left;
+        }
+        .Turma {
+            color:crimson;
+            float: right;
+        }
+        
+        .Turno {
+            padding-top: 10px;
+            color:orange;
+            clear:both;
+            text-align: center;
+        }
+        .Localizacao {
+            padding-top: 10px;
+            color:green;
+            clear:both;
+            text-align: center;
+        }
+        html{
+            font-family: "Comic Sans MS", Monospace;
+            font-weight: bold;
+        }
+</style>
+<script type="text/javascript">
+      
+    var CloseDiv = "</div>"
+    var OpenBox = "<div class='Box'>"
+    var Pavilhao = "<div class='Pavilhao'>"
+    var Turma = "<div class='Turma'>"
+    var Turno = "<div class='Turno'>"
+    var Localizacao = "<div class='Localizacao'>"
+
+
+    function GeneratorScreen(){
+        var Layout = document.createElement('div');
+        Json.forEach(instancia => {
+                                    Layout.appendChild(GeneratorBox(instancia))
+                                    }    
+                    )         
+        document.body.appendChild(Layout)
+    }
+
+    function myFunction() {
+        var node = document.createElement("div");
+        node.innerHTML="Water"
+        document.getElementById("myList").appendChild(node);
+        }
+
+
+    function GeneratorBox(json){
+        var Box = document.createElement('div');
+        Box.setAttribute('class', 'Box');
+
+            var Pavilhao = document.createElement('div');
+            Pavilhao.setAttribute('class', 'Pavilhao');
+            Pavilhao.innerHTML = json['Pavilhao']
+
+            var Turma = document.createElement('div');
+            Turma.setAttribute('class', 'Turma');
+            Turma.innerHTML = json['Turma']
+
+            var Turno = document.createElement('div');
+            Turno.setAttribute('class', 'Turno');
+            Turno.innerHTML = json['Turno']
+
+            var Localizacao = document.createElement('div');
+            Localizacao.setAttribute('class', 'Localizacao');
+            Localizacao.innerHTML = json['Localizacao']
+
+            Box.appendChild(Pavilhao)
+            Box.appendChild(Turma)
+            Box.appendChild(Turno)
+            Box.appendChild(Localizacao)
+        return Box
+    }
+    function TrocaCor(HexCor,numeroRegra){
+        document.styleSheets[0].rules[numeroRegra].style.color=HexCor
+    }
+    function TrocaTamanho(Altura,Largura){
+        numeroRule = 0
+        document.styleSheets[0].rules[numeroRule].style.width=Largura
+        document.styleSheets[0].rules[numeroRule].style.heigth=Altura
+
+    }
+
+    var Json = [
+        //S.A. Manha
+        {
+            "Turma":"Aline",
+            "Pavilhao":"S.A.",
+            "Turno":"Manhã",
+            "Localizacao":"Ala Inferior esquerda"
+        },
+        {
+            "Turma":"3EM C",
+            "Pavilhao":"S.A.",
+            "Turno":"Manhã",
+            "Localizacao":"Ala superior esquerda"
+        },
+        //S.A. Tarde
+        {
+            "Turma":"2P A",
+            "Pavilhao":"S.A.",
+            "Turno":"Tarde",
+            "Localizacao":"Ala inferior direita"
+        },
+        //F1 Manha
+        {
+            "Turma":"Adriana",
+            "Pavilhao":"F1",
+            "Turno":"Manhã",
+            "Localizacao":"Ala inferior direita"
+        },
+        {
+            "Turma":"1EM A",
+            "Pavilhao":"F1",
+            "Turno":"Manhã",
+            "Localizacao":"Superior central"
+        },
+        {
+            "Turma":"3EM A",
+            "Pavilhao":"F1",
+            "Turno":"Manhã",
+            "Localizacao":"Ala superior direita"
+        },
+        //F1 Tarde
+        {
+            "Turma":"Geanne",
+            "Pavilhao":"F1",
+            "Turno":"Tarde",
+            "Localizacao":"Ala inferior esquerda"
+        },
+        {
+            "Turma":"1P A",
+            "Pavilhao":"F1",
+            "Turno":"Tarde",
+            "Localizacao":"Ala inferior direita"
+        },
+        {
+            "Turma":"3PA",
+            "Pavilhao":"F1",
+            "Turno":"Tarde",
+            "Localizacao":"Ala superior Central"
+        },
+        {
+            "Turma":"4P A",
+            "Pavilhao":"F1",
+            "Turno":"Tarde",
+            "Localizacao":"Ala superior direita"
+        },
+        //F2 Manha
+        {
+            "Turma":"4P C",
+            "Pavilhao":"F2",
+            "Turno":"Manhã",
+            "Localizacao":"Ala inferior direita"
+        },
+        {
+            "Turma":"1EM B",
+            "Pavilhao":"F2",
+            "Turno":"Manhã",
+            "Localizacao":"Ala inferior esquerda"
+        },
+        {
+            "Turma":"Lourdinha",
+            "Pavilhao":"F2",
+            "Turno":"Manhã",
+            "Localizacao":"Ala superior"
+        },
+        {
+            "Turma":"3EM B",
+            "Pavilhao":"F2",
+            "Turno":"Manhã",
+            "Localizacao":"Ala superior central "
+        },
+        //F2 Tarde
+        {
+            "Turma":"Cida",
+            "Pavilhao":"F2",
+            "Turno":"Tarde",
+            "Localizacao":"Ala inferior esquerda"
+        },
+        {
+            "Turma":"1P B",
+            "Pavilhao":"F2",
+            "Turno":"Tarde",
+            "Localizacao":"Ala inferior direita"
+        },
+        {
+            "Turma":"1P C",
+            "Pavilhao":"F2",
+            "Turno":"Tarde",
+            "Localizacao":"Ala superior direita"
+        },
+        {
+            "Turma":"3P B",
+            "Pavilhao":"F2",
+            "Turno":"Tarde",
+            "Localizacao":"Ala superior direta"
+        },
+        {
+            "Turma":"4P B",
+            "Pavilhao":"F2",
+            "Turno":"Tarde",
+            "Localizacao":"Ala superior central"
+        }
+    ]
+    
+    GeneratorScreen()
+    alert('Gera etiquetas apartir de uma variavel Json')
+</script>
+
+</html>

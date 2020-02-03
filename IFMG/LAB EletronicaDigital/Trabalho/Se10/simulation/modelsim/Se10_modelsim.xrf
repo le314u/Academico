@@ -1,0 +1,9 @@
+vendor_name = ModelSim
+source_file = 1, D:/Trabalho/Se10/Se10.bdf
+source_file = 1, D:/Trabalho/Se10/db/Se10.cbx.xml
+design_name = Se10
+instance = comp, \Eh_10~output\, Eh_10~output, Se10, 1
+instance = comp, \Bit1~input\, Bit1~input, Se10, 1
+instance = comp, \Bit2~input\, Bit2~input, Se10, 1
+instance = comp, \Bit3~input\, Bit3~input, Se10, 1
+instance = comp, \Bit4~input\, Bit4~input, Se10, 1

@@ -1,0 +1,111 @@
+/*Background*/
+#bg{
+	background-color:#999999;/*Cor de fundo*/
+}
+
+/*O site se divide em banne main e roda p'e*/
+
+/*Banner*/
+.text_top{
+	font-size:60px;;
+	text-align: center;
+	margin-left: 40%;
+	text-shadow: 3px 2px #707070	/*Sombra*/
+}
+
+/*Maiin*/
+.main{
+	display: block;/*para fazer o roda-p'e ficar realmente em baixo*/
+}
+
+
+
+	/*PARTE PRINCIPAL DO SITE*/
+		#principal{
+			
+			width: 92%;/*Largura*/
+			height: 80%;/*Altura*/
+			display: block;/*Trata como bloco*/
+			border:none;/*Sem bordar*/
+			overflow: hidden;/*Esconde quando passa da caixa*/
+		}
+
+
+	/*Botoes*/
+		.lateral{
+			float:left;
+		}
+		
+		.button{/*Para as imagen dentro dos botoes*/
+			width:40px ;
+			height:40px;
+			margin-top: 6%;
+		
+		}
+
+		.blado{
+
+			border-radius: 5px;/*Borda arredondada*/
+			width: 60px;/*Largura */
+			border-right-width:10px;/*Tamanho da borda direita*/
+			height: 50px;/*Altura*/
+			background-color: #333333;/*Cor de fundo*/
+			color: #333333;	/*Cor da font*/
+			overflow-x: hidden;/*Por baixo dos panos eixo x*/
+			border-right: solid;/*Tipo da borda da direita*/
+			border-right-width:10px;/*Largura da borda direita*/
+			border-color:lightgray;/*Cor da borda*/
+			margin-top:2px; /*Distancia do topo*/ 
+			text-align: center;/*Texto centralizado*/
+			line-height:2.5;/*Tamanho de cada linha*/
+		
+		}
+		.blado:hover{/*Quando o bloco for selecionado*/
+
+			align-content: center;/*Alinhar conteudo*/
+			text-align: center;/*Colocar texto na direita (eixo x)*/
+			width: 60px;/*Largura*/
+			height: 50px;/*Altura*/
+			background-color: #222222;/*Cor de fundo*/
+			color:black;/*Cor da fonte*/
+			border-right: solid; /*Tipo da borda da direita*/
+			border-right-width:10px;/*Tamanho da borda*/
+			border-color:#F50729;/*Cor da borda*/
+			margin-top:2px; /*Distancia do topo*/ 
+			text-align: center;/*Texto centralizado*/
+			line-height:2.5;/*Tamanho de cada linha*/
+		
+		}
+
+
+	/*Link*/
+
+		a {
+		    text-decoration: none;/*tira o sublinhado*/
+		}
+		a:visited {
+		    color: black;
+		}
+		a:active {
+		    color: black;
+		}
+
+/*Rodape*/
+	.rodape{
+		text-align: right;/*alinha ao canto direito*/
+		font-size: 10px;/*Tamanho da Fonte*/
+		color:#333333;/*Cor Fonte*/
+	}
+
+
+/*Centralizar*/
+.centralizado{
+	margin-left: 35%;
+	align-items:center;
+}
+/*Centralizar Logo pagina inicial*/
+.centralizado_inicio{
+	margin-top: 5%;
+	margin-left: 40%;
+	align-items:center;
+}

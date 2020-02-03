@@ -1,0 +1,4 @@
+Devido ao tempo limitado não foi possivel implementar tudo
+
+o Tad foi implementado como explicito porem não houve tempo para implementar e Debugar o main
+O ohorário de entrega foi até 8horas porem tinha aula 6:30 a 8:30 e estou enviando durante a aula :/

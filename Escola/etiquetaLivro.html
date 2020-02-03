@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <script type="text/javascript">
+        
+        function csv2list(csv){
+            var lines=csv.split("\n");
+            var retorno = [];
+            for (let index = 0; index < lines.length; index++) {
+                var vetor = lines[index].split(";");
+                retorno.push(vetor);
+            }
+            return retorno;
+        }
+
+        function geraEtiqueta(listaDados){
+            var etiqueta = ""
+            etiqueta +='<div class="etiqueta">'
+                etiqueta += '<div class="superior">'
+                    etiqueta += '<div class="quadro1">'
+                        etiqueta += '<div class="numeroGenero">G-'+listaDados[9]+'</div>'
+                        etiqueta += '<div class="nomeAutor">'+listaDados[3] +'</div>'
+                    etiqueta += '</div>'
+                    etiqueta += '<div class="quadro2 nomeBiblioteca">Biblioteca <br> <br> Caminho da Liberdade</div>'
+                    etiqueta += '<div class="quadro3">'
+                        etiqueta += '<div class="numeroLivroDentroGenero">L-'+listaDados[0] +'</div>'
+                        etiqueta += '<div class="nomeLivro">'+listaDados[2]+' Ex.'+listaDados[1]+'</div>'
+                    etiqueta += '</div>'
+                etiqueta += '</div>'
+                etiqueta += '<div class="inferior nomeEscola">E. E. Prof. Maria Aparecida Costa de Resende</div>'
+            etiqueta += '</div>\n\n\n'
+            return etiqueta;
+        }
+        function printaEtiquetas(){
+            strCsv = document.getElementById("csv").value;
+            listaListaDados = csv2list(strCsv)
+
+            etiquetas = "";
+            for (let index = 0; index < listaListaDados.length; index++) {
+                etiquetas += geraEtiqueta(listaListaDados[index])       
+                if(index % 8 == 0){
+                    etiquetas += "\n<div style='page-break-after: always'></div>\n"
+                }
+            }
+            document.body.innerHTML = etiquetas;
+        }
+    </script>
+
+    <style type="text/css">
+
+        .etiqueta{
+            display: block;
+            width: 315px;
+            float:left;
+            margin: 15px;
+            margin-right: 0px;
+        }
+
+        .superior{
+            border-style: solid;
+            border-bottom-style: none;
+            overflow: auto;
+        }
+        
+        .inferior{
+            border-style: solid;
+        }
+        
+        .quadro1{display: inline-block;
+            width: 100px;
+            height: 160px;
+            float: left;
+            margin-top: 0px;
+        }
+
+        .quadro2{display: inline-block;
+            width: 75px;
+            height: 160px;
+            float: left;
+            margin-top: 0px;
+            border-right-style: solid;
+            border-left-style: solid;
+        }
+
+        .quadro3{display: inline-block;
+            width: 120px;
+            height: 160px;
+            float: left;
+            margin-top: 0px;
+        }
+            
+        .numeroGenero{ 
+            border-bottom-style: dotted;
+            text-align:center;
+            word-wrap: break-word;
+        }
+
+        .nomeAutor{
+            text-align:center;
+            word-wrap: break-word;
+            padding-top:8px;
+            padding-bottom:12px;
+        }
+        
+        .nomeBiblioteca{
+            text-align:center;
+            word-wrap: break-word;
+            padding-top:10px;
+        }
+
+        .numeroLivroDentroGenero{
+            border-bottom-style: dotted;
+            text-align:center;
+            word-wrap: break-word;
+        }
+            
+        .nomeLivro{
+            text-align:center;
+            word-wrap: break-word;
+            padding-top:8px;
+            padding-bottom:12px;
+
+        }
+
+        .nomeEscola{
+            text-align:center;
+            word-wrap: break-word;
+        }
+        #1030px é uma pagina
+        .t{
+            background-color: red;
+            width: 100px;
+            height: 1030px;
+            border: solid;
+        }
+        
+    </style>
+</head>
+
+<body>
+    
+    <textarea id="csv" cols="40" rowns="1" ></textarea>
+    <input type="button" value="ok" onclick="printaEtiquetas()">
+
+    
+            
+
+
+</body>
+</html>

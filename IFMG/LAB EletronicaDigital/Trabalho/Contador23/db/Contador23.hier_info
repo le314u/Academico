@@ -1,0 +1,20 @@
+|Contador23
+UnidaB1 <= UniB1.DB_MAX_OUTPUT_PORT_TYPE
+reset => inst4.IN1
+UnidaB2 <= UniB2.DB_MAX_OUTPUT_PORT_TYPE
+UnidaB3 <= UniB3.DB_MAX_OUTPUT_PORT_TYPE
+UnidaB4 <= UniB4.DB_MAX_OUTPUT_PORT_TYPE
+DezenaB1 <= DezB1.DB_MAX_OUTPUT_PORT_TYPE
+DezenaB2 <= DezB2.DB_MAX_OUTPUT_PORT_TYPE
+CicloCompleto <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+clock => ~NO_FANOUT~
+
+
+|Contador23|Se10:inst1
+Eh_10 <= <GND>
+Bit1 => ~NO_FANOUT~
+Bit2 => ~NO_FANOUT~
+Bit3 => ~NO_FANOUT~
+Bit4 => ~NO_FANOUT~
+
+

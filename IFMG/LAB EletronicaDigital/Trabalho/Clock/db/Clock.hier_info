@@ -1,0 +1,7 @@
+|Clock
+Clock_100Hz <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+Clock_50Mhz => inst.CLK
+Clock_10Hz <= inst12.DB_MAX_OUTPUT_PORT_TYPE
+Clock_1Khz <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+
+

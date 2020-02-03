@@ -1,0 +1,4 @@
+Para concatenar 2 AFNS
+
+cria um novo estado Inicial que com vazio vai para o antigo estado inicial
+Cria um novo estado Final e cancela o antigo estado final ( que com movimento vazio vai para o novo altomato final

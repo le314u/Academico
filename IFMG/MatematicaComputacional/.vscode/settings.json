@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "r_to_c.h": "c",
+        "stdlib.h": "c",
+        "integral.h": "c"
+    }
+}

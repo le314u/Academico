@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CandidatoDAO</title>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../assets/css/bootstrap.css">
+<link rel="stylesheet" href="../assets/css/jquery.bonsai.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/icon-font/icons.css">
+<script type="text/javascript" src="../assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.bonsai.js"></script>
+
+  </head>
+  <body>
+    <div>
+
+      <!-- Name Title -->
+
+      <h1>CandidatoDAO</h1>
+
+      <!-- Type and Stereotype -->
+
+      <section style="margin-top: .5em;">
+        <span class="alert alert-info">
+          <span class="node-icon staruml-icon icon-UMLClass"></span>
+          UMLClass
+        </span>
+        
+      </section>
+
+      <!-- Path -->
+
+      <section style="margin-top: 10px">
+        
+        
+        
+          
+          <span class="label label-info"><a href='cf9c8b720f3815adeccaf3ef6e48c6c4.html'><span class='node-icon staruml-icon icon-Project'></span>Untitled</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='594af663de577680f35b13183109d675.html'><span class='node-icon staruml-icon icon-UMLModel'></span>Model</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='8eae0c77cf1869b79dc6b333f3ba37b6.html'><span class='node-icon staruml-icon icon-UMLPackage'></span>Comum</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='9322e7382d3a92dd9ad620a3facfb468.html'><span class='node-icon staruml-icon icon-UMLPackage'></span>DAO</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='b23e14b477c18ba757530490709459e1.html'><span class='node-icon staruml-icon icon-UMLClass'></span>CandidatoDAO</a></span>
+        
+      </section>
+
+      <!-- Diagram -->
+
+      
+
+      <!-- Description -->
+
+      
+      <section>
+        <h3>Description</h3>
+        <div>
+          
+            <p>Classe para objetos do tipo CandidatoDAO, onde armazena um vetor &#39;this.Array&#39; com n Candidatos
+@author Lucas Mateus Fernandes</p>
+          
+        </div>
+      </section>
+      
+
+      <!-- Specification -->
+
+      
+
+      <!-- Directed Relationship -->
+
+      
+
+      <!-- Undirected Relationship -->
+
+      
+
+      <!-- Classifier -->
+
+      
+        
+        
+<section class="element-list">
+    <h3>Generalized Elements</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='6b9565376ef5e47c90ef9177cef18969.html'><span class='node-icon staruml-icon icon-UMLClass'></span>DAO</a></li>
+        
+    </ul>
+</section>
+
+
+
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+      
+
+      <!-- Interface -->
+
+      
+
+      <!-- Component -->
+
+      
+
+      <!-- Node -->
+
+      
+
+      <!-- Actor -->
+
+      
+
+      <!-- Use Case -->
+
+      
+
+      <!-- Template Parameters -->
+
+      
+
+      <!-- Literals -->
+
+      
+
+      <!-- Attributes -->
+
+      
+      <section>
+        <h3>Attributes</h3>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Visibility</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="867bbdad240c044e2a14e10ca350d3a2.html">TAMANHO</a></td>
+            <td>int</td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="d55d0d1b305546ee8a6120b73dfff690.html">Total</a></td>
+            <td>int</td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="b95cb6fb9019f6d3540c140c512a207e.html">Array</a></td>
+            <td><a href='7b832e753897d4ffbc9f8ecda1588e93.html'>Candidato</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="c3afbebd49e29bc5f53c8d2dd7e10a81.html">celulaVetor</a></td>
+            <td><a href='7b832e753897d4ffbc9f8ecda1588e93.html'>Candidato</a></td>
+            <td></td>
+          </tr>
+          
+        </table>
+      </section>
+      
+
+      <!-- Operations -->
+
+      
+      <section>
+        <h3>Operations</h3>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Visibility</th>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="e23aacd61617ecce08f965ffa0e09358.html">Receive(): void</a></td>
+            <td><p>Conexao com Google drive</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="92fea5f5cc912c3599e31694b38ef712.html">ReadJson(Sjson: String): void</a></td>
+            <td><p>Le o Json
+@param Sjson - String com Json
+@return Void  - Preenche &quot;this.Array&quot; de acordo com Json</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="c7d5da92f7746f1d9ed0372458e08eb5.html">makeJson(): String</a></td>
+            <td><p>Cria o Json
+@param Void
+@return String - contendo o Json de &quot;this.Array&quot;</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="b0e081af452967f6182f048f38de7a10.html">CriarCandidato(Nome: String, Numero: String, Cpf: String, NumeroPartido: String, NomePartido: String): boolean</a></td>
+            <td><p>Cria Candidato e insere em &#39;this.array&#39;
+@param Nome - Nome Candidato
+@param Numero - Numero Candidato
+@param Cpf - Cpf do Candidato
+@param NumeroPartido - Numero do Partido
+@param NomePartido - Nome do Partido
+@return Boolean - Confirmando se criou ou nao o candidato</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="949b4c0005ef9a385b5e01abf23ae4b7.html">CriarCandidato(Nome: String, Numero: String, Cpf: String, Partido: Partido): boolean</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="512485844b30bcec1c785b2468b84a89.html">CriarCandidato(candidato: Candidato): boolean</a></td>
+            <td><p>Cria Candidato e insere em &#39;this.array&#39;
+@param candidato - Objeto candidato
+@return Boolean -  Confirma se inseriu ou nao o candidato em this this.array</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="77008637c8cd0ffbc3311efc8ac6302c.html">DeletaCandidato(candidato: Candidato): void</a></td>
+            <td><p>Deleta Candidato de &#39;this.array&#39;
+@param candidato - Objeto candidato
+@return Void</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="8cb671038a4478763fdc63d897b6e949.html">intCCPF(cpf: String): int</a></td>
+            <td><p>Numero de pessoas que possui o cpf &#39;x&#39; em &#39;this.array&#39;
+@param cpf - Cpf do candidato
+@return int - Numero de pessoas com cpf &#39;x&#39;</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="421bf3df0adf5935fca2d672719b5e80.html">ObjectNumero(numero: String): Candidato</a></td>
+            <td><p>Procura e retorna a pessoas que possui o numero &#39;x&#39; em &#39;this.array&#39;
+@param numero - Numero do candidato
+@return Candidato - Retorono o Objeto Candidato presente em this.array que possui o numero x</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="a911c314be071ac5d9b128af784f9215.html">ObjectCpf(cpf: String): Candidato</a></td>
+            <td><p>Numero de pessoas que possui o cpf &#39;x&#39; em &#39;this.array&#39;
+@param cpf - cpf do candidato
+@return Candidato - Retorono o Objeto Candidato presente em this.array que possui o numero x</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="b45d02a98343358692c68a7d645728a3.html">getTotal(): int</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="025723dd9eb7c84d8860d4e8d6a1b133.html">CandidatoIndice(i: int): Candidato</a></td>
+            <td></td>
+          </tr>
+          
+        </table>
+      </section>
+      
+
+      <!-- Receptions -->
+
+      
+
+      <!-- Extension Points -->
+
+      
+
+      <!-- Parameters -->
+
+      
+
+      <!-- Diagrams -->
+
+      
+      
+
+      <!-- Behavior -->
+
+      
+
+      <!-- Action -->
+
+      
+
+      <!-- Interaction -->
+
+      
+
+      <!-- CombinedFragment -->
+
+      
+
+      <!-- Activity -->
+
+      
+
+      <!-- State Machine -->
+
+      
+
+      <!-- State Machine -->
+
+      
+
+      <!-- State -->
+
+      
+
+      <!-- Vertex -->
+
+      
+
+      <!-- Transition -->
+
+      
+
+      <!-- Data Model (ERD) -->
+
+      
+
+      <!-- Columns (ERD) -->
+
+      
+
+      <!-- Related Entities (ERD) -->
+
+      
+
+      <!-- Data Flows (DFD) -->
+
+      
+
+      <!-- Flows (Flowchart) -->
+
+      
+
+      <!-- Properties -->
+
+      <section>
+        <h3>Properties</h3>
+        
+        <table class="table table-striped table-bordered">
+    <tr>
+        <th width="50%">Name</th>
+        <th width="50%">Value</th>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>name</td>
+        <td>CandidatoDAO</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>stereotype</td>
+        <td><span class='label label-info'>null</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>visibility</td>
+        <td>public</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>isAbstract</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isFinalSpecialization</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isLeaf</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isActive</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+</table>                
+
+      </section>
+
+      <!-- Tags -->
+
+      
+
+      <!-- Constraints, Dependencies, Dependants -->
+
+      
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+      
+
+      <!-- Relationships -->
+
+      
+      
+<section class="element-list">
+    <h3>Relationships</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='05ea074f3f0800806e9bf416bba02ae4.html'><span class='node-icon staruml-icon icon-UMLGeneralization'></span>(CandidatoDAO→DAO)</a></li>
+        
+        <li><a href='ac65af05a3dbccc6e7993a7de0057f9c.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(DAO—CandidatoDAO)</a></li>
+        
+        <li><a href='8d77e9c1b4bd8263df6be30553878337.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(VotoDAO—CandidatoDAO)</a></li>
+        
+    </ul>
+</section>
+
+
+
+      <!-- Owned Elements -->
+
+      
+      
+<section class="element-list">
+    <h3>Owned Elements</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='05ea074f3f0800806e9bf416bba02ae4.html'><span class='node-icon staruml-icon icon-UMLGeneralization'></span>(CandidatoDAO→DAO)</a></li>
+        
+    </ul>
+</section>
+
+
+
+    </div>
+  </body>
+</html>

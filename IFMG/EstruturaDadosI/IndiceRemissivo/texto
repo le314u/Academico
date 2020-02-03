@@ -1,0 +1,567 @@
+
+
+TREINAMENTOResize....OKResize....OK
+
+PROCESSAMENTO
+
+
+LISTA
+
+
+alteza	 5
+assim	 5
+base	 2
+caminha	 1
+capitaes	 5
+capitaomor	 5
+carta	 1	 3
+desta	 5
+dominus	 3
+edicao	 2
+escrevam	 5
+frota	 5
+manuel	 3
+outros	 5
+paulo	 3
+pero	 1
+posto	 5
+senhor	 4
+vossa	 5
+
+
+ABB
+
+
+alteza	 5
+assim	 5
+base	 2
+caminha	 1
+capitaes	 5
+capitaomor	 5
+carta	 1	 3
+desta	 5
+dominus	 3
+edicao	 2
+escrevam	 5
+frota	 5
+manuel	 3
+outros	 5
+paulo	 3
+pero	 1
+posto	 5
+senhor	 4
+vossa	 5
+
+
+AVL
+
+
+alteza	 5
+assim	 5
+base	 2
+caminha	 1
+capitaes	 5
+capitaomor	 5
+carta	 1	 3
+desta	 5
+dominus	 3
+edicao	 2
+escrevam	 5
+frota	 5
+manuel	 3
+outros	 5
+paulo	 3
+pero	 1
+posto	 5
+senhor	 4
+vossa	 5
+
+
+HASH_OPEN
+
+
+Tamanho 40
+PrimeiroElemento 0x557e3d6b1440	pero
+
+Elemento 1
+Atual = carta
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 1 com 0	carta	pero
+
+Elemento 2
+Atual = caminha
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 2 com 1
+Atual = caminha
+Anterior = carta(Atual,Anterior) FLAG = 1
+Trocou 1 com 0	caminha	carta	pero
+
+Elemento 3
+Atual = base
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 3 com 2
+Atual = base
+Anterior = carta(Atual,Anterior) FLAG = 1
+Trocou 2 com 1
+Atual = base
+Anterior = caminha(Atual,Anterior) FLAG = 1
+Trocou 1 com 0	base	caminha	carta	pero
+
+Elemento 4
+Atual = carta
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 4 com 3
+Atual = carta
+Anterior = carta(Atual,Anterior) FLAG = 0	base	caminha	carta	carta	pero
+
+Elemento 5
+Atual = dominus
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 5 com 4
+Atual = dominus
+Anterior = carta(Atual,Anterior) FLAG = 2	base	caminha	carta	carta	dominus	pero
+
+Elemento 6
+Atual = manuel
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 6 com 5
+Atual = manuel
+Anterior = dominus(Atual,Anterior) FLAG = 2	base	caminha	carta	carta	dominus	manuel	pero
+
+Elemento 7
+Atual = edicao
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 7 com 6
+Atual = edicao
+Anterior = manuel(Atual,Anterior) FLAG = 1
+Trocou 6 com 5
+Atual = edicao
+Anterior = dominus(Atual,Anterior) FLAG = 2	base	caminha	carta	carta	dominus	edicao	manuel	pero
+
+Elemento 8
+Atual = paulo
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 8 com 7
+Atual = paulo
+Anterior = manuel(Atual,Anterior) FLAG = 2	base	caminha	carta	carta	dominus	edicao	manuel	paulo	pero
+
+Elemento 9
+Atual = senhor
+Anterior = pero(Atual,Anterior) FLAG = 2	base	caminha	carta	carta	dominus	edicao	manuel	paulo	pero	senhor
+
+Elemento 10
+Atual = posto
+Anterior = senhor(Atual,Anterior) FLAG = 1
+Trocou 10 com 9
+Atual = posto
+Anterior = pero(Atual,Anterior) FLAG = 2	base	caminha	carta	carta	dominus	edicao	manuel	paulo	pero	posto	senhor
+
+Elemento 11
+Atual = capitaomor
+Anterior = senhor(Atual,Anterior) FLAG = 1
+Trocou 11 com 10
+Atual = capitaomor
+Anterior = posto(Atual,Anterior) FLAG = 1
+Trocou 10 com 9
+Atual = capitaomor
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 9 com 8
+Atual = capitaomor
+Anterior = paulo(Atual,Anterior) FLAG = 1
+Trocou 8 com 7
+Atual = capitaomor
+Anterior = manuel(Atual,Anterior) FLAG = 1
+Trocou 7 com 6
+Atual = capitaomor
+Anterior = edicao(Atual,Anterior) FLAG = 1
+Trocou 6 com 5
+Atual = capitaomor
+Anterior = dominus(Atual,Anterior) FLAG = 1
+Trocou 5 com 4
+Atual = capitaomor
+Anterior = carta(Atual,Anterior) FLAG = 1
+Trocou 4 com 3
+Atual = capitaomor
+Anterior = carta(Atual,Anterior) FLAG = 1
+Trocou 3 com 2
+Atual = capitaomor
+Anterior = caminha(Atual,Anterior) FLAG = 2	base	caminha	capitaomor	carta	carta	dominus	edicao	manuel	paulo	pero	posto	senhor
+
+Elemento 12
+Atual = desta
+Anterior = senhor(Atual,Anterior) FLAG = 1
+Trocou 12 com 11
+Atual = desta
+Anterior = posto(Atual,Anterior) FLAG = 1
+Trocou 11 com 10
+Atual = desta
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 10 com 9
+Atual = desta
+Anterior = paulo(Atual,Anterior) FLAG = 1
+Trocou 9 com 8
+Atual = desta
+Anterior = manuel(Atual,Anterior) FLAG = 1
+Trocou 8 com 7
+Atual = desta
+Anterior = edicao(Atual,Anterior) FLAG = 1
+Trocou 7 com 6
+Atual = desta
+Anterior = dominus(Atual,Anterior) FLAG = 1
+Trocou 6 com 5
+Atual = desta
+Anterior = carta(Atual,Anterior) FLAG = 2	base	caminha	capitaomor	carta	carta	desta	dominus	edicao	manuel	paulo	pero	posto	senhor
+
+Elemento 13
+Atual = vossa
+Anterior = senhor(Atual,Anterior) FLAG = 2	base	caminha	capitaomor	carta	carta	desta	dominus	edicao	manuel	paulo	pero	posto	senhor	vossa
+
+Elemento 14
+Atual = frota
+Anterior = vossa(Atual,Anterior) FLAG = 1
+Trocou 14 com 13
+Atual = frota
+Anterior = senhor(Atual,Anterior) FLAG = 1
+Trocou 13 com 12
+Atual = frota
+Anterior = posto(Atual,Anterior) FLAG = 1
+Trocou 12 com 11
+Atual = frota
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 11 com 10
+Atual = frota
+Anterior = paulo(Atual,Anterior) FLAG = 1
+Trocou 10 com 9
+Atual = frota
+Anterior = manuel(Atual,Anterior) FLAG = 1
+Trocou 9 com 8
+Atual = frota
+Anterior = edicao(Atual,Anterior) FLAG = 2	base	caminha	capitaomor	carta	carta	desta	dominus	edicao	frota	manuel	paulo	pero	posto	senhor	vossa
+
+Elemento 15
+Atual = assim
+Anterior = vossa(Atual,Anterior) FLAG = 1
+Trocou 15 com 14
+Atual = assim
+Anterior = senhor(Atual,Anterior) FLAG = 1
+Trocou 14 com 13
+Atual = assim
+Anterior = posto(Atual,Anterior) FLAG = 1
+Trocou 13 com 12
+Atual = assim
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 12 com 11
+Atual = assim
+Anterior = paulo(Atual,Anterior) FLAG = 1
+Trocou 11 com 10
+Atual = assim
+Anterior = manuel(Atual,Anterior) FLAG = 1
+Trocou 10 com 9
+Atual = assim
+Anterior = frota(Atual,Anterior) FLAG = 1
+Trocou 9 com 8
+Atual = assim
+Anterior = edicao(Atual,Anterior) FLAG = 1
+Trocou 8 com 7
+Atual = assim
+Anterior = dominus(Atual,Anterior) FLAG = 1
+Trocou 7 com 6
+Atual = assim
+Anterior = desta(Atual,Anterior) FLAG = 1
+Trocou 6 com 5
+Atual = assim
+Anterior = carta(Atual,Anterior) FLAG = 1
+Trocou 5 com 4
+Atual = assim
+Anterior = carta(Atual,Anterior) FLAG = 1
+Trocou 4 com 3
+Atual = assim
+Anterior = capitaomor(Atual,Anterior) FLAG = 1
+Trocou 3 com 2
+Atual = assim
+Anterior = caminha(Atual,Anterior) FLAG = 1
+Trocou 2 com 1
+Atual = assim
+Anterior = base(Atual,Anterior) FLAG = 1
+Trocou 1 com 0	assim	base	caminha	capitaomor	carta	carta	desta	dominus	edicao	frota	manuel	paulo	pero	posto	senhor	vossa
+
+Elemento 16
+Atual = outros
+Anterior = vossa(Atual,Anterior) FLAG = 1
+Trocou 16 com 15
+Atual = outros
+Anterior = senhor(Atual,Anterior) FLAG = 1
+Trocou 15 com 14
+Atual = outros
+Anterior = posto(Atual,Anterior) FLAG = 1
+Trocou 14 com 13
+Atual = outros
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 13 com 12
+Atual = outros
+Anterior = paulo(Atual,Anterior) FLAG = 1
+Trocou 12 com 11
+Atual = outros
+Anterior = manuel(Atual,Anterior) FLAG = 2	assim	base	caminha	capitaomor	carta	carta	desta	dominus	edicao	frota	manuel	outros	paulo	pero	posto	senhor	vossa
+
+Elemento 17
+Atual = capitaes
+Anterior = vossa(Atual,Anterior) FLAG = 1
+Trocou 17 com 16
+Atual = capitaes
+Anterior = senhor(Atual,Anterior) FLAG = 1
+Trocou 16 com 15
+Atual = capitaes
+Anterior = posto(Atual,Anterior) FLAG = 1
+Trocou 15 com 14
+Atual = capitaes
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 14 com 13
+Atual = capitaes
+Anterior = paulo(Atual,Anterior) FLAG = 1
+Trocou 13 com 12
+Atual = capitaes
+Anterior = outros(Atual,Anterior) FLAG = 1
+Trocou 12 com 11
+Atual = capitaes
+Anterior = manuel(Atual,Anterior) FLAG = 1
+Trocou 11 com 10
+Atual = capitaes
+Anterior = frota(Atual,Anterior) FLAG = 1
+Trocou 10 com 9
+Atual = capitaes
+Anterior = edicao(Atual,Anterior) FLAG = 1
+Trocou 9 com 8
+Atual = capitaes
+Anterior = dominus(Atual,Anterior) FLAG = 1
+Trocou 8 com 7
+Atual = capitaes
+Anterior = desta(Atual,Anterior) FLAG = 1
+Trocou 7 com 6
+Atual = capitaes
+Anterior = carta(Atual,Anterior) FLAG = 1
+Trocou 6 com 5
+Atual = capitaes
+Anterior = carta(Atual,Anterior) FLAG = 1
+Trocou 5 com 4
+Atual = capitaes
+Anterior = capitaomor(Atual,Anterior) FLAG = 1
+Trocou 4 com 3
+Atual = capitaes
+Anterior = caminha(Atual,Anterior) FLAG = 2	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	frota	manuel	outros	paulo	pero	posto	senhor	vossa
+
+Elemento 18
+Atual = escrevam
+Anterior = vossa(Atual,Anterior) FLAG = 1
+Trocou 18 com 17
+Atual = escrevam
+Anterior = senhor(Atual,Anterior) FLAG = 1
+Trocou 17 com 16
+Atual = escrevam
+Anterior = posto(Atual,Anterior) FLAG = 1
+Trocou 16 com 15
+Atual = escrevam
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 15 com 14
+Atual = escrevam
+Anterior = paulo(Atual,Anterior) FLAG = 1
+Trocou 14 com 13
+Atual = escrevam
+Anterior = outros(Atual,Anterior) FLAG = 1
+Trocou 13 com 12
+Atual = escrevam
+Anterior = manuel(Atual,Anterior) FLAG = 1
+Trocou 12 com 11
+Atual = escrevam
+Anterior = frota(Atual,Anterior) FLAG = 1
+Trocou 11 com 10
+Atual = escrevam
+Anterior = edicao(Atual,Anterior) FLAG = 2	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa
+
+Elemento 19
+Atual = vossa
+Anterior = vossa(Atual,Anterior) FLAG = 0	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa
+
+Elemento 20
+Atual = alteza
+Anterior = vossa(Atual,Anterior) FLAG = 1
+Trocou 20 com 19
+Atual = alteza
+Anterior = vossa(Atual,Anterior) FLAG = 1
+Trocou 19 com 18
+Atual = alteza
+Anterior = senhor(Atual,Anterior) FLAG = 1
+Trocou 18 com 17
+Atual = alteza
+Anterior = posto(Atual,Anterior) FLAG = 1
+Trocou 17 com 16
+Atual = alteza
+Anterior = pero(Atual,Anterior) FLAG = 1
+Trocou 16 com 15
+Atual = alteza
+Anterior = paulo(Atual,Anterior) FLAG = 1
+Trocou 15 com 14
+Atual = alteza
+Anterior = outros(Atual,Anterior) FLAG = 1
+Trocou 14 com 13
+Atual = alteza
+Anterior = manuel(Atual,Anterior) FLAG = 1
+Trocou 13 com 12
+Atual = alteza
+Anterior = frota(Atual,Anterior) FLAG = 1
+Trocou 12 com 11
+Atual = alteza
+Anterior = escrevam(Atual,Anterior) FLAG = 1
+Trocou 11 com 10
+Atual = alteza
+Anterior = edicao(Atual,Anterior) FLAG = 1
+Trocou 10 com 9
+Atual = alteza
+Anterior = dominus(Atual,Anterior) FLAG = 1
+Trocou 9 com 8
+Atual = alteza
+Anterior = desta(Atual,Anterior) FLAG = 1
+Trocou 8 com 7
+Atual = alteza
+Anterior = carta(Atual,Anterior) FLAG = 1
+Trocou 7 com 6
+Atual = alteza
+Anterior = carta(Atual,Anterior) FLAG = 1
+Trocou 6 com 5
+Atual = alteza
+Anterior = capitaomor(Atual,Anterior) FLAG = 1
+Trocou 5 com 4
+Atual = alteza
+Anterior = capitaes(Atual,Anterior) FLAG = 1
+Trocou 4 com 3
+Atual = alteza
+Anterior = caminha(Atual,Anterior) FLAG = 1
+Trocou 3 com 2
+Atual = alteza
+Anterior = base(Atual,Anterior) FLAG = 1
+Trocou 2 com 1
+Atual = alteza
+Anterior = assim(Atual,Anterior) FLAG = 1
+Trocou 1 com 0	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa
+
+Elemento 21
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null
+
+Elemento 22
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null
+
+Elemento 23
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null
+
+Elemento 24
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null
+
+Elemento 25
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null
+
+Elemento 26
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null
+
+Elemento 27
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 28
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 29
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 30
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 31
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 32
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 33
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 34
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 35
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 36
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 37
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 38
+Atual é NULL	alteza	assim	base	caminha	capitaes	capitaomor	carta	carta	desta	dominus	edicao	escrevam	frota	manuel	outros	paulo	pero	posto	senhor	vossa	vossa	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null	Null
+
+Elemento 39
+Atual é NULL
+alteza	 5
+assim	 5
+base	 2
+caminha	 1
+capitaes	 5
+capitaomor	 5
+carta	 1	 3
+carta
+desta	 5
+dominus	 3
+edicao	 2
+escrevam	 5
+frota	 5
+manuel	 3
+outros	 5
+paulo	 3
+pero	 1
+posto	 5
+senhor	 4
+vossa	 5
+vossa
+
+
+HASH_LISTA
+
+
+alteza	 5
+assim	 5
+base	 2
+caminha	 1
+capitaes	 5
+capitaomor	 5
+carta	 1	 3
+desta	 5
+dominus	 3
+edicao	 2
+escrevam	 5
+frota	 5
+manuel	 3
+outros	 5
+paulo	 3
+pero	 1
+posto	 5
+senhor	 4
+vossa	 5
+
+
+Relatorio
+
+
+
+Time Processamento LISTA 0.000111999921501
+Time Exibição LISTA 0.000012000091374
+
+Time Processamento ABB 0.000069000292569
+Time Exibição ABB 0.000009000068530
+
+Time Processamento AVL 0.000077999662608
+Time Exibição AVL 0.000010000076145
+
+Time Processamento HASH_OPEN 0.000097999698482
+Time Exibição HASH_OPEN 0.000495000043884
+
+Time Processamento HASH_LISTA 0.000069999485277
+Time Exibição HASH_LISTA 0.002021000022069

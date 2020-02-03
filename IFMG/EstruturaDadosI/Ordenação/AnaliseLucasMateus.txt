@@ -1,0 +1,54 @@
+//////////////////////////////////////////////////////////////////////////////
+//	Lucas Mateus Fernandes 
+//  RA 0035411
+//////////////////////////////////////////////////////////////////////////////
+-----------------------------------
+HeapSort 100 elementos:
+
+Tempo:		0.029000ms
+Iterações:	617
+Trocas:		467
+
+Insertion Sort 100 elementos:
+Tempo:		0.045000ms
+Iterações:	2872
+Trocas:		2780
+-----------------------------------
+HeapSort 1000 elementos:
+
+Tempo:		0.350000ms
+Iterações:	9539
+Trocas:		8039
+
+Insertion Sort 1000 elementos:
+Tempo:		3.934000ms
+Iterações:	253869
+Trocas:		252882
+-----------------------------------
+HeapSort 10000 elementos:
+
+Tempo:		5.508000ms
+Iterações:	129307
+Trocas:		114307
+
+Insertion Sort 10000 elementos:
+Tempo:		204.760000ms
+Iterações:	24954781
+Trocas:		24944793
+//////////////////////////////////////////////////////////////////////////////
+//	Comentario
+//////////////////////////////////////////////////////////////////////////////
+ 
+
+A diferença entre os metodos insertion e o Heap se torna mais descrepante de 
+acordo com o volume de dados e a explicação mais notavel é que o heap se mostra
+mais eficiente por usar uma estrutura logica de arvore o que diminui o numero 
+de trocas ou seja primeiro ele monta uma estrutura que não permite que o "pai"
+seja menor que o filho, aplicando tal regra em toda a arvore fica pre definido
+que se um no superior esta correto os seus descendentes tambem estarão, e caso
+nao esteja é necessario apenas translocar  o elemento por um galho tendo isso
+em mente a cada nivel possui 2^n elementos e diferente dos metodos simpels 
+que percorrem todo o vetor para fazer uma simples troca, o heap pulará uma 
+grande quantidade de casas  com poucas funçoes ou seja para passar do nó 1 
+para o 1024 será necessaria no maximo 10 verificações e a cada nivel que se 
+aumenta a distancia fica mais exorbitante

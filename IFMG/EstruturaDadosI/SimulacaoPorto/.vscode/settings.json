@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "estruturaareaatracamento.h": "c",
+        "estruturanavio.h": "c",
+        "filadinamica.h": "c"
+    }
+}

@@ -1,0 +1,534 @@
+|Calendario
+A_MinutoU <= displayDecode:MesUnidade12.A
+CTRL_MSB => inst5.IN0
+CTRL_MSB => horas.IN0
+CTRL_MSB => dias.IN0
+CTRL_LSB => minutos.IN1
+CTRL_LSB => inst15.IN0
+CTRL_LSB => dias.IN1
+Plus => mux1:inst17.Entrada1
+Plus => mux1:inst18.Entrada1
+Plus => mux1:inst19.Entrada1
+CLK_MSB => mux1:inst16.Controle
+CLK_LSB => mux1:inst12.Controle
+CLK_LSB => mux1:inst11.Controle
+ClockInterno => Clock:inst2.Clock_50Mhz
+ClockManual => mux1:inst11.Entrada0
+Reset => Contador59:inst7.reset
+Reset => Contador23:inst3.reset
+Reset => contador31:inst1.reset
+B_MinutoU <= displayDecode:MesUnidade12.B
+C_MinutoU <= displayDecode:MesUnidade12.C
+D_MinutoU <= displayDecode:MesUnidade12.D
+E_MinutoU <= displayDecode:MesUnidade12.E
+F_MinutoU <= displayDecode:MesUnidade12.F
+G_MinutoU <= displayDecode:MesUnidade12.G
+A_MinutoD <= displayDecode:MesDezena13.A
+B_MinutoD <= displayDecode:MesDezena13.B
+C_MinutoD <= displayDecode:MesDezena13.C
+D_MinutoD <= displayDecode:MesDezena13.D
+E_MinutoD <= displayDecode:MesDezena13.E
+F_MinutoD <= displayDecode:MesDezena13.F
+G_MinutoD <= displayDecode:MesDezena13.G
+A_HoraU <= displayDecode:MesUnidade11.A
+B_HoraU <= displayDecode:MesUnidade11.B
+C_HoraU <= displayDecode:MesUnidade11.C
+D_HoraU <= displayDecode:MesUnidade11.D
+E_HoraU <= displayDecode:MesUnidade11.E
+F_HoraU <= displayDecode:MesUnidade11.F
+G_HoraU <= displayDecode:MesUnidade11.G
+A_HoraD <= displayDecode:MesDezena12.A
+B_HoraD <= displayDecode:MesDezena12.B
+C_HoraD <= displayDecode:MesDezena12.C
+D_HoraD <= displayDecode:MesDezena12.D
+E_HoraD <= displayDecode:MesDezena12.E
+F_HoraD <= displayDecode:MesDezena12.F
+G_HoraD <= displayDecode:MesDezena12.G
+A_DiaU <= displayDecode:MesUnidade.A
+B_DiaU <= displayDecode:MesUnidade.B
+C_DiaU <= displayDecode:MesUnidade.C
+D_DiaU <= displayDecode:MesUnidade.D
+E_DiaU <= displayDecode:MesUnidade.E
+F_DiaU <= displayDecode:MesUnidade.F
+G_DiaU <= displayDecode:MesUnidade.G
+A_DiaD <= displayDecode:MesDezena.A
+B_DiaD <= displayDecode:MesDezena.B
+C_DiaD <= displayDecode:MesDezena.C
+D_DiaD <= displayDecode:MesDezena.D
+E_DiaD <= displayDecode:MesDezena.E
+F_DiaD <= displayDecode:MesDezena.F
+G_DiaD <= displayDecode:MesDezena.G
+
+
+|Calendario|displayDecode:MesUnidade12
+A <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+Z => inst3.IN0
+Z => inst6.IN0
+Z => inst7.IN0
+Z => inst9.IN0
+Z => inst10.IN0
+Z => inst16.IN0
+Z => inst15.IN0
+Z => inst22.IN0
+Z => inst28.IN0
+Z => inst34.IN0
+Y => inst2.IN0
+Y => inst6.IN1
+Y => inst5.IN1
+Y => inst9.IN1
+Y => inst11.IN0
+Y => inst12.IN1
+Y => inst16.IN1
+Y => inst15.IN1
+Y => inst20.IN1
+Y => inst23.IN0
+Y => inst24.IN1
+Y => inst28.IN1
+Y => inst34.IN1
+Y => inst33.IN1
+X => inst1.IN0
+X => inst7.IN2
+X => inst11.IN1
+X => inst10.IN1
+X => inst16.IN2
+X => inst17.IN2
+X => inst22.IN2
+X => inst23.IN1
+X => inst30.IN2
+X => inst31.IN1
+X => inst33.IN2
+W => inst4.IN3
+W => inst6.IN3
+W => inst7.IN3
+W => inst.IN0
+W => inst12.IN3
+W => inst10.IN2
+W => inst23.IN2
+W => inst21.IN3
+W => inst25.IN2
+W => inst26.IN1
+W => inst28.IN3
+W => inst31.IN2
+W => inst29.IN2
+W => inst33.IN3
+B <= inst13.DB_MAX_OUTPUT_PORT_TYPE
+C <= inst18.DB_MAX_OUTPUT_PORT_TYPE
+D <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+E <= inst27.DB_MAX_OUTPUT_PORT_TYPE
+F <= inst32.DB_MAX_OUTPUT_PORT_TYPE
+G <= inst36.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Calendario|Contador59:inst7
+UnidaB1 <= UniB1.DB_MAX_OUTPUT_PORT_TYPE
+reset => inst4.IN1
+clock => inst10.IN0
+UnidaB2 <= UniB2.DB_MAX_OUTPUT_PORT_TYPE
+UnidaB3 <= UniB3.DB_MAX_OUTPUT_PORT_TYPE
+UnidaB4 <= UniB4.DB_MAX_OUTPUT_PORT_TYPE
+DezenaB1 <= DezB1.DB_MAX_OUTPUT_PORT_TYPE
+DezenaB2 <= DezB2.DB_MAX_OUTPUT_PORT_TYPE
+DezenaB3 <= DezB3.DB_MAX_OUTPUT_PORT_TYPE
+CicloCompleto <= 10ou32_5.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Calendario|Contador59:inst7|Se10:inst1
+Eh_10 <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+Bit4 => inst6.IN0
+Bit4 => inst5.IN0
+Bit3 => inst6.IN1
+Bit2 => inst5.IN1
+Bit1 => inst8.IN1
+
+
+|Calendario|mux1:inst17
+Saida <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Controle => inst2.IN0
+Controle => inst4.IN0
+Entrada1 => inst2.IN1
+Entrada0 => inst.IN1
+
+
+|Calendario|mux1:inst16
+Saida <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Controle => inst2.IN0
+Controle => inst4.IN0
+Entrada1 => inst2.IN1
+Entrada0 => inst.IN1
+
+
+|Calendario|mux1:inst12
+Saida <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Controle => inst2.IN0
+Controle => inst4.IN0
+Entrada1 => inst2.IN1
+Entrada0 => inst.IN1
+
+
+|Calendario|Clock:inst2
+Clock_100Hz <= inst37.DB_MAX_OUTPUT_PORT_TYPE
+Clock_50Mhz => inst1.IN0
+Clock_10Hz <= inst45.DB_MAX_OUTPUT_PORT_TYPE
+Clock_1Khz <= inst29.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Calendario|mux1:inst11
+Saida <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Controle => inst2.IN0
+Controle => inst4.IN0
+Entrada1 => inst2.IN1
+Entrada0 => inst.IN1
+
+
+|Calendario|displayDecode:MesDezena13
+A <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+Z => inst3.IN0
+Z => inst6.IN0
+Z => inst7.IN0
+Z => inst9.IN0
+Z => inst10.IN0
+Z => inst16.IN0
+Z => inst15.IN0
+Z => inst22.IN0
+Z => inst28.IN0
+Z => inst34.IN0
+Y => inst2.IN0
+Y => inst6.IN1
+Y => inst5.IN1
+Y => inst9.IN1
+Y => inst11.IN0
+Y => inst12.IN1
+Y => inst16.IN1
+Y => inst15.IN1
+Y => inst20.IN1
+Y => inst23.IN0
+Y => inst24.IN1
+Y => inst28.IN1
+Y => inst34.IN1
+Y => inst33.IN1
+X => inst1.IN0
+X => inst7.IN2
+X => inst11.IN1
+X => inst10.IN1
+X => inst16.IN2
+X => inst17.IN2
+X => inst22.IN2
+X => inst23.IN1
+X => inst30.IN2
+X => inst31.IN1
+X => inst33.IN2
+W => inst4.IN3
+W => inst6.IN3
+W => inst7.IN3
+W => inst.IN0
+W => inst12.IN3
+W => inst10.IN2
+W => inst23.IN2
+W => inst21.IN3
+W => inst25.IN2
+W => inst26.IN1
+W => inst28.IN3
+W => inst31.IN2
+W => inst29.IN2
+W => inst33.IN3
+B <= inst13.DB_MAX_OUTPUT_PORT_TYPE
+C <= inst18.DB_MAX_OUTPUT_PORT_TYPE
+D <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+E <= inst27.DB_MAX_OUTPUT_PORT_TYPE
+F <= inst32.DB_MAX_OUTPUT_PORT_TYPE
+G <= inst36.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Calendario|displayDecode:MesUnidade11
+A <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+Z => inst3.IN0
+Z => inst6.IN0
+Z => inst7.IN0
+Z => inst9.IN0
+Z => inst10.IN0
+Z => inst16.IN0
+Z => inst15.IN0
+Z => inst22.IN0
+Z => inst28.IN0
+Z => inst34.IN0
+Y => inst2.IN0
+Y => inst6.IN1
+Y => inst5.IN1
+Y => inst9.IN1
+Y => inst11.IN0
+Y => inst12.IN1
+Y => inst16.IN1
+Y => inst15.IN1
+Y => inst20.IN1
+Y => inst23.IN0
+Y => inst24.IN1
+Y => inst28.IN1
+Y => inst34.IN1
+Y => inst33.IN1
+X => inst1.IN0
+X => inst7.IN2
+X => inst11.IN1
+X => inst10.IN1
+X => inst16.IN2
+X => inst17.IN2
+X => inst22.IN2
+X => inst23.IN1
+X => inst30.IN2
+X => inst31.IN1
+X => inst33.IN2
+W => inst4.IN3
+W => inst6.IN3
+W => inst7.IN3
+W => inst.IN0
+W => inst12.IN3
+W => inst10.IN2
+W => inst23.IN2
+W => inst21.IN3
+W => inst25.IN2
+W => inst26.IN1
+W => inst28.IN3
+W => inst31.IN2
+W => inst29.IN2
+W => inst33.IN3
+B <= inst13.DB_MAX_OUTPUT_PORT_TYPE
+C <= inst18.DB_MAX_OUTPUT_PORT_TYPE
+D <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+E <= inst27.DB_MAX_OUTPUT_PORT_TYPE
+F <= inst32.DB_MAX_OUTPUT_PORT_TYPE
+G <= inst36.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Calendario|Contador23:inst3
+UnidaB1 <= UniB1.DB_MAX_OUTPUT_PORT_TYPE
+reset => inst4.IN1
+clock => inst10.IN0
+UnidaB2 <= UniB2.DB_MAX_OUTPUT_PORT_TYPE
+UnidaB3 <= UniB3.DB_MAX_OUTPUT_PORT_TYPE
+UnidaB4 <= UniB4.DB_MAX_OUTPUT_PORT_TYPE
+DezenaB1 <= DezB1.DB_MAX_OUTPUT_PORT_TYPE
+DezenaB2 <= DezB2.DB_MAX_OUTPUT_PORT_TYPE
+CicloCompleto <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Calendario|Contador23:inst3|Se10:inst1
+Eh_10 <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+Bit4 => inst6.IN0
+Bit4 => inst5.IN0
+Bit3 => inst6.IN1
+Bit2 => inst5.IN1
+Bit1 => inst8.IN1
+
+
+|Calendario|mux1:inst18
+Saida <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Controle => inst2.IN0
+Controle => inst4.IN0
+Entrada1 => inst2.IN1
+Entrada0 => inst.IN1
+
+
+|Calendario|displayDecode:MesDezena12
+A <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+Z => inst3.IN0
+Z => inst6.IN0
+Z => inst7.IN0
+Z => inst9.IN0
+Z => inst10.IN0
+Z => inst16.IN0
+Z => inst15.IN0
+Z => inst22.IN0
+Z => inst28.IN0
+Z => inst34.IN0
+Y => inst2.IN0
+Y => inst6.IN1
+Y => inst5.IN1
+Y => inst9.IN1
+Y => inst11.IN0
+Y => inst12.IN1
+Y => inst16.IN1
+Y => inst15.IN1
+Y => inst20.IN1
+Y => inst23.IN0
+Y => inst24.IN1
+Y => inst28.IN1
+Y => inst34.IN1
+Y => inst33.IN1
+X => inst1.IN0
+X => inst7.IN2
+X => inst11.IN1
+X => inst10.IN1
+X => inst16.IN2
+X => inst17.IN2
+X => inst22.IN2
+X => inst23.IN1
+X => inst30.IN2
+X => inst31.IN1
+X => inst33.IN2
+W => inst4.IN3
+W => inst6.IN3
+W => inst7.IN3
+W => inst.IN0
+W => inst12.IN3
+W => inst10.IN2
+W => inst23.IN2
+W => inst21.IN3
+W => inst25.IN2
+W => inst26.IN1
+W => inst28.IN3
+W => inst31.IN2
+W => inst29.IN2
+W => inst33.IN3
+B <= inst13.DB_MAX_OUTPUT_PORT_TYPE
+C <= inst18.DB_MAX_OUTPUT_PORT_TYPE
+D <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+E <= inst27.DB_MAX_OUTPUT_PORT_TYPE
+F <= inst32.DB_MAX_OUTPUT_PORT_TYPE
+G <= inst36.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Calendario|displayDecode:MesUnidade
+A <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+Z => inst3.IN0
+Z => inst6.IN0
+Z => inst7.IN0
+Z => inst9.IN0
+Z => inst10.IN0
+Z => inst16.IN0
+Z => inst15.IN0
+Z => inst22.IN0
+Z => inst28.IN0
+Z => inst34.IN0
+Y => inst2.IN0
+Y => inst6.IN1
+Y => inst5.IN1
+Y => inst9.IN1
+Y => inst11.IN0
+Y => inst12.IN1
+Y => inst16.IN1
+Y => inst15.IN1
+Y => inst20.IN1
+Y => inst23.IN0
+Y => inst24.IN1
+Y => inst28.IN1
+Y => inst34.IN1
+Y => inst33.IN1
+X => inst1.IN0
+X => inst7.IN2
+X => inst11.IN1
+X => inst10.IN1
+X => inst16.IN2
+X => inst17.IN2
+X => inst22.IN2
+X => inst23.IN1
+X => inst30.IN2
+X => inst31.IN1
+X => inst33.IN2
+W => inst4.IN3
+W => inst6.IN3
+W => inst7.IN3
+W => inst.IN0
+W => inst12.IN3
+W => inst10.IN2
+W => inst23.IN2
+W => inst21.IN3
+W => inst25.IN2
+W => inst26.IN1
+W => inst28.IN3
+W => inst31.IN2
+W => inst29.IN2
+W => inst33.IN3
+B <= inst13.DB_MAX_OUTPUT_PORT_TYPE
+C <= inst18.DB_MAX_OUTPUT_PORT_TYPE
+D <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+E <= inst27.DB_MAX_OUTPUT_PORT_TYPE
+F <= inst32.DB_MAX_OUTPUT_PORT_TYPE
+G <= inst36.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Calendario|contador31:inst1
+UnidaB1 <= UniB1.DB_MAX_OUTPUT_PORT_TYPE
+reset => inst4.IN1
+clock => inst10.IN0
+UnidaB2 <= UniB2.DB_MAX_OUTPUT_PORT_TYPE
+UnidaB3 <= UniB3.DB_MAX_OUTPUT_PORT_TYPE
+UnidaB4 <= UniB4.DB_MAX_OUTPUT_PORT_TYPE
+DezenaB1 <= DezB1.DB_MAX_OUTPUT_PORT_TYPE
+DezenaB2 <= DezB2.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Calendario|contador31:inst1|Se10:inst1
+Eh_10 <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+Bit4 => inst6.IN0
+Bit4 => inst5.IN0
+Bit3 => inst6.IN1
+Bit2 => inst5.IN1
+Bit1 => inst8.IN1
+
+
+|Calendario|mux1:inst19
+Saida <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Controle => inst2.IN0
+Controle => inst4.IN0
+Entrada1 => inst2.IN1
+Entrada0 => inst.IN1
+
+
+|Calendario|displayDecode:MesDezena
+A <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+Z => inst3.IN0
+Z => inst6.IN0
+Z => inst7.IN0
+Z => inst9.IN0
+Z => inst10.IN0
+Z => inst16.IN0
+Z => inst15.IN0
+Z => inst22.IN0
+Z => inst28.IN0
+Z => inst34.IN0
+Y => inst2.IN0
+Y => inst6.IN1
+Y => inst5.IN1
+Y => inst9.IN1
+Y => inst11.IN0
+Y => inst12.IN1
+Y => inst16.IN1
+Y => inst15.IN1
+Y => inst20.IN1
+Y => inst23.IN0
+Y => inst24.IN1
+Y => inst28.IN1
+Y => inst34.IN1
+Y => inst33.IN1
+X => inst1.IN0
+X => inst7.IN2
+X => inst11.IN1
+X => inst10.IN1
+X => inst16.IN2
+X => inst17.IN2
+X => inst22.IN2
+X => inst23.IN1
+X => inst30.IN2
+X => inst31.IN1
+X => inst33.IN2
+W => inst4.IN3
+W => inst6.IN3
+W => inst7.IN3
+W => inst.IN0
+W => inst12.IN3
+W => inst10.IN2
+W => inst23.IN2
+W => inst21.IN3
+W => inst25.IN2
+W => inst26.IN1
+W => inst28.IN3
+W => inst31.IN2
+W => inst29.IN2
+W => inst33.IN3
+B <= inst13.DB_MAX_OUTPUT_PORT_TYPE
+C <= inst18.DB_MAX_OUTPUT_PORT_TYPE
+D <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+E <= inst27.DB_MAX_OUTPUT_PORT_TYPE
+F <= inst32.DB_MAX_OUTPUT_PORT_TYPE
+G <= inst36.DB_MAX_OUTPUT_PORT_TYPE
+
+

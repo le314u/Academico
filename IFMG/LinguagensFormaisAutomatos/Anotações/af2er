@@ -1,0 +1,9 @@
+Cria um novo estado inicial e um novo estado final 
+Escolhe um estado e o elemina
+reconstroi outro altomato sem o elemento e
+
+como o automato sumiu eu verifico todos os ' caminhos' que passavam pelo estado eliminado ou seja, chegava no estado eliminado e do estado eliminado mandava para outro estado
+
+Os loops que somem viram '*'
+
+

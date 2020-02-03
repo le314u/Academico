@@ -1,0 +1,12 @@
+Fazer 'Se 10' virar 'Se > que 10'
+2 display para dia = 1 Contador ( 01 a 31)
+2 display para hora  = 1 Contador  (00 a 23)
+2 display para minutos 1 contador (00 a 59)	
+
+Multiplexador = Escolhe qual Entrada vai sair na unica saida (Entradas = 2^(numero de bit's de controle))
+
+DeMultiplexador = Tem Apenas uma Entrada e escolhe em qual saida irá (Saida = 2^(numero de bit's de controle))
+Vai ser Usado no  Ajuste Manual
+                  Ajuste  = So Um Contador recebera o ClockManual
+
+Botao Resete

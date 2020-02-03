@@ -1,0 +1,46 @@
+buscaProfundidade(resultado, raiz){
+
+    //Cria uma Pilha, nomeada aqui de franja
+    franja = []
+
+    //Coloca a raiz na estrutura 
+    franja.push(raiz)
+
+    //Percorre a estrutura de Dados até esgota-la ou até achar a solução
+    while(franja != empity){
+
+        //Verifica se o item no topo da 'pilha' é a solução
+        if(franja.pop() == resultado){
+            //Achou a solução
+            return
+        }else{
+            //Cria os filhos do elemento que foi verificado e os adiciona no topo da pilha
+            franja.push('filho')
+        }
+    }
+    //Não foi possivel achar a solução
+}
+
+
+buscaLargura(resultado, raiz){
+
+    //Cria uma Fila, nomeada aqui de franja
+    franja = []
+
+    //Coloca a raiz na estrutura 
+    franja.shift(raiz)
+
+    //Percorre a estrutura de Dados até esgota-la ou até achar a solução
+    while(franja != empity){
+
+        //Verifica se o item no inicio da 'fila' é a solução
+        if(franja.unshift() == resultado){
+            //Achou a solução
+            return
+        }else{
+            //Cria os filhos do elemento que foi verificado e os adiciona no final da fila
+            franja.shift('filho')
+        }
+    }
+    //Não foi possivel achar a solução
+}

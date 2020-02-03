@@ -1,0 +1,11 @@
+Dado um AFN:
+Estado inicial é um copnjuto de estados inicias
+1ºpasso: Simula a execução em paralelo
+2ºpasso: Cada estado é um 'conjunto de estados'
+OBS:  {2,3} != {2,3,4} != {2} != {e,3}
+{e,3} == {3}
+erro sempre manda para erro
+
+3ºpasso: Todo Conjunto de estado que tenha algum elemento pertencente ao conjuto dos finais se torna um estado final
+
+

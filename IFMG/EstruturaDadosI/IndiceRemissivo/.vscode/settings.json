@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "tratamentostring.h": "c",
+        "abb.h": "c",
+        "palavra.h": "c",
+        "analiseentrada.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "string.h": "c",
+        "ctype.h": "c",
+        "avl.h": "c",
+        "clock.h": "c"
+    }
+}

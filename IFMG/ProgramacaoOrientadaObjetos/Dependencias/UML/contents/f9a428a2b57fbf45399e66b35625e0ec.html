@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Senha</title>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../assets/css/bootstrap.css">
+<link rel="stylesheet" href="../assets/css/jquery.bonsai.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/icon-font/icons.css">
+<script type="text/javascript" src="../assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.bonsai.js"></script>
+
+  </head>
+  <body>
+    <div>
+
+      <!-- Name Title -->
+
+      <h1>Senha</h1>
+
+      <!-- Type and Stereotype -->
+
+      <section style="margin-top: .5em;">
+        <span class="alert alert-info">
+          <span class="node-icon staruml-icon icon-UMLClass"></span>
+          UMLClass
+        </span>
+        
+      </section>
+
+      <!-- Path -->
+
+      <section style="margin-top: 10px">
+        
+        
+        
+          
+          <span class="label label-info"><a href='cf9c8b720f3815adeccaf3ef6e48c6c4.html'><span class='node-icon staruml-icon icon-Project'></span>Untitled</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='594af663de577680f35b13183109d675.html'><span class='node-icon staruml-icon icon-UMLModel'></span>Model</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='8eae0c77cf1869b79dc6b333f3ba37b6.html'><span class='node-icon staruml-icon icon-UMLPackage'></span>Comum</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='186eeae62ab25acf82dcc904d2b7c9d7.html'><span class='node-icon staruml-icon icon-UMLPackage'></span>MODELO</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='f9a428a2b57fbf45399e66b35625e0ec.html'><span class='node-icon staruml-icon icon-UMLClass'></span>Senha</a></span>
+        
+      </section>
+
+      <!-- Diagram -->
+
+      
+
+      <!-- Description -->
+
+      
+      <section>
+        <h3>Description</h3>
+        <div>
+          
+            <p>@author lucas
+Por motivos segurança é permitido apenas set da senha
+Get da senha retorna hash em string para verificação
+Caso o hash seja ativado na mão ativa a flag de inconsistencia
+//Se o Hash foi setado na mão, o dado é inconsistente
+//Todo dado que sai do google e vai para urna será inconsistente
+//Se o dado for incosistente não sera possivel passar da central para o google</p>
+          
+        </div>
+      </section>
+      
+
+      <!-- Specification -->
+
+      
+
+      <!-- Directed Relationship -->
+
+      
+
+      <!-- Undirected Relationship -->
+
+      
+
+      <!-- Classifier -->
+
+      
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+      
+
+      <!-- Interface -->
+
+      
+
+      <!-- Component -->
+
+      
+
+      <!-- Node -->
+
+      
+
+      <!-- Actor -->
+
+      
+
+      <!-- Use Case -->
+
+      
+
+      <!-- Template Parameters -->
+
+      
+
+      <!-- Literals -->
+
+      
+
+      <!-- Attributes -->
+
+      
+      <section>
+        <h3>Attributes</h3>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Visibility</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="8fd07ff21fe6f449fd21d90dcc23898d.html">senha</a></td>
+            <td>String</td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="0d997c47de358c19deed844b363819a9.html">Hash</a></td>
+            <td>String</td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="381b0286c60915eac16c4906227dd671.html">Inconsistencia</a></td>
+            <td><a href='fb9510f65eb7805accd28e8b2f4ffb30.html'>Boolean</a></td>
+            <td></td>
+          </tr>
+          
+        </table>
+      </section>
+      
+
+      <!-- Operations -->
+
+      
+      <section>
+        <h3>Operations</h3>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Visibility</th>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="fe75eeb8a438dee66dfc3a987c6fcf38.html">Senha(path: String)</a></td>
+            <td><p>Abre a Imagem e gera um Hash
+@param path Caminho da Imagem</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="d9a13197e1f74dd1f5f2016ab89545c6.html">Senha(Inconsistente: String, Hash: String)</a></td>
+            <td><p>So troca a hash se o primeiro argumento for INCOCSISTENTE
+@param Inconsistente =INCONSISTENTE
+@param Hash Nova hash</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="eec52f95d5432da705842791496bbfa6.html">setHash(Hash: String): void</a></td>
+            <td><p>@param Hash Novo hash</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="569af202d73f94acd1cb351bfa0384b1.html">setImagem(path: String): void</a></td>
+            <td><p>@param path Caminho da imagem
+@throws IOException</p></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="a4f862ef41ff9f132e3c5674f88eae24.html">setHash(): void</a></td>
+            <td><p>Cria o Hash de acordo com a imagem que veio</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="5f91b1bd6de77f699737cd1f97bf20a5.html">getHash(): String</a></td>
+            <td><p>@return Hash</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="f206288261a786f3c2a659ea87ad683e.html">equals(senha: Senha): boolean</a></td>
+            <td><p>@param senha Obecjt Senha
+@return Se a senha é a mesma ou nao</p></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="ed2f585768cfd48570ba1e81b9e94837.html">equals(senha: String): boolean</a></td>
+            <td><p>@param senha Obecjt Senha
+@return Se a senha é a mesma ou nao</p></td>
+          </tr>
+          
+        </table>
+      </section>
+      
+
+      <!-- Receptions -->
+
+      
+
+      <!-- Extension Points -->
+
+      
+
+      <!-- Parameters -->
+
+      
+
+      <!-- Diagrams -->
+
+      
+      
+
+      <!-- Behavior -->
+
+      
+
+      <!-- Action -->
+
+      
+
+      <!-- Interaction -->
+
+      
+
+      <!-- CombinedFragment -->
+
+      
+
+      <!-- Activity -->
+
+      
+
+      <!-- State Machine -->
+
+      
+
+      <!-- State Machine -->
+
+      
+
+      <!-- State -->
+
+      
+
+      <!-- Vertex -->
+
+      
+
+      <!-- Transition -->
+
+      
+
+      <!-- Data Model (ERD) -->
+
+      
+
+      <!-- Columns (ERD) -->
+
+      
+
+      <!-- Related Entities (ERD) -->
+
+      
+
+      <!-- Data Flows (DFD) -->
+
+      
+
+      <!-- Flows (Flowchart) -->
+
+      
+
+      <!-- Properties -->
+
+      <section>
+        <h3>Properties</h3>
+        
+        <table class="table table-striped table-bordered">
+    <tr>
+        <th width="50%">Name</th>
+        <th width="50%">Value</th>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>name</td>
+        <td>Senha</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>stereotype</td>
+        <td><span class='label label-info'>null</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>visibility</td>
+        <td>public</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>isAbstract</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isFinalSpecialization</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isLeaf</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isActive</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+</table>                
+
+      </section>
+
+      <!-- Tags -->
+
+      
+
+      <!-- Constraints, Dependencies, Dependants -->
+
+      
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+      
+
+      <!-- Relationships -->
+
+      
+      
+<section class="element-list">
+    <h3>Relationships</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='7b443d8353dd19c5a5229155a5667a88.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Eleitor—Senha)</a></li>
+        
+    </ul>
+</section>
+
+
+
+      <!-- Owned Elements -->
+
+      
+      
+
+
+    </div>
+  </body>
+</html>

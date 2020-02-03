@@ -1,0 +1,8 @@
+|Mux
+Saida <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+Controle => inst2.IN0
+Controle => inst4.IN0
+Entrada2 => inst2.IN1
+Entrada1 => inst.IN1
+
+

@@ -1,0 +1,12 @@
+basica			legenda			estendida
+a			a			a
+ab			ab			ab
+a+b			a ou b			a|b
+aa*			1 ou mais a		a+
+a*			0 ou mais a		a*
+			curinga			.
+a+b+c			a ou b ou c		[abc]
+			nao seja a ou b		[^ab]
+			ancora inicio linha	^
+			ancora final linha	$
+\			ignora proximo char	\

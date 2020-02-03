@@ -1,0 +1,13 @@
+# Lista de pontos tabelados entre [-1, 4]
+# Função original f(x) = x^2 + x
+n 4
+x -1 1 2 4
+y 2 2 6 20
+# Intervalo da integral definida em [1,10]
+a 1
+b 10
+# Lista de pontos a interpolar
+i 4
+p 0 1.4 3 3.55  
+# Computar integral com 30 trapezios
+t 30

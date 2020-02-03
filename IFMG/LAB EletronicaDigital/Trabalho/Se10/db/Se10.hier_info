@@ -1,0 +1,8 @@
+|Se10
+Eh_10 <= <GND>
+Bit1 => ~NO_FANOUT~
+Bit2 => ~NO_FANOUT~
+Bit3 => ~NO_FANOUT~
+Bit4 => ~NO_FANOUT~
+
+

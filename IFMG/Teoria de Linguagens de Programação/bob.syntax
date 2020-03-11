@@ -1,0 +1,68 @@
+<B>    Class Definition</B>
+      class <class-name> [ : <base-class-name > ]
+       { <member-definition>... }
+
+<B>    Member Definition</B>
+      <variable-name>... ;
+      static <variable-name>... ;
+      <function-name> ( [ <formal-argument-list> ] ) ;
+      static <function-name> ( [ <formal-argument-list> ] ) ;
+
+<B>    Function Definition</B>
+      [ <class-name> :: ] <function-name>
+       ( [ <formal-argument-list> [ ; <temporary-list> ] )
+       { <statement>... }
+
+<B>    Statement</B>
+      if ( <test-expression> ) <then-statement> [ else <else-statement> ] ;
+      while ( <test-expression> ) <body-statement>
+      do <body-statement> while <test-expression> ) ;
+      for ( <init-expression> ; <test-expression> ; <increment-expression> )
+        <body-statement>
+      break ;
+      continue ;
+      return [ <result-expression> ] ;
+      [ <expression> ] ;
+      { <statement>... }
+
+    <B>Expression</B>
+<B>    </B>   <expression> , <expression>
+       <lvalue> = <expression>
+       <lvalue> += <expression>
+       <lvalue> --   <expression>
+       <lvalue> *= <expression>
+       <lvalue> /= <expression>
+       <test-expression> ? <true-expression> : <false-expression>
+       <expression> || <expression>
+       <expression> && <expression>
+       <expression> | <expression>
+       <expression> ^< expression>
+       <expression> &< expression>
+       <expression> == <expression>
+       <expression> != <expression>
+       <expression> << expression>
+       <expression> <= <expression>
+       <expression> > = <expression>
+       <expression> > <expression>
+       <expression> << <expression>
+       <expression> > > <expression>
+       <expression> + <expression>
+       <expression> -- <expression>
+       <expression> * <expression>
+       <expression> / <expression>
+       <expression> % <expression>
+       -- <expression>
+       ! <expression>
+       ~ <expression>
+       ++ <lvalue>
+       -- <lvalue>
+       <lvalue> ++
+       <lvalue> --
+       new  <class-name> ( [ <constructor-arguments> ] )
+       <expression> ( [ <arguments> ] )
+       <expression> -> <function-name> ( [ <arguments> ] )
+       ( <expression> )
+       <variable-name>
+       <number>
+       <string>
+       nil

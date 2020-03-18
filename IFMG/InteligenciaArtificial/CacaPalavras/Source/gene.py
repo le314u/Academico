@@ -1,8 +1,5 @@
 import math
 
-NUMERO_LINHAS = 20
-NUMERO_COLUNAS = 20
-
 HORIZONTAL = 1
 VERTICAL = 2
 DIAGONAL = 3
@@ -17,6 +14,14 @@ class gene():
         self.palavra = palavra
         #label V H D
         self.sentido = sentido
+        #Dimensão da tabela
+        self.NUMERO_LINHAS = 20
+        self.NUMERO_COLUNAS = 20
+
+    def set_dimensao(self, linha=20, coluna=20):
+        self.NUMERO_LINHAS = linha
+        self.NUMERO_COLUNAS = coluna
+
     def colisao(self, gene):
         if(not (self.factibilidade()) ):
             return True
@@ -62,7 +67,7 @@ class gene():
     #Conjunto de Genes Verificar factibilidade
     def factibilidade(self):
         #Verifica se a palavra estrapola as linhas
-        if(self.estouraMatriz(NUMERO_LINHAS, NUMERO_COLUNAS, self.sentido, self.tamanhoPalavra())):
+        if(self.estouraMatriz(self.NUMERO_LINHAS, self.NUMERO_COLUNAS, self.sentido, self.tamanhoPalavra())):
             return False
         return True
     #Verifica se a palavra estourou a Matriz

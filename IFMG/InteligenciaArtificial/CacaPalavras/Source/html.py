@@ -72,7 +72,7 @@ class html():
         arquivo.write("\n\t</body>\n</html>")
         arquivo.close()
 
-    def persistencia(self, individuo,name):
+    def persistencia(self, individuo, name):
         mRandom = self.matrixRandom()
         mFinal = self.individuoMatrix(mRandom, individuo)
         self.gerarHTML(mFinal, individuo, name)

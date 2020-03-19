@@ -1,8 +1,36 @@
 import math
-from random import randint
+from random import randint,shuffle
 from copy import copy
 import gene
 import individuo
+
+
+def melhorIndividuo(populacao):
+    #Salva o Melhor individuo
+    melhorIndice=0
+    melhor = populacao[0]
+    for indice,individuo in enumerate(populacao):
+        if(populacao[melhorIndice].fitnes < individuo.fitnes):
+            melhorIndice = indice
+            melhor = individuo
+    return melhor
+
+def populacaoInicial(numeroIndividuos, listaPalavras):
+    populacao = []
+    sentido = [1,2,3]   #HORIZONTAL = 1 VERTICAL = 2    DIAGONAL = 3
+    #Cria 'n' individuos aleatorios
+    for x in range(numeroIndividuos):
+        #Preparando Genes
+        listaGenes = []
+        for palavra in listaPalavras:
+            indice = randint(0,2)
+            auxGene = gene.gene(1, 1, palavra, sentido[indice])
+            listaGenes.append(auxGene)
+        #Embaralha os genes
+        shuffle(listaGenes)
+        ind = individuo.individuo(listaGenes)
+        populacao.append(ind)
+    return populacao
 
 #Monta uma Roleta com a porcentagem que cada individuo tem de ser Selecionado
 def roleta(populacao):#Pagina 10 http://www.inf.ufpr.br/aurora/tutoriais/Ceapostila.pdf

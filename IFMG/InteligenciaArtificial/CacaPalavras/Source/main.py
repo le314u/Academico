@@ -19,7 +19,7 @@ listaPalavras = algoritimoGenetico.palavrasEntrada(argumentos.nomeArquivo, argum
 #instanciação classe
 output = html.html(argumentos.nLinhas, argumentos.nColunas)
 
-for i in range(argumentos.nCacaPalavras):
+for num in range(argumentos.nCacaPalavras):
     #Cria população inicial;
     populacao = algoritimoGenetico.populacaoInicial(argumentos.numeroIndividuos, listaPalavras)
     melhor = algoritimoGenetico.melhorIndividuo(populacao)
@@ -60,11 +60,13 @@ for i in range(argumentos.nCacaPalavras):
         melhor = algoritimoGenetico.melhorIndividuo(populacao)
 
     melhor = algoritimoGenetico.melhorIndividuo(populacao)
-    melhor.posicaoGenes()
 
     if(verboso):
+        melhor.posicaoGenes()
         print("\n---------------------------------------\n")
         print("\n")
         print("Fitness",melhor.fitnes)
-
-    output.persistencia(melhor,'CacaPalavras'+str(i)+'.html')
+    
+    nomeArq = 'CacaPalavras'+str(num)+'.html'
+    print(nomeArq)
+    output.persistencia(melhor,nomeArq)

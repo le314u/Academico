@@ -9,10 +9,22 @@ module.exports = class Cli{
         this.STEP=1
         this.DEBUG=2
         this.HELP=3
+        this.init()
+    }
+    init(){
         this.checkResume();
         this.checkStep();
         this.checkDebug();
-        this.checkHelp
+        this.checkHelp();
+    }
+    getPayload(){
+        return {
+            option:this.option,
+            arg:this.arg,
+            option:this.option,
+            file:this.file,
+            input:this.input
+        }
     }
     checkResume(){
         // -resume

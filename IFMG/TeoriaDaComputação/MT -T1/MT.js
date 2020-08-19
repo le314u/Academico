@@ -13,7 +13,9 @@ class MT{
         this.bloco = 'main';
     }
     compute(string){
-            
+        (1) o simulador lê o símbolo sob o cabeçote da <fitaA>, chamemos de <lido> esse caractere;
+        (2) o simulador procura casamento nos pares (<estadoA>, <simbA>) e (<estadoA>, <lido>);
+        (3) seguindo a ordem no código fonte, o primeiro casamento determina qual instrução executar.
     }
     alias(){
 

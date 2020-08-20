@@ -1,3 +1,4 @@
+const error = require('./error')
 module.exports=class Parse {
     //Analise da String
     static whatIsComand(string){
@@ -35,21 +36,25 @@ module.exports=class Parse {
         }
         return 'error'
     }
+    // Verifica se é um comando de computação
+    // <estadoA> <fitaA> <simbA> <moveA> - - <estadoB> <fitaB> <simbB> <moveB>
     static checkComputation(string){
-        // <estadoA> <fitaA> <simbA> <moveA> - - <estadoB> <fitaB> <simbB> <moveB>
         let chunks = this.filter(string);
-        if(this.hasNChunks(chunks, 9) && chunks[4] === '--'){
+        if((this.hasNChunks(chunks, 9) || this.hasNChunks(chunks, 10)) && chunks[4] === '--'){
             let computation = this.getComputation(string)
             return(
                 this.isState(computation.read.state) &&
                 this.isMove(computation.read.move)&&
+                this.isTape(computation.read.tape)&&
                 this.isState(computation.write.state)&&
-                this.isMove(computation.write.move)
+                this.isMove(computation.write.move)&&
+                this.isTape(computation.write.tape)
             )
         }
     }
+    // Verifica se é a chamada de um bloco
+    // <estado atual> <identificador de bloco> <estado de retorno>
     static checkFunction(string){
-        // <estado atual> <identificador de bloco> <estado de retorno>
         let chunks = this.filter(string);
         if( this.hasNChunks(chunks, 3) ){
             let func = this.getFunction(string)
@@ -61,10 +66,12 @@ module.exports=class Parse {
             return false
         }
     }
+    // Verifica se é um comando Especial
+    // <estado atual> pare
+    // <estado atual> aceite
+    // <estado atual> rejeite
     static checkSpecial(string){
-        // <estado atual> pare
-        // <estado atual> aceite
-        // <estado atual> rejeite
+        
         let chunks = this.filter(string);
         if( this.hasNChunks(chunks, 2) ){
             return (
@@ -75,8 +82,9 @@ module.exports=class Parse {
             return false
         }
     }
+    // Verifica se é um Alias
+    // $<letraMinuscula> = "<string>"
     static checkAlias(string){
-        // <alias> = <string>
         let chunks = this.filter(string);
         if( this.hasNChunks(chunks, 3)){
             return this.isAlias(chunks[0])
@@ -124,12 +132,23 @@ module.exports=class Parse {
         return !isNaN(parseInt(chunk)) && chunk.toString().length <=4
     }
     static isAlias(chunk){
-        return chunk[0] == '$';
+        try {
+            return chunk[0] == '$' && 
+            chunk.length == 2 &&
+            (chunk[1].charCodeAt(0) >= 97 && chunk[1].charCodeAt(0) <= 122);
+        } catch (error) {
+            return false
+        }
     }
+    // e i ou d
     static isMove(chunk){
         return chunk == 'e' || chunk == 'i' || chunk == 'd'
     }
-    // Filtros destring para chunk
+    // X Y ou Z
+    static isTape(chunk){
+        return chunk == 'X' || chunk == 'Y' || chunk == 'Z'
+    }
+    // Filtros de string para chunk
     static removeComent(string){
         // Cuidado para ter certeza que ; não é um caracter valido
         return string.split(';')[0]

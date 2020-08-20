@@ -1,5 +1,8 @@
-module.exports = class Error {
-    constructor(name="Nome genérico", condition="Condição não especificada", extra={}){
-        throw `Erro:\nTipo de erro: ${name}\nCausa: ${condition}`
+module.exports = class E  extends Error{
+    constructor(name="Erro genérico", condition="Condição não especificada", ...params){
+        super(...params)
+        super.name = 'Erro '+name
+        super.message = `\nCausa: ${condition}\n`;                
+        this.debug=params
     }
 }

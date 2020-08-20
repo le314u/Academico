@@ -21,7 +21,6 @@ module.exports = class Cli{
         return {
             option:this.option,
             arg:this.arg,
-            option:this.option,
             file:this.file,
             input:this.input
         }
@@ -31,19 +30,19 @@ module.exports = class Cli{
         if( this.checkArgs(3,'-resume') ){
             this.option = this.RESUME;
             this.arg = '';
-            this.file = this.args[2]
-            this.input = this.args[3]
+            this.file = this.args[3]
+            this.input = this.args[4]
             return true
         }
         return false
     }
     checkStep(){
         // -step <n>
-        if( this.checkArgs(4,'-step') && !isNaN( parseInt(this.args[2])) ){
+        if( this.checkArgs(4,'-step') && !isNaN( parseInt(this.args[3])) ){
             this.option = this.STEP;
-            this.arg = parseInt(this.args[2]);
-            this.file = this.args[3]
-            this.input = this.args[4]
+            this.arg = parseInt(this.args[3]);
+            this.file = this.args[4]
+            this.input = this.args[5]
             return true
         }
         return false
@@ -52,9 +51,9 @@ module.exports = class Cli{
         // -debug <arquivoLog>
         if( this.checkArgs(4,'-debug')){
             this.option = this.DEBUG;
-            this.arg = this.args[2];
-            this.file = this.args[3]
-            this.input = this.args[4]
+            this.arg = this.args[3];
+            this.file = this.args[4]
+            this.input = this.args[5]
             return true
         }
         return false
@@ -64,13 +63,13 @@ module.exports = class Cli{
         if( this.checkArgs(3,'-help') ){
             this.option = this.HELP;
             this.arg = '';
-            this.file = this.args[2]
-            this.input = this.args[3]
+            this.file = this.args[3]
+            this.input = this.args[4]
             return true
         }
         return false
     }
     checkArgs(n, cod){
-        return (this.args.length == n && this.args[1] == cod);
+        return (this.args.length == n && this.args[2] == cod);
     }
 }

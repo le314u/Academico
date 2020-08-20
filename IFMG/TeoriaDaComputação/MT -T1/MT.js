@@ -26,7 +26,7 @@ class MT{
     }
 }
 
-exemplo = `
+code = `
 $d = '0123456789'
 inicio main 01
         01 X $d i -- 03 X $d i
@@ -35,15 +35,18 @@ inicio main 01
         04 aceita
         05 rejeita
 fim main
-inicio copiaX 1
+inicio copiaX 01
         01 X $d i -- 03 Y $d e
         01 X ∗ i -- 02 X ∗ i
         02 retorne
         03 X $d e -- 01 Z $d e
 fim copiaX
 `
-p=new parseN1.Program()
-meta = p.analize(exemplo)
-
-console.log(p.getBlock(exemplo.split('\n'), meta.block[0]))
-console.log(p.getBlock(exemplo.split('\n'), meta.block[1]))
+p=new parseN1()
+declarations = code.split('\n')
+console.log('-----------')
+console.log('Sintaxy:'+p.allStringValid(declarations))
+console.log('Semantica:'+(typeof p.getProgram(declarations)=='object'))
+console.log(p.getProgram(declarations))
+console.log('-----------')
+//console.log(p.getBlock(code.split('\n'), meta.block[0]))

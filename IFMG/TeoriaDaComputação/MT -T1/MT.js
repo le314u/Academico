@@ -65,7 +65,7 @@ class MT{
 
     }
     alias(alias){
-
+        
     }
     bloco(){
 

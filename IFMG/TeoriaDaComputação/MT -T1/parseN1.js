@@ -5,11 +5,11 @@ module.exports=class Program{
     //  verifica a sintaxi dos bloco
     // Verificar que so existem strings validas no programa
     
-    allStringValid(declarations){
+    static allStringValid(declarations){
         // Verifica se não há erro
         for (const declaration of declarations) {
             if(Parse.whatIsComand(declaration) == 'error'){
-                new error(
+                throw new error(
                     'Sintaxe do comando',
                     ''+declaration+' : Não é um comando válido'
                 )
@@ -19,7 +19,7 @@ module.exports=class Program{
         return true
     }
     
-    getBlock(declarations, metaBlock){
+    static getBlock(declarations, metaBlock){
         //Json Logico de um bloco com seus metaDados
         let block = {
             name:'',
@@ -90,7 +90,7 @@ module.exports=class Program{
         }
         return block
     }
-    getProgram(declarations){
+    static getProgram(declarations){
         // Variavel de controle
         let control = {
             inBlock:false,

@@ -200,7 +200,12 @@ module.exports=class Parse {
         }
     }
     static getAlias(string){
-        let aux = string.split(' = ');
+        let aux = this.removeComent(string);
+        aux = this.removeTab(aux);
+        aux = this.removeSpaces(aux);
+        aux = this.removeNewLine(aux);
+        aux = aux.trim()
+        aux = aux.split(' = ');
         return{
             alias:aux[0],
             content:aux[1].split('')

@@ -7,15 +7,64 @@ let cli = require('./cli')
 class MT{
 
     constructor() {
-        this.X = new Tape();
-        this.Y = new Tape();
-        this.Z = new Tape();
+        this.declarations = `
+        $d = '0123456789'
+        inicio main 01
+                01 X $d i -- 03 X $d i
+                01 X ∗ i -- 05 X ∗ i
+                03 copiaX 04
+                04 aceita
+                05 rejeita
+        fim main
+        inicio copiaX 01
+                01 X $d i -- 03 Y $d e
+                01 X ∗ i -- 02 X ∗ i
+                02 retorne
+                03 X $d e -- 01 Z $d e
+        fim copiaX
+        `.split('\n')
+        
+        this.X = new tape();
+        this.Y = new tape();
+        this.Z = new tape();
         this.bloco = 'main';
-    }
-    compute(string){
+        this.stack = [];
+        this.program = {}
+        this.init('AbcdAC') // TODO  tirar HardCoe
 
     }
-    alias(){
+    init(stringFita){
+        //Declaração de funções internas
+        let initTap = (stringFita)=>{
+            this.X.tape = stringFita.split('');
+        }
+        let checkSintaxy = ()=>{
+            let bool = parseN1.allStringValid(this.declarations)
+            console.log('Sintaxy:'+bool)
+            return bool
+        }
+        let checkSemantica = ()=>{
+            let bool = (typeof parseN1.getProgram(this.declarations)=='object')
+            console.log('Semantica:'+bool)
+            return bool
+        }
+        let loadProgram = ()=>{
+            this.program = parseN1.getProgram(this.declarations)
+        }
+        // Carrega a fita X
+        initTap(stringFita)
+        // Verifica se tem erro de Sintaxy e de Semantica
+        if(checkSintaxy() && checkSemantica()){
+            // Carrega o Programa na Memoria
+            loadProgram();
+        }
+        this.compute()
+    }
+    compute(){
+        console.log(this.program)
+
+    }
+    alias(alias){
 
     }
     bloco(){
@@ -25,28 +74,4 @@ class MT{
         console.log('queu overflow')
     }
 }
-
-code = `
-$d = '0123456789'
-inicio main 01
-        01 X $d i -- 03 X $d i
-        01 X ∗ i -- 05 X ∗ i
-        03 copiaX 04
-        04 aceita
-        05 rejeita
-fim main
-inicio copiaX 01
-        01 X $d i -- 03 Y $d e
-        01 X ∗ i -- 02 X ∗ i
-        02 retorne
-        03 X $d e -- 01 Z $d e
-fim copiaX
-`
-p=new parseN1()
-declarations = code.split('\n')
-console.log('-----------')
-console.log('Sintaxy:'+p.allStringValid(declarations))
-console.log('Semantica:'+(typeof p.getProgram(declarations)=='object'))
-console.log(p.getProgram(declarations))
-console.log('-----------')
-//console.log(p.getBlock(code.split('\n'), meta.block[0]))
+new MT()

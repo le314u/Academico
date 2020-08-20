@@ -4,24 +4,14 @@ let parseN1 = require('./parseN1')
 let input = require('./input')
 let cli = require('./cli')
 
-class MT{
+module.exports = class MT{
 
-    constructor() {
-        this.declarations = `
-        $d = '0123456789'
-        inicio main 01
-                01 X $d i -- 03 X $d i
-                01 X ∗ i -- 05 X ∗ i
-        fim main
-        inicio copiaX 01
-                01 X $d i -- 03 Y $d e
-                
-        fim copiaX
-        `.split('\n')
-        
+    constructor(declarations) {
+        this.flag = ''
         this.X = new tape();
         this.Y = new tape();
         this.Z = new tape();
+        this.declarations = declarations
         this.bloco = 'main';
         this.stack = [];
         this.program = {}
@@ -69,4 +59,3 @@ class MT{
         console.log('queu overflow')
     }
 }
-new MT()

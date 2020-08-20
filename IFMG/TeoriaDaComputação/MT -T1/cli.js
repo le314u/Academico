@@ -1,3 +1,5 @@
+const erro = require('./error')
+
 module.exports = class Cli{
     constructor(){
         this.args = process.argv;
@@ -5,29 +7,35 @@ module.exports = class Cli{
         this.option = 0
         this.file = ''
         this.input = ''
+        //Constantes para this.options
         this.RESUME=0
         this.STEP=1
         this.DEBUG=2
-        this.HELP=3
-        this.init()
-    }
-    init(){
-        this.checkResume();
-        this.checkStep();
-        this.checkDebug();
-        this.checkHelp();
+        this.HELP=3       
     }
     getPayload(){
-        return {
-            option:this.option,
-            arg:this.arg,
-            file:this.file,
-            input:this.input
-        }
+        if(this.isValid()){
+            return {
+                option:this.option,
+                arg:this.arg,
+                file:this.file,
+                input:this.input
+            }
+        } 
+        return {}
+    }
+    isValid(){
+        return (
+            this.checkStandard() ||
+            this.checkHelp() ||
+            this.checkResume() ||
+            this.checkStep() ||
+            this.checkDebug()
+        )
     }
     checkResume(){
         // -resume
-        if( this.checkArgs(3,'-resume') ){
+        if( this.checkArgs(5,'-resume') ){
             this.option = this.RESUME;
             this.arg = '';
             this.file = this.args[3]
@@ -38,7 +46,7 @@ module.exports = class Cli{
     }
     checkStep(){
         // -step <n>
-        if( this.checkArgs(4,'-step') && !isNaN( parseInt(this.args[3])) ){
+        if( this.checkArgs(6,'-step') && !isNaN( parseInt(this.args[3])) ){
             this.option = this.STEP;
             this.arg = parseInt(this.args[3]);
             this.file = this.args[4]
@@ -49,7 +57,7 @@ module.exports = class Cli{
     }
     checkDebug(){
         // -debug <arquivoLog>
-        if( this.checkArgs(4,'-debug')){
+        if( this.checkArgs(6,'-debug')){
             this.option = this.DEBUG;
             this.arg = this.args[3];
             this.file = this.args[4]
@@ -60,14 +68,22 @@ module.exports = class Cli{
     }
     checkHelp(){
         // -help
-        if( this.checkArgs(3,'-help') ){
+        if( this.args[2] == '-help' ){
             this.option = this.HELP;
             this.arg = '';
-            this.file = this.args[3]
-            this.input = this.args[4]
             return true
         }
         return false
+    }
+    checkStandard(){
+        // Omição da flag
+        if( this.args.length == 4 ){
+            this.option = 0;
+            this.arg = this.RESUME;
+            this.file = this.args[2]
+            this.input = this.args[3]
+            return true
+        }
     }
     checkArgs(n, cod){
         return (this.args.length == n && this.args[2] == cod);

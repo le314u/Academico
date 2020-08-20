@@ -1,11 +1,12 @@
 module.exports = class Select{
-    constructor(program){
-        this.program = 0
+    constructor(program, alias){
+        this.program = program
+        this.alias = alias
         this.block = 0
-        this.alias = []
         this.indiceOut = 0
         this.indiceIn = 0
     }
+    //Altera o Scopo
     setBlock(block, indiceOut,indiceIn){
         this.block = block
         this.indiceOut = indiceOut

@@ -12,15 +12,10 @@ class MT{
         inicio main 01
                 01 X $d i -- 03 X $d i
                 01 X ∗ i -- 05 X ∗ i
-                03 copiaX 04
-                04 aceita
-                05 rejeita
         fim main
         inicio copiaX 01
                 01 X $d i -- 03 Y $d e
-                01 X ∗ i -- 02 X ∗ i
-                02 retorne
-                03 X $d e -- 01 Z $d e
+                
         fim copiaX
         `.split('\n')
         
@@ -65,7 +60,7 @@ class MT{
 
     }
     alias(alias){
-        
+
     }
     bloco(){
 

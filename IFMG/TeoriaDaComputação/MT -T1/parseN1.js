@@ -1,19 +1,18 @@
-const error = require('./error')
+const error = require('./erro')
 const Parse = require('./parseN0')
 module.exports=class Program{
-    //  Verifica se existe bloco main
-    //  verifica a sintaxi dos bloco
+    // Verifica se existe bloco main
+    // verifica a sintaxi dos bloco
     // Verificar que so existem strings validas no programa
     
     static allStringValid(declarations){
         // Verifica se não há erro
         for (const declaration of declarations) {
-            if(Parse.whatIsComand(declaration) == 'error'){
+            if(Parse.whatIsComand(declaration) == Parse.ERROR){
                 throw new error(
                     'Sintaxe do comando',
                     ''+declaration+' : Não é um comando válido'
                 )
-                return false
             }
         }
         return true
@@ -35,13 +34,13 @@ module.exports=class Program{
         for (let index = metaBlock.init; index <= metaBlock.end; index++) {
             let cod = Parse.whatIsComand(declarations[index])
             // Se Declaração de bloco 
-            if(cod == "initBlock"){
+            if(cod == Parse.INIT_BLOCK){
                 let init = Parse.getMetaBlock(declarations[index])
                 block.name = init.name;
                 block.stateInit = ''+init.state
             }
             // Se Encerramento de bloco
-            if(cod == "endBlock"){
+            if(cod == Parse.END_BLOCK){
                 let name = Parse.getMetaBlock(declarations[index]).name
                 // Fechando o Bloco errado
                 if(block.name != name){
@@ -51,7 +50,7 @@ module.exports=class Program{
                         {'declaration':declarations[index]}
                     )
                 }
-                // Fechou o Bloco prematuramente
+                // Fechou o Bloco prematuramente. So ocorrerá caso houver um erro lógico no metaBloco
                 if(index != metaBlock.end){
                     throw new error(
                         'Semantico',
@@ -63,25 +62,25 @@ module.exports=class Program{
                     )
                 }
             }
-            // Se for Sai do bloco
-            if(cod == "returnBlock"){
+            // Se retorne Sai do bloco
+            if(cod == Parse.RETURN_BLOCK){
                 let returnBlock = Parse.getMetaBlock(declarations[index])
                 block.returnFunction.push(returnBlock)
                 block.order.push(returnBlock)
             }  
             // Se for Alias de escopo Local
-            if(cod == "alias"){
+            if(cod == Parse.ALIAS){
                 let alias = Parse.getAlias(declarations[index])
                 block.alias.push(alias)
             } 
             // Se for um comando
-            if(cod == "comand"){
+            if(cod == Parse.COMAND){
                 let comand = Parse.getComputation(declarations[index])
                 block.computation.push(comand)
                 block.order.push(comand)
             }
             // Se for uma chamada função
-            if(cod == "function"){
+            if(cod == Parse.FUNCTION){
                 let func = Parse.getFunction(declarations[index])
                 block.callFunction.push(func)
                 block.order.push(func)
@@ -120,15 +119,15 @@ module.exports=class Program{
             // Analisando em escopo Global / fora de um bloco
             if(!inBlock()){
                 // So pode encontrar inicio de bloco ou alias qualquer coisa fora disso é um erro
-                if(Parse.whatIsComand(declaration) == 'initBlock'){
+                if(Parse.whatIsComand(declaration) == Parse.INIT_BLOCK){
                     control.inBlock = true
                     control.nameBlock = Parse.getMetaBlock(declaration).name
                     control.block.init = line()
-                } else if(Parse.whatIsComand(declaration) == 'alias'){
+                } else if(Parse.whatIsComand(declaration) == Parse.ALIAS){
                     let auxAlias = Parse.getAlias(declaration)
                     program.order.push(auxAlias)
                     program.alias.push(auxAlias)
-                } else if(Parse.whatIsComand(declaration) == 'nothing'){
+                } else if(Parse.whatIsComand(declaration) == Parse.NOTHING){
                     //ignora pois não é nada
                 } else {
                     throw new error(
@@ -139,16 +138,16 @@ module.exports=class Program{
             // Analisando escopo Local / dentro de um bloco
             }else{
                 // Se encontrar inicio de bloco dentro de outro é um erro pois é necessário fechar o bloco para criar outro
-                if(Parse.whatIsComand(declaration) == 'initBlock'){
+                if(Parse.whatIsComand(declaration) == Parse.INIT_BLOCK){
                     let aux = Parse.getMetaBlock(declaration)
                     throw new error(
                         'Semantico',
-                        'Tentar abrir um bloco '+aux.name+' sem antes fechar o bloco '+name()+' que ja esta aberto',
+                        'Tentar abrir um bloco '+aux.name+' sem antes fechar o bloco '+nameBlock()+' que ja esta aberto',
                         {'declaration':declaration}
                     )
                 }
                 // Se encontrar um fim de Bloco termina o bloco
-                if(Parse.whatIsComand(declaration) == 'endBlock'){
+                if(Parse.whatIsComand(declaration) == Parse.END_BLOCK){
                     //Determina o fim fo bloco
                     control.block.end = line();
                     //Converte os metaDados em um Bloco

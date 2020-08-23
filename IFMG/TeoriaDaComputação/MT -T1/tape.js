@@ -1,4 +1,4 @@
-const error = require('./error')
+const error = require('./erro')
 
 module.exports=class Tape{
     constructor() {
@@ -43,7 +43,8 @@ module.exports=class Tape{
         try {
             move[direction]()
         } catch (e) {
-            new error(
+            //Dificilmente chegará aki
+            throw new error(
                 'Movimento de fita',
                 "'"+direction+"'"+' não é uma direção valida'
             )

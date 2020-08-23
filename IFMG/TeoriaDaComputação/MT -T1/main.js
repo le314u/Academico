@@ -1,20 +1,34 @@
-const mt = require('./MT')
+const mt = require('./mt')
 const cli = require('./cli')
 const input = require('./input')
-const erro = require('./error')
 
 
-class Exec{
+class Main{
     constructor(){
-        let machine = ''
-        let interface = new cli();
+        this.machine = ''
+        this.interface = new cli();
+        this._init()
+            .then()
+            .catch((erro)=>{
+                console.log(erro.name,erro.message)
+            }); 
     }
-    async init(){
-        //Le o arquivo e instancia a MT
-        let declarations = await input(interface.file)
-        this.machine = new mt(declarations)
-        this.machine.init(interface.input)
-        this.machine.flag = interface.getPayload()
+    async _init(){
+        // Pega os comandos passados por linah de comando
+        this.flags = this.interface.getPayload()
+        // Carrega a Maquina
+        if(this.flags.option != this.interface.HELP){
+            // Le o arquivo de entrada
+            let declarations = await input(this.interface.file)
+            // Instancia a MT
+            this.machine = new mt(declarations,this.interface.input)
+        }
+        // Opera a maquina de acordo com a flag
+        //switch
+            // se help executa this.help()
+            // se resume executa this.resume()
+            // se step executa this.step()
+            // se debug executa this.debug()
     }
     help(){
         // Executa o que deve ser feito com a flag -help
@@ -29,3 +43,6 @@ class Exec{
         // Executa o que deve ser feito com a flag -debug
     }
 }
+
+// Executa pois main é o ponto de entrada
+let run = new Main()

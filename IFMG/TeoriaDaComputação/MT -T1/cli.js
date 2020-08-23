@@ -1,4 +1,4 @@
-const erro = require('./error')
+const erro = require('./erro')
 
 module.exports = class Cli{
     constructor(){
@@ -22,7 +22,10 @@ module.exports = class Cli{
                 input:this.input
             }
         } 
-        return {}
+        throw new erro(
+            'Entrada CLI',
+            'Os parametros passados via linha de comando são invalidos use -help para entender a sintaxe'
+        )
     }
     isValid(){
         return (

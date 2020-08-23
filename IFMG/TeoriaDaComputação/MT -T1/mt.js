@@ -58,7 +58,7 @@ module.exports = class Mt{
             this.Y.print('Z')
             this.Z.print('Z')
             console.log("-----------")
-            console.log(this.scop.stack)
+            //console.log(this.scop.stack)
         }
     }
 

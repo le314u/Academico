@@ -36,8 +36,11 @@ module.exports=class Tape{
             d:()=>{//Move para a direita
                 if(!this.hasSpaceInRigth()){
                     this.tape.push('_')
-                } 
-                this.header = this.header+1 // De qualquer maneira o header muda sendo o ultimo ou não
+                    this.header = this.header+1 // De qualquer maneira o header muda sendo o ultimo ou não
+                }else{
+                    this.header = this.header+1 // De qualquer maneira o header muda sendo o ultimo ou não
+                }
+                
             }
         }
         try {
@@ -55,7 +58,7 @@ module.exports=class Tape{
         return !(this.header == 0);
     }
     hasSpaceInRigth(){
-        return !(this.header == this.tape.length || this.tape.length == 0);
+        return !(this.header == this.tape.length-1 || this.tape.length == 0);
     }
     tapeEmpty(){
         return this.tape.length == 0;
@@ -72,6 +75,6 @@ module.exports=class Tape{
                 newTape.push(this.tape[index])
             }
         }
-        console.log(`Fita ${fita}: ${newTape}`)
+        console.log(`${this.header}-Fita ${fita}: ${newTape}`)
     }
 }

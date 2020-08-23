@@ -52,8 +52,14 @@ module.exports = class Mt{
         // Seta o escopo como bloco main
         this.scop.push( this.whereIsBlock('main') )
 
-        //Apagar
-        this.compute()
+        let i = 0
+        while (this.compute() && i++ <= 10) {
+            this.X.print('X')
+            this.Y.print('Z')
+            this.Z.print('Z')
+            console.log("-----------")
+            console.log(this.scop.stack)
+        }
     }
 
     //Daqui pra baixo tem que revisar TUDO
@@ -61,25 +67,42 @@ module.exports = class Mt{
         //Verifica o que é o comando
         let comand = this.whatNextStep()
         //Executa o comando
-            // Se função  chama a função altera o scopo
+            // Se função
             if( comand[0] == Parse.FUNCTION ){
+                // chama a função ou seja:
+                // empilha o bloco e altera o scopo
                 this.scop.push( this.whereIsBlock(comand[1].function), comand[1].return )
             }
-            // Se retorno desempilha um bloco e e altera o escopo
+            // Se retorno de função
             if( comand[0] == Parse.RETURN_BLOCK ){
+                //desempilha um bloco  e altera o escopo 
                 this.scop.pop()
             }
             // Se computação altera a maquina
             if( comand[0] == Parse.COMAND ){
+                // Executa lado Esquerdo
+                let left = comand[1].read
+                let state = this[left.tape].read()//Le a Fita
+                this[left.tape].move(left.move)//Move a fita
                 
+                //Executa lado direito
+                let rigth = comand[1].write
+                this.scop.setState(rigth.state)//Altera Estado
+                this[rigth.tape].write(rigth.symbol)//Escreve
+                this[rigth.tape].move(rigth.move)//Move
             }
             // Se especial faz o que se pede
             if([Parse.ACEITE,Parse.REJEITE,Parse.PARE].includes(comand)  ){
-                
-            }
                 //Aceita
                 //Recusa
                 //Para
+                return false
+            }
+            if(comand=='error'){
+                throw new erro("Erro","Não sei ainda")
+            }
+            return true
+                
     }
     whatNextStep(){ // Verifica qual o proximo comando aceito (' de maneira deterministica ')
         let indiceAtual = 0

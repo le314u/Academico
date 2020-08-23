@@ -10,9 +10,9 @@ module.exports = class Select{
     }
     
     // Empilha Bloco
-    push(block, state){
+    push(block, state=block['stateInit']){
         //Altera State do ultimo bloco
-        this._setState(state)
+        this.setState(state)
         //Empilha
         this.stack.push({
             state:block['stateInit'],
@@ -37,10 +37,10 @@ module.exports = class Select{
     //Altera o Scopo
     _setBlock(block, state=block['stateInit'] ){
         this.block = block
-        this._setState(state)
+        this.setState(state)
     }
     //Altera o Estado
-    _setState(state){
+    setState(state){
         this.state = state
         try {
             this.stack[this.stack.length-1]['state']=state

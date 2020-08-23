@@ -62,16 +62,33 @@ module.exports = class Mt{
         let comand = this.whatNextStep()
         //Executa o comando
             // Se função  chama a função altera o scopo
+            if( comand[0] == Parse.FUNCTION ){
+                this.scop.push( this.whereIsBlock(comand[1].function), comand[1].return )
+            }
             // Se retorno desempilha um bloco e e altera o escopo
+            if( comand[0] == Parse.RETURN_BLOCK ){
+                this.scop.pop()
+            }
             // Se computação altera a maquina
+            if( comand[0] == Parse.COMAND ){
+                
+            }
             // Se especial faz o que se pede
+            if([Parse.ACEITE,Parse.REJEITE,Parse.PARE].includes(comand)  ){
+                
+            }
                 //Aceita
                 //Recusa
                 //Para
     }
     whatNextStep(){ // Verifica qual o proximo comando aceito (' de maneira deterministica ')
         let indiceAtual = 0
-        let ultimoIndice = this.scop.block.order.length-1
+        let ultimoIndice = 0
+        try {
+            ultimoIndice = this.scop.block.order.length-1
+        } catch {
+            ultimoIndice = -1
+        }
         let blocks = this.scop.block.order
         let isComand = (type)=>{
             return type == Parse.COMAND

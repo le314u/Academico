@@ -10,7 +10,9 @@ module.exports = class Select{
     }
     
     // Empilha Bloco
-    push(block){
+    push(block, state){
+        //Altera State do ultimo bloco
+        this._setState(state)
         //Empilha
         this.stack.push({
             state:block['stateInit'],

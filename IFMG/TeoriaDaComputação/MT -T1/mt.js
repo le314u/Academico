@@ -94,9 +94,17 @@ module.exports = class Mt{
             let payLoad = blocks[index][1]
             if( isComand(type) ){
                 if( state_sync(payLoad.read.state)){// Verifico se o comando pode ser computado
-
+                    let symbol = payLoad.read.symbol
+                    if(symbol == '*'){// se for um caracter especial
+                        return blocks[index]
+                    }else if(symbol.length > 1 && symbol[0] == '$'){// se for um alias 
+                        if(this.scop.symbolInAlias(symbol, alias)){
+                            return blocks[index]
+                        }
+                    }else if(symbol == this[payLoad.read.tape].read()){// se for um literal
+                        return blocks[index]
+                    }
                 }
-                
             }else if( isFunction(type) ){
                 if( state_sync(payLoad.state) && blockExist(payLoad.function) ){// Verifico se o bloco pode ser chamado
                     return blocks[index]

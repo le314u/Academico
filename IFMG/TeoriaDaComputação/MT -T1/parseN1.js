@@ -23,7 +23,6 @@ module.exports=class Program{
         let block = {
             name:'',
             stateInit:0,
-            aliasLocal:[],//Alias Local Sobressai sobre o Global
             order:[],//Codigo na ordem em que é escrito
             computation:[]
         }
@@ -64,11 +63,6 @@ module.exports=class Program{
                 let returnBlock = Parse.getMetaBlock(declarations[index])
                 block.order.push(returnBlock)
             }  
-            // Se for Alias de escopo Local
-            if(cod == Parse.ALIAS){
-                let alias = Parse.getAlias(declarations[index])
-                block.alias.push(alias)
-            } 
             // Se for um comando
             if(cod == Parse.COMAND){
                 let comand = Parse.getComputation(declarations[index])
@@ -80,7 +74,7 @@ module.exports=class Program{
                 let func = Parse.getFunction(declarations[index])
                 block.order.push(func)
                 // Gerar erro caso for chamar um bloco não declarado
-            }  
+            } 
         }
         return block
     }
@@ -120,7 +114,7 @@ module.exports=class Program{
                     control.block.init = line()
                 } else if(Parse.whatIsComand(declaration) == Parse.ALIAS){
                     let auxAlias = Parse.getAlias(declaration)
-                    program.order.push(auxAlias)
+                    //program.order.push(auxAlias)
                     program.alias.push(auxAlias)
                 } else if(Parse.whatIsComand(declaration) == Parse.NOTHING){
                     //ignora pois não é nada
@@ -138,6 +132,14 @@ module.exports=class Program{
                     throw new error(
                         'Semantico',
                         'Tentar abrir um bloco '+aux.name+' sem antes fechar o bloco '+nameBlock()+' que ja esta aberto',
+                        {'declaration':declaration}
+                    )
+                }
+                // Se encontrar um alias é um erro pois o alias deve ser  Global e não local
+                if(Parse.whatIsComand(declaration) == Parse.ALIAS){
+                    throw new error(
+                        'Semantico',
+                        'Tentar declarar um alias dentro de um escopo de Bloco',
                         {'declaration':declaration}
                     )
                 }

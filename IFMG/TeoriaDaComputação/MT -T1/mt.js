@@ -52,7 +52,6 @@ module.exports = class Mt{
         }
         // Seta o escopo como bloco main
         this.scop.push( this.whereIsMain() )
-        console.log(this.scop)
 
     }
 

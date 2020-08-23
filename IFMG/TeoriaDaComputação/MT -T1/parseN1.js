@@ -25,10 +25,7 @@ module.exports=class Program{
             stateInit:0,
             aliasLocal:[],//Alias Local Sobressai sobre o Global
             order:[],//Codigo na ordem em que é escrito
-            computation:[],
-            callFunction:[],
-            returnFunction:[],
-            special:[]
+            computation:[]
         }
         // Passa por todas as declarações que representam o bloco
         for (let index = metaBlock.init; index <= metaBlock.end; index++) {
@@ -65,7 +62,6 @@ module.exports=class Program{
             // Se retorne Sai do bloco
             if(cod == Parse.RETURN_BLOCK){
                 let returnBlock = Parse.getMetaBlock(declarations[index])
-                block.returnFunction.push(returnBlock)
                 block.order.push(returnBlock)
             }  
             // Se for Alias de escopo Local
@@ -82,7 +78,6 @@ module.exports=class Program{
             // Se for uma chamada função
             if(cod == Parse.FUNCTION){
                 let func = Parse.getFunction(declarations[index])
-                block.callFunction.push(func)
                 block.order.push(func)
                 // Gerar erro caso for chamar um bloco não declarado
             }  

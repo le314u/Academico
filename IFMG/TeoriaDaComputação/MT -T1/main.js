@@ -11,6 +11,8 @@ class Main{
             .then()
             .catch((erro)=>{
                 console.log(erro.name,erro.message)
+                console.log('-------------------------')
+                console.log(erro)
             }); 
     }
     async _init(){

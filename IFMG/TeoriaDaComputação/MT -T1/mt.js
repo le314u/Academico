@@ -1,51 +1,48 @@
 let tape = require('./tape')
 let parseN1 = require('./parseN1')
 let erro = require('./erro')
-
+let scop = require('./select')
 module.exports = class Mt{
 
     constructor(declarations, input) {
-        this.flag = ''
         this.X = new tape();
         this.Y = new tape();
         this.Z = new tape();
-        this.declarations = declarations
-        this.bloco = 'main';
-        this.stack = [];
+        // Para Funcionar
         this.program = {}
+        this.scop = Object
         try { 
-            this._init(input)
+            this._init(declarations, input)
         } catch (error) {
-            console.log(error.name,error.message)
+            throw error
         }
-
     }
-    _init(inputTape){
+    _init(declarations, inputTape){
         //Declaração de funções internas
         let initTap = (inputTape)=>{
             this.X.tape = inputTape.split('');
         }
-        let checkSintaxy = ()=>{
-            let bool = parseN1.allStringValid(this.declarations)
-            console.log('Sintaxy:'+bool)
-            return bool
+        let checkSintaxy = (declarations)=>{
+            return parseN1.allStringValid(declarations)
         }
-        let checkSemantica = ()=>{
-            let bool = (typeof parseN1.getProgram(this.declarations)=='object')
-            console.log('Semantica:'+bool)
-            return bool
+        let checkSemantica = (declarations)=>{
+            return (typeof parseN1.getProgram(declarations)=='object')
         }
-        let loadProgram = ()=>{
-            this.program = parseN1.getProgram(this.declarations)
+        let loadProgram = (declarations)=>{
+            this.program = parseN1.getProgram(declarations)
+        }
+        let loadScopoManeger = ()=>{
+            this.scop = new scop(this.program, this.program['alias'])
         }
 
         // Carrega a fita X
         initTap(inputTape)
 
         // Verifica se tem erro de Sintaxy e de Semantica
-        if(checkSintaxy() && checkSemantica()){
+        if(checkSintaxy(declarations) && checkSemantica(declarations)){
             // Carrega o Programa na Memoria
-            loadProgram();
+            loadProgram(declarations);
+            loadScopoManeger();
         }else{
             //Provavelmente nunca chega aki
             throw new erro(
@@ -54,8 +51,8 @@ module.exports = class Mt{
             )
         }
         // Seta o escopo como bloco main
-        // Pega o Estado que Inicia
-        // Pega o indice do comando dentro do bloco
+        this.scop.push( this.whereIsMain() )
+        console.log(this.scop)
 
     }
 
@@ -82,5 +79,17 @@ module.exports = class Mt{
     }
     overflow(){
         console.log('queu overflow')
+    }
+    whereIsMain(){
+        // precorre todo o programa procurando um bloco main
+        for (let index = 0; index < this.program['block'].length; index++) {
+            if(this.program['block'][index]['name'] == 'main'){
+                return this.program['block'][index]
+            }
+        }
+        throw new erro(
+            'Semantico',
+            'Não possui Bloco main'
+        )
     }
 }

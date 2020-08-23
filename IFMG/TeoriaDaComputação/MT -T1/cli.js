@@ -81,11 +81,13 @@ module.exports = class Cli{
     checkStandard(){
         // Omição da flag
         if( this.args.length == 4 ){
-            this.option = 0;
-            this.arg = this.RESUME;
-            this.file = this.args[2]
-            this.input = this.args[3]
-            return true
+            if(this.args[2][0] != '-'){
+                this.option = 0;
+                this.arg = this.RESUME;
+                this.file = this.args[2]
+                this.input = this.args[3]
+                return true
+            }
         }
     }
     checkArgs(n, cod){

@@ -8,18 +8,7 @@ module.exports = class Select{
         this.state = 0 // Estado dentro do bloco atual
         this.stack = [];// Pilha de par ordenado bloco estado
     }
-    //Altera o Scopo
-    setBlock(block, state=block['stateInit'] ){
-        this.block = block
-        this.setState(state)
-    }
-    //Altera o Estado
-    setState(state){
-        this.state = state
-        try {
-            this.stack[this.stack.length-1]['state']=state
-        } catch (error) {}
-    }
+    
     // Empilha Bloco
     push(block){
         //Empilha
@@ -28,7 +17,7 @@ module.exports = class Select{
             block:block
         })
         //Altera escopo
-        this.setBlock(block)
+        this._setBlock(block)
     }
     // Desempilha Bloco
     pop(){
@@ -36,14 +25,26 @@ module.exports = class Select{
         this.stack.pop()
         // Altera Escopo
         let lastBlock = this.stack[this.stack.length-1]
-        this.setBlock(lastBlock['block'], lastBlock['state'])
+        this._setBlock(lastBlock['block'], lastBlock['state'])
     }
 
     symbolInAlias(symbol, alias){
         // Verifica se o symbol esta dentro de alias 
         // retorna symbol || false
     }
-    comandMatch(symbol, state){
+    //Altera o Scopo
+    _setBlock(block, state=block['stateInit'] ){
+        this.block = block
+        this._setState(state)
+    }
+    //Altera o Estado
+    _setState(state){
+        this.state = state
+        try {
+            this.stack[this.stack.length-1]['state']=state
+        } catch (error) {}
+    }
+    comandMatch(symbol, state){ //Obsoleto
         // retorna uma lista com todos os 'comandos' que casam (state,symbol)
         // Respeitando o escopo ( 'nome do bloco') e a ordem que aparece 
     }

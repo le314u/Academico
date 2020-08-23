@@ -1,5 +1,5 @@
 let tape = require('./tape')
-let parseN1 = require('./parseN1')
+let Parse = require('./parseN1')
 let erro = require('./erro')
 let scop = require('./select')
 module.exports = class Mt{
@@ -23,13 +23,13 @@ module.exports = class Mt{
             this.X.tape = inputTape.split('');
         }
         let checkSintaxy = (declarations)=>{
-            return parseN1.allStringValid(declarations)
+            return Parse.allStringValid(declarations)
         }
         let checkSemantica = (declarations)=>{
-            return (typeof parseN1.getProgram(declarations)=='object')
+            return (typeof Parse.getProgram(declarations)=='object')
         }
         let loadProgram = (declarations)=>{
-            this.program = parseN1.getProgram(declarations)
+            this.program = Parse.getProgram(declarations)
         }
         let loadScopoManeger = ()=>{
             this.scop = new scop(this.program, this.program['alias'])
@@ -44,7 +44,6 @@ module.exports = class Mt{
             loadProgram(declarations);
             loadScopoManeger();
         }else{
-            //Provavelmente nunca chega aki
             throw new erro(
                 "Entrada",
                 "Programa não pode ser carregado na memória"
@@ -53,6 +52,8 @@ module.exports = class Mt{
         // Seta o escopo como bloco main
         this.scop.push( this.whereIsMain() )
 
+        //Apagar
+        this.compute()
     }
 
     //Daqui pra baixo tem que revisar TUDO
@@ -69,12 +70,30 @@ module.exports = class Mt{
                 //Para
     }
     whatNextStep(){
-        for (let index = indiceAtual; index < ultimoIndice; index++) {
-            // Verifico se o comando em index é valido
-            // caso seja retorna o comando
-            // caso não seja passa pro proximo
+        let indiceAtual = 0
+        let ultimoIndice = this.scop.block.order.length-1
+        let blocks = this.scop.block.order
+        let state_sync = (state)=>{
+            return this.scop.state == state
         }
-        return 'erro'
+        // Qual é o proximo comando a ser executado?
+        for (let index = indiceAtual; index <= ultimoIndice; index++) {
+            let type = blocks[index][0]
+            let payLoad = blocks[index][1]
+            
+            if(type == Parse.COMAND && state_sync(payLoad.read.state)){// Verifico se o comando pdoe ser executado
+                // Verifica a parte do read pode ser executada
+                console.log('comand')
+            }else if(type == Parse.FUNCTION && state_sync(payLoad.state)){
+                //Verifica se o bloco existe
+                if(this.whereIsBlock(payLoad.function)){
+                    return blocks[index]
+                }
+            }else if( state_sync(payLoad.state) && [Parse.ACEITE, Parse.REJEITE,Parse.RETURN_BLOCK].includes( type ) ){//Se o comando Especial pode ser executado
+                return blocks[index]
+            }
+        }
+        return Parse.ERROR
     }
     overflow(){
         console.log('queu overflow')
@@ -89,6 +108,18 @@ module.exports = class Mt{
         throw new erro(
             'Semantico',
             'Não possui Bloco main'
+        )
+    }
+    whereIsBlock(blockName){
+        // precorre todo o programa procurando o bloco
+        for (let index = 0; index < this.program['block'].length; index++) {
+            if(this.program['block'][index]['name'] == blockName){
+                return this.program['block'][index]
+            }
+        }
+        throw new erro(
+            'Semantico',
+            'Não possui Bloco '+blockName
         )
     }
 }

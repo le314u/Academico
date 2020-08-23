@@ -5,6 +5,19 @@ module.exports=class Program{
     // verifica a sintaxi dos bloco
     // Verificar que so existem strings validas no programa
     
+    //Passando Constantes para um nivel acima
+    static COMAND = Parse.COMAND;
+    static FUNCTION = Parse.FUNCTION;
+    static PARE = Parse.PARE;
+    static REJEITE = Parse.REJEITE;
+    static ACEITE = Parse.ACEITE;
+    static ALIAS = Parse.ALIAS;
+    static INIT_BLOCK = Parse.INIT_BLOCK;
+    static END_BLOCK = Parse.END_BLOCK;
+    static ERROR = Parse.ERROR;
+    static RETURN_BLOCK = Parse.RETURN_BLOCK;
+    static NOTHING = Parse.NOTHING;
+
     static allStringValid(declarations){
         // Verifica se não há erro
         for (const declaration of declarations) {
@@ -46,7 +59,7 @@ module.exports=class Program{
                         {'declaration':declarations[index]}
                     )
                 }
-                // Fechou o Bloco prematuramente. So ocorrerá caso houver um erro lógico no metaBloco
+                // Fechou o Bloco prematuramente... So ocorrerá caso houver um erro lógico no metaBloco
                 if(index != metaBlock.end){
                     throw new error(
                         'Semantico',
@@ -61,19 +74,34 @@ module.exports=class Program{
             // Se retorne Sai do bloco
             if(cod == Parse.RETURN_BLOCK){
                 let returnBlock = Parse.getMetaBlock(declarations[index])
-                block.order.push(returnBlock)
+                block.order.push([Parse.RETURN_BLOCK, returnBlock])
             }  
             // Se for um comando
             if(cod == Parse.COMAND){
                 let comand = Parse.getComputation(declarations[index])
                 block.computation.push(comand)
-                block.order.push(comand)
+                block.order.push([Parse.COMAND, comand])
             }
             // Se for uma chamada função
             if(cod == Parse.FUNCTION){
                 let func = Parse.getFunction(declarations[index])
-                block.order.push(func)
+                block.order.push([Parse.FUNCTION, func])
                 // Gerar erro caso for chamar um bloco não declarado
+            }
+            // Se for um aceite
+            if(cod == Parse.ACEITE){
+                let special = Parse.getSpecial(declarations[index])
+                block.order.push([Parse.ACEITE,special])
+            } 
+            // Se for um rejeite
+            if(cod == Parse.REJEITE){
+                let special = Parse.getSpecial(declarations[index])
+                block.order.push([Parse.REJEITE,special])
+            } 
+            // Se for um pare
+            if(cod == Parse.PARE){
+                let special = Parse.getSpecial(declarations[index])
+                block.order.push([Parse.PARE,special])
             } 
         }
         return block
@@ -114,7 +142,6 @@ module.exports=class Program{
                     control.block.init = line()
                 } else if(Parse.whatIsComand(declaration) == Parse.ALIAS){
                     let auxAlias = Parse.getAlias(declaration)
-                    //program.order.push(auxAlias)
                     program.alias.push(auxAlias)
                 } else if(Parse.whatIsComand(declaration) == Parse.NOTHING){
                     //ignora pois não é nada
@@ -151,7 +178,7 @@ module.exports=class Program{
                     let blocoLogico = this.getBlock(declarations, control.block)
                     //Indexa o bloco
                     program.block.push(blocoLogico);
-                    program.order.push(blocoLogico)
+                    program.order.push(blocoLogico);
                     //Reseta o bloco
                     control.block = {// Reseta os metadados do bloco
                         init:0,

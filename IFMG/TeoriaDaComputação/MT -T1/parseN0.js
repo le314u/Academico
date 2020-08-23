@@ -288,6 +288,15 @@ module.exports=class Parse {
             }
         }
     }
+    static getSpecial(string){
+        let chunks = this.filter(string);
+        if(Parse.whatIsComand(string)==this.ACEITE || Parse.whatIsComand(string)==this.REJEITE || Parse.whatIsComand(string)==this.PARE ){
+            return {
+                state:chunks[0]
+            }
+        }
+    }
+
     static erroState(state, comand){
         if(!this.isState(state)){
             throw new error('Estado invalido',''+state+' não é um estado valido:(inteiro 4 digitos)\n'+comand)

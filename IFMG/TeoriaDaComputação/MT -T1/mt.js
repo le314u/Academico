@@ -50,7 +50,7 @@ module.exports = class Mt{
             )
         }
         // Seta o escopo como bloco main
-        this.scop.push( this.whereIsMain() )
+        this.scop.push( this.whereIsBlock('main') )
 
         //Apagar
         this.compute()
@@ -69,49 +69,49 @@ module.exports = class Mt{
                 //Recusa
                 //Para
     }
-    whatNextStep(){
+    whatNextStep(){ // Verifica qual o proximo comando aceito (' de maneira deterministica ')
         let indiceAtual = 0
         let ultimoIndice = this.scop.block.order.length-1
         let blocks = this.scop.block.order
-        let state_sync = (state)=>{
+        let isComand = (type)=>{
+            return type == Parse.COMAND
+        }
+        let isFunction = (type)=>{
+            return type == Parse.FUNCTION
+        }
+        let isSpecial = (type)=>{
+            return [Parse.ACEITE, Parse.REJEITE,Parse.RETURN_BLOCK].includes( type )
+        }
+        let state_sync = (state)=>{// Verifica se o estado do comando é o mesmo da maquina
             return this.scop.state == state
         }
-        // Qual é o proximo comando a ser executado?
+        let blockExist=(block)=>{
+            return (this.whereIsBlock(block) !== undefined)
+        }
+        // Passa por todos os comandos do bloco
         for (let index = indiceAtual; index <= ultimoIndice; index++) {
             let type = blocks[index][0]
             let payLoad = blocks[index][1]
-            
-            if(type == Parse.COMAND && state_sync(payLoad.read.state)){// Verifico se o comando pdoe ser executado
-                // Verifica a parte do read pode ser executada
-                console.log('comand')
-            }else if(type == Parse.FUNCTION && state_sync(payLoad.state)){
-                //Verifica se o bloco existe
-                if(this.whereIsBlock(payLoad.function)){
+            if( isComand(type) ){
+                if( state_sync(payLoad.read.state)){// Verifico se o comando pode ser computado
+
+                }
+                
+            }else if( isFunction(type) ){
+                if( state_sync(payLoad.state) && blockExist(payLoad.function) ){// Verifico se o bloco pode ser chamado
                     return blocks[index]
                 }
-            }else if( state_sync(payLoad.state) && [Parse.ACEITE, Parse.REJEITE,Parse.RETURN_BLOCK].includes( type ) ){//Se o comando Especial pode ser executado
-                return blocks[index]
+            }else if( isSpecial(type) ){
+                if(state_sync(payLoad.state)){// Verifico se a declaração pode ser executada
+                    return blocks[index]
+                }
             }
         }
         return Parse.ERROR
     }
-    overflow(){
-        console.log('queu overflow')
-    }
-    whereIsMain(){
-        // precorre todo o programa procurando um bloco main
-        for (let index = 0; index < this.program['block'].length; index++) {
-            if(this.program['block'][index]['name'] == 'main'){
-                return this.program['block'][index]
-            }
-        }
-        throw new erro(
-            'Semantico',
-            'Não possui Bloco main'
-        )
-    }
+    
     whereIsBlock(blockName){
-        // precorre todo o programa procurando o bloco
+        // precorre todo o programa procurando o blockName
         for (let index = 0; index < this.program['block'].length; index++) {
             if(this.program['block'][index]['name'] == blockName){
                 return this.program['block'][index]
@@ -121,5 +121,8 @@ module.exports = class Mt{
             'Semantico',
             'Não possui Bloco '+blockName
         )
+    }
+    overflow(){
+        console.log('queu overflow')
     }
 }

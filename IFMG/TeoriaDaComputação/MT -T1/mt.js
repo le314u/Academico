@@ -1,7 +1,7 @@
-let tape = require('./tape')
+let tape = require('./mt_tape')
 let erro = require('./erro')
-let heap = require('./heap')
-let flagsMt = require('./flagsMt')
+let heap = require('./mt_heap')
+let flagsMt = require('./mt_flags')
 let mt_print = require('./mt_print')
 let Parse = require('./parseN1')
 
@@ -40,7 +40,7 @@ module.exports = class Mt{
             this.program = Parse.getProgram(declarations)
         }
         let loadScopoManeger = ()=>{
-            this.heap = new scop(this.program, this.program['alias'])
+            this.heap = new heap(this.program, this.program['alias'])
         }
         let loadTools = ()=>{
             this.print = new mt_print()

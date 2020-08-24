@@ -30,9 +30,19 @@ module.exports = class Mt_Heap{
         this._setBlock(lastBlock['block'], lastBlock['state'])
     }
 
+    // Verifica se o symbol esta dentro de alias 
+    // retorna symbol || false
     symbolInAlias(symbol, alias){
-        // Verifica se o symbol esta dentro de alias 
-        // retorna symbol || false
+        let retorno = false // retorno padrão caso não ache nada
+        this.alias.forEach(element => {
+            if(element.alias == alias){// Verifica qual alias bate com o descritor
+                if( element.content.includes(symbol) ){// Verifica se symbol faz parte do alias
+                    retorno = symbol
+                }
+            }
+        });
+        return retorno
+
     }
     //Altera o Scopo
     _setBlock(block, state=block['stateInit'] ){
@@ -46,9 +56,4 @@ module.exports = class Mt_Heap{
             this.stack[this.stack.length-1]['state']=state
         } catch (error) {}
     }
-    comandMatch(symbol, state){ //Obsoleto
-        // retorna uma lista com todos os 'comandos' que casam (state,symbol)
-        // Respeitando o escopo ( 'nome do bloco') e a ordem que aparece 
-    }
-
 }

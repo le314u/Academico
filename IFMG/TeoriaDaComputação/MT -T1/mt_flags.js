@@ -17,7 +17,7 @@ module.exports = class Mt_Flags{
     _setFlags(cliPayload){
         let stepOff = ()=>{
             this.step = 0;
-            this.maxStep = FlagsMt.DISABLE;
+            this.maxStep = Mt_Flags.DISABLE;
         }
         if(cliPayload.option == clIFlags.HELP){
             this.disable();// Se -help não executa nada
@@ -47,7 +47,7 @@ module.exports = class Mt_Flags{
     }
     //-------------------------------------------
     nextStep(){
-        if(this.maxStep != FlagsMt.DISABLE){// Contando passos ?
+        if(this.maxStep != Mt_Flags.DISABLE){// Contando passos ?
             if( this.step < this.maxStep ){
                 // Contabiliza um passo
                 this.step = this.step + 1

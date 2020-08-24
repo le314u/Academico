@@ -1,7 +1,7 @@
 let tape = require('./mt_tape')
 let erro = require('./erro')
 let heap = require('./mt_heap')
-let flagsMt = require('./mt_flags')
+let mt_flags = require('./mt_flags')
 let mt_print = require('./mt_print')
 let Parse = require('./parseN1')
 
@@ -12,7 +12,7 @@ module.exports = class Mt{
         this.Y = new tape();
         this.Z = new tape();
         // Flags de controle (step's) Define se a maquina esta funcionando ou não;
-        this.controll = new flagsMt(cliPayLoad)
+        this.controll = new mt_flags(cliPayLoad)
         // Para Funcionar
         this.program = {}
         this.heap = Object
@@ -76,8 +76,8 @@ module.exports = class Mt{
         }
         console.log(
             this.print.machineState( this.controll.getSpecial(), this.X,this.Y,this.Z, )
-
-            )
+        )
+        console.log(this.heap.symbolInAlias())
     }
 
     compute(){
@@ -94,12 +94,26 @@ module.exports = class Mt{
         let cmd = (comand)=>{
             // Executa lado Esquerdo
             let left = comand[1].read
-            let state = this[left.tape].read()//Le a Fita
+            let symbol = this[left.tape].read()//Le a Fita
             this[left.tape].move(left.move)//Move a fita
             //Executa lado direito
             let rigth = comand[1].write
             this.heap.setState(rigth.state)//Altera Estado
-            this[rigth.tape].write(rigth.symbol)//Escreve
+            // se *
+            if(rigth.symbol == '*'){
+                this[rigth.tape].write(symbol)//Escreve o que foi lido
+            } else if(rigth.symbol.length > 1 && rigth.symbol[0] == '$' ) {// se alias
+                if(left.symbol == rigth.symbol){
+                    this[rigth.tape].write(symbol)//Escreve o que foi lido
+                } else {
+                    new Error (
+                        'Semantica',
+                        'Direita alias usa alias porem não é usado lado esquerdo'
+                    )
+                }
+            } else {
+                this[rigth.tape].write(rigth.symbol)//Escreve
+            }
             this[rigth.tape].move(rigth.move)//Move
             return this.controll.run()
         }

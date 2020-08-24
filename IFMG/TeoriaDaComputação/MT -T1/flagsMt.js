@@ -14,13 +14,11 @@ module.exports = class FlagsMt{
         // Init
         this._setFlags(cliPayload)
     }
-
     _setFlags(cliPayload){
         let stepOff = ()=>{
             this.step = 0;
             this.maxStep = FlagsMt.DISABLE;
         }
-        
         if(cliPayload.option == clIFlags.HELP){
             this.disable();// Se -help não executa nada
         }else if(cliPayload.option == clIFlags.RESUME){
@@ -37,8 +35,6 @@ module.exports = class FlagsMt{
             this.enable();
             stepOff()
         }
-        
-
     }
     enable(){
         this._run = true
@@ -74,5 +70,4 @@ module.exports = class FlagsMt{
     getSpecial(){
         return this.special
     }
-    
 }

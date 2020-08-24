@@ -1,8 +1,9 @@
 let tape = require('./tape')
-let Parse = require('./parseN1')
 let erro = require('./erro')
 let scop = require('./select')
 let flagsMt = require('./flagsMt')
+let mt_print = require('./mt_print')
+let Parse = require('./parseN1')
 
 module.exports = class Mt{
     constructor(declarations, input, cliPayLoad) {
@@ -15,6 +16,9 @@ module.exports = class Mt{
         // Para Funcionar
         this.program = {}
         this.scop = Object
+        this.print = Object
+        // Comando
+        this.comand = ''
         try { 
             this._init(declarations, input)
         } catch (error) {
@@ -38,6 +42,9 @@ module.exports = class Mt{
         let loadScopoManeger = ()=>{
             this.scop = new scop(this.program, this.program['alias'])
         }
+        let loadTools = ()=>{
+            this.print = new mt_print()
+        }
 
         // Carrega a fita X
         initTap(inputTape)
@@ -45,8 +52,11 @@ module.exports = class Mt{
         // Verifica se tem erro de Sintaxy e de Semantica
         if(checkSintaxy(declarations) && checkSemantica(declarations)){
             // Carrega o Programa na Memoria
-            loadProgram(declarations);
+            loadProgram( declarations );
+            // Gerenciador de Scopo
             loadScopoManeger();
+            // Ferramenta
+            loadTools();
         }else{
             throw new erro(
                 "Entrada",
@@ -57,8 +67,17 @@ module.exports = class Mt{
         this.scop.push( this.whereIsBlock('main') )
 
         // APAGAR
-        while ( this.compute() ){}
-        this.machineState(this.controll.getSpecial())
+        while ( this.compute() ){
+            console.log(
+                this.print.machineDebug( this.comand, this.scop )
+
+                )
+            this.compute()
+        }
+        console.log(
+            this.print.machineState( this.controll.getSpecial(), this.X,this.Y,this.Z, )
+
+            )
     }
 
     compute(){
@@ -96,7 +115,6 @@ module.exports = class Mt{
             this.controll.disable()
             return this.controll.run()
         }
-
         // Sempre que computa conta um passo
         if( !(this.controll.nextStep()) ){
             //Se não tiver proximo passo pausa
@@ -104,7 +122,8 @@ module.exports = class Mt{
             return this.controll.run()
         } else {
             //Verifica qual sera o comando a ser executado
-            let comand = this.whatNextStep()
+            let comand = this.whatNextStep();
+            this.comand = this.print.logic2String(comand);
             //Executa o comando
             if( comand[0] == Parse.FUNCTION ){
                 return func(comand)
@@ -112,7 +131,7 @@ module.exports = class Mt{
                 return ret()
             }else if( comand[0] == Parse.COMAND ){
                 return cmd(comand)
-            }else if([Parse.ACEITE,Parse.REJEITE,Parse.PARE].includes(comand)  ){
+            }else if( [Parse.ACEITE,Parse.REJEITE,Parse.PARE].includes(comand)  ){
                 return special(comand)
             }else{
                 return undef()
@@ -187,12 +206,5 @@ module.exports = class Mt{
     }
     overflow(){
         console.log('queu overflow')
-    }
-    machineState(result){
-        console.log("-----------"+result+"-----------")
-        this.X.print('X')
-        this.Y.print('Z')
-        this.Z.print('Z')
-        console.log("----------------------")
     }
 }

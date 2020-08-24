@@ -1,7 +1,8 @@
 $d = '0123456789'
 
 inicio main 01
-        01 moveE 02             ; Vai para o inicio
+        01 nomeMuitoGrandeMesmoComMaisDe16Letras 03
+        03 moveE 02             ; Vai para o inicio
         02 X 0 d -- 02 Y 1 d    ; Escreve 1 em Y para cada 0 em X
         02 X 1 d -- 02 Y 0 d    ; Escreve 0 em Y para cada 1 em X
         02 moveD 04             ; Vai para direita
@@ -25,3 +26,7 @@ inicio moveD 01
         01 X _ i -- 02 X _ e
         02 retorne
 fim moveD
+
+inicio nomeMuitoGrandeMesmoComMaisDe16Letras 01
+        01 retorne
+fim nomeMuitoGrandeMesmoComMaisDe16Letras

@@ -66,15 +66,4 @@ module.exports=class Tape{
     hasSlot(){
         return this.tape[this.header] !== undefined;
     }
-    print(fita){
-        let newTape = []
-        for (let index = 0; index < this.tape.length; index++) {
-            if( index == this.header){
-                newTape.push('['+this.tape[index]+']') 
-            } else {
-                newTape.push(this.tape[index])
-            }
-        }
-        console.log(`${this.header}-Fita ${fita}: ${newTape}`)
-    }
 }

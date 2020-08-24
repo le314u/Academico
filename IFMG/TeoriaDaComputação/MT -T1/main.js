@@ -15,9 +15,10 @@ class Main{
                 console.log(erro)
             }); 
         console.log(
-        "Simulador de Máquinade Turing Suave\n"+
-        "Desenvolvido como trabalho prático para a disciplina de Teoria da Computação - 2020\n"+
-        "Autores:Lucas Mateus Fernandes e Marcos.\n")
+            "Simulador de Máquinade Turing Suave\n"+
+            "Desenvolvido como trabalho prático para a disciplina de Teoria da Computação - 2020\n"+
+            "Autores:Lucas Mateus Fernandes e Marcos.\n"
+        )
     }
     async _init(){
         // Pega os comandos passados por linah de comando

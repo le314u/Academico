@@ -1,17 +1,19 @@
 const erro = require('./erro')
 
 module.exports = class Cli{
+    //Constantes para this.options
+    static RESUME=0
+    static STEP=1
+    static DEBUG=2
+    static HELP=3 
+
     constructor(){
         this.args = process.argv;
         this.arg = ''
         this.option = 0
         this.file = ''
         this.input = ''
-        //Constantes para this.options
-        this.RESUME=0
-        this.STEP=1
-        this.DEBUG=2
-        this.HELP=3       
+   
     }
     getPayload(){
         if(this.isValid()){
@@ -39,7 +41,7 @@ module.exports = class Cli{
     checkResume(){
         // -resume
         if( this.checkArgs(5,'-resume') ){
-            this.option = this.RESUME;
+            this.option = Cli.RESUME;
             this.arg = '';
             this.file = this.args[3]
             this.input = this.args[4]
@@ -50,7 +52,7 @@ module.exports = class Cli{
     checkStep(){
         // -step <n>
         if( this.checkArgs(6,'-step') && !isNaN( parseInt(this.args[3])) ){
-            this.option = this.STEP;
+            this.option = Cli.STEP;
             this.arg = parseInt(this.args[3]);
             this.file = this.args[4]
             this.input = this.args[5]
@@ -61,7 +63,7 @@ module.exports = class Cli{
     checkDebug(){
         // -debug <arquivoLog>
         if( this.checkArgs(6,'-debug')){
-            this.option = this.DEBUG;
+            this.option = Cli.DEBUG;
             this.arg = this.args[3];
             this.file = this.args[4]
             this.input = this.args[5]
@@ -72,7 +74,7 @@ module.exports = class Cli{
     checkHelp(){
         // -help
         if( this.args[2] == '-help' ){
-            this.option = this.HELP;
+            this.option = Cli.HELP;
             this.arg = '';
             return true
         }
@@ -83,7 +85,7 @@ module.exports = class Cli{
         if( this.args.length == 4 ){
             if(this.args[2][0] != '-'){
                 this.option = 0;
-                this.arg = this.RESUME;
+                this.arg = Cli.RESUME;
                 this.file = this.args[2]
                 this.input = this.args[3]
                 return true

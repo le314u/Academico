@@ -14,16 +14,20 @@ class Main{
                 console.log('-------------------------')
                 console.log(erro)
             }); 
+        console.log(
+        "Simulador de Máquinade Turing Suave\n"+
+        "Desenvolvido como trabalho prático para a disciplina de Teoria da Computação - 2020\n"+
+        "Autores:Lucas Mateus Fernandes e Marcos.\n")
     }
     async _init(){
         // Pega os comandos passados por linah de comando
-        this.flags = this.interface.getPayload()
+        this.cliPayload = this.interface.getPayload()
         // Carrega a Maquina
-        if(this.flags.option != this.interface.HELP){
+        if(this.cliPayload.option != cli.HELP){
             // Le o arquivo de entrada
             let declarations = await input(this.interface.file)
             // Instancia a MT
-            this.machine = new mt(declarations,this.interface.input)
+            this.machine = new mt(declarations,this.interface.input, this.cliPayload)
         }
         // Opera a maquina de acordo com a flag
         //switch

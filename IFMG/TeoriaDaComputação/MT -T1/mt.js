@@ -1,6 +1,6 @@
 let tape = require('./tape')
 let erro = require('./erro')
-let scop = require('./select')
+let heap = require('./heap')
 let flagsMt = require('./flagsMt')
 let mt_print = require('./mt_print')
 let Parse = require('./parseN1')
@@ -15,7 +15,7 @@ module.exports = class Mt{
         this.controll = new flagsMt(cliPayLoad)
         // Para Funcionar
         this.program = {}
-        this.scop = Object
+        this.heap = Object
         this.print = Object
         // Comando
         this.comand = ''
@@ -40,7 +40,7 @@ module.exports = class Mt{
             this.program = Parse.getProgram(declarations)
         }
         let loadScopoManeger = ()=>{
-            this.scop = new scop(this.program, this.program['alias'])
+            this.heap = new scop(this.program, this.program['alias'])
         }
         let loadTools = ()=>{
             this.print = new mt_print()
@@ -64,12 +64,12 @@ module.exports = class Mt{
             )
         }
         // Seta o escopo como bloco main
-        this.scop.push( this.whereIsBlock('main') )
+        this.heap.push( this.whereIsBlock('main') )
 
         // APAGAR
         while ( this.compute() ){
             console.log(
-                this.print.machineDebug( this.comand, this.scop )
+                this.print.machineDebug( this.comand, this.heap )
 
                 )
             this.compute()
@@ -83,12 +83,12 @@ module.exports = class Mt{
     compute(){
         let func = (comand)=>{
             // chama a função ou seja empilha o bloco e altera o scopo
-            this.scop.push( this.whereIsBlock(comand[1].function), comand[1].return )
+            this.heap.push( this.whereIsBlock(comand[1].function), comand[1].return )
             return this.controll.run()
         }
         let ret = ()=>{
             //desempilha um bloco  e altera o escopo 
-            this.scop.pop()
+            this.heap.pop()
             return this.controll.run()
         }
         let cmd = (comand)=>{
@@ -98,7 +98,7 @@ module.exports = class Mt{
             this[left.tape].move(left.move)//Move a fita
             //Executa lado direito
             let rigth = comand[1].write
-            this.scop.setState(rigth.state)//Altera Estado
+            this.heap.setState(rigth.state)//Altera Estado
             this[rigth.tape].write(rigth.symbol)//Escreve
             this[rigth.tape].move(rigth.move)//Move
             return this.controll.run()
@@ -142,11 +142,11 @@ module.exports = class Mt{
         let indiceAtual = 0
         let ultimoIndice = 0
         try {
-            ultimoIndice = this.scop.block.order.length-1
+            ultimoIndice = this.heap.block.order.length-1
         } catch {
             ultimoIndice = -1
         }
-        let blocks = this.scop.block.order
+        let blocks = this.heap.block.order
         let isComand = (type)=>{
             return type == Parse.COMAND
         }
@@ -157,7 +157,7 @@ module.exports = class Mt{
             return [Parse.ACEITE, Parse.REJEITE,Parse.RETURN_BLOCK].includes( type )
         }
         let state_sync = (state)=>{// Verifica se o estado do comando é o mesmo da maquina
-            return this.scop.state == state
+            return this.heap.state == state
         }
         let blockExist=(block)=>{
             return (this.whereIsBlock(block) !== undefined)
@@ -172,7 +172,7 @@ module.exports = class Mt{
                     if(symbol == '*'){// se for um caracter especial
                         return blocks[index]
                     }else if(symbol.length > 1 && symbol[0] == '$'){// se for um alias 
-                        if(this.scop.symbolInAlias(symbol, alias)){
+                        if(this.heap.symbolInAlias(symbol, alias)){
                             return blocks[index]
                         }
                     }else if(symbol == this[payLoad.read.tape].read()){// se for um literal

@@ -1,6 +1,6 @@
 // Trocar o nome para HEAP ou RAM
 
-module.exports = class Select{
+module.exports = class Heap{
     constructor(program, alias){
         this.program = program
         this.alias = alias

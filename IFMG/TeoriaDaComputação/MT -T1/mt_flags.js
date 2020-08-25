@@ -29,6 +29,7 @@ module.exports = class Mt_Flags{
             this.step = 0;
             this.maxStep = parseInt( cliPayload.arg )
         }else if(cliPayload.option == clIFlags.DEBUG){
+            this.debug = true
             this.enable();
             stepOff()
         }else{

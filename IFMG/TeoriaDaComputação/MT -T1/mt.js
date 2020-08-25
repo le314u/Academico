@@ -67,7 +67,7 @@ module.exports = class Mt{
         
         // APAGAR
         let i = 0
-        while ( i<=10  ){
+        while ( i<=30  ){
             i= i+1
             this.compute()
         }

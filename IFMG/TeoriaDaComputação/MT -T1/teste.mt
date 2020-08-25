@@ -5,7 +5,8 @@ inicio main 01
         01 moveE 02             ; Vai para o inicio
         02 X 0 d -- 02 Y 1 d    ; Escreve 1 em Y para cada 0 em X
         02 X 1 d -- 02 Y 0 d    ; Escreve 0 em Y para cada 1 em X
-        02 erase 04             ; Apaga letras
+        03 erase 02             ; Apaga letras
+        02 X $c i -- 03 X $c i  ;
         02 moveD 04             ; Vai para direita
         04 aceite               ; Fim
         01 retorne

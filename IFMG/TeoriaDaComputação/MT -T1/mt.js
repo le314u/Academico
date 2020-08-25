@@ -190,7 +190,7 @@ module.exports = class Mt{
                     if(symbol == '*'){// se for um caracter especial aceita qualquer coisa 
                         return blocks[index]
                     }else if(symbol.length > 1 && symbol[0] == '$'){// se o symbol for um alias 
-                        if( this.heap.validAlias(symbol) ){// se alias é compativel com o caracter da fita
+                        if( this.heap.symbolInAlias(this[payLoad.read.tape].read(),symbol) ){// se alias é compativel com o caracter da fita
                             return blocks[index]
                         }
                     }else if(symbol == this[payLoad.read.tape].read()){// se for um literal

@@ -46,6 +46,19 @@ module.exports = class Mt_Flags{
         return this._run
     }
     //-------------------------------------------
+    hasNextStep(){
+        if(this.maxStep != Mt_Flags.DISABLE){// Contando passos ?
+            if( this.step < this.maxStep ){
+                // Contabiliza um passo
+                return true
+            } else {
+                // Atigiu o maximo de passos!
+                return false
+            }
+        }
+        // Retorana o estado de atividade da maquina
+        return this._run;
+    }
     nextStep(){
         if(this.maxStep != Mt_Flags.DISABLE){// Contando passos ?
             if( this.step < this.maxStep ){

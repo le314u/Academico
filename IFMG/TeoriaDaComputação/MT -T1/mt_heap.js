@@ -42,7 +42,17 @@ module.exports = class Mt_Heap{
             }
         });
         return retorno
-
+    }
+    // Verifica se o symbol esta dentro de alias 
+    // retorna symbol || false
+    validAlias(alias){
+        let retorno = false // retorno padrão caso não ache nada
+        this.alias.forEach(element => {
+            if(element.alias == alias){// Verifica se existe um descritor de alias que de match
+                retorno = true
+            }
+        });
+        return retorno
     }
     //Altera o Scopo
     _setBlock(block, state=block['stateInit'] ){

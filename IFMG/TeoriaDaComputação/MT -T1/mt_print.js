@@ -25,21 +25,27 @@ module.exports = class Mt_Print{
         )
     }
     machineDebug(comand, scop){
-        let nameBlock = scop.stack[scop.stack.length-1].block.name
-        let label = ''
-        if(nameBlock.length < 16){
-            let numberSpaces = 16 - nameBlock.length;
-            let dots = ''
-            for (let i = 0; i < numberSpaces; i++) {
-                dots = dots+'.'
-            }
-            label = dots+nameBlock
-        } else {
-            for (let i = 0; i < 16; i++) {
-                label = label+nameBlock[i]
-            }
+        let originalName = ()=>{
+            return scop.stack[scop.stack.length-1].block.name
         }
-        return label+' : '+comand
+        let formatedName = ()=>{
+            let oldName = originalName()
+            let newName = ''
+            if(oldName.length < 16){ // Coloca prefixo ....
+                let numberSpaces = 16 - originalName.length;
+                let dots = ''
+                for (let i = 0; i < numberSpaces; i++) {
+                    dots = dots+'.'
+                }
+                newName = dots+oldName
+            } else { // trunca o nome
+                for (let i = 0; i < 16; i++) {
+                    newName = newName+oldName[i]
+                }
+            }
+            return newName
+        }
+        return formatedName()+' : '+comand
     }
     //Converte o comando logic em uma string ( semelhante a ao arquivo de entrada)
     logic2String(logic){

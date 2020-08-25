@@ -17,7 +17,7 @@ class Main{
         console.log(
             "Simulador de Máquinade Turing Suave\n"+
             "Desenvolvido como trabalho prático para a disciplina de Teoria da Computação - 2020\n"+
-            "Autores:Lucas Mateus Fernandes e Marcos.\n"
+            "Autores:Lucas Mateus Fernandes e Marcus Vinícius Braga.\n"
         )
     }
     async _init(){

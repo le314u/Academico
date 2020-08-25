@@ -65,18 +65,11 @@ module.exports = class Mt{
             )
         }
         
-
         // APAGAR
         let i = 0
         while ( i<=10  ){
             i= i+1
             this.compute()
-            console.log(
-                this.print.machineDebug( this.comand, this.heap )
-            )
-            console.log(
-                this.print.machineState( this.controll.getSpecial(), this.X,this.Y,this.Z, )
-            )
         }
         console.log(
             this.print.machineState( this.controll.getSpecial(), this.X,this.Y,this.Z, )
@@ -153,7 +146,11 @@ module.exports = class Mt{
             //Verifica qual sera o comando a ser executado
             let comand = this.whatNextStep();// Qual o proximo passo ?
             this.comand = this.print.logic2String(comand);// Salva o codigo do proximo passo
-            if(DEBUG)
+            if(this.controll.debug){
+                console.log(
+                    this.print.machineDebug( this.comand, this.heap )
+                )
+            }
             //Executa o comando
             exec(comand)
         }

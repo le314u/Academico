@@ -40,9 +40,16 @@ class Main{
     }
     help(){
         // Executa o que deve ser feito com a flag -help
+        // TODO console log mostrando os parametros de entrada
+
+        // Criar uma classe nova para escrita de arquivo (debug) ->
+        /*  3 funções: 1 cria o arquivo(passa o path do arquivo), outra escreve no arquivo(string a ser escrita)
+                       outra fecha o arquivo("sem parametro") */
+        // flag indicando se o arquivo ta aberto ou não
     }
     resume(){
         // Executa o que deve ser feito com a flag -resume
+        // TODO 
     }
     step(){
         // Executa o que deve ser feito com a flag -step

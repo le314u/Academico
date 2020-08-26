@@ -30,6 +30,9 @@ class Main{
             let declarations = await input(this.interface.file)
             // Instancia a MT
             this.machine = new mt(declarations,this.interface.input, this.cliPayload)
+        } else if (this.cliPayload.option == cli.HELP) {
+            const func = () => this.help
+            func()
         }
         // Opera a maquina de acordo com a flag
         //switch

@@ -42,7 +42,7 @@ module.exports = class Mt{
         let loadScopoManeger = ()=>{
             this.heap = new heap(this.program, this.program['alias'])
             // Seta o escopo como bloco main
-            this.heap.push( this.whereIsBlock('main') )
+            this.heap.push( this._whereIsBlock('main') )
         }
         let loadTools = ()=>{
             this.print = new mt_print()
@@ -65,14 +65,10 @@ module.exports = class Mt{
             )
         }        
     }
-    nexStep(){
-        // Sempre que computa conta um passo
-        this.controll.nextStep()
-    }
     compute(){
         let func = (comand)=>{
             // chama a função ou seja empilha o bloco e altera o scopo
-            this.heap.push( this.whereIsBlock(comand.function), comand.return )
+            this.heap.push( this._whereIsBlock(comand.function), comand.return )
         }
         let ret = ()=>{
             //desempilha um bloco  e altera o escopo 
@@ -133,7 +129,7 @@ module.exports = class Mt{
             this.controll.disable()
         } else {
             //Verifica qual sera o comando a ser executado
-            let comand = this.whatNextStep();// Qual o proximo passo ?
+            let comand = this._whatNextStep();// Qual o proximo passo ?
             this.comand = this.print.logic2String(comand);// Salva o codigo do proximo passo
             if(this.controll.debug){
                 console.log(
@@ -145,7 +141,12 @@ module.exports = class Mt{
         }
         return this.controll.run()
     }
-    whatNextStep(){ // Verifica qual o proximo comando aceito (' de maneira deterministica ')
+    machineState(){
+        console.log(
+            this.print.machineState( this.controll.getSpecial(), this.X,this.Y,this.Z, )
+        )
+    }
+    _whatNextStep(){ // Verifica qual o proximo comando aceito (' de maneira deterministica ')
         let indiceAtual = 0
         let ultimoIndice = 0
         try {
@@ -167,7 +168,7 @@ module.exports = class Mt{
             return this.heap.state == state
         }
         let blockExist=(block)=>{
-            return (this.whereIsBlock(block) !== undefined)
+            return (this._whereIsBlock(block) !== undefined)
         }
         // Passa por todos os comandos do bloco
         for (let index = indiceAtual; index <= ultimoIndice; index++) {
@@ -198,8 +199,7 @@ module.exports = class Mt{
         }
         return Parse.ERROR
     }
-    
-    whereIsBlock(blockName){
+    _whereIsBlock(blockName){
         // precorre todo o programa procurando o blockName
         for (let index = 0; index < this.program['block'].length; index++) {
             if(this.program['block'][index]['name'] == blockName){
@@ -213,10 +213,5 @@ module.exports = class Mt{
     }
     overflow(){
         console.log('queu overflow')
-    }
-    machineState(){
-        console.log(
-            this.print.machineState( this.controll.getSpecial(), this.X,this.Y,this.Z, )
-        )
     }
 }

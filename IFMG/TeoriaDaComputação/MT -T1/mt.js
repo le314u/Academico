@@ -63,18 +63,7 @@ module.exports = class Mt{
                 "Entrada",
                 "Programa não pode ser carregado na memória"
             )
-        }
-        
-        // APAGAR
-        let i = 0
-        while ( i<=30  ){
-            i= i+1
-            this.compute()
-        }
-        console.log(
-            this.print.machineState( this.controll.getSpecial(), this.X,this.Y,this.Z, )
-        )
-        
+        }        
     }
     nexStep(){
         // Sempre que computa conta um passo
@@ -224,5 +213,10 @@ module.exports = class Mt{
     }
     overflow(){
         console.log('queu overflow')
+    }
+    machineState(){
+        console.log(
+            this.print.machineState( this.controll.getSpecial(), this.X,this.Y,this.Z, )
+        )
     }
 }

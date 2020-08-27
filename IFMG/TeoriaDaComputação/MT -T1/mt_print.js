@@ -32,7 +32,7 @@ module.exports = class Mt_Print{
             let oldName = originalName()
             let newName = ''
             if(oldName.length < 16){ // Coloca prefixo ....
-                let numberSpaces = 16 - originalName.length;
+                let numberSpaces = 16 - oldName.length;
                 let dots = ''
                 for (let i = 0; i < numberSpaces; i++) {
                     dots = dots+'.'

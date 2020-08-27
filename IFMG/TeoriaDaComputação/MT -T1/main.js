@@ -1,6 +1,7 @@
 const mt = require('./mt')
 const cli = require('./cli')
 const input = require('./input')
+const output = require('./output')
 
 
 class Main{
@@ -43,7 +44,7 @@ class Main{
             } else if(flag == cli.STEP){// se step executa this.step()
                 this.step()
             } else if(flag == cli.DEBUG){// se debug executa this.debug()
-                this.debug
+                this.debug()
             }else{
                 //Instancia um erro
             }//Erro
@@ -93,6 +94,21 @@ class Main{
     }
     debug(){
         // Executa o que deve ser feito com a flag -debug
+        // Cria o arquivo de Debug
+
+            this.output = new output(this.cliPayload.arg)
+            // Computa
+            while ( this.machine.compute() ){
+                // Escreve no arquivo de Log
+                this.output.writeInFile(this.machine.stringDebug)
+            }
+            // Fecha o Arquivo
+            this.output.closeFile()
+            // Mostra o estado das fitas
+            this.machine.machineState()
+        
+        
+        
     }
 }
 

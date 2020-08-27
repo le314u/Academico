@@ -19,6 +19,8 @@ module.exports = class Mt{
         this.print = Object
         // Comando
         this.comand = ''
+        this.stringDebug = ''
+        
         try { 
             this._init(declarations, input)
         } catch (error) {
@@ -131,10 +133,9 @@ module.exports = class Mt{
             //Verifica qual sera o comando a ser executado
             let comand = this._whatNextStep();// Qual o proximo passo ?
             this.comand = this.print.logic2String(comand);// Salva o codigo do proximo passo
+            // Salva a strign de Debug
             if(this.controll.debug){
-                console.log(
-                    this.print.machineDebug( this.comand, this.heap )
-                )
+                this.stringDebug = this.print.machineDebug( this.comand, this.heap )
             }
             //Executa o comando
             exec(comand)

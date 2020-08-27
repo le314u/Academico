@@ -55,7 +55,8 @@ class Main{
                        outra fecha o arquivo("sem parametro") */
         // flag indicando se o arquivo ta aberto ou não
         const helpString = '-------------------------------------------------------------------------------------------------------------------------------------------\n' +
-        'Este simulador foi feito na linguagem de programação Javascript, por tal, sua sintaxe de entrada segue as regras abaixo:\n' +
+        'Este simulador foi feito na linguagem de programação Javascript, por tal, é necessário instalar o "Node.js" na máquina.\n' +
+        'Sua sintaxe de entrada segue as regras abaixo:\n' +
         '-------------------------------------------------------------------------------------------------------------------------------------------\n' +
         ' $ node <nome do arquivo a ser executado> <opções> <arquivo a ser lido> <string de entrada>\n' +
         '-------------------------------------------------------------------------------------------------------------------------------------------\n' +
@@ -64,17 +65,21 @@ class Main{
         'para se escrever um novo valor "n" para realizar computações reabrindo o prompt de comandos. Caso seja fornecido o valor "0", a simulação\n' +
         'termina imediatamente. Caso seja fornecido um valor negativo, o simulador passa a executar o programa considerando que se foi escrito a\n' +
         'opção "-resume".\n' +
+        '   Ex: $ node main.js -step 3 teste.mt 0101010\n' +
         '-------------------------------------------------------------------------------------------------------------------------------------------\n' +
         '   [ -resume ] - Esta flag executa o programa até o fim, computando todos os comandos na ordem em que foram apresentados, mostrando o\n' +
         'conteúdo das 3 fitas e o resultado da computação, se ACEITOU a string de entrada, ou se a REJEITOU. Esta opção é a padrão e será\n' +
         'executada se nenhuma opção "-step" for fornecida.\n' +
+        '   Ex: $ node main.js -resume teste.mt 0101010\n' +
         '-------------------------------------------------------------------------------------------------------------------------------------------\n' +
         '   [ -debug <arquivo log> ] - Esta flag produz um relatório mostrando linha por linha as computações executadas, as entradas e saídas\n' +
         'dos blocos e afins. O parâmetro <arquivo log> que deve ser fornecido logo após a opção de "debug" indica o arquivo de relatório que\n' +
         'será produzido contendo todas estas informações das computações.\n' +
+        '   Ex: $ node main.js -debug export.mt teste.mt 0101010\n' +
         '-------------------------------------------------------------------------------------------------------------------------------------------\n' +
         '   [ -help ] - Esta flag irá exibir um pequeno "guia" demonstrando os padrões de entrada para este simulador de Máquina de Turing.\n' +
         'Utilize sempre que precisar de ajuda!\n' +
+        '   Ex: $ node main.js -help\n' +
         '-------------------------------------------------------------------------------------------------------------------------------------------\n'
         console.log(helpString)
     }

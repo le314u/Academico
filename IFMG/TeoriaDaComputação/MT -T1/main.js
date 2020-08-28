@@ -1,6 +1,8 @@
 const mt = require('./mt')
 const cli = require('./cli')
-const input = require('./input')
+const input = require('./input');
+const { read } = require('fs');
+const readline = require('readline');
 
 
 class Main{
@@ -89,6 +91,51 @@ class Main{
         this.machine.machineState()
     }
     step(){
+        let steps = 0 // Número de steps
+        let maxSteps = this.machine.controll.maxStep // Variável para controle do número máximo de steps
+        
+        // Configurando prompt de comando para o usuário digitar
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+
+        });
+        
+        // Pegando-se estas funções como ArrowFunctions para usá-las em outros contextos
+        const context = () => this.resume()
+        const machineStates = () => this.machine.machineState()
+
+
+        while ( this.machine.controll.hasNextStep() && steps < maxSteps ) {
+            this.machine.machineState()
+            steps++
+
+            console.log(steps)
+            console.log(maxSteps)
+            
+            if ( steps == maxSteps ) {
+                rl.question(">> Quais os próximos steps? ", function(answer) {
+                    const num = parseInt(answer)
+
+                    if ( num < 0 ) { // Executar como se fosse "-resume"
+                        context()
+                        machineStates()
+                        rl.close()
+
+                    } else if ( num == 0 ) { // Encerrar a execução
+                        rl.close();
+
+                    } else if ( num > 0 ) { // Adicionar mais Steps
+                        maxSteps = steps + num
+                        console.log(maxSteps)
+                        context()
+                        machineStates()
+
+                        rl.close()
+                    }
+                });
+            }
+        }
         // Executa o que deve ser feito com a flag -step
     }
     debug(){

@@ -1,13 +1,9 @@
 const mt = require('./mt')
 const cli = require('./cli')
-<<<<<<< HEAD
 const input = require('./input');
+const output = require('./output')
 const { read } = require('fs');
 const readline = require('readline');
-=======
-const input = require('./input')
-const output = require('./output')
->>>>>>> master
 
 
 class Main{
@@ -143,11 +139,11 @@ class Main{
         }
         // Executa o que deve ser feito com a flag -step
     }
-    debug(){
+    async debug(){
         // Executa o que deve ser feito com a flag -debug
         // Cria o arquivo de Debug
-
-            this.output = new output(this.cliPayload.arg)
+        try {
+            this.output = await new output(this.cliPayload.arg)
             // Computa
             while ( this.machine.compute() ){
                 // Escreve no arquivo de Log
@@ -157,9 +153,9 @@ class Main{
             this.output.closeFile()
             // Mostra o estado das fitas
             this.machine.machineState()
-        
-        
-        
+        } catch (error) {
+            throw erro
+        }
     }
 }
 

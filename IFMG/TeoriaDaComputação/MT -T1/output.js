@@ -7,7 +7,6 @@ module.exports = class Output {
         this.nameFile = filePath
         this.fileOk = false
         this.file = this.createFile(this.nameFile)
-        this.file.then().catch()
     }
 
     // Cria um arquivo para salvar o relatório de debug

@@ -90,7 +90,10 @@ module.exports=class Parse {
     // <estado atual> <identificador de bloco> <estado de retorno>
     static checkFunction(string){
         let chunks = this.filter(string);
-        if( this.hasNChunks(chunks, 3) ){
+        if( this.hasNChunks(chunks, 3) || this.hasNChunks(chunks, 4) ){
+            if (this.hasNChunks(chunks, 4) && chunks[3] !== "!") {
+                return false
+            } 
             let func = this.getFunction(string)
             return (
                 this.isState(func.state) &&
@@ -233,6 +236,10 @@ module.exports=class Parse {
     // transforma string->[..chunks]->partes Logicas
     static getComputation(string){
         let chunks = this.filter(string);
+        let flagBreak = false
+        if (chunks[9] === "!") {
+            flagBreak = true
+        }
         return {
             read:{
                 state:chunks[0],
@@ -246,15 +253,21 @@ module.exports=class Parse {
                 tape:chunks[6],
                 symbol:chunks[7],
                 move:chunks[8]
-            }
+            },
+            breakpoint: flagBreak
         }
     }
     static getFunction(string){
         let chunks = this.filter(string);
+        let flagBreak = false
+        if (chunks[3] === "!") {
+            flagBreak = true
+        }
         return {
             state:chunks[0],
             function:chunks[1],
-            return:chunks[2]
+            return:chunks[2],
+            breakpoint: flagBreak
         }
     }
     static getAlias(string){

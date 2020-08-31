@@ -14,9 +14,9 @@ inicio main 01
 fim main
 
 inicio moveE 01
-        01 X 0 i -- 01 X 0 e ; Move para esquerda
+        01 X 0 i -- 01 X 0 e ! ; Move para esquerda
         01 X 1 i -- 01 X 1 e ; Move para esquerda
-        01 X _ i -- 02 X _ d ; Volta cabeçote
+        01 X _ i -- 02 X _ d !; Volta cabeçote
         02 retorne           ; Sai do bloco
 fim moveE
 

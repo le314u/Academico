@@ -111,13 +111,20 @@ module.exports = class Mt{
             this.controll.setSpecial(Parse.PARE)
             this.controll.disable()
         }
+        let breakpoint = (comand) => {
+            if (comand[1].breakpoint) {
+                this.controll.moreSteps(-2)
+            }
+        }
         let exec = (comand) =>{
             if( comand[0] == Parse.FUNCTION ){
                 func(comand[1])
+                breakpoint(comand)
             }else if( comand[0] == Parse.RETURN_BLOCK ){
                 ret()
             }else if( comand[0] == Parse.COMAND ){
                 cmd(comand[1])
+                breakpoint(comand)
             }else if( [Parse.ACEITE,Parse.REJEITE,Parse.PARE].includes(comand)  ){
                 special(comand)
             }else{

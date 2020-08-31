@@ -97,7 +97,9 @@ class Main{
     }
     resume(){
         // Executa o que deve ser feito com a flag -resume
-        while ( this.machine.compute()  ){}
+        while ( this.machine.compute() ){
+            // console.log(this.machine.heap.block.order)
+        }
         this.machine.machineState()
     }
     async step(){
@@ -114,7 +116,7 @@ class Main{
         let breakPoint = ()=>{
             return new Promise( (resolve, reject)=>{
                 try {
-                    rl.question(">> Quais os próximos steps? ", function(answer) {
+                    rl.question("(n=passos, 0=termina, -1=resume)\n>> Quais os próximos steps? ", function(answer) {
                         let option = parseInt(answer)
                         resolve(option)
                     });
@@ -127,7 +129,7 @@ class Main{
         // Computa n Passos
         let exec = ()=>{
             inExec = true
-            while ( this.machine.controll.hasNextStep()) {
+            while ( this.machine.controll.hasNextStep() && this.machine.controll.run() ) {
                 this.machine.compute()//Computa
                 this.machine.controll.nextStep()//Contabiliza um passo
             }

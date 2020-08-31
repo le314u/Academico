@@ -4,8 +4,10 @@ let heap = require('./mt_heap')
 let mt_flags = require('./mt_flags')
 let mt_print = require('./mt_print')
 let Parse = require('./parseN1')
+let ParseN0 = require('./parseN1')
 
 module.exports = class Mt{
+    
     constructor(declarations, input, cliPayLoad) {
         // Fitas
         this.X = new tape();
@@ -74,7 +76,14 @@ module.exports = class Mt{
         }
         let ret = ()=>{
             //desempilha um bloco  e altera o escopo 
-            this.heap.pop()
+            try {
+                this.heap.pop()
+            } catch (error) {
+                throw new erro(
+                    "Semantico",
+                    "Impossivel Retorna algo do bloco main"
+                )
+            }
         }
         let cmd = (comand)=>{
             // Executa lado Esquerdo
@@ -83,6 +92,7 @@ module.exports = class Mt{
             this[left.tape].move(left.move)//Move a fita
             //Executa lado direito
             let rigth = comand.write
+            if(rigth.tape == '*'){rigth.tape = left.tape} // Coringa de estado
             this.heap.setState(rigth.state)//Altera Estado
             // se *
             if(rigth.symbol == '*'){
@@ -104,7 +114,7 @@ module.exports = class Mt{
         let special = (comand)=>{
             // Se especial faz o que se pede  Aceita || Recusa || Para
             this.controll.disable()
-            this.controll.setSpecial(comand)
+            this.controll.setSpecial(comand[0])
         }
         let undef = ()=>{
             // Comando Indefinido
@@ -113,7 +123,7 @@ module.exports = class Mt{
         }
         let breakpoint = (comand) => {
             if (comand[1].breakpoint) {
-                this.controll.moreSteps(-2)
+                this.setBreakPoint()
             }
         }
         let exec = (comand) =>{
@@ -125,7 +135,7 @@ module.exports = class Mt{
             }else if( comand[0] == Parse.COMAND ){
                 cmd(comand[1])
                 breakpoint(comand)
-            }else if( [Parse.ACEITE,Parse.REJEITE,Parse.PARE].includes(comand)  ){
+            }else if( [ParseN0.ACEITE,ParseN0.REJEITE,ParseN0.PARE].includes(comand[0])  ){
                 special(comand)
             }else{
                 undef()
@@ -218,6 +228,12 @@ module.exports = class Mt{
             'Semantico',
             'Não possui Bloco '+blockName
         )
+    }
+    setBreakPoint(){
+        this.controll.moreSteps(mt_flags.BREAK_POINT)
+    }
+    setContinuePoint(){
+        this.controll.moreSteps(mt_flags.RUN)
     }
     overflow(){
         console.log('queu overflow')

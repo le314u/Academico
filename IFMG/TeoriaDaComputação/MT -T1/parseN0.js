@@ -79,7 +79,7 @@ module.exports=class Parse {
             return(
                 this.isState(computation.read.state) &&
                 this.isMove(computation.read.move)&&
-                this.isTape(computation.read.tape)&&
+                this.isTape(computation.read.tape)&& computation.read.tape != '*' &&
                 this.isState(computation.write.state)&&
                 this.isMove(computation.write.move)&&
                 this.isTape(computation.write.tape)
@@ -207,7 +207,7 @@ module.exports=class Parse {
     }
     // X Y ou Z
     static isTape(chunk){
-        return chunk == 'X' || chunk == 'Y' || chunk == 'Z'
+        return chunk == 'X' || chunk == 'Y' || chunk == 'Z' || chunk == '*'
     }
     // Filtros de string para chunk
     static removeComent(string){

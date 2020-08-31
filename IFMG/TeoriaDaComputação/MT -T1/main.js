@@ -9,21 +9,26 @@ class Main{
     constructor(){
         this.machine = ''
         this.interface = new cli();
+        this.rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
         this._init()
             .then()
             .catch((erro)=>{
                 console.log(erro.name,erro.message)
-                console.log('-------------------------')
-                console.log(erro)
+                //console.log('-------------------------')
+                //console.log(erro)
             }); 
         console.log(
+            "\n"+
             "Simulador de Máquinade Turing Suave\n"+
             "Desenvolvido como trabalho prático para a disciplina de Teoria da Computação - 2020\n"+
             "Autores:Lucas Mateus Fernandes e Marcus Vinícius Braga.\n"
         )
     }
     async _init(){
-        // Pega os comandos passados por linah de comando
+        // Pega os comandos passados por linha de comando
         this.cliPayload = this.interface.getPayload()
         let flag = this.cliPayload.option
         // Carrega a Maquina
@@ -37,25 +42,20 @@ class Main{
             func()
         }
         // Opera a maquina de acordo com a flag
-        //switch
-            if(flag == cli.HELP){// se help executa this.help()
-                this.help()
-            } else if(flag == cli.RESUME){// se resume executa this.resume()
-                this.resume()
-            } else if(flag == cli.STEP){// se step executa this.step()
-                this.step()
-            } else if(flag == cli.DEBUG){// se debug executa this.debug()
-                this.debug()
-            }else{
-                //Instancia um erro
-            }//Erro
+        if(flag == cli.HELP){// se help executa this.help()
+            this.help().catch((e)=>{throw e})
+        } else if(flag == cli.RESUME){// se resume executa this.resume()
+            this.resume().catch((e)=>{throw e})
+        } else if(flag == cli.STEP){// se step executa this.step()
+            this.step().catch((e)=>{throw e})
+        } else if(flag == cli.DEBUG){// se debug executa this.debug()
+            this.debug().catch((e)=>{throw e})
+        }else{
+            //Instancia um erro
+        }//Erro
     }
     help(){
-
-        // Criar uma classe nova para escrita de arquivo (debug) ->
-        /*  3 funções: 1 cria o arquivo(passa o path do arquivo), outra escreve no arquivo(string a ser escrita)
-                       outra fecha o arquivo("sem parametro") */
-        // flag indicando se o arquivo ta aberto ou não
+        const caracteresReservados = 'Qualquer ";" nas instruções da MT será considerado comentário portanto não use ";" como caracter da fita\n'
         const geral = '-------------------------------------------------------------------------------------------------------------------------------------------\n' +
         'Este simulador foi feito na linguagem de programação Javascript, por tal, é necessário instalar o "Node.js" na máquina.\n' +
         'Sua sintaxe de entrada segue as regras abaixo:\n'+
@@ -93,27 +93,53 @@ class Main{
         '-------------------------------------------------------------------------------------------------------------------------------------------\n' +
         '   Ex: $ node main.js teste.mt 0101010\n' +
         '-------------------------------------------------------------------------------------------------------------------------------------------\n' +
-        console.log( geral+ step+ resume+ debug+ standart )
+        console.log( caracteresReservados+ geral+ step+ resume+ debug+ standart )
+        this.rl.close();
     }
-    resume(){
-        // Executa o que deve ser feito com a flag -resume
-        while ( this.machine.compute() ){
-            // console.log(this.machine.heap.block.order)
+    // Executa o que deve ser feito com a flag -resume
+    async resume(){
+        // Continua a partir do breakpoint
+        let _continue = async ()=>{
+            // Abre o terminal esperando a tecla enter para continuar
+            let _continuePromise = ()=>{
+                return new Promise( (resolve, _)=>{
+                    let machine = this.machine
+                    this.rl.question("Digite enter para continua: ", function(answer) {
+                        console.log('\n')
+                        machine.setContinuePoint(); // Continua o Processamento
+                        resolve()
+                    });
+                })
+            }
+            this.machine.machineState(); // Prita estado da Maquina
+            await _continuePromise(); // Espera entrada do usuario
         }
+        // Verifica se é um break point 
+        let isBreakPoint = ()=>this.machine.controll.isBreakPoint()
+        // Verifica se a maquina esta executando
+        let itsRun = ()=> this.machine.controll.hasNextStep() || isBreakPoint()
+        // Executa a maquina
+        let exec = ()=>{
+            while ( this.machine.compute() ){}
+        }
+        // Execução de acordo com a flag resume
+        while ( itsRun() ){
+            if( isBreakPoint() ){
+                console.log("BreakPoint")
+                await _continue();
+            } else {
+                exec()
+            }
+        }
+        // Mostra o estado da Maquina  
         this.machine.machineState()
+        this.rl.close();
     }
+    // Executa o que deve ser feito com a flag -step
     async step(){
-        // Executa o que deve ser feito com a flag -step
         let inExec = true
-
-        // Configurando prompt de comando para o usuário digitar
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        });
-
         // Pausa para perguntar o que fazer
-        let breakPoint = ()=>{
+        let _continue = ()=>{
             return new Promise( (resolve, reject)=>{
                 try {
                     rl.question("(n=passos, 0=termina, -1=resume)\n>> Quais os próximos steps? ", function(answer) {
@@ -136,22 +162,23 @@ class Main{
             this.machine.machineState()// Printa Estado das Fitas
             inExec = false
         }
+        
 
         while(inExec){
             if(this.machine.controll.getSpecial() != ''){ // Para a execução
                 inExec = false
-                rl.close();
+                this.rl.close();
                 break
             }
             exec()// Contabiliza 'n' passos
-            await breakPoint().then((option)=>{
+            await _continue().then((option)=>{
                 // Executar conforme a seleção do fluxo
                 if ( option == -1 || option > 0 ) { 
                     inExec = true
                     this.machine.controll.moreSteps(option)
                     return cli.RESUME
                 }else { // Encerrar a execução
-                    rl.close();
+                    this.rl.close();
                     return false
                 }
             })
@@ -160,20 +187,56 @@ class Main{
     async debug(){
         // Executa o que deve ser feito com a flag -debug
         // Cria o arquivo de Debug
-        try {
-            this.output = await new output(this.cliPayload.arg)
-            // Computa
-            while ( this.machine.compute() ){
-                // Escreve no arquivo de Log
-                this.output.writeInFile(this.machine.stringDebug)
+        let createFileDebug = async ()=>{
+            try {
+                this.output = await new output(this.cliPayload.arg)
+            } catch (error) {
+                throw erro
             }
-            // Fecha o Arquivo
-            this.output.closeFile()
-            // Mostra o estado das fitas
-            this.machine.machineState()
-        } catch (error) {
-            throw erro
         }
+        // Continua a partir do breakpoint
+        let _continue = async ()=>{
+            // Abre o terminal esperando a tecla enter para continuar
+            let _continuePromise = ()=>{
+                return new Promise( (resolve, _)=>{
+                    let machine = this.machine
+                    this.rl.question("Digite enter para continua: ", function(answer) {
+                        console.log('\n')
+                        machine.setContinuePoint(); // Continua o Processamento
+                        resolve()
+                    });
+                })
+            }
+            this.machine.machineState(); // Prita estado da Maquina
+            await _continuePromise(); // Espera entrada do usuario
+        }
+        // Verifica se é um break point 
+        let isBreakPoint = ()=>this.machine.controll.isBreakPoint()
+        // Verifica se a maquina esta executando
+        let itsRun = ()=> this.machine.controll.hasNextStep() || isBreakPoint()
+        // Executa a maquina
+        let exec = ()=>{
+            while ( this.machine.compute() ){
+                this.output.writeInFile(this.machine.stringDebug)// Escreve no arquivo de Debug
+            }
+        }
+
+        // Execução de acordo com a flag debug
+        await createFileDebug()
+        while ( itsRun() ){
+            if( isBreakPoint() ){
+                console.log("BreakPoint")
+                await _continue();
+            } else {
+                exec()
+            }
+        }
+        // Fecha a conexão com o console
+        this.rl.close();
+        // Fecha o Arquivo
+        this.output.closeFile()
+        // Mostra o estado da Maquina  
+        this.machine.machineState()        
     }
 }
 

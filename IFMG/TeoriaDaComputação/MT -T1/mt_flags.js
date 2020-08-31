@@ -1,7 +1,11 @@
 const clIFlags = require('./cli')
+const mt = require('./mt')
 
 module.exports = class Mt_Flags{
     static DISABLE = -1
+    static RUN = -1
+    static BREAK_POINT = -2
+
     constructor(cliPayload){
         // Atividade da maquina
         this._run = false
@@ -77,6 +81,9 @@ module.exports = class Mt_Flags{
         this.enable()
         this.maxStep = maxStep;
         this.step = 0
+    }
+    isBreakPoint(){
+        return this.maxStep == Mt_Flags.BREAK_POINT
     }
     setSpecial(special){
         this.special = special

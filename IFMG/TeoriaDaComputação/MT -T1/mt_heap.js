@@ -1,4 +1,4 @@
-// Trocar o nome para HEAP ou RAM
+const erro = require('./erro')
 
 module.exports = class Mt_Heap{
     constructor(program, alias){
@@ -24,7 +24,7 @@ module.exports = class Mt_Heap{
     // Desempilha Bloco
     pop(){
         // Tira o ultimo elemento da pilha
-        this.stack.pop()
+        let retorno = this.stack.pop()
         // Altera Escopo
         let lastBlock = this.stack[this.stack.length-1]
         this._setBlock(lastBlock['block'], lastBlock['state'])

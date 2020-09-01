@@ -1,6 +1,8 @@
 #!/bin/bash
 # Analisa as entradas e verifica se são entradas validas
 cli(){
+# $1 == Input
+# $2 == Output
     #Verifica se o primeiro argumento passado é um arquivo 
     if [ -f $1 ]
     then
@@ -11,67 +13,103 @@ cli(){
         exit # Encerra o programa
     fi
 }
-#Pega o Regex da linha específica
-getFileConfig(){
-    cat $arquivoConf
+
+getLineMatch(){
+# $1 == <Regex a ser procurado>
+    # Mostrar a linha do Literal
+    awk -v entrada=$1 '{if ( $0 ~ entrada ) {print NR}}' $arquivoConf
 }
-getValorRegex(){
-    # Printa todo o arquivo enumerando cada linha
-    # Filtra pela linha que começa por $1:
-    # Pega apenas a parte em que o regex é compativel
-    variavel=$(cat -|egrep -n ^ |egrep "^$1:"|egrep -o "$2")
-    echo $variavel
+getValueRegex(){ 
+# $1 == <Regex a ser procurado> 
+# $2 == <Linha em que é para procurar o regex>
+
+    # Mostrar o primeiro campo do conteudo que deu match
+    awk -v regex="$1" -v line=$2 '{
+        if ( $0 ~ regex && NR == line ) {
+            print $1
+        }    
+    }' $arquivoConf
 }
-#Retorna o valr da variavel
-getValorVariavel(){
-    #Regex para pegar a v
-    regexVariavel="(( )*([a-zA-Z_]+([0-9]*[a-zA-Z_]*)*)( )*)"
-    regexPlus="$regexVariavel="
-    declaracaoVariavel=$(getFileConfig|getValorRegex $1 "$regexPlus"|getValorRegex "1" "$regexVariavel")
-    echo $declaracaoVariavel
-}
-getLinhaLiteral(){
-    literal=$1
-    lLiteral=$(cat ex.conf | grep -n $literal|cut -d ':' -f1) 
-    echo $lLiteral
-}
-# Verifica a sintaxy do arquivo de configuração
-parse(){
-    echo "Parse"
-    # Ler o arquivo linha a linha
-    # Pega o numero da linha em que tem o literal FATORES:
-    lLiteral=$(getLinhaLiteral "FATORES:") 
-    #Verifico se existe a strign FATORES:
+
+hasLiteral(){
+# $1 == <Regex a ser procurado>
+    lLiteral=$(getLineMatch "$1")
     if [ -z $lLiteral ] # Não existe liteal FATORES:
     then
-        echo "Erro na sintaxy do arquivo $arquivoConf"
-        exit # Encerra o programa
-    else # Existe o literal
-        nextLine=$[ $lLiteral+1 ]
-        loop=1
-        while [ $loop -eq 1 ]
-        do
-            variavel=$(getValorVariavel $nextLine)
-            echo "$nextLine $variavel"
-            if [ -z $variavel ] #Verifica se o fator é valida
-            then
-                loop=0
-            else # Cancela o Loop se fator é invalido
-                variavel=''
-                nextLine=$[ $nextLine+1 ] # verifica a proxima linha
-            fi
-        done
+        echo "Sintaxe incompativel"
+        echo "--hasLiteral--"
+        exit
     fi
+}
+nextLine(){
+# $1 == <Linha atual>
+    teste=$(echo $1 | grep -v "[^0-9]")
+    if [ "-$teste" != "-" ]
+    then
+        echo $[ $1+1 ]
+    fi
+    echo ''
+}
+#fatores
+fatores(){
+    hasLiteral "^FATORES:$" #Se o literal não existe aborta o programa
+    lLiteral=$(getLineMatch "^FATORES:$") # Pega a linha onde deu match
+    line=$(nextLine $lLiteral) # Pega a proxima linha
+    while [ 1 ]
+    do
+        # Procura o fator == <descritor de variavel>
+        fator=$(getValueRegex "^( )*([a-zA-Z]+([0-9]*[a-zA-Z_]*)*)( )*=" $line)
+        if [ -z $fator ] # Parou de dar Match:
+        then
+            return
+        fi
+        echo "$line $fator"
+        line=$(nextLine $line) # Pega a proxima linha
+    done
+}
+
+#comando
+comando(){
+    hasLiteral "^COMANDO:$" #Se o literal não existe aborta o programa
+    lLiteral=$(getLineMatch "^COMANDO:$") # Pega a linha onde deu match
+    line=$(nextLine $lLiteral) # Pega a proxima linha
+    while [ 1 ]
+    do
+        # Procura o comando == <descritor de variavel>
+        comand=$(getValueRegex "^( )*([a-zA-Z])+" $line)
+        if [ -z $comand ] # Parou de dar Match:
+        then
+            return
+        fi
+        echo $comand
+        line=$(nextLine $line) # Pega a proxima linha
+    done
+}
+
+#ensaios
+ensaios(){
+    hasLiteral "^ENSAIOS:$" #Se o literal não existe aborta o programa
+    lLiteral=$(getLineMatch "^ENSAIOS:$") # Pega a linha onde deu match
+    line=$(nextLine $lLiteral) # Pega a proxima linha
+    while [ 1 ]
+    do
+        # Procura o comando == <descritor de variavel>
+        ensaio=$(getValueRegex "^( )*([0-9])+" $line)
+        if [ -z $ensaio ] # Parou de dar Match:
+        then
+            return
+        fi
+        echo $ensaio
+        line=$(nextLine $line) # Pega a proxima linha
+    done
+}
+
+# Verifica a sintaxy do arquivo de configuração
+parse(){
+    fatores
+    comando
+    ensaios
 }
 
 cli $1 $2
 parse
-#split(){}
-#mask(){}
-#replaceMask(){}
-#fatorial(){}
-##For
-#exec(){}
-#output_header(){}
-#output_prog(){}
-#

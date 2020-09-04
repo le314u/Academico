@@ -70,11 +70,11 @@ saveFactor(){
 # Auto incrementa a variavel passada
 nextLine(){
 # $1 == <Linha atual>
-    echo $(contador $1)
+    echo $(incrementa $1)
 }
 
 #Adiciona 1 ao numero passado
-contador(){
+incrementa(){
 # $1 == <numero>
     teste=$(echo $1 | grep -v "[^0-9]")
     if [ "-$teste" != "-" ]
@@ -147,7 +147,20 @@ checkComand(){
     done
     echo $flagReturn
 }
-
+# Salva a ordem que as variaveis aparecem no comando
+orderVariableInComand(){
+# $1 == <Comando>
+    comando=$1
+    for chunck in $comando;
+    do
+        isVariable=$(echo $chunck|grep -o "\$[a-zA-Z]\+\([0-9]*[a-zA-Z]*\)*")
+        if [ "-$isVariable" != "-" ]
+        then
+            #Salva a variavel
+            saveOrderVariable $isVariable
+        fi
+    done
+}
 # Le os comandose salva em uma variavel Global GLOBAL_comandos
 comando(){
     hasLiteral "^COMANDO:$" #Se o literal não existe aborta o programa
@@ -165,6 +178,7 @@ comando(){
         if [ "$isValid" = "1" ]
         then
             saveCommand $line # Salva o comando
+            orderVariableInComand "$(showLine $line)" # Pega a ordem que as variaveis aparecem no comando
             return # Comentar esta linah faz ler mais de um comando
             line=$(nextLine $line) # Pega a proxima linha
         else
@@ -175,24 +189,49 @@ comando(){
     done
 }
 
-# Salva a lista de ensaios
+# Salva a lista de ensaios na ordem em que é declarado
 saveEnsaio(){
 # $1 == instancia de ensaio
     GLOBAL_ensaios+=("$1")
 }
 
-# Trata o '*'
-percorre(){ # *, *, *
+# Salva a ordem em que as variaveis aparece dentro do comando
+saveOrderVariable(){
+# $1 == instancia de ensaio
+    GLOBAL_orderVariable+=("$1")
+}
+
+especificaInstancias(){
 # $1 == <Valores do ensaio>
-    vetValores=$1
-    cont=0
-    for element in ${vetValores[@]};do
-        if [ "$element" = "*" ]
+# $2 == <numero da Instancia do ensaio>
+    ensaio=$1
+    indexEnsaio=0
+    #Dado um ensaio específico ( porem mascarado ou seja com '*')
+    #Percorro todos os elementos do ensaio
+        #para cada elemento verifico se tem '*'
+            #se tem asterico eu troco o valor
+            #Para cada valor possivel eu analiso o proximo
+    
+    
+    #Percorro todos os elementos do ensaio
+    for element in $ensaio;
+    do  
+        #para cada elemento verifico se tem '*'
+        if [ "$element" = "\"*\"" ]
         then
-        echo $GLOBAL_comandos|grep -o $([a-zA-Z]+([0-9]*[a-zA-Z_]*)*)
-            #Desdobro o * em todos os valores possíveis
+
+            #Dado uma variavel $A eu faço um for percorrendo todos os valores de $A
+            descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$indexEnsaio]}|sed 's/\$//g') )
+            eval $( echo variable=\$\{$descritorVariable\[\@\]\} ) # Transmitindo para $variable o conteudo de GLOBAL_orderVariable[$indexEnsaio]
+
+            echo " Linha 228 Continuar daqui pra baixo ou seja proximo passo é criar um for para trocar o valor do * na instancia por  variable[index]"
+            #se tem asterico eu troco o valor
+
+            #for elementFator in ${}
+            ##Para cada valor possivel eu analiso o proximo
+            #funcao_recursiva
         fi
-        cont=$(contador cont)
+        indexEnsaio=$(incrementa $indexEnsaio)
     done
 }
 
@@ -209,23 +248,30 @@ ensaios(){
         then
             return
         fi
-        valoresEnsaios=$(showLine $line|sed 's/^( )*([0-9])+( )*=( )*//g'|sed 's/, / /g')
-        percorre $valoresEnsaios
+        #pega os valores dos ensaior aindacom mascara ou seja '*'
+        ensaioMask=$(showLine $line| sed 's/^ *[0-9]\+ *= *//g'| sed 's/,/ /g'| sed 's/  / /g'| sed 's/ *$//g'| sed 's/\*/"*"/g') # não sei mas passar apenas '*' estava causando u merro inesperado
+        #Desdobra '*' em valores possiveis
+        especificaInstancias "$ensaioMask"
+        
         line=$(nextLine $line) # Pega a proxima linha
+        echo ""
     done
 }
 
 # Verifica a sintaxy do arquivo de configuração e prepara o ambiente
 parse(){
-    fatores
+    # Preparação
+    fatores # Analisa e extrai os dados relevante aos fatores <variaveis>
     echo ${GLOBAL_fatores[@]}
-    comando
+    comando # Analisa e extra os dados relevantes ao comando
     echo ${GLOBAL_comandos[@]}
-    ensaios
+    ensaios # Analisa e expecifíca os valores de cada instância de execução
+
+    #Execução
+        #For executando e salvando o Log
 }
 
 cli $1 $2
 parse
 
 
-echo "Verificar Linha l_212 e função percorre l_185"

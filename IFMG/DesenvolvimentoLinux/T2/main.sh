@@ -222,16 +222,11 @@ mask2Instancia(){
 # $2 == <Index do nivel dentro de um ensaio> 
     local stringEnsaio=$1
     local index=$2
-    echo "INIT:$1 --- $2"
     # Transforma a entrada em um vetor
     IFS=' ' read -a ensaio <<< $stringEnsaio
     # Quantidade de fatores no comando
     local tamanho=${#GLOBAL_orderVariable[*]}   
     local ultimoIndex=$[ $tamanho - 1 ]
-
-    echo ""
-    echo "----mask2Instancia---- Index=$index   Instancia=${ensaio[@]}"
-    # echo "Trabalhando na instancia=${ensaio[@]} [$index]"
 
     #Caso base ou seja quando não há mais Fatos a ser desdobrado
     if [ $[ $index ] -gt $[ $ultimoIndex ] ]
@@ -242,16 +237,15 @@ mask2Instancia(){
     fi
 
     #Percorro todos os fatores do comando <$A $B $C>
+    local i=''
     for (( i=$index; i < $tamanho; i++ ))
     do
-        echo -e "Dado o ensaio[$i]==${ensaio[$i]}"
     	if [ "${ensaio[$i]}" = "\"*\"" ] # Se for * altero pelos valores possiveis
     	then
             trocaMask2Instancia "$stringEnsaio" "$i"
-            return # ERRO?       
+            return       
     	fi
     done
-
     saveInstancia "$(echo ${ensaio[@]})"
 }
 
@@ -270,20 +264,16 @@ trocaMask2Instancia(){
     eval $( echo Niveis=\$\{$descritorVariable\[\@\]\} )
     IFS=' ' read -a vetNiveis <<< $Niveis
     local qtdNiveis=${#vetNiveis[@]}
-    echo "tem $qtdNiveis Niveis $Niveis"
     # Passa por todos os valores de um fator <valores> de um fator                
+    local i=''
     for (( i=0; i<$qtdNiveis; i++ ))
     do
-        echo "Inicio $i vez troco ${ensaio[ $(($index)) ]} por  ${vetNiveis[ $(($i)) ]}"
         # Faço a troca do elemento no ensaio
         local newElement=${vetNiveis[ $(($i)) ]}
         ensaio[ $(($index)) ]="$newElement"
         #Chama uma bifurcação
         local nextIndex=$(incrementa $index)
-        echo "Bifurcando ${ensaio[@]} --- $index"
         mask2Instancia "$(echo ${ensaio[@]})" "$nextIndex"
-        echo "Voltou do fork"
-        echo "$i --> $qtdNiveis"
     done
 }
 
@@ -307,7 +297,6 @@ ensaios(){
         #Desdobra '*' em valores possiveis	
         mask2Instancia "$ensaioMask" "0"
         line=$(nextLine $line) # Pega a proxima linha
-        exit
     done
 }
 

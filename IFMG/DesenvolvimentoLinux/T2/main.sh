@@ -204,36 +204,109 @@ saveOrderVariable(){
 especificaInstancias(){
 # $1 == <Valores do ensaio>
 # $2 == <numero da Instancia do ensaio>
-    ensaio=$1
+    ensaio=("$@")
     indexEnsaio=0
     #Dado um ensaio específico ( porem mascarado ou seja com '*')
     #Percorro todos os elementos do ensaio
         #para cada elemento verifico se tem '*'
             #se tem asterico eu troco o valor
             #Para cada valor possivel eu analiso o proximo
-    
-    
+           
+    aux=("$@")
+    echo "CHEGOU = ${aux[@]}"
     #Percorro todos os elementos do ensaio
     for element in $ensaio;
     do  
         #para cada elemento verifico se tem '*'
         if [ "$element" = "\"*\"" ]
         then
-
+	
             #Dado uma variavel $A eu faço um for percorrendo todos os valores de $A
             descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$indexEnsaio]}|sed 's/\$//g') )
             eval $( echo variable=\$\{$descritorVariable\[\@\]\} ) # Transmitindo para $variable o conteudo de GLOBAL_orderVariable[$indexEnsaio]
-
-            echo " Linha 228 Continuar daqui pra baixo ou seja proximo passo é criar um for para trocar o valor do * na instancia por  variable[index]"
-            #se tem asterico eu troco o valor
-
-            #for elementFator in ${}
-            ##Para cada valor possivel eu analiso o proximo
-            #funcao_recursiva
-        fi
+           
+           # Converte o conteudo de variable para o formato de vetor
+            IFS=' ' read -a Niveis <<< "$variable"
+            
+            # echos para debug
+            echo " "
+            echo "Fator ${GLOBAL_orderVariable[$indexEnsaio]}"
+                        
+            # escreve no arquivo "teste.txt" todos os niveis possiveis
+            contador2=0
+            for i in "${Niveis[@]}"
+            do
+            	echo "$i"            	
+            	aux[$indexEnsaio]=${Niveis[$contador2]}	
+            	contador2=$[ $contador2 + 1 ]
+            	#especificaInstancias "${aux[@]}"
+            	#sleep 10
+            	echo "AUX INTERNO = ${aux[@]} , e Contador = $contador2"     
+            done
+                     
+        fi        
         indexEnsaio=$(incrementa $indexEnsaio)
     done
+    #echo "AUX FORA: ${aux[@]}"
 }
+
+especificaInstancias2(){
+               
+    aux=("$@")
+    echo "CHEGOU = ${aux[@]}"  
+    	tamanho=${#GLOBAL_orderVariable[*]}
+    	#echo "TAMANHO TESTE: $tamanho"
+    	tamanho=$[ $tamanho - 1 ]
+    	#echo "TAMANHO TESTE2: $tamanho"
+	#echo "TESTEEEEEE ${aux[$tamanho]}"
+   
+	if [ ${aux[$tamanho]} != "\"*\"" ]
+	then  		
+		echo ${aux[@]} >> teste.txt
+		return
+	fi
+    	  
+    
+    for (( i=0; i < ${#GLOBAL_orderVariable[*]}; i++ ))
+    do
+    	#echo $i
+    
+    	if [ ${aux[$i]} = "\"*\"" ]
+    	then
+    		descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$i]}|sed 's/\$//g') )
+            eval $( echo variable=\$\{$descritorVariable\[\@\]\} )
+            
+            # Converte o conteudo de variable para o formato de vetor
+            IFS=' ' read -a Niveis <<< "$variable"
+            
+            # echos para debug
+            echo " "
+            echo "Fator ${GLOBAL_orderVariable[$i]}"
+            len=${#Niveis[@]}
+                                    
+            for (( j=0; j<$len; j++ ))
+            do
+               echo "NIVEIS ATUAIS1: ${Niveis[*]}"
+               echo "I atual $i J atual $j NIVEL ATUAL:${Niveis[$j]}"            	
+            	aux[$i]=${Niveis[$j]}
+#            	echo "AUX INTERNO = ${aux[@]}" 
+            	especificaInstancias2 "${aux[@]}"
+               echo "NIVEIS ATUAIS2: ${Niveis[*]}"
+            	#sleep 10            	
+            done
+    	fi
+    	    
+    done
+    
+}
+
+
+
+#	if [ $i -eq ${#GLOBAL_orderVariable[*]} ]
+#    	then
+#	    	echo ${aux[@]} >> teste.txt
+#    	fi
+
 
 #ensaios
 ensaios(){
@@ -243,7 +316,7 @@ ensaios(){
     while [ 1 ]
     do
         # Procura o comando == <descritor de variavel>
-        ensaio=$(getValueRegex_campo1 "^( )*([0-9])+( )*=( )*" $line)
+        ensaio=$(getValueRegex_campo1 "^( )*([0-9])+( )*=( )*" $line)        
         if [ -z $ensaio ] # Parou de dar Match:
         then
             return
@@ -251,10 +324,18 @@ ensaios(){
         #pega os valores dos ensaior aindacom mascara ou seja '*'
         ensaioMask=$(showLine $line| sed 's/^ *[0-9]\+ *= *//g'| sed 's/,/ /g'| sed 's/  / /g'| sed 's/ *$//g'| sed 's/\*/"*"/g') # não sei mas passar apenas '*' estava causando u merro inesperado
         #Desdobra '*' em valores possiveis
-        especificaInstancias "$ensaioMask"
         
+	#echo $ensaioMask
+	read -a vetor <<< $ensaioMask	
+	
+	#echo "Vetor = ${vetor[@]}"
+	
+	#especificaInstancias "${vetor[@]}"
+	especificaInstancias2 "${vetor[@]}"
+
         line=$(nextLine $line) # Pega a proxima linha
         echo ""
+        #echo "" >> teste.txt
     done
 }
 
@@ -265,6 +346,7 @@ parse(){
     echo ${GLOBAL_fatores[@]}
     comando # Analisa e extra os dados relevantes ao comando
     echo ${GLOBAL_comandos[@]}
+        
     ensaios # Analisa e expecifíca os valores de cada instância de execução
 
     #Execução

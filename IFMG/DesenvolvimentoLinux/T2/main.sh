@@ -259,54 +259,114 @@ especificaInstancias2(){
     	tamanho=$[ $tamanho - 1 ]
     	#echo "TAMANHO TESTE2: $tamanho"
 	#echo "TESTEEEEEE ${aux[$tamanho]}"
-   
-	if [ ${aux[$tamanho]} != "\"*\"" ]
-	then  		
-		echo ${aux[@]} >> teste.txt
+	
+	verifica=0
+	for(( k=0; k<${#GLOBAL_orderVariable[*]}; k++ ))
+	do
+		echo "K=${aux[$k]}"
+		if [ ${aux[$k]} = "\"*\"" ]
+		then  		
+			verifica=1
+		fi
+	done
+	
+	if [ $verifica -eq 0 ]
+	then
+		echo ${aux[@]} >> teste.txt   
 		return
 	fi
+	
+	
     	  
+    #for (( i2=0; i2< $tamanho; i2++ ))
+    #do
+	    for (( i=0; i < $tamanho; i++ ))
+	    do
+	    	#echo $i
+	    
+	    	if [ ${aux[$i]} = "\"*\"" ]
+	    	then
+	    		descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$i]}|sed 's/\$//g') )
+		    eval $( echo variable=\$\{$descritorVariable\[\@\]\} )
+		    
+		    # Converte o conteudo de variable para o formato de vetor
+		    IFS=' ' read -a Niveis <<< "$variable"
+		    
+		    # echos para debug
+		    echo " "
+		    echo "Fator ${GLOBAL_orderVariable[$i]}"
+		    len=${#Niveis[@]}
+		                            
+		    for (( j=0; j<$len; j++ ))
+		    do
+		       echo "I atual $i J atual $j NIVEL ATUAL:${Niveis[$j]}"            	
+		    	aux[$i]=${Niveis[$j]}
+	#            	echo "AUX INTERNO = ${aux[@]}" 
+		    	especificaInstancias2 "${aux[@]}"
+		    	#sleep 10            	
+		    done
+	    	fi    	    
+	    done
+    #done
     
-    for (( i=0; i < ${#GLOBAL_orderVariable[*]}; i++ ))
-    do
-    	#echo $i
     
-    	if [ ${aux[$i]} = "\"*\"" ]
-    	then
-    		descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$i]}|sed 's/\$//g') )
-            eval $( echo variable=\$\{$descritorVariable\[\@\]\} )
-            
-            # Converte o conteudo de variable para o formato de vetor
-            IFS=' ' read -a Niveis <<< "$variable"
-            
-            # echos para debug
-            echo " "
-            echo "Fator ${GLOBAL_orderVariable[$i]}"
-            len=${#Niveis[@]}
-                                    
-            for (( j=0; j<$len; j++ ))
-            do
-               echo "NIVEIS ATUAIS1: ${Niveis[*]}"
-               echo "I atual $i J atual $j NIVEL ATUAL:${Niveis[$j]}"            	
-            	aux[$i]=${Niveis[$j]}
-#            	echo "AUX INTERNO = ${aux[@]}" 
-            	especificaInstancias2 "${aux[@]}"
-               echo "NIVEIS ATUAIS2: ${Niveis[*]}"
-            	#sleep 10            	
-            done
-    	fi
-    	    
-    done
+    
     
 }
 
+especificaInstancias3(){
 
+	local aux=("$@")	
+	
+	local verifica=0
+	local k=0
+	for(( k=0; k<${#GLOBAL_orderVariable[*]}; k++ ))
+	do
+		#echo "K=${aux[$k]}"
+		if [ ${aux[$k]} = "\"*\"" ]
+		then  		
+			verifica=1
+		fi
+	done
+	
+	if [ $verifica -eq 0 ]
+	then
+		echo ${aux[@]} >> teste.txt   
+		return
+	fi
+	
+	local i=0
+	for (( i=0; i<${#GLOBAL_orderVariable[*]}; i++ ))
+	do 
+		if [ ${aux[$i]} = "\"*\"" ]
+		then  		
+			echo ""
+			# Pega os niveis dos fatores na posicao I
+			descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[i]}|sed 's/\$//g') )
+			eval $( echo variable=\$\{$descritorVariable\[\@\]\} )
+				    
+			# Converte o conteudo de variable para o formato de vetor
+			local Niveis1=("")
+			IFS=' ' read -a Niveis1 <<< "$variable"
+			local size=0
+			size=${#Niveis1[@]}
+			
+			#size=$[ $size - 1 ]
+			#echo ${Niveis[@]}
+			
+			local j=0
+			for (( j=0; j<$size; j++ ))
+			do 
+				aux[$i]=${Niveis1[$j]}
+				echo "J = $j"
+				especificaInstancias3 "${aux[@]}"
+				
+				
+			done			
+		fi
+	done
 
-#	if [ $i -eq ${#GLOBAL_orderVariable[*]} ]
-#    	then
-#	    	echo ${aux[@]} >> teste.txt
-#    	fi
-
+}
 
 #ensaios
 ensaios(){
@@ -316,7 +376,7 @@ ensaios(){
     while [ 1 ]
     do
         # Procura o comando == <descritor de variavel>
-        ensaio=$(getValueRegex_campo1 "^( )*([0-9])+( )*=( )*" $line)        
+        ensaio=$(getValueRegex_campo1 "^( )*([0-9])+( )*=( )*" $line)  
         if [ -z $ensaio ] # Parou de dar Match:
         then
             return
@@ -331,7 +391,8 @@ ensaios(){
 	#echo "Vetor = ${vetor[@]}"
 	
 	#especificaInstancias "${vetor[@]}"
-	especificaInstancias2 "${vetor[@]}"
+	#especificaInstancias2 "${vetor[@]}"
+	especificaInstancias3 "${vetor[@]}"
 
         line=$(nextLine $line) # Pega a proxima linha
         echo ""

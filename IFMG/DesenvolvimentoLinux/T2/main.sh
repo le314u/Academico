@@ -223,7 +223,7 @@ especificaInstancias(){
             #Dado uma variavel $A eu faço um for percorrendo todos os valores de $A
             descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$indexEnsaio]}|sed 's/\$//g') )
             eval $( echo variable=\$\{$descritorVariable\[\@\]\} ) # Transmitindo para $variable o conteudo de GLOBAL_orderVariable[$indexEnsaio]
-
+            
             echo " Linha 228 Continuar daqui pra baixo ou seja proximo passo é criar um for para trocar o valor do * na instancia por  variable[index]"
             #se tem asterico eu troco o valor
 

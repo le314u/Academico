@@ -189,12 +189,6 @@ comando(){
     done
 }
 
-# Salva a lista de ensaios na ordem em que é declarado
-saveEnsaio(){
-# $1 == <instancia de ensaio>
-    GLOBAL_ensaios+=("$1")
-}
-
 # Salva a ordem em que as variaveis aparece dentro do comando
 saveOrderVariable(){
 # $1 == instancia de ensaio
@@ -217,54 +211,52 @@ ensaioCompativelComando(){
 # Persiste um ensaio no arquivo de saida
 saveInstancia(){
 # $1 == <instancia>
+echo "Vou salva $1"
     GLOBAL_instancia+=("$1")
     echo "$1" >> $GLOBAL_arquivoOutput # Apagar
 }
 
 #Le a linha da instancia do ensaio e altera caso for *
-especificaInstancias(){
+mask2Instancia(){
 # $1 == <string contendo o Ensaio>
 # $2 == <Index do nivel dentro de um ensaio> 
     local stringEnsaio=$1
-    # Verifico se veio o segundo argumento caso contrario seta como 0
-    if [ -z $2 ]
-    then
-        local index="0"
-    else
-        local index=$2
-    fi
+    local index=$2
+    echo "INIT:$1 --- $2"
     # Transforma a entrada em um vetor
     IFS=' ' read -a ensaio <<< $stringEnsaio
-    # quantidade de fatores no comando
+    # Quantidade de fatores no comando
     local tamanho=${#GLOBAL_orderVariable[*]}   
     local ultimoIndex=$[ $tamanho - 1 ]
 
     echo ""
-    echo "----especificaInstancias---- Index=$index   Instancia=${ensaio[@]}"
+    echo "----mask2Instancia---- Index=$index   Instancia=${ensaio[@]}"
     # echo "Trabalhando na instancia=${ensaio[@]} [$index]"
-    
-    #Percorro todos os fatores do comando <$A $B $C>
-    for (( i=$index; i < $tamanho; i++ ))
-    do
-        echo -e "Dado o ensaio[$i]==${ensaio[$i]}"
-    	if [ ${ensaio[$i]} = "\"*\"" ] # Se for * altero pelos valores possiveis
-    	then
-            especificaInstancias_Recursiva "$stringEnsaio" "$i"            
-    	fi
-    done
 
     #Caso base ou seja quando não há mais Fatos a ser desdobrado
     if [ $[ $index ] -gt $[ $ultimoIndex ] ]
     then
         echo "Chegou no caso Base"
-        saveInstancia "${ensaio[@]}"
+        saveInstancia "$(echo ${ensaio[@]})"
         return
     fi
-    saveInstancia "${ensaio[@]}"
+
+    #Percorro todos os fatores do comando <$A $B $C>
+    for (( i=$index; i < $tamanho; i++ ))
+    do
+        echo -e "Dado o ensaio[$i]==${ensaio[$i]}"
+    	if [ "${ensaio[$i]}" = "\"*\"" ] # Se for * altero pelos valores possiveis
+    	then
+            trocaMask2Instancia "$stringEnsaio" "$i"
+            return # ERRO?       
+    	fi
+    done
+
+    saveInstancia "$(echo ${ensaio[@]})"
 }
 
-# Subistitui o *
-especificaInstancias_Recursiva(){
+# Subistitui o * por todos os valores do vetor
+trocaMask2Instancia(){
 # $1 == <String com o Ensaio>
 # $2 == <Index do fator dentro do ensaio que esta sendo alterado>
     local stringEnsaio="$1"
@@ -274,22 +266,24 @@ especificaInstancias_Recursiva(){
     IFS=' ' read -a ensaio <<< $stringEnsaio
 
     # Niveis = <vetor presente em $FATOR>
-        local descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$index]}|sed 's/\$//g') )
-        eval $( echo Niveis=\$\{$descritorVariable\[\@\]\} )
-        IFS=' ' read -a vetNiveis <<< $Niveis
-        local qtdNiveis=${#vetNiveis[@]}
-
-    # Passa por todos os niveis==<valores> de um fator                
-    for (( i=$index; i<$qtdNiveis; i++ ))
+    local descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$index]}|sed 's/\$//g') )
+    eval $( echo Niveis=\$\{$descritorVariable\[\@\]\} )
+    IFS=' ' read -a vetNiveis <<< $Niveis
+    local qtdNiveis=${#vetNiveis[@]}
+    echo "tem $qtdNiveis Niveis $Niveis"
+    # Passa por todos os valores de um fator <valores> de um fator                
+    for (( i=0; i<$qtdNiveis; i++ ))
     do
-        local nivelAtual=${vetNiveis[$i]}
-        echo -e "Trocarei -> ${vetNiveis[$index]} == ${GLOBAL_orderVariable[$i]}[$i] |do conjunto ${vetNiveis[@]}"
-        echo -e "O que era ensaio ${ensaio[@]} vira:"
-        ensaio[ $(($index)) ]="$nivelAtual"
-        echo -e "\t${ensaio[@]}"
+        echo "Inicio $i vez troco ${ensaio[ $(($index)) ]} por  ${vetNiveis[ $(($i)) ]}"
+        # Faço a troca do elemento no ensaio
+        local newElement=${vetNiveis[ $(($i)) ]}
+        ensaio[ $(($index)) ]="$newElement"
         #Chama uma bifurcação
-        local next=$(incrementa $index)
-        especificaInstancias "$Niveis" "$next"
+        local nextIndex=$(incrementa $index)
+        echo "Bifurcando ${ensaio[@]} --- $index"
+        mask2Instancia "$(echo ${ensaio[@]})" "$nextIndex"
+        echo "Voltou do fork"
+        echo "$i --> $qtdNiveis"
     done
 }
 
@@ -308,11 +302,11 @@ ensaios(){
         fi
         #pega os valores dos ensaior aindacom mascara ou seja '*'
         local ensaioMask=$(showLine $line| sed 's/^ *[0-9]\+ *= *//g'| sed 's/,/ /g'| sed 's/  / /g'| sed 's/ *$//g'| sed 's/\*/"*"/g') # não sei mas passar apenas '*' estava causando u merro inesperado
+        #Verifica se a quantidade de Fatores no comando é compativel com a quantidade de elementos no ensaio
         ensaioCompativelComando "$ensaioMask" # Caso contrário encerra a execução
         #Desdobra '*' em valores possiveis	
-        especificaInstancias "$ensaioMask"
+        mask2Instancia "$ensaioMask" "0"
         line=$(nextLine $line) # Pega a proxima linha
-        echo "--------------PASSOU PRA PROXIMA-------------"
         exit
     done
 }
@@ -321,9 +315,7 @@ ensaios(){
 parse(){
     # Preparação
     fatores # Analisa e extrai os dados relevante aos fatores <variaveis>
-    echo ${GLOBAL_fatores[@]}
     comando # Analisa e extra os dados relevantes ao comando
-    echo ${GLOBAL_comandos[@]}
     ensaios # Analisa e expecifíca os valores de cada instância de execução
 
     #Execução

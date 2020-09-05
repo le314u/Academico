@@ -200,40 +200,88 @@ saveOrderVariable(){
 # $1 == instancia de ensaio
     GLOBAL_orderVariable+=("$1")
 }
-
+#Verifico se a quantidade de niveis de um ensaio é igual a quantidade de Fatores dentro de um comando ou seja 1:1
+ensaioCompativelComando(){
+# $@ == <ensaio>
+    IFS=' ' read -a ensaio <<< $1
+    compativel=0
+    if [ ${#GLOBAL_orderVariable[@]} -eq ${#ensaio[@]} ]
+    then
+        compativel=1
+    else
+        echo "Sintaxy do ensaio incorreta"
+        exit
+    fi
+}
+#Le a linha da instancia do ensaio e altera caso for *
 especificaInstancias(){
-# $1 == <Valores do ensaio>
-# $2 == <numero da Instancia do ensaio>
-    ensaio=$1
-    indexEnsaio=0
-    #Dado um ensaio específico ( porem mascarado ou seja com '*')
-    #Percorro todos os elementos do ensaio
-        #para cada elemento verifico se tem '*'
-            #se tem asterico eu troco o valor
-            #Para cada valor possivel eu analiso o proximo
-    
-    
-    #Percorro todos os elementos do ensaio
-    for element in $ensaio;
-    do  
-        #para cada elemento verifico se tem '*'
-        if [ "$element" = "\"*\"" ]
-        then
-
-            #Dado uma variavel $A eu faço um for percorrendo todos os valores de $A
-            descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$indexEnsaio]}|sed 's/\$//g') )
-            eval $( echo variable=\$\{$descritorVariable\[\@\]\} ) # Transmitindo para $variable o conteudo de GLOBAL_orderVariable[$indexEnsaio]
-            
-            echo " Linha 228 Continuar daqui pra baixo ou seja proximo passo é criar um for para trocar o valor do * na instancia por  variable[index]"
-            #se tem asterico eu troco o valor
-
-            #for elementFator in ${}
-            ##Para cada valor possivel eu analiso o proximo
-            #funcao_recursiva
-        fi
-        indexEnsaio=$(incrementa $indexEnsaio)
+# $1 == <Ensaio em um formato de vetor >
+# $2 == <Index do nivel dentro de um ensaio> 
+    IFS=' ' read -a ensaio <<< $1
+    tamanho=${#GLOBAL_orderVariable[*]} # numero de niveis assumidos pelos fatores === quantidade de fatores no comando  
+    ultimoIndex=$[ $tamanho - 1 ]
+    # Verifico se veio o segundo argumento caso contrario seta como 0
+    if [ -z $2 ]
+    then
+        index="0"
+    else
+        index=$2
+    fi
+echo ""
+echo "----especificaInstancias---- Index=$index   Instancia=$1"
+    #Caso base
+    if [ $[ $index ] -gt $[ $ultimoIndex ] ]
+    then
+        echo "Chegou no caso Base"
+        saveEnsaio $ensaio
+        return
+    fi
+	
+    #Percorro todos os fatores do comando <$A $B $C>
+    for (( i=$index; i < ${#GLOBAL_orderVariable[*]}; i++ ))
+    do
+    	if [ ${ensaio[$i]} = "\"*\"" ] # Se for # altero pelos valores possiveis
+    	then
+            especificaInstancias_Recursiva $i            
+    	fi
     done
 }
+# Persiste um ensaio no arquivo de saida
+salvaInstancia(){
+# $1 == <instancia>
+    instancia=$1 >> $GLOBAL_arquivoOutput
+}
+# Subistitui o *
+especificaInstancias_Recursiva(){
+# $1 == <Index do ensaio que esta sendo alterado>
+    echo "----Altera----"
+    index=$[ $1+0 ]
+    #variable = <vetor presente em $FATOR>
+    descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$index]}|sed 's/\$//g') )
+    eval $( echo Niveis=\$\{$descritorVariable\[\@\]\} )
+    IFS=' ' read -a vetNiveis <<< $Niveis
+    qtdNiveis=${#vetNiveis[@]}
+    echo "QTD VEZES FOR = $qtdNiveis"
+    # passa por todos os niveis<valores> de um fator                
+    for (( i=$index; i<$qtdNiveis; i++ ))
+    do
+        nivelAtual=${vetNiveis[$i]}
+        echo "Fator ${GLOBAL_orderVariable[$i]} i=$i NIVEL ATUAL:${vetNiveis[$j]}"            	
+        ensaio[$index]=$nivelAtual
+        #Chama uma bifurcação
+        next=$(incrementa $index)
+        echo "Chama Bifurcação passando o que era $index para $next "
+        especificaInstancias "$Niveis" "$next"
+    done
+}
+
+
+
+#	if [ $i -eq ${#GLOBAL_orderVariable[*]} ]
+#    	then
+#	    	echo ${aux[@]} >> teste.txt
+#    	fi
+
 
 #ensaios
 ensaios(){
@@ -243,18 +291,17 @@ ensaios(){
     while [ 1 ]
     do
         # Procura o comando == <descritor de variavel>
-        ensaio=$(getValueRegex_campo1 "^( )*([0-9])+( )*=( )*" $line)
+        ensaio=$(getValueRegex_campo1 "^( )*([0-9])+( )*=( )*" $line)        
         if [ -z $ensaio ] # Parou de dar Match:
         then
             return
         fi
         #pega os valores dos ensaior aindacom mascara ou seja '*'
         ensaioMask=$(showLine $line| sed 's/^ *[0-9]\+ *= *//g'| sed 's/,/ /g'| sed 's/  / /g'| sed 's/ *$//g'| sed 's/\*/"*"/g') # não sei mas passar apenas '*' estava causando u merro inesperado
-        #Desdobra '*' em valores possiveis
+        ensaioCompativelComando "$ensaioMask" # Caso contrário encerra a execução
+        #Desdobra '*' em valores possiveis	
         especificaInstancias "$ensaioMask"
-        
         line=$(nextLine $line) # Pega a proxima linha
-        echo ""
     done
 }
 

@@ -331,7 +331,7 @@ especificaInstancias3(){
 	
 	if [ $verifica -eq 0 ]
 	then
-		echo ${aux[@]} >> teste.txt   
+		#echo ${aux[@]} >> teste.txt   
 		return
 	fi
 	
@@ -340,7 +340,7 @@ especificaInstancias3(){
 	do 
 		if [ ${aux[$i]} = "\"*\"" ]
 		then  		
-			echo ""
+			#echo ""
 			# Pega os niveis dos fatores na posicao I
 			descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[i]}|sed 's/\$//g') )
 			eval $( echo variable=\$\{$descritorVariable\[\@\]\} )
@@ -358,7 +358,7 @@ especificaInstancias3(){
 			for (( j=0; j<$size; j++ ))
 			do 
 				aux[$i]=${Niveis1[$j]}
-				echo "J = $j"
+				#echo "J = $j"
 				especificaInstancias3 "${aux[@]}"
 				
 				
@@ -395,7 +395,7 @@ ensaios(){
 	especificaInstancias3 "${vetor[@]}"
 
         line=$(nextLine $line) # Pega a proxima linha
-        echo ""
+        #echo ""
         #echo "" >> teste.txt
     done
 }
@@ -412,9 +412,41 @@ parse(){
 
     #Execução
         #For executando e salvando o Log
+        
+    
+}
+
+log(){
+
+	read -a aux <<< ${GLOBAL_comandos[*]}	
+	
+	arquivo="teste.txt"
+	arquivo_SAIDA=$1	
+	
+	echo "## Projeto de experimentos para o programa ${aux[0]}" > "$arquivo_SAIDA"
+	echo "" >> "$arquivo_SAIDA"
+	
+	while read linha
+	do
+
+		read -a ensaio <<< "$linha"
+		data1=`date +%s.%N`		
+		echo "EXPERIMENTO ${ensaio[@]}" >> "$arquivo_SAIDA"		
+		./${aux[0]}.sh ${ensaio[@]} >> "$arquivo_SAIDA"		
+		data2=`date +%s.%N`
+		
+		duracao=$( echo "$data2 - $data1" | bc -l)
+			
+		echo "DURACAO = $duracao" >> "$arquivo_SAIDA"
+		echo "" >> "$arquivo_SAIDA"
+		
+	done < $arquivo
+	
+	echo "## fim do exemplo" >> "$arquivo_SAIDA"
 }
 
 cli $1 $2
 parse
 
+log $2
 

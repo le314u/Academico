@@ -197,6 +197,7 @@ saveOrderVariable(){
 #Verifico se a quantidade de niveis de um ensaio é igual a quantidade de Fatores dentro de um comando ou seja 1:1
 ensaioCompativelComando(){
 # $@ == <ensaio>
+    local ensaio
     IFS=' ' read -a ensaio <<< $1
     local compativel=0
     if [ ${#GLOBAL_orderVariable[@]} -eq ${#ensaio[@]} ]
@@ -211,7 +212,7 @@ ensaioCompativelComando(){
 # Persiste um ensaio no arquivo de saida
 saveInstancia(){
 # $1 == <instancia>
-echo "Vou salva $1"
+    echo "Vou salva $1"
     GLOBAL_instancia+=("$1")
     echo "$1" >> $GLOBAL_arquivoOutput # Apagar
 }
@@ -224,7 +225,8 @@ mask2Instancia(){
     local index=$2
     # Transforma a entrada em um vetor
     #echo "$ensaio   Esta com lixo de memoria ${ensaio[@]}"
-    IFS=' ' read -a local ensaio <<< $stringEnsaio
+    local ensaio
+    IFS=' ' read -a ensaio <<< $stringEnsaio
     # Quantidade de fatores no comando
     local tamanho=${#GLOBAL_orderVariable[*]}   
     local ultimoIndex=$[ $tamanho - 1 ]
@@ -256,11 +258,13 @@ trocaMask2Instancia(){
     local stringEnsaio="$1"
     local index=$[ $2+0 ]
     # Transforma a stringEnsaio em um vetor
-    IFS=' ' read -a local ensaio <<< $stringEnsaio
+    local ensaio
+    IFS=' ' read -a ensaio <<< $stringEnsaio
 
     # Niveis = <vetor presente em $FATOR>
     local descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$index]}|sed 's/\$//g') )
     eval $( echo Niveis=\$\{$descritorVariable\[\@\]\} )
+    local vetNiveis
     IFS=' ' read -a vetNiveis <<< $Niveis
     local qtdNiveis=${#vetNiveis[@]}
     # Passa por todos os valores de um fator <valores> de um fator                
@@ -269,6 +273,7 @@ trocaMask2Instancia(){
     do
         # Faço a troca do elemento no ensaio
         local newElement=${vetNiveis[ $(($i)) ]}
+        echo "Novo elemento é $newElement pois dado o vetor ${vetNiveis[@]} posição $i"
         ensaio[ $(($index)) ]="$newElement"
         #Chama uma bifurcação
         local nextIndex=$(incrementa $index)

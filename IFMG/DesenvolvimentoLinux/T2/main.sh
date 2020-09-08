@@ -213,7 +213,6 @@ ensaioCompativelComando(){
 saveInstancia(){
 # $1 == <instancia>
     GLOBAL_instancia+=("$1")
-    echo "$1" >> $GLOBAL_arquivoOutput # Apagar
 }
 #Verifica se no vetor possui asterisco
 hasAsterisk(){
@@ -320,6 +319,47 @@ ensaios(){
         line=$(nextLine $line) # Pega a proxima linha
     done
 }
+run(){
+# $1 == Numero da Instancia
+    local instancia=${GLOBAL_instancia[$1]}
+    local vetInstancia
+    read -a vetInstancia <<< $instancia
+
+    # Para cada variavel em GLOBAL_orderVariable troca por um valor em vetInstancia
+    local newComand="${GLOBAL_comandos[@]}"
+    for (( i=0; i<${#GLOBAL_orderVariable[@]}; i++ ))
+    do
+        newComand=$( echo $newComand | sed "s/${GLOBAL_orderVariable[$i]}/${vetInstancia[$i]}/g" )
+    done
+    echo $newComand    
+}
+
+
+
+log(){
+# $1 === <Comando a ser executado>
+# $2 === <Meta Dados da instancia>
+    local comand=$1
+    local MetaInstancia=$2
+
+    local dataInit=`date +%s.%N`
+    local outputComand=$( exec $comand )
+    local dataEnd=`date +%s.%N`
+    local duracao=$( echo "$dataEnd - $dataInit" | bc -l)
+    #Salva no Arquivo
+    echo $outputComand | awk -v instancia=$MetaInstancia -v duracao=$duracao '
+        BEGIN {
+            print "EXPERIMENTO "instancia"  DURAÇÃO "duracao
+        }
+        {
+            print $0
+        }
+        END {
+            print "\n";
+        } 
+    ' >> $GLOBAL_arquivoOutput
+
+}
 
 # Verifica a sintaxy do arquivo de configuração e prepara o ambiente
 parse(){
@@ -327,10 +367,19 @@ parse(){
     fatores # Analisa e extrai os dados relevante aos fatores <variaveis>
     comando # Analisa e extra os dados relevantes ao comando
     ensaios # Analisa e expecifíca os valores de cada instância de execução
-
     #Execução
-        #For executando e salvando o Log
+    #run "1"
+    log 
+    #For executando e salvando o Log
 }
 
 cli $1 $2
 parse
+
+
+
+
+
+
+
+

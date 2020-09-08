@@ -212,43 +212,58 @@ ensaioCompativelComando(){
 # Persiste um ensaio no arquivo de saida
 saveInstancia(){
 # $1 == <instancia>
-    echo "Vou salva $1"
     GLOBAL_instancia+=("$1")
     echo "$1" >> $GLOBAL_arquivoOutput # Apagar
 }
-
+#Verifica se no vetor possui asterisco
+hasAsterisk(){
+    local input=("$@")
+    local has=0
+	local i=0
+	for (( i=0; i<${#GLOBAL_orderVariable[*]}; i++ ))
+	do
+		if [ ${input[$i]} = "\"*\"" ]
+		then  		
+			has=1
+            break;
+		fi
+	done
+	echo $has
+}
 #Le a linha da instancia do ensaio e altera caso for *
 mask2Instancia(){
 # $1 == <string contendo o Ensaio>
 # $2 == <Index do nivel dentro de um ensaio> 
-    local stringEnsaio=$1
-    local index=$2
+    local stringEnsaio="$1"
+    local index="$2"
     # Transforma a entrada em um vetor
-    #echo "$ensaio   Esta com lixo de memoria ${ensaio[@]}"
     local ensaio
     IFS=' ' read -a ensaio <<< $stringEnsaio
     # Quantidade de fatores no comando
     local tamanho=${#GLOBAL_orderVariable[*]}   
     local ultimoIndex=$[ $tamanho - 1 ]
-
-    #Caso base ou seja quando não há mais Fatos a ser desdobrado
-    if [ $[ $index ] -gt $[ $ultimoIndex ] ]
-    then
-        echo "Chegou no caso Base"
-        saveInstancia "$(echo ${ensaio[@]})"
-        return
-    fi
-
+    
     #Percorro todos os fatores do comando <$A $B $C>
     local i=''
     for (( i=$index; i < $tamanho; i++ ))
     do
     	if [ "${ensaio[$i]}" = "\"*\"" ] # Se for * altero pelos valores possiveis
     	then
+        
             trocaMask2Instancia "$stringEnsaio" "$i"      
     	fi
     done
-    #saveInstancia "$(echo ${ensaio[@]})"
+    # Verifico se está apto a salvar
+    if [ $[ $i ] -ge $[ $ultimoIndex ] ]
+    then
+        
+        if [ $(hasAsterisk "${ensaio[@]}") == "0" ]
+        then
+            #Caso base ou seja quando não há mais Fatos a ser desdobrado
+            saveInstancia "$(echo ${ensaio[@]})"
+            return
+        fi
+    fi
 }
 
 # Subistitui o * por todos os valores do vetor
@@ -263,6 +278,7 @@ trocaMask2Instancia(){
 
     # Niveis = <vetor presente em $FATOR>
     local descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$index]}|sed 's/\$//g') )
+    local Niveis
     eval $( echo Niveis=\$\{$descritorVariable\[\@\]\} )
     local vetNiveis
     IFS=' ' read -a vetNiveis <<< $Niveis
@@ -273,11 +289,9 @@ trocaMask2Instancia(){
     do
         # Faço a troca do elemento no ensaio
         local newElement=${vetNiveis[ $(($i)) ]}
-        echo "Novo elemento é $newElement pois dado o vetor ${vetNiveis[@]} posição $i"
         ensaio[ $(($index)) ]="$newElement"
         #Chama uma bifurcação
         local nextIndex=$(incrementa $index)
-        echo "Fork em ${ensaio[@]}"
         mask2Instancia "$(echo ${ensaio[@]})" "$nextIndex"
     done
     return
@@ -291,13 +305,14 @@ ensaios(){
     while [ 1 ]
     do
         # Procura o comando == <descritor de variavel>
-        local ensaio=$(getValueRegex_campo1 "^( )*([0-9])+( )*=( )*" $line)        
+        local ensaio=$(getValueRegex_campo1 "^( )*([0-9])+( )*=( )*" $line)       
         if [ -z $ensaio ] # Parou de dar Match:
         then
             return
         fi
         #pega os valores dos ensaior aindacom mascara ou seja '*'
-        local ensaioMask=$(showLine $line| sed 's/^ *[0-9]\+ *= *//g'| sed 's/,/ /g'| sed 's/  / /g'| sed 's/ *$//g'| sed 's/\*/"*"/g') # não sei mas passar apenas '*' estava causando u merro inesperado
+        local ensaioMask=$(showLine $line| sed 's/\∗/\*/g' | sed 's/^ *[0-9]\+ *= *//g'| sed 's/,/ /g'| sed 's/  / /g'| sed 's/ *$//g'| sed 's/\*/"*"/g') # não sei mas passar apenas '*' estava causando u merro inesperado
+
         #Verifica se a quantidade de Fatores no comando é compativel com a quantidade de elementos no ensaio
         ensaioCompativelComando "$ensaioMask" # Caso contrário encerra a execução
         #Desdobra '*' em valores possiveis	
@@ -319,5 +334,3 @@ parse(){
 
 cli $1 $2
 parse
-
-

@@ -223,7 +223,8 @@ mask2Instancia(){
     local stringEnsaio=$1
     local index=$2
     # Transforma a entrada em um vetor
-    IFS=' ' read -a ensaio <<< $stringEnsaio
+    #echo "$ensaio   Esta com lixo de memoria ${ensaio[@]}"
+    IFS=' ' read -a local ensaio <<< $stringEnsaio
     # Quantidade de fatores no comando
     local tamanho=${#GLOBAL_orderVariable[*]}   
     local ultimoIndex=$[ $tamanho - 1 ]
@@ -242,11 +243,10 @@ mask2Instancia(){
     do
     	if [ "${ensaio[$i]}" = "\"*\"" ] # Se for * altero pelos valores possiveis
     	then
-            trocaMask2Instancia "$stringEnsaio" "$i"
-            return       
+            trocaMask2Instancia "$stringEnsaio" "$i"      
     	fi
     done
-    saveInstancia "$(echo ${ensaio[@]})"
+    #saveInstancia "$(echo ${ensaio[@]})"
 }
 
 # Subistitui o * por todos os valores do vetor
@@ -255,9 +255,8 @@ trocaMask2Instancia(){
 # $2 == <Index do fator dentro do ensaio que esta sendo alterado>
     local stringEnsaio="$1"
     local index=$[ $2+0 ]
-
     # Transforma a stringEnsaio em um vetor
-    IFS=' ' read -a ensaio <<< $stringEnsaio
+    IFS=' ' read -a local ensaio <<< $stringEnsaio
 
     # Niveis = <vetor presente em $FATOR>
     local descritorVariable=$(echo $(echo ${GLOBAL_orderVariable[$index]}|sed 's/\$//g') )
@@ -273,8 +272,10 @@ trocaMask2Instancia(){
         ensaio[ $(($index)) ]="$newElement"
         #Chama uma bifurcação
         local nextIndex=$(incrementa $index)
+        echo "Fork em ${ensaio[@]}"
         mask2Instancia "$(echo ${ensaio[@]})" "$nextIndex"
     done
+    return
 }
 
 #ensaios

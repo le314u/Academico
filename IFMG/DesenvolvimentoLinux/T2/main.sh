@@ -319,7 +319,7 @@ ensaios(){
         line=$(nextLine $line) # Pega a proxima linha
     done
 }
-run(){
+stringComand(){
 # $1 == Numero da Instancia
     local instancia=${GLOBAL_instancia[$1]}
     local vetInstancia
@@ -334,32 +334,29 @@ run(){
     echo $newComand    
 }
 
-
-
-log(){
-# $1 === <Comando a ser executado>
-# $2 === <Meta Dados da instancia>
-    local comand=$1
-    local MetaInstancia=$2
-    #Data init
-    local dataInit=`date +%s%N`
-    local dataInitWithNano="$(( $dataInit % 1000000000 ))"
-    local dataInitWithoutNano="$(( $dataInit / 1000000000 ))"
+runAndLog(){
+# $1 === <Meta Dados da instancia>
+    local comand=$(cat -)
+    local MetaInstancia=$1
     #Executa o comando
-    local outputComand=$( exec $comand )
-    #Data end
-    local dataEnd=`date +%s%N`
-    local dataEndWithNano="$(( $dataEnd % 1000000000 ))"
-    local dataEndWithoutNano="$(( $dataEnd / 1000000000 ))"
+    local dataInit=`date +%s.%N`
+    local outputComand=$($comand )
+    local dataEnd=`date +%s.%N`
     #Calcula a diferença entre as datas
-    local duracaoWithoutNano=$( echo "$dataEndWithoutNano - $dataInitWithoutNano" | bc -l) 
-    local duracaoWithNano=$( echo "$dataEndWithNano - $dataInitWithNano" | bc -l) 
-    local duracao=$(echo $(date -u -d@"$(( $duracaoWithoutNano ))" +"%H:%M:%S").$duracaoWithNano)
-
+    local duration=$( echo "$dataEnd - $dataInit" | bc -l) 
+    #Separa em esquerda e direita da virgula
+    local LComma=$(echo "$duration"| cut -d'.' -f1)
+    local RComma=$(echo "$duration"| cut -d'.' -f2)
+    #POG
+    if [ -z $LComma ]
+    then
+        LComma="0"
+    fi
+    local duration=$(echo $(date -u -d@"$(( $LComma ))" +"%H:%M:%S").$RComma)
     #Salva no Arquivo
-    echo $outputComand | awk -v instancia=$MetaInstancia -v duracao=$duracao '
+    echo $outputComand | awk -v instancia="$MetaInstancia" -v duration="$duration" '
         BEGIN {
-            print "EXPERIMENTO "instancia"  DURAÇÃO "duracao
+            printf("EXPERIMENTO %s  DURAÇÃO %s\n",instancia,duration);
         }
         {
             print $0
@@ -370,26 +367,25 @@ log(){
     ' >> $GLOBAL_arquivoOutput
 
 }
-
+allRun(){
+    local i
+    for (( i=0; i<${#GLOBAL_instancia[@]}; i++ ))
+    do
+        echo $(stringComand "$i")|runAndLog "${GLOBAL_instancia[$i]}"
+    done
+}
 # Verifica a sintaxy do arquivo de configuração e prepara o ambiente
-parse(){
+main(){
+    # Pega os dados que entram via CLI
+    cli $1 $2
     # Preparação
     fatores # Analisa e extrai os dados relevante aos fatores <variaveis>
     comando # Analisa e extra os dados relevantes ao comando
     ensaios # Analisa e expecifíca os valores de cada instância de execução
-    #Execução
-    #run "1"
-    log 
-    #For executando e salvando o Log
+    #Cria um novo arquivo de log
+    echo "">$GLOBAL_arquivoOutput
+    #Execução salvando o Log
+    allRun
 }
 
-cli $1 $2
-parse
-
-
-
-
-
-
-
-
+main $1 $2

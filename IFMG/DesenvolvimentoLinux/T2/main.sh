@@ -14,7 +14,18 @@ cli(){
         exit # Encerra o programa
     fi
 }
-
+#Verifica se a linha é um comentário
+isComment(){
+# $1 == Entrada
+    local entrada=$1
+    local string="$(echo $entrada|grep -o '^#')"
+    local flag="0"
+    if [ "$string" == "#" ]
+    then
+        flag="1"
+    fi
+    echo $flag
+}
 # Retorna o numero da linha em que o regex deu Match
 getNumberLineMatch(){
 # $1 == <Regex a ser procurado>
@@ -99,6 +110,14 @@ fatores(){
     local line=$(nextLine $lLiteral) # Pega a proxima linha
     while [ 1 ]
     do
+        # Skipa caso seja um comentário
+        local comment=$( isComment "$(showLine $line)" )
+        if [ $comment == "1" ]
+        then
+            line=$(nextLine $line) # Pega a proxima linha
+            continue
+        fi
+
         # Pega o fator ou seja o <descritor de variavel>
         local fator=$(getValueRegex_campo1 "^( )*([a-zA-Z]+([0-9]*[a-zA-Z_]*)*)( )*=" $line)
         if [ -z $fator ] # Não existe Descritor
@@ -108,7 +127,7 @@ fatores(){
         # Transforma o conteudo da linha X em uma variavel
         createVariable $line
         saveFactor $line
-        local line=$(nextLine $line) # Pega a proxima linha
+        line=$(nextLine $line) # Pega a proxima linha
     done
 }
 
@@ -168,6 +187,14 @@ comando(){
     local line=$(nextLine $lLiteral) # Pega a proxima linha
     while [ 1 ]
     do
+        # Skipa caso seja um comentário
+        local comment=$( isComment "$(showLine $line)" )
+        if [ $comment == "1" ]
+        then
+            line=$(nextLine $line) # Pega a proxima linha
+            continue
+        fi
+
         # Procura o comando == <descritor de variavel>
         local comand=$(showLine $line)
         if [ -z "$comand" ] # Parou de dar Match:
@@ -303,6 +330,14 @@ ensaios(){
     local line=$(nextLine $lLiteral) # Pega a proxima linha
     while [ 1 ]
     do
+        # Skipa caso seja um comentário
+        local comment=$( isComment "$(showLine $line)" )
+        if [ $comment == "1" ]
+        then
+            line=$(nextLine $line) # Pega a proxima linha
+            continue
+        fi
+        
         # Procura o comando == <descritor de variavel>
         local ensaio=$(getValueRegex_campo1 "^( )*([0-9])+( )*=( )*" $line)       
         if [ -z $ensaio ] # Parou de dar Match:

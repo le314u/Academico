@@ -364,7 +364,7 @@ runAndLog(){
         END {
             print "\n";
         } 
-    ' >> $GLOBAL_arquivoOutput
+    '
 
 }
 allRun(){
@@ -374,6 +374,15 @@ allRun(){
         echo $(stringComand "$i")|runAndLog "${GLOBAL_instancia[$i]}"
     done
 }
+newLog(){
+    echo "">$GLOBAL_arquivoOutput 
+}
+nameProgram(){
+    local vetAux
+    read -a vetAux <<< $GLOBAL_comandos 
+    local nameProgram=$(echo ${vetAux[0]}|sed 's/^\.\///g') #Pega o nome no Arquivo
+    echo $nameProgram
+}
 # Verifica a sintaxy do arquivo de configuração e prepara o ambiente
 main(){
     # Pega os dados que entram via CLI
@@ -382,10 +391,20 @@ main(){
     fatores # Analisa e extrai os dados relevante aos fatores <variaveis>
     comando # Analisa e extra os dados relevantes ao comando
     ensaios # Analisa e expecifíca os valores de cada instância de execução
-    #Cria um novo arquivo de log
-    echo "">$GLOBAL_arquivoOutput
+    newLog #Cria um novo arquivo de log
+
     #Execução salvando o Log
-    allRun
+    allRun|awk -v program="$(nameProgram)" '
+        BEGIN {
+            print "## Projeto de experimentos para o programa: " program "\n";
+        }
+        {
+            print $0;
+        }
+        END {
+            print "\n## fim do exemplo";
+        } 
+    ' >> $GLOBAL_arquivoOutput
 }
 
 main $1 $2

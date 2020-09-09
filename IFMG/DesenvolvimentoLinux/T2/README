@@ -1,0 +1,11 @@
+Trabalho realizado por:
+
+Lucas Mateus Fernandes RA:0035411
+Lucas Gabriel de Almeida RA:0035333
+
+poara rodar digite
+./main.sh ex.conf <arquivo de saida>
+
+O arquivo prog.sh é um exemplo de Programa a ser testado com 'n' ensaios
+O arquivo main.sh é o proprio trabalho
+O arquivo ex.conf é o arquivo de entrada formatado conforme a documentação

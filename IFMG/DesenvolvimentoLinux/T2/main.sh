@@ -341,11 +341,21 @@ log(){
 # $2 === <Meta Dados da instancia>
     local comand=$1
     local MetaInstancia=$2
-
-    local dataInit=`date +%s.%N`
+    #Data init
+    local dataInit=`date +%s%N`
+    local dataInitWithNano="$(( $dataInit % 1000000000 ))"
+    local dataInitWithoutNano="$(( $dataInit / 1000000000 ))"
+    #Executa o comando
     local outputComand=$( exec $comand )
-    local dataEnd=`date +%s.%N`
-    local duracao=$( echo "$dataEnd - $dataInit" | bc -l)
+    #Data end
+    local dataEnd=`date +%s%N`
+    local dataEndWithNano="$(( $dataEnd % 1000000000 ))"
+    local dataEndWithoutNano="$(( $dataEnd / 1000000000 ))"
+    #Calcula a diferença entre as datas
+    local duracaoWithoutNano=$( echo "$dataEndWithoutNano - $dataInitWithoutNano" | bc -l) 
+    local duracaoWithNano=$( echo "$dataEndWithNano - $dataInitWithNano" | bc -l) 
+    local duracao=$(echo $(date -u -d@"$(( $duracaoWithoutNano ))" +"%H:%M:%S").$duracaoWithNano)
+
     #Salva no Arquivo
     echo $outputComand | awk -v instancia=$MetaInstancia -v duracao=$duracao '
         BEGIN {

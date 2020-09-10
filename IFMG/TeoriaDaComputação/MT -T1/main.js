@@ -142,7 +142,7 @@ class Main{
         let _continue = ()=>{
             return new Promise( (resolve, reject)=>{
                 try {
-                    rl.question("(n=passos, 0=termina, -1=resume)\n>> Quais os próximos steps? ", function(answer) {
+                    this.rl.question("(n=passos, 0=termina, -1=resume)\n>> Quais os próximos steps? ", function(answer) {
                         let option = parseInt(answer)
                         resolve(option)
                     });

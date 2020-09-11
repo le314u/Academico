@@ -53,7 +53,6 @@ class Main{
         }else{
             //Instancia um erro
         }//Erro
-        console.log(this.machine.heap.stack)
     }
     help(){
         const caracteresReservados = 'Qualquer ";" nas instruções da MT será considerado comentário portanto não use ";" como caracter da fita\n'

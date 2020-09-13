@@ -27,7 +27,6 @@ inicio sintatic-X 01      ; Faz analise Sintatica verificando se a entrada é va
                             ;
 fim sintatic-X
 
-
 inicio skipSpace-X 01         ; Verifico se é um ' '
     01 X $e i -- 01 X $e d      ; Se for um espaço eu avanço o cabeçote
     01 retorne                  ; OK
@@ -189,29 +188,25 @@ inicio cpHalf-ZY 01            ; Copia a fita Z para Y
 fim cpHalf-ZY
 
 ; Função vai para o inicio da Fita
-inicio goInit-Z 01            ; Move a Fita para a esquerda
-    01 Z < i -- 02 Z < i        ; Retorna pois chegou no token de inicio '<'
-    01 Z * i -- 01 Z * e        ; Move a fita Z para esquerda
-    02 retorne           
-fim goInit-Z
+        inicio goInit-Z 01            ; Move a Fita para a esquerda
+            01 Z < i -- 02 Z < i        ; Retorna pois chegou no token de inicio '<'
+            01 Z * i -- 01 Z * e        ; Move a fita Z para esquerda
+            02 retorne           
+        fim goInit-Z
 
-inicio goInit-Y 01            ; Move a Fita para a esquerda
-    01 Y < i -- 02 Y < i        ; Retorna pois chegou no token de inicio '<'
-    01 Y * i -- 01 Y * e        ; Move a fita Y para esquerda
-    02 retorne           
-fim goInit-Y
+        inicio goInit-Y 01            ; Move a Fita para a esquerda
+            01 Y < i -- 02 Y < i        ; Retorna pois chegou no token de inicio '<'
+            01 Y * i -- 01 Y * e        ; Move a fita Y para esquerda
+            02 retorne           
+        fim goInit-Y
 
-inicio goInit-X 01            ; Move a Fita para a esquerda
-    01 X < i -- 02 X < i        ; Retorna pois chegou no token de inicio '<'
-    01 X * i -- 01 X * e        ; Move a fita X para esquerda
-    02 retorne           
-fim goInit-X
+        inicio goInit-X 01            ; Move a Fita para a esquerda
+            01 X < i -- 02 X < i        ; Retorna pois chegou no token de inicio '<'
+            01 X * i -- 01 X * e        ; Move a fita X para esquerda
+            02 retorne           
+        fim goInit-X
 
-inicio positionTape 01      ; Posiciona as Fitas Y e Z 
-    02 Y $s i -- 03 Y $s i      ; Retorna pois chegou no token de inicio '<'
-    02 Y * i -- 02 Y * e        ; Retorna a Fita Y até o symbolo
-    03 retorne
-fim positionTape
+
 
 
 inicio preaparaAmbiente 01   ; Prepara todo o ambiente para começar a fazer as contas
@@ -219,8 +214,15 @@ inicio preaparaAmbiente 01   ; Prepara todo o ambiente para começar a fazer as 
     02 compile-XZ 03            ; Passa a Fita X para a Fita Z removendo os espaços e os 0 no inicio do inteiro
     03 cpHalf-ZY 04             ; Copia a Fita Z para Y de modo invertido
                                 ; Verifica o tipo de operação
-    04 positionTape 05          ; Reposiciona as Fitas Z e Y
+    04 retorne
 fim preaparaAmbiente
+
+
+    inicio posiciona-Z 01   ; Prepara todo o ambiente para começar a fazer as contas
+        01 Z = i -- 02 Z = i 
+        01 Z * i -- 01 Z * d 
+        02 retorne
+    fim posiciona-Z
 
 
 
@@ -230,18 +232,525 @@ fim preaparaAmbiente
 ; Verifico Qual A Operação
 ; Verifico Qual Digito É maior
 
+
 inicio main 01
+    ; Analisa se a entrada é valida
         01 sintatic-X 02        ; Verifico se a entrada é valida
-        02 preaparaAmbiente 03
-        03 aceite               ; Fim
+    ; Prepara as fitas
+        02 preaparaAmbiente 03  ; Prepara as Fitas
+    ; Defini qual o tipo de operação
+    ; Estado 1XXX Representa Soma  --   2XXX Representa Subtração
+        03 Z + i -- 1000 Z + i    ; operação de SOMA
+        1000 SOMA 04              ; Realiza a soma
+        03 Z - i -- 2000 Z - i    ; operação de SUBTRAÇÂO
+        2000 SUB 04              ; Realiza a soma
+        04 aceite               ; Fim
 fim main
 
 
 
 
 
+    inicio SOMA 9999   ; Prepara todo o ambiente para começar a fazer as contas
+        ; Inicio os ponteiros na posição mais a direita de cada numero 
+        9999 posiciona-Z 9998           ; Posiciona a fita Z a direita do simbolo
+        9998 Y * i -- 9997 Y * e        ; Aponta Y para um digito
+        9997 Z * i -- 0000 Z * e        ; Aponta Z para um digito
 
 
+
+        ; Dado a leitura de um Digito vai para o estado que representa o digito 
+        ; Representação do Estado WXYZ:
+        ;   W Representa se esta lendo ou escrevendo [0] Lendo [1] Escrevendo
+        ;   X Repsenta qual fita esta sendo operada [0] Primeira  [1]Segunda 
+        ;   Y Representa se tem numero flutuando [1] Sim [0] Não
+        ;   Z Representa o que foi lido ou escrito [0-9]
+        ;   
+        ;   Para representar a leitura da primeira fita Z=0 pois não houve leitura anterior
+         
+        
+        ; Leitura Fita 0
+        0000 Y 0 i -- 0100 Y 0 i    ; Scan 0
+        0000 Y 1 i -- 0101 Y 1 i    ; Scan 1
+        0000 Y 2 i -- 0102 Y 2 i    ; Scan 2
+        0000 Y 3 i -- 0103 Y 3 i    ; Scan 3
+        0000 Y 4 i -- 0104 Y 4 i    ; Scan 4
+        0000 Y 5 i -- 0105 Y 5 i    ; Scan 5
+        0000 Y 6 i -- 0106 Y 6 i    ; Scan 6
+        0000 Y 7 i -- 0107 Y 7 i    ; Scan 7
+        0000 Y 8 i -- 0108 Y 8 i    ; Scan 8
+        0000 Y 9 i -- 0109 Y 9 i    ; Scan 9
+        0000 Y * i -- 0100 Y * d    ; Scan [!digito] ou seja o digito acabou portanto conseidera 0
+        0010 Y 0 i -- 0101 Y 0 i    ; Scan 0
+        0010 Y 1 i -- 0102 Y 1 i    ; Scan 1
+        0010 Y 2 i -- 0103 Y 2 i    ; Scan 2
+        0010 Y 3 i -- 0104 Y 3 i    ; Scan 3
+        0010 Y 4 i -- 0105 Y 4 i    ; Scan 4
+        0010 Y 5 i -- 0106 Y 5 i    ; Scan 5
+        0010 Y 6 i -- 0107 Y 6 i    ; Scan 6
+        0010 Y 7 i -- 0108 Y 7 i    ; Scan 7
+        0010 Y 8 i -- 0109 Y 8 i    ; Scan 8
+        0010 Y 9 i -- 0110 Y 9 i    ; Scan 9
+        0010 Y * i -- 0101 Y * d    ; Scan [!digito] ou seja o digito acabou portanto conseidera 0
+        
+        ;Leitura Fita 1
+        0100 Z 0 i -- 1000 Z 0 e 	;  0 + 0 + 0 = 0
+        0100 Z 1 i -- 1001 Z 1 e 	;  0 + 0 + 1 = 1
+        0100 Z 2 i -- 1002 Z 2 e 	;  0 + 0 + 2 = 2
+        0100 Z 3 i -- 1003 Z 3 e 	;  0 + 0 + 3 = 3
+        0100 Z 4 i -- 1004 Z 4 e 	;  0 + 0 + 4 = 4
+        0100 Z 5 i -- 1005 Z 5 e 	;  0 + 0 + 5 = 5
+        0100 Z 6 i -- 1006 Z 6 e 	;  0 + 0 + 6 = 6
+        0100 Z 7 i -- 1007 Z 7 e 	;  0 + 0 + 7 = 7
+        0100 Z 8 i -- 1008 Z 8 e 	;  0 + 0 + 8 = 8
+        0100 Z 9 i -- 1009 Z 9 e 	;  0 + 0 + 9 = 9
+        0110 Z 0 i -- 1001 Z 0 e 	;  0 + 1 + 0 = 1
+        0110 Z 1 i -- 1002 Z 1 e 	;  0 + 1 + 1 = 2
+        0110 Z 2 i -- 1003 Z 2 e 	;  0 + 1 + 2 = 3
+        0110 Z 3 i -- 1004 Z 3 e 	;  0 + 1 + 3 = 4
+        0110 Z 4 i -- 1005 Z 4 e 	;  0 + 1 + 4 = 5
+        0110 Z 5 i -- 1006 Z 5 e 	;  0 + 1 + 5 = 6
+        0110 Z 6 i -- 1007 Z 6 e 	;  0 + 1 + 6 = 7
+        0110 Z 7 i -- 1008 Z 7 e 	;  0 + 1 + 7 = 8
+        0110 Z 8 i -- 1009 Z 8 e 	;  0 + 1 + 8 = 9
+        0110 Z 9 i -- 1010 Z 9 e 	;  0 + 1 + 9 = 10
+        0100 Z $s i -- 1000 Z $s i 	;  Fita Z Vazia
+        0110 Z $s i -- 1010 Z $s i 	;  Fita Z Vazia
+
+        0101 Z 0 i -- 1001 Z 0 e 	;  1 + 0 + 0 = 1
+        0101 Z 1 i -- 1002 Z 1 e 	;  1 + 0 + 1 = 2
+        0101 Z 2 i -- 1003 Z 2 e 	;  1 + 0 + 2 = 3
+        0101 Z 3 i -- 1004 Z 3 e 	;  1 + 0 + 3 = 4
+        0101 Z 4 i -- 1005 Z 4 e 	;  1 + 0 + 4 = 5
+        0101 Z 5 i -- 1006 Z 5 e 	;  1 + 0 + 5 = 6
+        0101 Z 6 i -- 1007 Z 6 e 	;  1 + 0 + 6 = 7
+        0101 Z 7 i -- 1008 Z 7 e 	;  1 + 0 + 7 = 8
+        0101 Z 8 i -- 1009 Z 8 e 	;  1 + 0 + 8 = 9
+        0101 Z 9 i -- 1010 Z 9 e 	;  1 + 0 + 9 = 10
+        0111 Z 0 i -- 1002 Z 0 e 	;  1 + 1 + 0 = 2
+        0111 Z 1 i -- 1003 Z 1 e 	;  1 + 1 + 1 = 3
+        0111 Z 2 i -- 1004 Z 2 e 	;  1 + 1 + 2 = 4
+        0111 Z 3 i -- 1005 Z 3 e 	;  1 + 1 + 3 = 5
+        0111 Z 4 i -- 1006 Z 4 e 	;  1 + 1 + 4 = 6
+        0111 Z 5 i -- 1007 Z 5 e 	;  1 + 1 + 5 = 7
+        0111 Z 6 i -- 1008 Z 6 e 	;  1 + 1 + 6 = 8
+        0111 Z 7 i -- 1009 Z 7 e 	;  1 + 1 + 7 = 9
+        0111 Z 8 i -- 1010 Z 8 e 	;  1 + 1 + 8 = 10
+        0111 Z 9 i -- 1011 Z 9 e 	;  1 + 1 + 9 = 11
+        0101 Z $s i -- 1001 Z $s i 	;  Fita Z Vazia
+        0111 Z $s i -- 1011 Z $s i 	;  Fita Z Vazia
+        
+        0102 Z 0 i -- 1002 Z 0 e 	;  2 + 0 + 0 = 2
+        0102 Z 1 i -- 1003 Z 1 e 	;  2 + 0 + 1 = 3
+        0102 Z 2 i -- 1004 Z 2 e 	;  2 + 0 + 2 = 4
+        0102 Z 3 i -- 1005 Z 3 e 	;  2 + 0 + 3 = 5
+        0102 Z 4 i -- 1006 Z 4 e 	;  2 + 0 + 4 = 6
+        0102 Z 5 i -- 1007 Z 5 e 	;  2 + 0 + 5 = 7
+        0102 Z 6 i -- 1008 Z 6 e 	;  2 + 0 + 6 = 8
+        0102 Z 7 i -- 1009 Z 7 e 	;  2 + 0 + 7 = 9
+        0102 Z 8 i -- 1010 Z 8 e 	;  2 + 0 + 8 = 10
+        0102 Z 9 i -- 1011 Z 9 e 	;  2 + 0 + 9 = 11
+        0112 Z 0 i -- 1003 Z 0 e 	;  2 + 1 + 0 = 3
+        0112 Z 1 i -- 1004 Z 1 e 	;  2 + 1 + 1 = 4
+        0112 Z 2 i -- 1005 Z 2 e 	;  2 + 1 + 2 = 5
+        0112 Z 3 i -- 1006 Z 3 e 	;  2 + 1 + 3 = 6
+        0112 Z 4 i -- 1007 Z 4 e 	;  2 + 1 + 4 = 7
+        0112 Z 5 i -- 1008 Z 5 e 	;  2 + 1 + 5 = 8
+        0112 Z 6 i -- 1009 Z 6 e 	;  2 + 1 + 6 = 9
+        0112 Z 7 i -- 1010 Z 7 e 	;  2 + 1 + 7 = 10
+        0112 Z 8 i -- 1011 Z 8 e 	;  2 + 1 + 8 = 11
+        0112 Z 9 i -- 1012 Z 9 e 	;  2 + 1 + 9 = 12
+        0102 Z $s i -- 1002 Z $s i 	;  Fita Z Vazia
+        0112 Z $s i -- 1012 Z $s i 	;  Fita Z Vazia
+
+        0103 Z 0 i -- 1003 Z 0 e 	;  3 + 0 + 0 = 3
+        0103 Z 1 i -- 1004 Z 1 e 	;  3 + 0 + 1 = 4
+        0103 Z 2 i -- 1005 Z 2 e 	;  3 + 0 + 2 = 5
+        0103 Z 3 i -- 1006 Z 3 e 	;  3 + 0 + 3 = 6
+        0103 Z 4 i -- 1007 Z 4 e 	;  3 + 0 + 4 = 7
+        0103 Z 5 i -- 1008 Z 5 e 	;  3 + 0 + 5 = 8
+        0103 Z 6 i -- 1009 Z 6 e 	;  3 + 0 + 6 = 9
+        0103 Z 7 i -- 1010 Z 7 e 	;  3 + 0 + 7 = 10
+        0103 Z 8 i -- 1011 Z 8 e 	;  3 + 0 + 8 = 11
+        0103 Z 9 i -- 1012 Z 9 e 	;  3 + 0 + 9 = 12
+        0113 Z 0 i -- 1004 Z 0 e 	;  3 + 1 + 0 = 4
+        0113 Z 1 i -- 1005 Z 1 e 	;  3 + 1 + 1 = 5
+        0113 Z 2 i -- 1006 Z 2 e 	;  3 + 1 + 2 = 6
+        0113 Z 3 i -- 1007 Z 3 e 	;  3 + 1 + 3 = 7
+        0113 Z 4 i -- 1008 Z 4 e 	;  3 + 1 + 4 = 8
+        0113 Z 5 i -- 1009 Z 5 e 	;  3 + 1 + 5 = 9
+        0113 Z 6 i -- 1010 Z 6 e 	;  3 + 1 + 6 = 10
+        0113 Z 7 i -- 1011 Z 7 e 	;  3 + 1 + 7 = 11
+        0113 Z 8 i -- 1012 Z 8 e 	;  3 + 1 + 8 = 12
+        0113 Z 9 i -- 1013 Z 9 e 	;  3 + 1 + 9 = 13
+        0103 Z $s i -- 1003 Z $s i 	;  Fita Z Vazia
+        0113 Z $s i -- 1013 Z $s i 	;  Fita Z Vazia
+
+        0104 Z 0 i -- 1004 Z 0 e 	;  4 + 0 + 0 = 4
+        0104 Z 1 i -- 1005 Z 1 e 	;  4 + 0 + 1 = 5
+        0104 Z 2 i -- 1006 Z 2 e 	;  4 + 0 + 2 = 6
+        0104 Z 3 i -- 1007 Z 3 e 	;  4 + 0 + 3 = 7
+        0104 Z 4 i -- 1008 Z 4 e 	;  4 + 0 + 4 = 8
+        0104 Z 5 i -- 1009 Z 5 e 	;  4 + 0 + 5 = 9
+        0104 Z 6 i -- 1010 Z 6 e 	;  4 + 0 + 6 = 10
+        0104 Z 7 i -- 1011 Z 7 e 	;  4 + 0 + 7 = 11
+        0104 Z 8 i -- 1012 Z 8 e 	;  4 + 0 + 8 = 12
+        0104 Z 9 i -- 1013 Z 9 e 	;  4 + 0 + 9 = 13
+        0114 Z 0 i -- 1005 Z 0 e 	;  4 + 1 + 0 = 5
+        0114 Z 1 i -- 1006 Z 1 e 	;  4 + 1 + 1 = 6
+        0114 Z 2 i -- 1007 Z 2 e 	;  4 + 1 + 2 = 7
+        0114 Z 3 i -- 1008 Z 3 e 	;  4 + 1 + 3 = 8
+        0114 Z 4 i -- 1009 Z 4 e 	;  4 + 1 + 4 = 9
+        0114 Z 5 i -- 1010 Z 5 e 	;  4 + 1 + 5 = 10
+        0114 Z 6 i -- 1011 Z 6 e 	;  4 + 1 + 6 = 11
+        0114 Z 7 i -- 1012 Z 7 e 	;  4 + 1 + 7 = 12
+        0114 Z 8 i -- 1013 Z 8 e 	;  4 + 1 + 8 = 13
+        0114 Z 9 i -- 1014 Z 9 e 	;  4 + 1 + 9 = 14
+        0104 Z $s i -- 1004 Z $s i 	;  Fita Z Vazia
+        0114 Z $s i -- 1014 Z $s i 	;  Fita Z Vazia
+
+        0105 Z 0 i -- 1005 Z 0 e 	;  5 + 0 + 0 = 5
+        0105 Z 1 i -- 1006 Z 1 e 	;  5 + 0 + 1 = 6
+        0105 Z 2 i -- 1007 Z 2 e 	;  5 + 0 + 2 = 7
+        0105 Z 3 i -- 1008 Z 3 e 	;  5 + 0 + 3 = 8
+        0105 Z 4 i -- 1009 Z 4 e 	;  5 + 0 + 4 = 9
+        0105 Z 5 i -- 1010 Z 5 e 	;  5 + 0 + 5 = 10
+        0105 Z 6 i -- 1011 Z 6 e 	;  5 + 0 + 6 = 11
+        0105 Z 7 i -- 1012 Z 7 e 	;  5 + 0 + 7 = 12
+        0105 Z 8 i -- 1013 Z 8 e 	;  5 + 0 + 8 = 13
+        0105 Z 9 i -- 1014 Z 9 e 	;  5 + 0 + 9 = 14
+        0115 Z 0 i -- 1006 Z 0 e 	;  5 + 1 + 0 = 6
+        0115 Z 1 i -- 1007 Z 1 e 	;  5 + 1 + 1 = 7
+        0115 Z 2 i -- 1008 Z 2 e 	;  5 + 1 + 2 = 8
+        0115 Z 3 i -- 1009 Z 3 e 	;  5 + 1 + 3 = 9
+        0115 Z 4 i -- 1010 Z 4 e 	;  5 + 1 + 4 = 10
+        0115 Z 5 i -- 1011 Z 5 e 	;  5 + 1 + 5 = 11
+        0115 Z 6 i -- 1012 Z 6 e 	;  5 + 1 + 6 = 12
+        0115 Z 7 i -- 1013 Z 7 e 	;  5 + 1 + 7 = 13
+        0115 Z 8 i -- 1014 Z 8 e 	;  5 + 1 + 8 = 14
+        0115 Z 9 i -- 1015 Z 9 e 	;  5 + 1 + 9 = 15
+        0105 Z $s i -- 1005 Z $s i 	;  Fita Z Vazia
+        0115 Z $s i -- 1015 Z $s i 	;  Fita Z Vazia
+
+        0106 Z 0 i -- 1006 Z 0 e 	;  6 + 0 + 0 = 6
+        0106 Z 1 i -- 1007 Z 1 e 	;  6 + 0 + 1 = 7
+        0106 Z 2 i -- 1008 Z 2 e 	;  6 + 0 + 2 = 8
+        0106 Z 3 i -- 1009 Z 3 e 	;  6 + 0 + 3 = 9
+        0106 Z 4 i -- 1010 Z 4 e 	;  6 + 0 + 4 = 10
+        0106 Z 5 i -- 1011 Z 5 e 	;  6 + 0 + 5 = 11
+        0106 Z 6 i -- 1012 Z 6 e 	;  6 + 0 + 6 = 12
+        0106 Z 7 i -- 1013 Z 7 e 	;  6 + 0 + 7 = 13
+        0106 Z 8 i -- 1014 Z 8 e 	;  6 + 0 + 8 = 14
+        0106 Z 9 i -- 1015 Z 9 e 	;  6 + 0 + 9 = 15
+        0116 Z 0 i -- 1007 Z 0 e 	;  6 + 1 + 0 = 7
+        0116 Z 1 i -- 1008 Z 1 e 	;  6 + 1 + 1 = 8
+        0116 Z 2 i -- 1009 Z 2 e 	;  6 + 1 + 2 = 9
+        0116 Z 3 i -- 1010 Z 3 e 	;  6 + 1 + 3 = 10
+        0116 Z 4 i -- 1011 Z 4 e 	;  6 + 1 + 4 = 11
+        0116 Z 5 i -- 1012 Z 5 e 	;  6 + 1 + 5 = 12
+        0116 Z 6 i -- 1013 Z 6 e 	;  6 + 1 + 6 = 13
+        0116 Z 7 i -- 1014 Z 7 e 	;  6 + 1 + 7 = 14
+        0116 Z 8 i -- 1015 Z 8 e 	;  6 + 1 + 8 = 15
+        0116 Z 9 i -- 1016 Z 9 e 	;  6 + 1 + 9 = 16
+        0106 Z $s i -- 1006 Z $s i 	;  Fita Z Vazia
+        0116 Z $s i -- 1016 Z $s i 	;  Fita Z Vazia
+
+        0107 Z 0 i -- 1007 Z 0 e 	;  7 + 0 + 0 = 7
+        0107 Z 1 i -- 1008 Z 1 e 	;  7 + 0 + 1 = 8
+        0107 Z 2 i -- 1009 Z 2 e 	;  7 + 0 + 2 = 9
+        0107 Z 3 i -- 1010 Z 3 e 	;  7 + 0 + 3 = 10
+        0107 Z 4 i -- 1011 Z 4 e 	;  7 + 0 + 4 = 11
+        0107 Z 5 i -- 1012 Z 5 e 	;  7 + 0 + 5 = 12
+        0107 Z 6 i -- 1013 Z 6 e 	;  7 + 0 + 6 = 13
+        0107 Z 7 i -- 1014 Z 7 e 	;  7 + 0 + 7 = 14
+        0107 Z 8 i -- 1015 Z 8 e 	;  7 + 0 + 8 = 15
+        0107 Z 9 i -- 1016 Z 9 e 	;  7 + 0 + 9 = 16
+        0117 Z 0 i -- 1008 Z 0 e 	;  7 + 1 + 0 = 8
+        0117 Z 1 i -- 1009 Z 1 e 	;  7 + 1 + 1 = 9
+        0117 Z 2 i -- 1010 Z 2 e 	;  7 + 1 + 2 = 10
+        0117 Z 3 i -- 1011 Z 3 e 	;  7 + 1 + 3 = 11
+        0117 Z 4 i -- 1012 Z 4 e 	;  7 + 1 + 4 = 12
+        0117 Z 5 i -- 1013 Z 5 e 	;  7 + 1 + 5 = 13
+        0117 Z 6 i -- 1014 Z 6 e 	;  7 + 1 + 6 = 14
+        0117 Z 7 i -- 1015 Z 7 e 	;  7 + 1 + 7 = 15
+        0117 Z 8 i -- 1016 Z 8 e 	;  7 + 1 + 8 = 16
+        0117 Z 9 i -- 1017 Z 9 e 	;  7 + 1 + 9 = 17
+        0107 Z $s i -- 1007 Z $s i 	;  Fita Z Vazia
+        0117 Z $s i -- 1017 Z $s i 	;  Fita Z Vazia
+
+        0108 Z 0 i -- 1008 Z 0 e 	;  8 + 0 + 0 = 8
+        0108 Z 1 i -- 1009 Z 1 e 	;  8 + 0 + 1 = 9
+        0108 Z 2 i -- 1010 Z 2 e 	;  8 + 0 + 2 = 10
+        0108 Z 3 i -- 1011 Z 3 e 	;  8 + 0 + 3 = 11
+        0108 Z 4 i -- 1012 Z 4 e 	;  8 + 0 + 4 = 12
+        0108 Z 5 i -- 1013 Z 5 e 	;  8 + 0 + 5 = 13
+        0108 Z 6 i -- 1014 Z 6 e 	;  8 + 0 + 6 = 14
+        0108 Z 7 i -- 1015 Z 7 e 	;  8 + 0 + 7 = 15
+        0108 Z 8 i -- 1016 Z 8 e 	;  8 + 0 + 8 = 16
+        0108 Z 9 i -- 1017 Z 9 e 	;  8 + 0 + 9 = 17
+        0118 Z 0 i -- 1009 Z 0 e 	;  8 + 1 + 0 = 9
+        0118 Z 1 i -- 1010 Z 1 e 	;  8 + 1 + 1 = 10
+        0118 Z 2 i -- 1011 Z 2 e 	;  8 + 1 + 2 = 11
+        0118 Z 3 i -- 1012 Z 3 e 	;  8 + 1 + 3 = 12
+        0118 Z 4 i -- 1013 Z 4 e 	;  8 + 1 + 4 = 13
+        0118 Z 5 i -- 1014 Z 5 e 	;  8 + 1 + 5 = 14
+        0118 Z 6 i -- 1015 Z 6 e 	;  8 + 1 + 6 = 15
+        0118 Z 7 i -- 1016 Z 7 e 	;  8 + 1 + 7 = 16
+        0118 Z 8 i -- 1017 Z 8 e 	;  8 + 1 + 8 = 17
+        0118 Z 9 i -- 1018 Z 9 e 	;  8 + 1 + 9 = 18
+        0108 Z $s i -- 1008 Z $s i 	;  Fita Z Vazia
+        0118 Z $s i -- 1018 Z $s i 	;  Fita Z Vazia
+
+        0109 Z 0 i -- 1009 Z 0 e 	;  9 + 0 + 0 = 9
+        0109 Z 1 i -- 1010 Z 1 e 	;  9 + 0 + 1 = 10
+        0109 Z 2 i -- 1011 Z 2 e 	;  9 + 0 + 2 = 11
+        0109 Z 3 i -- 1012 Z 3 e 	;  9 + 0 + 3 = 12
+        0109 Z 4 i -- 1013 Z 4 e 	;  9 + 0 + 4 = 13
+        0109 Z 5 i -- 1014 Z 5 e 	;  9 + 0 + 5 = 14
+        0109 Z 6 i -- 1015 Z 6 e 	;  9 + 0 + 6 = 15
+        0109 Z 7 i -- 1016 Z 7 e 	;  9 + 0 + 7 = 16
+        0109 Z 8 i -- 1017 Z 8 e 	;  9 + 0 + 8 = 17
+        0109 Z 9 i -- 1018 Z 9 e 	;  9 + 0 + 9 = 18
+        0119 Z 0 i -- 1010 Z 0 e 	;  9 + 1 + 0 = 10   ; ACHO QUE ISSO É impossivel
+        0119 Z 1 i -- 1011 Z 1 e 	;  9 + 1 + 1 = 11   ; ACHO QUE ISSO É impossivel
+        0119 Z 2 i -- 1012 Z 2 e 	;  9 + 1 + 2 = 12   ; ACHO QUE ISSO É impossivel
+        0119 Z 3 i -- 1013 Z 3 e 	;  9 + 1 + 3 = 13   ; ACHO QUE ISSO É impossivel
+        0119 Z 4 i -- 1014 Z 4 e 	;  9 + 1 + 4 = 14   ; ACHO QUE ISSO É impossivel
+        0119 Z 5 i -- 1015 Z 5 e 	;  9 + 1 + 5 = 15   ; ACHO QUE ISSO É impossivel
+        0119 Z 6 i -- 1016 Z 6 e 	;  9 + 1 + 6 = 16   ; ACHO QUE ISSO É impossivel
+        0119 Z 7 i -- 1017 Z 7 e 	;  9 + 1 + 7 = 17   ; ACHO QUE ISSO É impossivel
+        0119 Z 8 i -- 1018 Z 8 e 	;  9 + 1 + 8 = 18   ; ACHO QUE ISSO É impossivel
+        0119 Z 9 i -- 1019 Z 9 e 	;  9 + 1 + 9 = 19   ; ACHO QUE ISSO É impossivel
+        0109 Z $s i -- 1009 Z $s i 	;  Fita Z Vazia
+        0119 Z $s i -- 1019 Z $s i 	;  Fita Z Vazia     ; ACHO QUE ISSO É impossivel
+    
+        1000 write[00]-Y 9000
+        1001 write[01]-Y 9000
+        1002 write[02]-Y 9000
+        1003 write[03]-Y 9000
+        1004 write[04]-Y 9000
+        1005 write[05]-Y 9000
+        1006 write[06]-Y 9000
+        1007 write[07]-Y 9000
+        1008 write[08]-Y 9000
+        1009 write[09]-Y 9000
+        1010 write[10]-Y 9010
+        1011 write[11]-Y 9010
+        1012 write[12]-Y 9010
+        1013 write[13]-Y 9010
+        1014 write[14]-Y 9010
+        1015 write[15]-Y 9010
+        1016 write[16]-Y 9010
+        1017 write[17]-Y 9010
+        1018 write[18]-Y 9010
+        1019 write[19]-Y 9010
+
+        ; Verifica se o processamento acabou
+        9000 switch 9001
+            9001 Y < i -- 9002 Y < i
+            9001 switch 0000  ; Falhou então cancela
+            9002 Z $s i -- 9003 Z $s i 
+            9002 switch 0000 ; Falhou então cancela
+            9003 gotR_-Y 9004
+            9004 gotR>-Z 9005
+            9005 retorne
+        9010 switch 9011
+            9011 Y < i -- 9012 Y < i
+            9011 switch 0010  ; Falhou então cancela
+            9012 Z $s i -- 9013 Z $s i 
+            9012 switch 0010  ; Falhou então cancela
+            9013 write[01]-Y 9000
+            
+    fim SOMA
+
+
+
+        inicio write[00]-Y   01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 0 d  
+            03 prepareRead-Y 04
+            04 retorne
+        fim write[00]-Y 
+
+        inicio write[01]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 1 d  
+            03 prepareRead-Y 04
+            04 retorne 
+        fim write[01]-Y
+
+        inicio write[02]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 2 d  
+            03 prepareRead-Y 04
+            04 retorne  
+        fim write[02]-Y
+
+        inicio write[03]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 3 d  
+            03 prepareRead-Y 04
+            04 retorne  
+        fim write[03]-Y
+
+        inicio write[04]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 4 d  
+            03 prepareRead-Y 04
+            04 retorne
+        fim write[04]-Y
+
+        inicio write[05]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 5 d  
+            03 prepareRead-Y 04
+            04 retorne 
+        fim write[05]-Y
+
+        inicio write[06]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 6 d  
+            03 prepareRead-Y 04
+            04 retorne  
+        fim write[06]-Y
+
+        inicio write[07]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 7 d  
+            03 prepareRead-Y 04
+            04 retorne 
+        fim write[07]-Y
+
+        inicio write[08]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 8 d  
+            0 retorne  
+        fim write[08]-Y
+
+        inicio write[09]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 9 d  
+            03 prepareRead-Y 04
+            04 retorne 
+        fim write[09]-Y
+
+        inicio write[10]-Y   01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 0 d  
+            03 prepareRead-Y 04
+            04 retorne
+        fim write[10]-Y 
+
+        inicio write[11]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 1 d  
+            03 prepareRead-Y 04
+            04 retorne 
+        fim write[11]-Y
+
+        inicio write[12]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 2 d  
+            03 prepareRead-Y 04
+            04 retorne  
+        fim write[12]-Y
+
+        inicio write[13]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 3 d  
+            03 prepareRead-Y 04
+            04 retorne  
+        fim write[13]-Y
+
+        inicio write[14]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 4 d  
+            03 prepareRead-Y 04
+            04 retorne  
+        fim write[14]-Y
+
+        inicio write[15]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 5 d  
+            03 prepareRead-Y 04
+            04 retorne 
+        fim write[15]-Y
+
+        inicio write[16]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 6 d  
+            03 prepareRead-Y 04
+            04 retorne  
+        fim write[16]-Y
+
+        inicio write[17]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 7 d  
+            03 prepareRead-Y 04
+            04 retorne 
+        fim write[17]-Y
+
+        inicio write[18]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 8 d  
+            03 prepareRead-Y 04
+            04 retorne  
+        fim write[18]-Y
+
+        inicio write[19]-Y 01    
+            01 prepareWrite-Y 02
+            02 Y * i -- 03 Y 9 d  
+            03 prepareRead-Y 04
+            04 retorne 
+        fim write[19]-Y
+
+                inicio prepareWrite-Y 01       ; Transfere os digitos de X para Z
+                    01 Y $d i -- 02 Y X i           ; Apaga o digito inicial
+                    01 Y X i -- 02 Y X i            ; Apaga o digito inicial
+                    01 Y < i -- 02 Y < d            ; Apaga o digito inicial
+                    02 gotR>-Y 03
+                    03 gotR_-Y 04
+                    04 retorne
+                fim prepareWrite-Y
+
+                inicio prepareRead-Y 01    ; Transfere os digitos de X para Z
+                    01 gotL>-Y 02             ; Chegou até o simbolo que delimtia entrada da saida
+                    02 Y > i -- 03 Y > e      ; Anda para esquerda para sair do '>' e entrar no numero
+                    03 Y X i -- 03 Y X e      ; Parte Ja Tratada
+                    03 Y $d i -- 04 Y $d i    ; Chegou no Numbero
+                    03 Y < i -- 04 Y < i      ; O digito acabou
+                    04 retorne
+                fim prepareRead-Y
+
+                inicio gotR>-Z 01           ; Transfere os digitos de X para Z
+                    01 Z > i -- 02 Z > i      ; Chegou no simbolo
+                    01 Z * i -- 01 Z * d      ; Vai até o simbolo
+                    02 retorne                  
+                fim gotR>-Z
+
+                inicio gotR>-Y 01           ; Transfere os digitos de X para Z
+                    01 Y > i -- 02 Y > i      ; Chegou no simbolo
+                    01 Y * i -- 01 Y * d      ; Vai até o simbolo
+                    02 retorne                  
+                fim gotR>-Y
+
+                inicio gotR_-Y 01           ; Transfere os digitos de X para Z
+                    01 Y _ i -- 02 Y _ i      ; Chegou no simbolo
+                    01 Y * i -- 01 Y * d      ; Vai até o simbolo
+                    02 retorne                  
+                fim gotR_-Y
+
+                inicio gotL$d-Y 01           ; Transfere os digitos de X para Z
+                    01 Y $d i -- 02 Y $d i      ; Chegou no simbolo
+                    01 Y * i -- 01 Y * e      ; Vai até o simbolo
+                    02 retorne                  
+                fim gotL$d-Y
+
+                inicio gotL>-Y 01           ; Transfere os digitos de X para Z
+                    01 Y > i -- 02 Y > i      ; Chegou no simbolo
+                    01 Y * i -- 01 Y * e      ; Vai até o simbolo
+                    02 retorne                  
+                fim gotL>-Y
 
 inicio DEBUG-Y 01      ; Transfere os digitos de X para Z
     01 Y * i -- 02 Y X d      ; Transcreve os Digitos

@@ -187,6 +187,14 @@ inicio cpHalf-ZY 01            ; Copia a fita Z para Y
     03 retorne           
 fim cpHalf-ZY
 
+inicio cp-ZY 01            ; Copia a fita Z para Y 
+    01 goInit-Z 02               ; Vai para o inicio da Fita
+    02 Z $s d -- 02 Y $s d       ; Acabou de copiar
+    02 Z > i -- 03 Y > i         ; Acabou de copiar
+    02 Z * d -- 02 Y * d         ; Copia da esquerda para direita da fita Z para Y
+    03 retorne           
+fim cp-ZY
+
 ; Função vai para o inicio da Fita
         inicio goInit-Z 01            ; Move a Fita para a esquerda
             01 Z < i -- 02 Z < i        ; Retorna pois chegou no token de inicio '<'
@@ -206,13 +214,32 @@ fim cpHalf-ZY
             02 retorne           
         fim goInit-X
 
+; Função vai para o fim da Fita
+        inicio goEnd-Z 01            ; Move a Fita para a direita
+            01 Z > i -- 02 Z > i        ; Retorna pois chegou no token de termino '>'
+            01 Z * i -- 01 Z * d        ; Move a fita Z para direita
+            02 retorne           
+        fim goEnd-Z
+
+        inicio goEnd-Y 01            ; Move a Fita para a direita
+            01 Y > i -- 02 Y > i        ; Retorna pois chegou no token de termino '>'
+            01 Y * i -- 01 Y * d        ; Move a fita Y para direita
+            02 retorne           
+        fim goEnd-Y
+
+        inicio goEnd-X 01            ; Move a Fita para a direita
+            01 X > i -- 02 X > i        ; Retorna pois chegou no token de termino '>'
+            01 X * i -- 01 X * d        ; Move a fita X para direita
+            02 retorne           
+        fim goEnd-X
+
 
 
 
 inicio preaparaAmbiente 01   ; Prepara todo o ambiente para começar a fazer as contas
     01 brackelets-X 02          ; Reescreve a Fita X colocando <> 
     02 compile-XZ 03            ; Passa a Fita X para a Fita Z removendo os espaços e os 0 no inicio do inteiro
-    03 cpHalf-ZY 04             ; Copia a Fita Z para Y de modo invertido
+    03 cpHalf-ZY 04             ; Copia a Fita Z para Y
                                 ; Verifica o tipo de operação
     04 retorne
 fim preaparaAmbiente
@@ -243,12 +270,298 @@ inicio main 01
         03 Z + i -- 1000 Z + i    ; operação de SOMA
         1000 SOMA 04              ; Realiza a soma
         03 Z - i -- 2000 Z - i    ; operação de SUBTRAÇÂO
-        2000 SUB 04              ; Realiza a soma
+        2000 SUB 04              ; Realiza a subtração
         04 aceite               ; Fim
 fim main
 
 
+inicio SUB 9999
+    ; Inicio os ponteiros na posição mais a direita de cada numero 
+    9999 posiciona-Z 9998           ; Posiciona a fita Z a direita do simbolo
+    9998 Y * i -- 9997 Y * e        ; Aponta Y para um digito
+    9997 Z * i -- 0000 Z * e        ; Aponta Z para um digito
+    ; A-B ou B-A
+    0000 ordenFatores-Y  1111
+    1111 rejeite
 
+fim SUB
+
+inicio ordenFatores-Y 99   ; Verifica qual o maior NUMERO
+    ; Representação dos estado YZ
+    ;   Y = Na fita Y [1] é um digito [0] não é um digito
+    ;   Z = Na fita Z [1] é um digito [0] não é um digito
+    ;   Para ambos [9] significa uma incognita pois ainda não ouve a leitura
+        ;Leitura Primeira Fita
+            99 Y $d i -- 19 Y $d e  ; Y tem um digito
+            99 switch 09 ;          ; Y não tem um digito
+
+        ;Leitura Segunda Fita
+            09 Z $d i -- 01 Z $d e  ; Z tem um digito  e Y não tem logo Z>Y
+            09 switch 00            ; Ambos não tem um digito
+            19 Z $d i -- 11 Z $d e  ; Z tem um digito  e Y tbm 
+            19 switch 10            ; Z não tem um digito  e Y tem logo Y>Z
+            
+            10 maiorA 9999
+            01 maiorB 9999
+            11 switch 99 ; Olha o proximo pois ambos são digitos
+        
+        ; Olha qual o maior Digito
+        00 moveD-YZ 0000    
+
+        ; Representação dos estado WXYZ
+        ;   W = Se fita Y ja foi lida
+        ;   X = Se fita Z ja foi lida
+        ;   Y = Valor do digito na fita Y
+        ;   Z = Valor do digito na fita Z
+
+            ;Valores Iguais
+            0000 Y > i -- 9900 Y > i
+            9900 Z = i -- 9800 Z = i
+            9800 igualC 9999
+
+            0000 Y 0 i -- 0100 Y 0 i
+            0000 Y 1 i -- 0101 Y 1 i
+            0000 Y 2 i -- 0102 Y 2 i
+            0000 Y 3 i -- 0103 Y 3 i
+            0000 Y 4 i -- 0104 Y 4 i
+            0000 Y 5 i -- 0105 Y 5 i
+            0000 Y 6 i -- 0106 Y 6 i
+            0000 Y 7 i -- 0107 Y 7 i
+            0000 Y 8 i -- 0108 Y 8 i
+            0000 Y 9 i -- 0109 Y 9 i
+            0100 Z 0 i -- 1100 Z 0 i
+            0101 Z 0 i -- 1101 Z 0 i
+            0102 Z 0 i -- 1102 Z 0 i
+            0103 Z 0 i -- 1103 Z 0 i
+            0104 Z 0 i -- 1104 Z 0 i
+            0105 Z 0 i -- 1105 Z 0 i
+            0106 Z 0 i -- 1106 Z 0 i
+            0107 Z 0 i -- 1107 Z 0 i
+            0108 Z 0 i -- 1108 Z 0 i
+            0109 Z 0 i -- 1109 Z 0 i
+            0100 Z 1 i -- 1110 Z 1 i
+            0101 Z 1 i -- 1111 Z 1 i
+            0102 Z 1 i -- 1112 Z 1 i
+            0103 Z 1 i -- 1113 Z 1 i
+            0104 Z 1 i -- 1114 Z 1 i
+            0105 Z 1 i -- 1115 Z 1 i
+            0106 Z 1 i -- 1116 Z 1 i
+            0107 Z 1 i -- 1117 Z 1 i
+            0108 Z 1 i -- 1118 Z 1 i
+            0109 Z 1 i -- 1119 Z 1 i
+            0100 Z 2 i -- 1120 Z 2 i
+            0101 Z 2 i -- 1121 Z 2 i
+            0102 Z 2 i -- 1122 Z 2 i
+            0103 Z 2 i -- 1123 Z 2 i
+            0104 Z 2 i -- 1124 Z 2 i
+            0105 Z 2 i -- 1125 Z 2 i
+            0106 Z 2 i -- 1126 Z 2 i
+            0107 Z 2 i -- 1127 Z 2 i
+            0108 Z 2 i -- 1128 Z 2 i
+            0109 Z 2 i -- 1129 Z 2 i
+            0100 Z 3 i -- 1130 Z 3 i
+            0101 Z 3 i -- 1131 Z 3 i
+            0102 Z 3 i -- 1132 Z 3 i
+            0103 Z 3 i -- 1133 Z 3 i
+            0104 Z 3 i -- 1134 Z 3 i
+            0105 Z 3 i -- 1135 Z 3 i
+            0106 Z 3 i -- 1136 Z 3 i
+            0107 Z 3 i -- 1137 Z 3 i
+            0108 Z 3 i -- 1138 Z 3 i
+            0109 Z 3 i -- 1139 Z 3 i
+            0100 Z 4 i -- 1140 Z 4 i
+            0101 Z 4 i -- 1141 Z 4 i
+            0102 Z 4 i -- 1142 Z 4 i
+            0103 Z 4 i -- 1143 Z 4 i
+            0104 Z 4 i -- 1144 Z 4 i
+            0105 Z 4 i -- 1145 Z 4 i
+            0106 Z 4 i -- 1146 Z 4 i
+            0107 Z 4 i -- 1147 Z 4 i
+            0108 Z 4 i -- 1148 Z 4 i
+            0109 Z 4 i -- 1149 Z 4 i
+            0100 Z 5 i -- 1150 Z 5 i
+            0101 Z 5 i -- 1151 Z 5 i
+            0102 Z 5 i -- 1152 Z 5 i
+            0103 Z 5 i -- 1153 Z 5 i
+            0104 Z 5 i -- 1154 Z 5 i
+            0105 Z 5 i -- 1155 Z 5 i
+            0106 Z 5 i -- 1156 Z 5 i
+            0107 Z 5 i -- 1157 Z 5 i
+            0108 Z 5 i -- 1158 Z 5 i
+            0109 Z 5 i -- 1159 Z 5 i
+            0100 Z 6 i -- 1160 Z 6 i
+            0101 Z 6 i -- 1161 Z 6 i
+            0102 Z 6 i -- 1162 Z 6 i
+            0103 Z 6 i -- 1163 Z 6 i
+            0104 Z 6 i -- 1164 Z 6 i
+            0105 Z 6 i -- 1165 Z 6 i
+            0106 Z 6 i -- 1166 Z 6 i
+            0107 Z 6 i -- 1167 Z 6 i
+            0108 Z 6 i -- 1168 Z 6 i
+            0109 Z 6 i -- 1169 Z 6 i
+            0100 Z 7 i -- 1170 Z 7 i
+            0101 Z 7 i -- 1171 Z 7 i
+            0102 Z 7 i -- 1172 Z 7 i
+            0103 Z 7 i -- 1173 Z 7 i
+            0104 Z 7 i -- 1174 Z 7 i
+            0105 Z 7 i -- 1175 Z 7 i
+            0106 Z 7 i -- 1176 Z 7 i
+            0107 Z 7 i -- 1177 Z 7 i
+            0108 Z 7 i -- 1178 Z 7 i
+            0109 Z 7 i -- 1179 Z 7 i
+            0100 Z 8 i -- 1180 Z 8 i
+            0101 Z 8 i -- 1181 Z 8 i
+            0102 Z 8 i -- 1182 Z 8 i
+            0103 Z 8 i -- 1183 Z 8 i
+            0104 Z 8 i -- 1184 Z 8 i
+            0105 Z 8 i -- 1185 Z 8 i
+            0106 Z 8 i -- 1186 Z 8 i
+            0107 Z 8 i -- 1187 Z 8 i
+            0108 Z 8 i -- 1188 Z 8 i
+            0109 Z 8 i -- 1189 Z 8 i
+            0100 Z 9 i -- 1190 Z 9 i
+            0101 Z 9 i -- 1191 Z 9 i
+            0102 Z 9 i -- 1192 Z 9 i
+            0103 Z 9 i -- 1193 Z 9 i
+            0104 Z 9 i -- 1194 Z 9 i
+            0105 Z 9 i -- 1195 Z 9 i
+            0106 Z 9 i -- 1196 Z 9 i
+            0107 Z 9 i -- 1197 Z 9 i
+            0108 Z 9 i -- 1198 Z 9 i
+            0109 Z 9 i -- 1199 Z 9 i
+
+            ;Escreve na Fita qual o maior Numero
+            1100 switch 00
+            1101 maiorA 9999
+            1102 maiorA 9999
+            1103 maiorA 9999
+            1104 maiorA 9999
+            1105 maiorA 9999
+            1106 maiorA 9999
+            1107 maiorA 9999
+            1108 maiorA 9999
+            1109 maiorA 9999
+            1110 maiorB 9999
+            1111 switch 00
+            1112 maiorA 9999
+            1113 maiorA 9999
+            1114 maiorA 9999
+            1115 maiorA 9999
+            1116 maiorA 9999
+            1117 maiorA 9999
+            1118 maiorA 9999
+            1119 maiorA 9999
+            1120 maiorB 9999
+            1121 maiorB 9999
+            1122 switch 00
+            1123 maiorA 9999
+            1124 maiorA 9999
+            1125 maiorA 9999
+            1126 maiorA 9999
+            1127 maiorA 9999
+            1128 maiorA 9999
+            1129 maiorA 9999
+            1130 maiorB 9999
+            1131 maiorB 9999
+            1132 maiorB 9999
+            1133 switch 00
+            1134 maiorA 9999
+            1135 maiorA 9999
+            1136 maiorA 9999
+            1137 maiorA 9999
+            1138 maiorA 9999
+            1139 maiorA 9999
+            1140 maiorB 9999
+            1141 maiorB 9999
+            1142 maiorB 9999
+            1143 maiorB 9999
+            1144 switch 00
+            1145 maiorA 9999
+            1146 maiorA 9999
+            1147 maiorA 9999
+            1148 maiorA 9999
+            1149 maiorA 9999
+            1150 maiorB 9999
+            1151 maiorB 9999
+            1152 maiorB 9999
+            1153 maiorB 9999
+            1154 maiorB 9999
+            1155 switch 00
+            1156 maiorA 9999
+            1157 maiorA 9999
+            1158 maiorA 9999
+            1159 maiorA 9999
+            1160 maiorB 9999
+            1161 maiorB 9999
+            1162 maiorB 9999
+            1163 maiorB 9999
+            1164 maiorB 9999
+            1165 maiorB 9999
+            1166 switch 00
+            1167 maiorA 9999
+            1168 maiorA 9999
+            1169 maiorA 9999
+            1170 maiorB 9999
+            1171 maiorB 9999
+            1172 maiorB 9999
+            1173 maiorB 9999
+            1174 maiorB 9999
+            1175 maiorB 9999
+            1176 maiorB 9999
+            1177 switch 00
+            1178 maiorA 9999
+            1179 maiorA 9999
+            1180 maiorB 9999
+            1181 maiorB 9999
+            1182 maiorB 9999
+            1183 maiorB 9999
+            1184 maiorB 9999
+            1185 maiorB 9999
+            1186 maiorB 9999
+            1187 maiorB 9999
+            1188 switch 00
+            1189 maiorA 9999
+            1190 maiorB 9999
+            1191 maiorB 9999
+            1192 maiorB 9999
+            1193 maiorB 9999
+            1194 maiorB 9999
+            1195 maiorB 9999
+            1196 maiorB 9999
+            1197 maiorB 9999
+            1198 maiorB 9999
+            1199 switch 00
+
+            9999 retorne
+fim ordenFatores-Y
+
+inicio moveD-YZ 00
+    00 moveD-Z 01
+    01 moveD-Y 02
+    02 retorne
+fim moveD-YZ
+
+inicio maiorA 00
+    00 goInit-Y 01
+    01 Y < i -- 02 Y < e
+    02 Y _ i -- 03 Y A i
+    02 rejeite
+    03 retorne
+fim maiorA
+
+inicio maiorB 00
+    00 goInit-Y 01
+    01 Y < i -- 02 Y < e
+    02 Y _ i -- 03 Y B i
+    03 retorne
+fim maiorB
+
+inicio igualC 00
+    00 goInit-Y 01
+    01 Y < i -- 02 Y < e
+    02 Y _ i -- 03 Y C i
+    03 retorne
+fim igualC
 
 
     inicio SOMA 9999   ; Prepara todo o ambiente para começar a fazer as contas

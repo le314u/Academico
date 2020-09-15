@@ -1,10 +1,3 @@
-#        ; Se primeira Fita == 0
-#        0100 Z 1 i -- 1001 Z 1 i      ; 0+1 = 1
-#        0100 Z 9 i -- 1009 Z 9 i      ; 0+9 = 9
-#        ; Se primeira Fita == 0     +1 flutuando
-#        0110 Z 0 i -- 1001 Z 0 i      ; 0+0+1 = 1
-#        0110 Z 9 i -- 1010 Z 9 i      ; 0+9+1 = 10
-
 def soma():
     for rw in [0]:
         for tape in [1]:
@@ -32,7 +25,6 @@ def soma():
                         )
                 print('\n')
 
-#0000 Z 0 i -- 0100 Z 0 e
 def compareDigits():
     for tape in ['Y','Z']:
         for number1 in range(0,10):
@@ -57,6 +49,48 @@ def compareDigits():
                     number1,
                     "i"
                 )
+                
 
-    
-                    
+
+def sub():
+    for rw in [0]:
+        for tape in [1]:
+            for oldRead in range(0,10):# Tem digito flutuante
+                for buff in [0,1]:# Tem digito flutuante
+                    for newRead in range(0,10):# Tem digito flutuante
+                        estadoA=str(rw)+str(tape)+str(buff)+str(oldRead)
+                        if(oldRead - buff < newRead):
+                            auxOldRead = oldRead+10
+                        else:
+                            auxOldRead = oldRead
+                        estadoB="10"+str(str(0 if auxOldRead <10 else 1))+str(auxOldRead-newRead-buff)
+                        print(
+                            estadoA,
+                            "Z",
+                            newRead,
+                            "i",
+                            "--",
+                            estadoB,
+                            "Z",
+                            newRead,
+                            "e",
+                            "\t; ",str(oldRead),"-",str(buff),"-",str(newRead),"=",str(auxOldRead-newRead-buff), "Pega emprestado", str(0 if auxOldRead <10 else 1)
+                        )
+                    estadoA=str(rw)+str(tape)+str(buff)+str(oldRead)
+                    estadoB="10"+ ("0" if buff == 0  else '' )+str( ( buff*10+oldRead )-1 )
+                    print(
+                        estadoA,
+                        "Z",
+                        "$s",
+                        "i",
+                        "--",
+                        estadoB,
+                        "Z",
+                        "$s",
+                        "i",
+                        "\t; ",str(oldRead),"-",str(buff),"-",str(0),"=",str(oldRead-buff), "Pega emprestado", str(0 if auxOldRead <10 else 1)
+                    )
+                    print('\n')
+
+
+                

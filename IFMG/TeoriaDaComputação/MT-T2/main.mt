@@ -262,29 +262,424 @@ fim preaparaAmbiente
 
 inicio main 01
     ; Analisa se a entrada é valida
-        01 sintatic-X 02        ; Verifico se a entrada é valida
+        01 sintatic-X 02            ; Verifico se a entrada é valida
     ; Prepara as fitas
-        02 preaparaAmbiente 03  ; Prepara as Fitas
+        02 preaparaAmbiente 03      ; Prepara as Fitas
     ; Defini qual o tipo de operação
     ; Estado 1XXX Representa Soma  --   2XXX Representa Subtração
-        03 Z + i -- 1000 Z + i    ; operação de SOMA
-        1000 SOMA 04              ; Realiza a soma
-        03 Z - i -- 2000 Z - i    ; operação de SUBTRAÇÂO
-        2000 SUB 04              ; Realiza a subtração
-        04 aceite               ; Fim
+        03 Z + i -- 1000 Z + i      ; operação de SOMA
+        1000 SOMA 04                ; Realiza a soma
+        03 Z - i -- 2000 Z - i      ; operação de SUBTRAÇÂO
+        2000 SUB 04                 ; Realiza a subtração
+    ; Transcreve o resultado
+        04 resultado-YZ 05               ; Fim
+        05 aceite
 fim main
 
 
+inicio resultado-YZ 00
+    ; inicio do Digito
+    00 Y $d i -- 01 Y $d i ; Inicio do numero
+    00 moveE-Y 00
+
+    ;Transcreve o numero
+    01 Y $d e -- 01 Z $d d ; Inicio do numero
+    01 Y > i -- 02 Z > i ; Inicio do numero
+
+    02 retorne
+
+fim resultado-YZ
+
+
 inicio SUB 9999
-    ; Inicio os ponteiros na posição mais a direita de cada numero 
-    9999 posiciona-Z 9998           ; Posiciona a fita Z a direita do simbolo
-    9998 Y * i -- 9997 Y * e        ; Aponta Y para um digito
-    9997 Z * i -- 0000 Z * e        ; Aponta Z para um digito
-    ; A-B ou B-A
-    0000 ordenFatores-Y  1111
-    1111 rejeite
+    9999 initSUB 00
+    00 Y A i -- 01 Y A d ; A-B
+    00 Y B i -- 03 Y B d ; B-A
+    00 Y C i -- 01 Y C d ; C tanto faz
+    ; A-B
+    01 direitaNumero-YZ 02 
+    02 SUB_A-B 99
+    ; B-A
+    03 direitaNumero-YZ 04
+    04 inverte-BA 05 
+    05 SUB_A-B 99
+    99 retorne
 
 fim SUB
+
+inicio SUB_A-B 9999
+    9999 switch 0000
+    ; Dado a leitura de um Digito vai para o estado que representa o digito 
+        ; Representação do Estado WXYZ:
+        ;   W Representa se esta lendo ou escrevendo [0] Lendo [1] Escrevendo
+        ;   X Repsenta qual fita esta sendo operada [0] Primeira  [1]Segunda 
+        ;   Y Representa se tem numero flutuando [1] Sim [0] Não
+        ;   Z Representa o que foi lido ou escrito [0-9]
+        ;   
+        ;   Para representar a leitura da primeira fita Z=0 pois não houve leitura anterior
+         
+
+    ; Leitura Fita 0
+        0000 Y 0 i -- 0100 Y 0 i    ; Scan 0
+        0000 Y 1 i -- 0101 Y 1 i    ; Scan 1
+        0000 Y 2 i -- 0102 Y 2 i    ; Scan 2
+        0000 Y 3 i -- 0103 Y 3 i    ; Scan 3
+        0000 Y 4 i -- 0104 Y 4 i    ; Scan 4
+        0000 Y 5 i -- 0105 Y 5 i    ; Scan 5
+        0000 Y 6 i -- 0106 Y 6 i    ; Scan 6
+        0000 Y 7 i -- 0107 Y 7 i    ; Scan 7
+        0000 Y 8 i -- 0108 Y 8 i    ; Scan 8
+        0000 Y 9 i -- 0109 Y 9 i    ; Scan 9
+        0000 Y * i -- 0100 Y * d    ; Scan [!digito] ou seja o digito acabou portanto conseidera 0
+        0010 Y 0 i -- 0110 Y 0 i    ; Scan 0
+        0010 Y 1 i -- 0100 Y 1 i    ; Scan 1
+        0010 Y 2 i -- 0101 Y 2 i    ; Scan 2
+        0010 Y 3 i -- 0102 Y 3 i    ; Scan 3
+        0010 Y 4 i -- 0103 Y 4 i    ; Scan 4
+        0010 Y 5 i -- 0104 Y 5 i    ; Scan 5
+        0010 Y 6 i -- 0105 Y 6 i    ; Scan 6
+        0010 Y 7 i -- 0106 Y 7 i    ; Scan 7
+        0010 Y 8 i -- 0107 Y 8 i    ; Scan 8
+        0010 Y 9 i -- 0108 Y 9 i    ; Scan 9
+        0010 Y * i -- 0100 Y * i    ; Scan [!digito] ou seja o digito acabou portanto conseidera 0
+
+
+    ; Leitura Fita 1 
+        0100 Z 0 i -- 1000 Z 0 e 	;  0 - 0 - 0 = 0 Pega emprestado 0
+        0100 Z 1 i -- 1019 Z 1 e 	;  0 - 0 - 1 = 9 Pega emprestado 1
+        0100 Z 2 i -- 1018 Z 2 e 	;  0 - 0 - 2 = 8 Pega emprestado 1
+        0100 Z 3 i -- 1017 Z 3 e 	;  0 - 0 - 3 = 7 Pega emprestado 1
+        0100 Z 4 i -- 1016 Z 4 e 	;  0 - 0 - 4 = 6 Pega emprestado 1
+        0100 Z 5 i -- 1015 Z 5 e 	;  0 - 0 - 5 = 5 Pega emprestado 1
+        0100 Z 6 i -- 1014 Z 6 e 	;  0 - 0 - 6 = 4 Pega emprestado 1
+        0100 Z 7 i -- 1013 Z 7 e 	;  0 - 0 - 7 = 3 Pega emprestado 1
+        0100 Z 8 i -- 1012 Z 8 e 	;  0 - 0 - 8 = 2 Pega emprestado 1
+        0100 Z 9 i -- 1011 Z 9 e 	;  0 - 0 - 9 = 1 Pega emprestado 1
+        0100 Z $s i -- 1000 Z $s i 	;  0 - 0 - 0 = 0 Pega emprestado 1
+        0100 Z < i -- 1000 Z < i 	;  0 - 0 - 0 = 0 Pega emprestado 1
+
+        0110 Z 0 i -- 1019 Z 0 e 	;  0 - 1 - 0 = 9 Pega emprestado 1
+        0110 Z 1 i -- 1018 Z 1 e 	;  0 - 1 - 1 = 8 Pega emprestado 1
+        0110 Z 2 i -- 1017 Z 2 e 	;  0 - 1 - 2 = 7 Pega emprestado 1
+        0110 Z 3 i -- 1016 Z 3 e 	;  0 - 1 - 3 = 6 Pega emprestado 1
+        0110 Z 4 i -- 1015 Z 4 e 	;  0 - 1 - 4 = 5 Pega emprestado 1
+        0110 Z 5 i -- 1014 Z 5 e 	;  0 - 1 - 5 = 4 Pega emprestado 1
+        0110 Z 6 i -- 1013 Z 6 e 	;  0 - 1 - 6 = 3 Pega emprestado 1
+        0110 Z 7 i -- 1012 Z 7 e 	;  0 - 1 - 7 = 2 Pega emprestado 1
+        0110 Z 8 i -- 1011 Z 8 e 	;  0 - 1 - 8 = 1 Pega emprestado 1
+        0110 Z 9 i -- 1010 Z 9 e 	;  0 - 1 - 9 = 0 Pega emprestado 1
+        0110 Z $s i -- 1019 Z $s i 	;  0 - 1 - 0 = -1 Pega emprestado 1
+        0110 Z < i -- 1019 Z < i 	;  0 - 1 - 0 = -1 Pega emprestado 1
+
+        0101 Z 0 i -- 1001 Z 0 e 	;  1 - 0 - 0 = 1 Pega emprestado 0
+        0101 Z 1 i -- 1000 Z 1 e 	;  1 - 0 - 1 = 0 Pega emprestado 0
+        0101 Z 2 i -- 1019 Z 2 e 	;  1 - 0 - 2 = 9 Pega emprestado 1
+        0101 Z 3 i -- 1018 Z 3 e 	;  1 - 0 - 3 = 8 Pega emprestado 1
+        0101 Z 4 i -- 1017 Z 4 e 	;  1 - 0 - 4 = 7 Pega emprestado 1
+        0101 Z 5 i -- 1016 Z 5 e 	;  1 - 0 - 5 = 6 Pega emprestado 1
+        0101 Z 6 i -- 1015 Z 6 e 	;  1 - 0 - 6 = 5 Pega emprestado 1
+        0101 Z 7 i -- 1014 Z 7 e 	;  1 - 0 - 7 = 4 Pega emprestado 1
+        0101 Z 8 i -- 1013 Z 8 e 	;  1 - 0 - 8 = 3 Pega emprestado 1
+        0101 Z 9 i -- 1012 Z 9 e 	;  1 - 0 - 9 = 2 Pega emprestado 1
+        0101 Z $s i -- 1001 Z $s i 	;  1 - 0 - 0 = 1 Pega emprestado 1
+        0101 Z < i -- 1001 Z < i 	;  1 - 0 - 0 = 1 Pega emprestado 1
+
+        0111 Z 0 i -- 1000 Z 0 e 	;  1 - 1 - 0 = 0 Pega emprestado 0
+        0111 Z 1 i -- 1019 Z 1 e 	;  1 - 1 - 1 = 9 Pega emprestado 1
+        0111 Z 2 i -- 1018 Z 2 e 	;  1 - 1 - 2 = 8 Pega emprestado 1
+        0111 Z 3 i -- 1017 Z 3 e 	;  1 - 1 - 3 = 7 Pega emprestado 1
+        0111 Z 4 i -- 1016 Z 4 e 	;  1 - 1 - 4 = 6 Pega emprestado 1
+        0111 Z 5 i -- 1015 Z 5 e 	;  1 - 1 - 5 = 5 Pega emprestado 1
+        0111 Z 6 i -- 1014 Z 6 e 	;  1 - 1 - 6 = 4 Pega emprestado 1
+        0111 Z 7 i -- 1013 Z 7 e 	;  1 - 1 - 7 = 3 Pega emprestado 1
+        0111 Z 8 i -- 1012 Z 8 e 	;  1 - 1 - 8 = 2 Pega emprestado 1
+        0111 Z 9 i -- 1011 Z 9 e 	;  1 - 1 - 9 = 1 Pega emprestado 1
+        0111 Z $s i -- 1000 Z $s i 	;  1 - 1 - 0 = 0 Pega emprestado 1
+        0111 Z < i -- 1000 Z < i 	;  1 - 1 - 0 = 0 Pega emprestado 1
+
+        0102 Z 0 i -- 1002 Z 0 e 	;  2 - 0 - 0 = 2 Pega emprestado 0
+        0102 Z 1 i -- 1001 Z 1 e 	;  2 - 0 - 1 = 1 Pega emprestado 0
+        0102 Z 2 i -- 1000 Z 2 e 	;  2 - 0 - 2 = 0 Pega emprestado 0
+        0102 Z 3 i -- 1019 Z 3 e 	;  2 - 0 - 3 = 9 Pega emprestado 1
+        0102 Z 4 i -- 1018 Z 4 e 	;  2 - 0 - 4 = 8 Pega emprestado 1
+        0102 Z 5 i -- 1017 Z 5 e 	;  2 - 0 - 5 = 7 Pega emprestado 1
+        0102 Z 6 i -- 1016 Z 6 e 	;  2 - 0 - 6 = 6 Pega emprestado 1
+        0102 Z 7 i -- 1015 Z 7 e 	;  2 - 0 - 7 = 5 Pega emprestado 1
+        0102 Z 8 i -- 1014 Z 8 e 	;  2 - 0 - 8 = 4 Pega emprestado 1
+        0102 Z 9 i -- 1013 Z 9 e 	;  2 - 0 - 9 = 3 Pega emprestado 1
+        0102 Z $s i -- 1002 Z $s i 	;  2 - 0 - 0 = 2 Pega emprestado 1
+        0102 Z < i -- 1002 Z < i 	;  2 - 0 - 0 = 2 Pega emprestado 1
+
+        0112 Z 0 i -- 1001 Z 0 e 	;  2 - 1 - 0 = 1 Pega emprestado 0
+        0112 Z 1 i -- 1000 Z 1 e 	;  2 - 1 - 1 = 0 Pega emprestado 0
+        0112 Z 2 i -- 1019 Z 2 e 	;  2 - 1 - 2 = 9 Pega emprestado 1
+        0112 Z 3 i -- 1018 Z 3 e 	;  2 - 1 - 3 = 8 Pega emprestado 1
+        0112 Z 4 i -- 1017 Z 4 e 	;  2 - 1 - 4 = 7 Pega emprestado 1
+        0112 Z 5 i -- 1016 Z 5 e 	;  2 - 1 - 5 = 6 Pega emprestado 1
+        0112 Z 6 i -- 1015 Z 6 e 	;  2 - 1 - 6 = 5 Pega emprestado 1
+        0112 Z 7 i -- 1014 Z 7 e 	;  2 - 1 - 7 = 4 Pega emprestado 1
+        0112 Z 8 i -- 1013 Z 8 e 	;  2 - 1 - 8 = 3 Pega emprestado 1
+        0112 Z 9 i -- 1012 Z 9 e 	;  2 - 1 - 9 = 2 Pega emprestado 1
+        0112 Z $s i -- 1001 Z $s i 	;  2 - 1 - 0 = 1 Pega emprestado 1
+        0112 Z < i -- 1001 Z < i 	;  2 - 1 - 0 = 1 Pega emprestado 1
+
+        0103 Z 0 i -- 1003 Z 0 e 	;  3 - 0 - 0 = 3 Pega emprestado 0
+        0103 Z 1 i -- 1002 Z 1 e 	;  3 - 0 - 1 = 2 Pega emprestado 0
+        0103 Z 2 i -- 1001 Z 2 e 	;  3 - 0 - 2 = 1 Pega emprestado 0
+        0103 Z 3 i -- 1000 Z 3 e 	;  3 - 0 - 3 = 0 Pega emprestado 0
+        0103 Z 4 i -- 1019 Z 4 e 	;  3 - 0 - 4 = 9 Pega emprestado 1
+        0103 Z 5 i -- 1018 Z 5 e 	;  3 - 0 - 5 = 8 Pega emprestado 1
+        0103 Z 6 i -- 1017 Z 6 e 	;  3 - 0 - 6 = 7 Pega emprestado 1
+        0103 Z 7 i -- 1016 Z 7 e 	;  3 - 0 - 7 = 6 Pega emprestado 1
+        0103 Z 8 i -- 1015 Z 8 e 	;  3 - 0 - 8 = 5 Pega emprestado 1
+        0103 Z 9 i -- 1014 Z 9 e 	;  3 - 0 - 9 = 4 Pega emprestado 1
+        0103 Z $s i -- 1003 Z $s i 	;  3 - 0 - 0 = 3 Pega emprestado 1
+        0103 Z < i -- 1003 Z < i 	;  3 - 0 - 0 = 3 Pega emprestado 1
+
+        0113 Z 0 i -- 1002 Z 0 e 	;  3 - 1 - 0 = 2 Pega emprestado 0
+        0113 Z 1 i -- 1001 Z 1 e 	;  3 - 1 - 1 = 1 Pega emprestado 0
+        0113 Z 2 i -- 1000 Z 2 e 	;  3 - 1 - 2 = 0 Pega emprestado 0
+        0113 Z 3 i -- 1019 Z 3 e 	;  3 - 1 - 3 = 9 Pega emprestado 1
+        0113 Z 4 i -- 1018 Z 4 e 	;  3 - 1 - 4 = 8 Pega emprestado 1
+        0113 Z 5 i -- 1017 Z 5 e 	;  3 - 1 - 5 = 7 Pega emprestado 1
+        0113 Z 6 i -- 1016 Z 6 e 	;  3 - 1 - 6 = 6 Pega emprestado 1
+        0113 Z 7 i -- 1015 Z 7 e 	;  3 - 1 - 7 = 5 Pega emprestado 1
+        0113 Z 8 i -- 1014 Z 8 e 	;  3 - 1 - 8 = 4 Pega emprestado 1
+        0113 Z 9 i -- 1013 Z 9 e 	;  3 - 1 - 9 = 3 Pega emprestado 1
+        0113 Z $s i -- 1002 Z $s i 	;  3 - 1 - 0 = 2 Pega emprestado 1
+        0113 Z < i -- 1002 Z < i 	;  3 - 1 - 0 = 2 Pega emprestado 1
+
+        0104 Z 0 i -- 1004 Z 0 e 	;  4 - 0 - 0 = 4 Pega emprestado 0
+        0104 Z 1 i -- 1003 Z 1 e 	;  4 - 0 - 1 = 3 Pega emprestado 0
+        0104 Z 2 i -- 1002 Z 2 e 	;  4 - 0 - 2 = 2 Pega emprestado 0
+        0104 Z 3 i -- 1001 Z 3 e 	;  4 - 0 - 3 = 1 Pega emprestado 0
+        0104 Z 4 i -- 1000 Z 4 e 	;  4 - 0 - 4 = 0 Pega emprestado 0
+        0104 Z 5 i -- 1019 Z 5 e 	;  4 - 0 - 5 = 9 Pega emprestado 1
+        0104 Z 6 i -- 1018 Z 6 e 	;  4 - 0 - 6 = 8 Pega emprestado 1
+        0104 Z 7 i -- 1017 Z 7 e 	;  4 - 0 - 7 = 7 Pega emprestado 1
+        0104 Z 8 i -- 1016 Z 8 e 	;  4 - 0 - 8 = 6 Pega emprestado 1
+        0104 Z 9 i -- 1015 Z 9 e 	;  4 - 0 - 9 = 5 Pega emprestado 1
+        0104 Z $s i -- 1004 Z $s i 	;  4 - 0 - 0 = 4 Pega emprestado 1
+        0104 Z < i -- 1004 Z < i 	;  4 - 0 - 0 = 4 Pega emprestado 1
+
+        0114 Z 0 i -- 1003 Z 0 e 	;  4 - 1 - 0 = 3 Pega emprestado 0
+        0114 Z 1 i -- 1002 Z 1 e 	;  4 - 1 - 1 = 2 Pega emprestado 0
+        0114 Z 2 i -- 1001 Z 2 e 	;  4 - 1 - 2 = 1 Pega emprestado 0
+        0114 Z 3 i -- 1000 Z 3 e 	;  4 - 1 - 3 = 0 Pega emprestado 0
+        0114 Z 4 i -- 1019 Z 4 e 	;  4 - 1 - 4 = 9 Pega emprestado 1
+        0114 Z 5 i -- 1018 Z 5 e 	;  4 - 1 - 5 = 8 Pega emprestado 1
+        0114 Z 6 i -- 1017 Z 6 e 	;  4 - 1 - 6 = 7 Pega emprestado 1
+        0114 Z 7 i -- 1016 Z 7 e 	;  4 - 1 - 7 = 6 Pega emprestado 1
+        0114 Z 8 i -- 1015 Z 8 e 	;  4 - 1 - 8 = 5 Pega emprestado 1
+        0114 Z 9 i -- 1014 Z 9 e 	;  4 - 1 - 9 = 4 Pega emprestado 1
+        0114 Z $s i -- 1003 Z $s i 	;  4 - 1 - 0 = 3 Pega emprestado 1
+        0114 Z < i -- 1003 Z < i 	;  4 - 1 - 0 = 3 Pega emprestado 1
+
+        0105 Z 0 i -- 1005 Z 0 e 	;  5 - 0 - 0 = 5 Pega emprestado 0
+        0105 Z 1 i -- 1004 Z 1 e 	;  5 - 0 - 1 = 4 Pega emprestado 0
+        0105 Z 2 i -- 1003 Z 2 e 	;  5 - 0 - 2 = 3 Pega emprestado 0
+        0105 Z 3 i -- 1002 Z 3 e 	;  5 - 0 - 3 = 2 Pega emprestado 0
+        0105 Z 4 i -- 1001 Z 4 e 	;  5 - 0 - 4 = 1 Pega emprestado 0
+        0105 Z 5 i -- 1000 Z 5 e 	;  5 - 0 - 5 = 0 Pega emprestado 0
+        0105 Z 6 i -- 1019 Z 6 e 	;  5 - 0 - 6 = 9 Pega emprestado 1
+        0105 Z 7 i -- 1018 Z 7 e 	;  5 - 0 - 7 = 8 Pega emprestado 1
+        0105 Z 8 i -- 1017 Z 8 e 	;  5 - 0 - 8 = 7 Pega emprestado 1
+        0105 Z 9 i -- 1016 Z 9 e 	;  5 - 0 - 9 = 6 Pega emprestado 1
+        0105 Z $s i -- 1005 Z $s i 	;  5 - 0 - 0 = 5 Pega emprestado 1
+        0105 Z < i -- 1005 Z < i 	;  5 - 0 - 0 = 5 Pega emprestado 1
+
+        0115 Z 0 i -- 1004 Z 0 e 	;  5 - 1 - 0 = 4 Pega emprestado 0
+        0115 Z 1 i -- 1003 Z 1 e 	;  5 - 1 - 1 = 3 Pega emprestado 0
+        0115 Z 2 i -- 1002 Z 2 e 	;  5 - 1 - 2 = 2 Pega emprestado 0
+        0115 Z 3 i -- 1001 Z 3 e 	;  5 - 1 - 3 = 1 Pega emprestado 0
+        0115 Z 4 i -- 1000 Z 4 e 	;  5 - 1 - 4 = 0 Pega emprestado 0
+        0115 Z 5 i -- 1019 Z 5 e 	;  5 - 1 - 5 = 9 Pega emprestado 1
+        0115 Z 6 i -- 1018 Z 6 e 	;  5 - 1 - 6 = 8 Pega emprestado 1
+        0115 Z 7 i -- 1017 Z 7 e 	;  5 - 1 - 7 = 7 Pega emprestado 1
+        0115 Z 8 i -- 1016 Z 8 e 	;  5 - 1 - 8 = 6 Pega emprestado 1
+        0115 Z 9 i -- 1015 Z 9 e 	;  5 - 1 - 9 = 5 Pega emprestado 1
+        0115 Z $s i -- 1004 Z $s i 	;  5 - 1 - 0 = 4 Pega emprestado 1
+        0115 Z < i -- 1004 Z < i 	;  5 - 1 - 0 = 4 Pega emprestado 1
+
+        0106 Z 0 i -- 1006 Z 0 e 	;  6 - 0 - 0 = 6 Pega emprestado 0
+        0106 Z 1 i -- 1005 Z 1 e 	;  6 - 0 - 1 = 5 Pega emprestado 0
+        0106 Z 2 i -- 1004 Z 2 e 	;  6 - 0 - 2 = 4 Pega emprestado 0
+        0106 Z 3 i -- 1003 Z 3 e 	;  6 - 0 - 3 = 3 Pega emprestado 0
+        0106 Z 4 i -- 1002 Z 4 e 	;  6 - 0 - 4 = 2 Pega emprestado 0
+        0106 Z 5 i -- 1001 Z 5 e 	;  6 - 0 - 5 = 1 Pega emprestado 0
+        0106 Z 6 i -- 1000 Z 6 e 	;  6 - 0 - 6 = 0 Pega emprestado 0
+        0106 Z 7 i -- 1019 Z 7 e 	;  6 - 0 - 7 = 9 Pega emprestado 1
+        0106 Z 8 i -- 1018 Z 8 e 	;  6 - 0 - 8 = 8 Pega emprestado 1
+        0106 Z 9 i -- 1017 Z 9 e 	;  6 - 0 - 9 = 7 Pega emprestado 1
+        0106 Z $s i -- 1006 Z $s i 	;  6 - 0 - 0 = 6 Pega emprestado 1
+        0106 Z < i -- 1006 Z < i 	;  6 - 0 - 0 = 6 Pega emprestado 1
+
+        0116 Z 0 i -- 1005 Z 0 e 	;  6 - 1 - 0 = 5 Pega emprestado 0
+        0116 Z 1 i -- 1004 Z 1 e 	;  6 - 1 - 1 = 4 Pega emprestado 0
+        0116 Z 2 i -- 1003 Z 2 e 	;  6 - 1 - 2 = 3 Pega emprestado 0
+        0116 Z 3 i -- 1002 Z 3 e 	;  6 - 1 - 3 = 2 Pega emprestado 0
+        0116 Z 4 i -- 1001 Z 4 e 	;  6 - 1 - 4 = 1 Pega emprestado 0
+        0116 Z 5 i -- 1000 Z 5 e 	;  6 - 1 - 5 = 0 Pega emprestado 0
+        0116 Z 6 i -- 1019 Z 6 e 	;  6 - 1 - 6 = 9 Pega emprestado 1
+        0116 Z 7 i -- 1018 Z 7 e 	;  6 - 1 - 7 = 8 Pega emprestado 1
+        0116 Z 8 i -- 1017 Z 8 e 	;  6 - 1 - 8 = 7 Pega emprestado 1
+        0116 Z 9 i -- 1016 Z 9 e 	;  6 - 1 - 9 = 6 Pega emprestado 1
+        0116 Z $s i -- 1005 Z $s i 	;  6 - 1 - 0 = 5 Pega emprestado 1
+        0116 Z < i -- 1005 Z < i 	;  6 - 1 - 0 = 5 Pega emprestado 1
+
+        0107 Z 0 i -- 1007 Z 0 e 	;  7 - 0 - 0 = 7 Pega emprestado 0
+        0107 Z 1 i -- 1006 Z 1 e 	;  7 - 0 - 1 = 6 Pega emprestado 0
+        0107 Z 2 i -- 1005 Z 2 e 	;  7 - 0 - 2 = 5 Pega emprestado 0
+        0107 Z 3 i -- 1004 Z 3 e 	;  7 - 0 - 3 = 4 Pega emprestado 0
+        0107 Z 4 i -- 1003 Z 4 e 	;  7 - 0 - 4 = 3 Pega emprestado 0
+        0107 Z 5 i -- 1002 Z 5 e 	;  7 - 0 - 5 = 2 Pega emprestado 0
+        0107 Z 6 i -- 1001 Z 6 e 	;  7 - 0 - 6 = 1 Pega emprestado 0
+        0107 Z 7 i -- 1000 Z 7 e 	;  7 - 0 - 7 = 0 Pega emprestado 0
+        0107 Z 8 i -- 1019 Z 8 e 	;  7 - 0 - 8 = 9 Pega emprestado 1
+        0107 Z 9 i -- 1018 Z 9 e 	;  7 - 0 - 9 = 8 Pega emprestado 1
+        0107 Z $s i -- 1007 Z $s i 	;  7 - 0 - 0 = 7 Pega emprestado 1
+        0107 Z < i -- 1007 Z < i 	;  7 - 0 - 0 = 7 Pega emprestado 1
+
+        0117 Z 0 i -- 1006 Z 0 e 	;  7 - 1 - 0 = 6 Pega emprestado 0
+        0117 Z 1 i -- 1005 Z 1 e 	;  7 - 1 - 1 = 5 Pega emprestado 0
+        0117 Z 2 i -- 1004 Z 2 e 	;  7 - 1 - 2 = 4 Pega emprestado 0
+        0117 Z 3 i -- 1003 Z 3 e 	;  7 - 1 - 3 = 3 Pega emprestado 0
+        0117 Z 4 i -- 1002 Z 4 e 	;  7 - 1 - 4 = 2 Pega emprestado 0
+        0117 Z 5 i -- 1001 Z 5 e 	;  7 - 1 - 5 = 1 Pega emprestado 0
+        0117 Z 6 i -- 1000 Z 6 e 	;  7 - 1 - 6 = 0 Pega emprestado 0
+        0117 Z 7 i -- 1019 Z 7 e 	;  7 - 1 - 7 = 9 Pega emprestado 1
+        0117 Z 8 i -- 1018 Z 8 e 	;  7 - 1 - 8 = 8 Pega emprestado 1
+        0117 Z 9 i -- 1017 Z 9 e 	;  7 - 1 - 9 = 7 Pega emprestado 1
+        0117 Z $s i -- 1006 Z $s i 	;  7 - 1 - 0 = 6 Pega emprestado 1
+        0117 Z < i -- 1006 Z < i 	;  7 - 1 - 0 = 6 Pega emprestado 1
+
+        0108 Z 0 i -- 1008 Z 0 e 	;  8 - 0 - 0 = 8 Pega emprestado 0
+        0108 Z 1 i -- 1007 Z 1 e 	;  8 - 0 - 1 = 7 Pega emprestado 0
+        0108 Z 2 i -- 1006 Z 2 e 	;  8 - 0 - 2 = 6 Pega emprestado 0
+        0108 Z 3 i -- 1005 Z 3 e 	;  8 - 0 - 3 = 5 Pega emprestado 0
+        0108 Z 4 i -- 1004 Z 4 e 	;  8 - 0 - 4 = 4 Pega emprestado 0
+        0108 Z 5 i -- 1003 Z 5 e 	;  8 - 0 - 5 = 3 Pega emprestado 0
+        0108 Z 6 i -- 1002 Z 6 e 	;  8 - 0 - 6 = 2 Pega emprestado 0
+        0108 Z 7 i -- 1001 Z 7 e 	;  8 - 0 - 7 = 1 Pega emprestado 0
+        0108 Z 8 i -- 1000 Z 8 e 	;  8 - 0 - 8 = 0 Pega emprestado 0
+        0108 Z 9 i -- 1019 Z 9 e 	;  8 - 0 - 9 = 9 Pega emprestado 1
+        0108 Z $s i -- 1008 Z $s i 	;  8 - 0 - 0 = 8 Pega emprestado 1
+        0108 Z < i -- 1008 Z < i 	;  8 - 0 - 0 = 8 Pega emprestado 1
+
+        0118 Z 0 i -- 1007 Z 0 e 	;  8 - 1 - 0 = 7 Pega emprestado 0
+        0118 Z 1 i -- 1006 Z 1 e 	;  8 - 1 - 1 = 6 Pega emprestado 0
+        0118 Z 2 i -- 1005 Z 2 e 	;  8 - 1 - 2 = 5 Pega emprestado 0
+        0118 Z 3 i -- 1004 Z 3 e 	;  8 - 1 - 3 = 4 Pega emprestado 0
+        0118 Z 4 i -- 1003 Z 4 e 	;  8 - 1 - 4 = 3 Pega emprestado 0
+        0118 Z 5 i -- 1002 Z 5 e 	;  8 - 1 - 5 = 2 Pega emprestado 0
+        0118 Z 6 i -- 1001 Z 6 e 	;  8 - 1 - 6 = 1 Pega emprestado 0
+        0118 Z 7 i -- 1000 Z 7 e 	;  8 - 1 - 7 = 0 Pega emprestado 0
+        0118 Z 8 i -- 1019 Z 8 e 	;  8 - 1 - 8 = 9 Pega emprestado 1
+        0118 Z 9 i -- 1018 Z 9 e 	;  8 - 1 - 9 = 8 Pega emprestado 1
+        0118 Z $s i -- 1007 Z $s i 	;  8 - 1 - 0 = 7 Pega emprestado 1
+        0118 Z < i -- 1007 Z < i 	;  8 - 1 - 0 = 7 Pega emprestado 1
+
+        0109 Z 0 i -- 1009 Z 0 e 	;  9 - 0 - 0 = 9 Pega emprestado 0
+        0109 Z 1 i -- 1008 Z 1 e 	;  9 - 0 - 1 = 8 Pega emprestado 0
+        0109 Z 2 i -- 1007 Z 2 e 	;  9 - 0 - 2 = 7 Pega emprestado 0
+        0109 Z 3 i -- 1006 Z 3 e 	;  9 - 0 - 3 = 6 Pega emprestado 0
+        0109 Z 4 i -- 1005 Z 4 e 	;  9 - 0 - 4 = 5 Pega emprestado 0
+        0109 Z 5 i -- 1004 Z 5 e 	;  9 - 0 - 5 = 4 Pega emprestado 0
+        0109 Z 6 i -- 1003 Z 6 e 	;  9 - 0 - 6 = 3 Pega emprestado 0
+        0109 Z 7 i -- 1002 Z 7 e 	;  9 - 0 - 7 = 2 Pega emprestado 0
+        0109 Z 8 i -- 1001 Z 8 e 	;  9 - 0 - 8 = 1 Pega emprestado 0
+        0109 Z 9 i -- 1000 Z 9 e 	;  9 - 0 - 9 = 0 Pega emprestado 0
+        0109 Z $s i -- 1009 Z $s i 	;  9 - 0 - 0 = 9 Pega emprestado 0
+        0109 Z < i -- 1009 Z < i 	;  9 - 0 - 0 = 9 Pega emprestado 0
+
+        0119 Z 0 i -- 1008 Z 0 e 	;  9 - 1 - 0 = 8 Pega emprestado 0
+        0119 Z 1 i -- 1007 Z 1 e 	;  9 - 1 - 1 = 7 Pega emprestado 0
+        0119 Z 2 i -- 1006 Z 2 e 	;  9 - 1 - 2 = 6 Pega emprestado 0
+        0119 Z 3 i -- 1005 Z 3 e 	;  9 - 1 - 3 = 5 Pega emprestado 0
+        0119 Z 4 i -- 1004 Z 4 e 	;  9 - 1 - 4 = 4 Pega emprestado 0
+        0119 Z 5 i -- 1003 Z 5 e 	;  9 - 1 - 5 = 3 Pega emprestado 0
+        0119 Z 6 i -- 1002 Z 6 e 	;  9 - 1 - 6 = 2 Pega emprestado 0
+        0119 Z 7 i -- 1001 Z 7 e 	;  9 - 1 - 7 = 1 Pega emprestado 0
+        0119 Z 8 i -- 1000 Z 8 e 	;  9 - 1 - 8 = 0 Pega emprestado 0
+        0119 Z 9 i -- 1019 Z 9 e 	;  9 - 1 - 9 = 9 Pega emprestado 1
+        0119 Z $s i -- 1008 Z $s i 	;  9 - 1 - 0 = 8 Pega emprestado 1
+        0119 Z < i -- 1008 Z < i 	;  9 - 1 - 0 = 8 Pega emprestado 1
+
+    ; Apos uma operação escreve na fita
+        1000 write[00]-Y 9000
+        1001 write[01]-Y 9000
+        1002 write[02]-Y 9000
+        1003 write[03]-Y 9000
+        1004 write[04]-Y 9000
+        1005 write[05]-Y 9000
+        1006 write[06]-Y 9000
+        1007 write[07]-Y 9000
+        1008 write[08]-Y 9000
+        1009 write[09]-Y 9000
+        1010 write[10]-Y 9010
+        1011 write[11]-Y 9010
+        1012 write[12]-Y 9010
+        1013 write[13]-Y 9010
+        1014 write[14]-Y 9010
+        1015 write[15]-Y 9010
+        1016 write[16]-Y 9010
+        1017 write[17]-Y 9010
+        1018 write[18]-Y 9010
+        1019 write[19]-Y 9010
+
+        ; Verifica se o processamento acabou
+        9000 switch 9001
+            9001 Y < i -- 9002 Y < i
+            9001 switch 0000  ; Falhou então cancela
+            9002 Z $s i -- 9003 Z $s i 
+            9002 Z < i -- 9003 Z < i 
+            9002 switch 0000 ; Falhou então cancela
+            9003 gotR_-Y 9004
+            9004 gotR>-Z 9005
+            9005 retorne
+        9010 switch 9011
+            9011 Y < i -- 9012 Y < i
+            9011 switch 0010  ; Falhou então cancela
+            9012 Z $s i -- 9013 Z $s i
+            9012 Z < i -- 9013 Z < i 
+            9012 switch 0010  ; Falhou então cancela
+            9013 write[01]-Y 9000
+fim SUB_A-B
+
+inicio inverte-BA 00
+    ; Apaga a fita Y
+    00 goEnd-Y 01
+    01 Y _ i -- 02 Y _ i ; Fita foi apagada
+    01 Y * i -- 01 Y _ e ; Apaga cracter por caracter
+    
+    ; Vou até o simbolo
+    02 Z $s i -- 03 Z $s i ; Vai até o simbolo
+    02 Z * i -- 02 Z * e ; Movimenta o cabeçote
+
+    ; Copio o elemento B para a fita Y
+    03 Z $s d -- 04 Y < d;
+    04 Z $d d -- 04 Y $d d 
+    04 Z = d -- 05 Y > i 
+    05 Z > i -- 06 Z - d
+    06 Z _ i -- 07 Z > i 
+
+    ; Aponta o cabeçote para o inicio do numero
+    07 Y > i -- 08 Y > e
+    08 goInit-Z 09
+    09 Z $s i -- 10 Z $s e
+    09 Z * i -- 09 Z * d  
+    
+    10 retorne
+fim inverte-BA
+
+inicio initSUB 00
+    ; Inicio os ponteiros na posição mais a direita de cada numero 
+    00 direitaNumero-Y 01
+    01 direitaNumero-Z 02
+    ; A=A-B ou B=B-A ?  C=A-B | B-A
+    02 ordenFatores-Y  03
+    03 retorne
+fim initSUB
 
 inicio ordenFatores-Y 99   ; Verifica qual o maior NUMERO
     ; Representação dos estado YZ
@@ -563,15 +958,44 @@ inicio igualC 00
     03 retorne
 fim igualC
 
+inicio esquerdaNumero-Y 0000
+    0000 goInit-Y 0001               ; Vai apra o inicio da fita
+    0001 Y $d i -- 0002 Y $d i       ; Chegou no digito
+    0001 moveD-Y 0001
+    0002 retorne
+fim esquerdaNumero-Y
+
+inicio esquerdaNumero-Z 0000
+    0000 goEnd-Z 0001                ; Vai para o final da fita
+    0001 Z $s i -- 0002 Z $s d       ; Chegou no Simbolo
+    0001 moveE-Z 0001                ; Move para esquerda até chegar no digito
+    0002 retorne
+fim esquerdaNumero-Z
+
+inicio direitaNumero-YZ 00
+    00 direitaNumero-Y 01
+    01 direitaNumero-Z 02
+    02 retorne
+fim direitaNumero-YZ
+
+inicio direitaNumero-Y 00
+    00 goEnd-Y 01               ; Vai apra o Fim da fita
+    01 Y $d i -- 02 Y $d i      ; Chegou no digito
+    01 moveE-Y 01               ; Move para esquerda até chegar no digito
+    02 retorne
+fim direitaNumero-Y
+
+inicio direitaNumero-Z 00
+    00 goEnd-Z 01               ; Vai apra o Fim da fita
+    01 Z $d i -- 02 Z $d i      ; Chegou no digito
+    01 moveE-Z 01               ; Move para esquerda até chegar no digito
+    02 retorne
+fim direitaNumero-Z
 
     inicio SOMA 9999   ; Prepara todo o ambiente para começar a fazer as contas
         ; Inicio os ponteiros na posição mais a direita de cada numero 
-        9999 posiciona-Z 9998           ; Posiciona a fita Z a direita do simbolo
-        9998 Y * i -- 9997 Y * e        ; Aponta Y para um digito
-        9997 Z * i -- 0000 Z * e        ; Aponta Z para um digito
-
-
-
+        9999 direitaNumero-YZ 0000
+        
         ; Dado a leitura de um Digito vai para o estado que representa o digito 
         ; Representação do Estado WXYZ:
         ;   W Representa se esta lendo ou escrevendo [0] Lendo [1] Escrevendo

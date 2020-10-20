@@ -1,0 +1,60 @@
+\documentclass[
+  12pt,
+  arial,
+  openany,
+  oneside,
+  chapter=TITLE,
+  section=TITLE,
+  subsection=TITLE,
+  subsubsection=TITLE,
+  a4paper,
+  table,
+  english,
+  brazil]{abntex2}
+
+% packages
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lastpage}
+\usepackage{pgfplots}
+\usepackage{indentfirst}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{microtype}
+\renewcommand\thesection{\arabic{section}}
+\usepackage[brazilian,hyperpageref]{backref}
+\usepackage[alf]{abntex2cite}
+\usepackage[brazil]{babel}
+
+\titulo{Título do trabalho de TCC}
+\autor{Lucas Mateus Fernandes}
+\local{Formiga - MG}
+\data{2020}
+\orientador{Mário Luiz Rodrigues Oliveira}
+\instituicao{%
+ Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais \par
+ Campus Formiga \par
+ Ciência da Computação
+}
+
+\preambulo{Proposta de projeto do Trabalho de Conclusão de Curso do Curso de Bacharelado em Ciência da Computação apresentada ao IFMG - Campus Formiga.}
+
+\begin{document}
+	
+	\imprimircapa
+	\imprimirfolhaderosto
+	\newpage
+	\tableofcontents
+	\newpage
+
+	\input{01-intro}
+	\input{02-justificativa}
+	\input{03-objetivos}
+	\input{04-funtamentacao-teorica}
+	\input{05-metodologia}
+	\input{06-cronograma}
+	\input{07-resultados-esperados}
+	\bibliography{referencias}
+
+\end{document}

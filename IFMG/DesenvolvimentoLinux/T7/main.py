@@ -6,21 +6,37 @@ class Tree:
         key = str(key)
         return self.RubroNegra.procuraKey(key)
 
+    def __str__(self):
+        #intera a arvore em in ordem
+        tree = ""
+        for no in self.inordem():
+            try:
+                tree = tree + str(no)+"\n"
+            except:
+                pass
+        return tree[0:-1]
+
     def __setitem__(self, key, value):
+        #Converte a entrada para string
         key = str(key)
         if value != None:
-            try:
+            try:#Atualiza o conteudo de um no
                 self[key].dado = value
-            except:
+            except:#Adiciona um no na arvore
                 self.insert(key, value)
         else:
-            pass
+            #remove um no da arvore
+            self.remove(key)
 
     def __iter__(self):
         return self.inordem()
 
     def insert(self, key, value):
         self.RubroNegra.inserir(key, value)
+    
+    def remove(self, key):
+        self.RubroNegra.remove_no(key)
+
     def preordem(self):
         return self.RubroNegra.preordem()
 
@@ -63,7 +79,7 @@ class RubroNegra:
         self.arvoreVazia.esquerda = None
         self.arvoreVazia.direita = None
         self.raiz = self.arvoreVazia
-
+        
     def inserir_novoNo(self, chave, dado):
         # Inserção Binaria Simples
         no = No(chave, dado)
@@ -192,6 +208,134 @@ class RubroNegra:
         y.direita = x
         x.pai = y
 
+    # remove um no da arvore
+    def remove_no(self, chave):
+        self.__remove_no_helper(self.raiz, chave)
+
+    def __remove_no_helper(self, no, key):
+        #Percorre a arvore até encontrar o no com a chave  
+        z = self.arvoreVazia #Representa o no a ser removido
+        while no != self.arvoreVazia:
+            if no.chave == key:
+                z = no
+            if no.chave <= key:
+                no = no.direita
+            else:
+                no = no.esquerda
+
+        #Caso o nó não esteja presente na arvore apenas encerra a função
+        if z == self.arvoreVazia:
+            return
+        
+        y = z
+        y_original_cor = y.cor #Guarda a cor do no
+        # Caso não haja no menor a partir de no
+        if z.esquerda == self.arvoreVazia: 
+            x = z.direita
+            self.__rb_transplant(z, z.direita)
+        # Caso não haja no maior a partir de no
+        elif (z.direita == self.arvoreVazia):
+            x = z.esquerda
+            self.__rb_transplant(z, z.esquerda)
+        # Caso haja no maior e menor
+        else:
+            y = self.minimum(z.direita)#Verifica qual o menor no que seja maior que o no especificado
+            y_original_cor = y.cor # salva a cor do no
+            x = y.direita # recebe o filho da direita (um no com a chave maior)
+            if y.pai == z: #Verifica se numero maior mais proximo do "no" esta um nivel abaixo
+                x.pai = y 
+            else:
+                #Reajusta "y" da arvore
+                self.__rb_transplant(y, y.direita)
+                y.direita = z.direita
+                y.direita.pai = y
+            #Reajusta "z" na arvore
+            self.__rb_transplant(z, y)
+            y.esquerda = z.esquerda
+            y.esquerda.pai = y
+            #Recolore 
+            y.cor = z.cor
+        if y_original_cor == color['black']:
+            self.__fix_delete(x)
+
+    #Remove um no da arvore e reajusta
+    def __rb_transplant(self, no, filho):
+        #Verifica se o no especificado não possui um pai
+        if no.pai == None:
+            self.raiz = filho
+        #Verifica se no é menor ou maior que o pai
+        elif no == no.pai.esquerda:# Caso seja menor
+            no.pai.esquerda = filho# Elimino o no da arvore
+        else:# Caso seja maior
+            no.pai.direita = filho# Elimino o no da arvore
+        #Link o filho ao seu novo pai
+        filho.pai = no.pai
+
+    # Corrige a arvore
+    def __fix_delete(self, x):
+        while x != self.raiz and x.cor == color['black']:
+            if x == x.pai.esquerda:
+                s = x.pai.direita
+                if s.cor == color['red']:
+                    # case 3.1
+                    s.cor = color['black']
+                    x.pai.cor = color['red']
+                    self.rotaciona_esquerda(x.pai)
+                    s = x.pai.direita
+
+                if s.esquerda.cor == color['black'] and s.direita.cor == color['black']:
+                    # case 3.2
+                    s.cor = color['red']
+                    x = x.pai
+                else:
+                    if s.direita.cor == color['black']:
+                        # case 3.3
+                        s.esquerda.cor = color['black']
+                        s.cor = color['red']
+                        self.rotaciona_direita(s)
+                        s = x.pai.direita
+
+                    # case 3.4
+                    s.cor = x.pai.cor
+                    x.pai.cor = color['black']
+                    s.direita.cor = color['black']
+                    self.rotaciona_esquerda(x.pai)
+                    x = self.raiz
+            else:
+                s = x.pai.esquerda
+                if s.cor == color['red']:
+                    # case 3.1
+                    s.cor = color['black']
+                    x.pai.cor = color['red']
+                    self.rotaciona_direita(x.pai)
+                    s = x.pai.esquerda
+
+                if s.esquerda.cor == color['black'] and s.direita.cor == color['black']:
+                    # case 3.2
+                    s.cor = color['red']
+                    x = x.pai
+                else:
+                    if s.esquerda.cor == color['black']:
+                        # case 3.3
+                        s.direita.cor = color['black']
+                        s.cor = color['red']
+                        self.rotaciona_esquerda(s)
+                        s = x.pai.esquerda
+
+                        # case 3.4
+                    s.cor = x.pai.cor
+                    x.pai.cor = color['black']
+                    s.esquerda.cor = color['black']
+                    self.rotaciona_direita(x.pai)
+                    x = self.raiz
+        x.cor = color['black']
+
+    # Procura o no com a menor chave a partir do no
+    def minimum(self, no):
+        while no.esquerda != self.arvoreVazia:
+            no = no.esquerda
+        return no
+
     def preordem(self):
         return self.preordem_rec(self.raiz)
 
@@ -234,34 +378,17 @@ class RubroNegra:
 
 if __name__ == "__main__":
     bst = Tree()
-    bst.insert("8", "")
-    bst.insert("18", "")
-    bst.insert("5", "")
-    bst.insert("15", "")
-    bst.insert("17", "")
-    bst.insert("25", "")
-    bst.insert("40", "")
-    bst.insert("80", "Alguma Coisa")
+    bst.insert("b8", "")
+    bst["e18"]=""
+    bst["a5"]=""
+    bst["c15"]=""
+    bst["d17"]=""
+    bst["f25"]=""
+    bst["g40"]=""
+    bst.insert("h80", "Valor original")
 
-    print(bst["80"])
-    print(bst[80])
-    print(bst["80"].dado)
-    bst["80"]= "teste"
-    print(bst["80"].dado)
-    bst["800"]= "teste"
-    for i in bst:
-        print(i)
+    print(bst)
+    bst["c15"]=None
+    print(bst)
 
-    #for i in bst.preordem():
-    #    print(i.chave)
-
-    #for i in bst.inordem():
-    #    print(i.chave)
-
-    #for i in bst.posordem():
-    #    print(i.chave)
-
-    #for i in bst:
-    #    print(i.chave)
-
-    # bst.delete_no(25)
+    

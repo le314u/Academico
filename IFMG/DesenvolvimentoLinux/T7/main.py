@@ -65,7 +65,7 @@ class No:
         self.cor = color['red']
 
     def __str__(self):
-        return self.chave + "--->"+self.dado
+        return "{'chave':"+self.chave + ",\t'dado':"+self.dado+"}"
 
     def vo(self):
         return self.pai.pai
@@ -378,17 +378,40 @@ class RubroNegra:
 
 if __name__ == "__main__":
     bst = Tree()
-    bst.insert("b8", "")
-    bst["e18"]=""
-    bst["a5"]=""
-    bst["c15"]=""
-    bst["d17"]=""
-    bst["f25"]=""
-    bst["g40"]=""
-    bst.insert("h80", "Valor original")
+    print("Inserindo Dados")
+    bst.insert("b8", "1")#Insert por função
+    bst.insert("h80", "2")#Insert por função
+    bst["e18"]="3"#Insert por chave
+    bst["a5"]="4"#Insert por chave
+    bst["c15"]="5"#Insert por chave
+    bst["d17"]="6"#Insert por chave
+    bst["f25"]="7"#Insert por chave
+    bst["g40"]="8"#Insert por chave
 
-    print(bst)
-    bst["c15"]=None
-    print(bst)
+    #Printa a arvore inOrden
+    print(str(bst) + "\n")
 
+    print("Removendo Dados")
+    bst["c15"]=None#Remove por chave
+    bst.remove("c17")#Remove por chave
     
+    #Printa a arvore inOrden
+    print(str(bst) + "\n")
+
+    #Percorre a arvore em preOrden
+    print("Percorre a arvore em preOrden")
+    for no in bst.preordem():
+        print(no)
+    print("\n")
+
+    #Percorre a arvore em inOrden
+    print("Percorre a arvore em inOrden")
+    for no in bst.inordem():
+        print(no)
+    print("\n")
+
+    #Percorre a arvore em posOrden
+    print("Percorre a arvore em posOrden")
+    for no in bst.posordem():
+        print(no)
+    print("\n")

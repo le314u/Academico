@@ -149,24 +149,33 @@ s = Servico(db)
 r = Relacao(db)
 
 #Cria 2 Pessoas
-p.insert("Lucas G",0,"lucas@Gmail","MG")
-p.insert("Lucas M",1,"lucas@Mmail","MG")
+print("Cria 2 Pessoas")
+p.insert("Lucas G",0,"gabriel@Gmail","MG")
+p.insert("Lucas M",1,"mateus@Mmail","MG")
+
 #Mostra todas as pessoas
+print("Mostra todas as pessoas")
 for cpf in range(2):
     for pessoa in p.select(cpf):
         print(pessoa)
 
 #Cria 2 cargos
+print("\nCria 2 cargos")
 s.insert("Chefe",1000)
 s.insert("Subordinado",1)
+
 #Mostra dados sobre o cargo "Chefe"
-s.select("Chefe")
+print("\nMostra dados sobre o cargo 'Chefe'")
+for cargo in s.select("Chefe"):
+        print(cargo)
 
 #Cria uma relação de Pessoa-> Cargo
-r.insert(1,1)
-r.insert(2,2)
-r.select(1,1)
+print("\nCria 3 relações do tipo Pessoa-> Cargo")
+r.insert(1,1) #Pessoa 1 cargo 1
+r.insert(2,2) #Pessoa 2 cargo 2
+
 #Mostra a relação
+print("\nMostra a relação idPessoa->idCargo")
 for k in range(3):
     for j in range(3):
         for i in r.select(j,k):

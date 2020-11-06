@@ -64,8 +64,8 @@ def GaussJordan():
 def Resultado():
     # Mostra o vetor solução
     print('\nSolução: ')
-    for i in range(n):
-        print('X%d = %0.2f' %(i,x[i]), end = '\t')
+    for i in range( int(var_Global['qtdEquacoes']) ):
+        print('X%d = %0.2f' %(i,var_Global['solucao'][i]), end = '\t')
 
 # Exibe a entrada de forma mais 'legivel'
 def equacao(linha):

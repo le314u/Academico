@@ -1,24 +1,33 @@
+
+[https://www.maxwell.vrac.puc-rio.br/10082/10082\_4.PDF]   
+
 \section{Fundamentação Teórica}
 
 \subsection{Model Checking}
-Model checking é uma técnica que verifica propriedades de um sistema através de enumeração exaustiva de todos os estados alcançáveis.
+Model checking é uma técnica que consiste na verificação automática de propriedades acerca do comportamento de sistemas através de enumeração exaustivade todos os estados alcançáveis. 
 
-Existem duas abordagens para implementar verificação de modelos: a abordagem lógica e a abordagem
-que utiliza a teoria dos autômatos.
+Para realizar a validação das propriedades de sistemas reativos é necessário:
+Especificar quais as propriedades que o sistema deverá ter para que seja considerado correto; Construir um modelo formal do sistema de modo que capture todas as propriedades essenciais do sistema; Executar o verificador de modelos para validar as propriedades especificadas do sistema.
 
-Na abordagem lógica, um sistema reativo será descrito através de um tipo de
-grafo de transição de estados, chamado de estrutura de Kripke, que captura
-a intuição do seu comportamento.
+Caso todas as propriedades sejam verdadeiras, então o sistema está correto. Caso não obedeça a alguma propriedade, então é dado um contra exemplo mostrando o porquê da não verificação da propriedade.
 
-Deve-se ainda considerar que existe uma restrição na abordagem lógica: as relações de
-transições devem ser totais. As estruturas de Kripke s˜ao simples e suficientes
-para capturar os aspectos de comportamento dos sistemas reativos.
+[ https://www2.dbd.puc-rio.br/pergamum/tesesabertas/0115648\_03\_cap\_02.pdf ]
+
+
+
+\subsubsection{Sistemas Reativos}
+Sistemas reativos têm como caracterização básica a computação.
+
+Para efeitos de definição:Estado é a descrição do sistema em um dado instante de tempo; Transição é uma relação entre dois estados; 
+Computação é uma sequência de estados onde cada estado é obtido através de um estado anterior e uma relação de transição entre eles.
 [ https://www2.dbd.puc-rio.br/pergamum/tesesabertas/0115648\_03\_cap\_02.pdf ]
 
 \subsubsection{Estrutura de Kripke}
-Uma estrutura de Kripke é um conjunto de estados, um conjunto de transições entre estados e uma função que rotula cada estado com o conjunto de propriedades que são verdadeiras nele
-Caminhos em estrutura de Kripke são computações em sistemas reativos
+
+Um sistema reativo pode ser descrito através de uma estrutura de Kripke pois caminhos em estrutura de Kripke são computações em sistemas reativos.
+
+Uma estrutura de Kripke é uma quadrupla que contem um conjunto de estados S, conjunto de estados inicias Si que é subconjunnto de S, um conjunto de transições entre estados R e uma função L que rotula cada estado com o conjunto de propriedades que são verdadeiras nele.
+
 [ https://www2.dbd.puc-rio.br/pergamum/tesesabertas/0115648\_03\_cap\_02.pdf ]
 
-\subsection{SubseçãoN}
-   
+[https://www.maxwell.vrac.puc-rio.br/10082/10082\_4.PDF]

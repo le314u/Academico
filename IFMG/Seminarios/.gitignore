@@ -2,3 +2,8 @@
 *.log
 *.zip
 *.pdf
+*.bbl
+*.blg
+*.brf
+*.toc
+

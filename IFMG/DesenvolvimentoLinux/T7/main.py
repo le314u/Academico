@@ -379,14 +379,14 @@ class RubroNegra:
 if __name__ == "__main__":
     bst = Tree()
     print("Inserindo Dados")
-    bst.insert("b8", "1")#Insert por função
-    bst.insert("h80", "2")#Insert por função
-    bst["e18"]="3"#Insert por chave
-    bst["a5"]="4"#Insert por chave
-    bst["c15"]="5"#Insert por chave
-    bst["d17"]="6"#Insert por chave
-    bst["f25"]="7"#Insert por chave
-    bst["g40"]="8"#Insert por chave
+    bst.insert("08", "1")#Insert por função
+    bst.insert("80", "2")#Insert por função
+    bst["18"]="3"#Insert por chave
+    bst["05"]="4"#Insert por chave
+    bst["15"]="5"#Insert por chave
+    bst["17"]="6"#Insert por chave
+    bst["25"]="7"#Insert por chave
+    bst["40"]="8"#Insert por chave
 
     #Printa a arvore inOrden
     print(str(bst) + "\n")

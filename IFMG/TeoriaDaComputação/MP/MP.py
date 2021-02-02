@@ -1,6 +1,8 @@
-class Fila(object):
-    def __init__(self):
+class Fila:
+    def __init__(self, string):
         self.dados = []
+        for char in string:
+            self.dados.append(char)
 
     def __str__(self):
         return self.dados
@@ -14,19 +16,18 @@ class Fila(object):
     def vazia(self):
         return len(self.dados) == 0
 
-class MaquinaPost():
-    def __init__(self, pathFile, pathFila):
+class MaquinaPost:
+    def __init__(self, pathFile, stringFila):
         self.fim = False
         self.estados = None
         self.alfabeto = None
-        self.fila = None
+        self.fila = Fila( stringFila )
         self.estado = None
         self.rergistrador = None
         self.comandos = None
-
         self.carregaFonte(pathFile)
             
-    def _edComando(tipo, origem, destino, argumento):
+    def _edComando(self, tipo, origem, destino, argumento):
         """Cria uma estrutura que representa um programa"""
         return {
             "tipo":tipo,
@@ -37,15 +38,16 @@ class MaquinaPost():
 
     def _criaComando(self, linha):
         """Dado uma linha do codigo fonte retorna uma estrutura que representa o comando""" 
+        print(linha)
         # Comentario
         if linha[0] == "#":
             return None
         # Atribuição
         elif linha[1].lower() == 'atrib':
-            return self._edComando('atribuicao', linha[0], linha[3], linha[2])
+            return self._edComando('atribuicao', linha[0], linha[2], linha[1])
         # Leitura
         elif linha[1].lower() == 'ler':
-            return self._edComando('atribuicao', linha[0], linha[3], '')
+            return self._edComando('ler', linha[0], linha[2], '')
         # Aceita
         elif linha[1].lower() == 'aceita':
             return self._edComando('aceita', linha[0], '', '')
@@ -60,11 +62,12 @@ class MaquinaPost():
         """Dado um arquivo Fonte seta as configurações da Maquina"""
         self.estados = []
         self.alfabeto = []
+        self.comandos = []
 
         #Carrega o Arquivo 
         arquivo = open(caminhoArquivo, "r")
         diagrama = []
-        for i in arq:
+        for i in arquivo:
             linha = i.split()
             diagrama.append(linha)
 
@@ -73,8 +76,8 @@ class MaquinaPost():
             comando = self._criaComando(diagrama[numeroLinha])
             if(comando != None):
                 self.comandos.append(comando)
-                if comando['origen'] not in self.estados:
-                    self.estados.append(comando['origen'])
+                if comando['origem'] not in self.estados:
+                    self.estados.append(comando['origem'])
                 if comando['destino'] not in self.estados:
                     self.estados.append(comando['destino'])
                 if comando['argumento'] not in self.alfabeto:
@@ -111,3 +114,5 @@ class MaquinaPost():
         self.estado = comando['destino']
         executado = True
         return executado
+
+MaquinaPost("./ComparacaoTuringPost.py","Teste")

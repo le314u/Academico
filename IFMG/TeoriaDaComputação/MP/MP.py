@@ -160,4 +160,4 @@ class MaquinaPost:
                 indiceUltimoComandoEstado = 0
 
 # Vazia ou numeros par de 1's
-MaquinaPost("./ComparacaoTuringPost.py", "")
+MaquinaPost("./teste.mp", "1010")

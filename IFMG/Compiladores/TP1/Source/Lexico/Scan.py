@@ -3,16 +3,19 @@ import Token;
 import Identifier;
 
 class Scan:
-    def __init__(self):
+    def __init__(self, pathFile,tamanhoBuffer=1024):
+        #Meta dados
         self.linha = 1;
         self.identifier = Identifier.Identifier();
         #Carrega o arquivo em uma unicaString
-        fluxo = self.loadFile('./teste');
-        self.main(fluxo);
+        arquivo = self.loadFile( pathFile );
+        self.tokens = self.main(arquivo,tamanhoBuffer);
     
-    def pushToken():
+    def pushToken(self, token):
         """Empilha o token"""
-        pass
+        #Salva o token na memoria
+        if(not (token is None)):
+            self.tokens.append(str(token))
 
     def loadFile(self, nomeArquivo):
         """Abre um arquivo"""
@@ -34,20 +37,22 @@ class Scan:
         status = not EOF
         return status
 
-    def main(self, fluxo):
+    def main(self, fluxo , tamanho):
         """Main"""
-        
         #Preenche o Buffer passando do Arquivo para o Buffer
-        tamanho=32
         buff = Buffer.Buffer(tamanho);
-        statusFile = self.stream(buff, fluxo, 32)
+        statusFile = self.stream(buff, fluxo, tamanho)
 
         while(True):
             #Se o Buffer esta vazio é porque acabaram todos os tokens
             if(buff.empty()):
                 break
             else:
-                print(self.nextToken(buff, fluxo));
+                #Salva o token na memoria
+                self.pushToken( self.nextToken(buff, fluxo) )
+        return self.tokens
+
+
 
     def _renewBuff(self, buff, fluxo):
         """Renova parcialmente o buffer"""
@@ -57,9 +62,49 @@ class Scan:
     def nextToken(self, buff, fluxo):
         """Retorna o proximo Token"""
         
-        #Verifica se a String passa no Identifier
+        #Ignora Espaço tabulção e quebra de linha
+        lexema = buff.getString();
+
+        #Ignora Identação
+        while( lexema == ' ' or lexema == '\t' or lexema == '\n' ):
+            #Contabiliza uma linha
+            if(lexema == '\n'):
+                #Altera o meta dado relacionado ao posicionamento do token no arquivo
+                self.linha = self.linha + 1;
+                
+            #Renova parcialmente o buffer
+            self._renewBuff(buff,fluxo)
+            lexema = buff.getString();
+
+            #Fita acabou | Trim acabou
+            if(buff.empty() or  (lexema != ' ' and lexema != '\t' and lexema != '\n')):
+                return
+
+        #Ignora Comentario
+        while( lexema == "#"): #Vai de '#'
+            while(buff.getCaracter() != '\n'): #Até '\n'
+                self._renewBuff(buff,fluxo)
+                lexema = buff.getString();
+                #Fita acabou
+                if(buff.empty()):
+                    return
+            self.linha = self.linha + 1;
+            self._renewBuff(buff,fluxo)
+            lexema = buff.getString();
+            return
+
+        #Inicializa as verificações de validade
         VetAnt = []
-        VetPos = self.identifier.vetor( buff.getString() );
+        VetPos = self.identifier.vetor( lexema );
+        
+        #Caracter Invalido
+        if(self.identifier.erroToken(VetAnt,VetPos)):
+            token = Token.Token(lexema, 'erro', self.linha);
+            #Renova parcialmente o buffer
+            self._renewBuff(buff, fluxo)
+            return token
+        
+        #Caracter Valido
         while(True):
             #Inicia um loop Para verificar qual Re será a correspondente
             lexema = buff.getString();
@@ -67,35 +112,59 @@ class Scan:
             #Verifica quais os possiveis tipos para a substring
             VetAnt = VetPos 
             VetPos = self.identifier.vetor( lexema );
-            #Ignora espaços, tabulações e quebra de linha
-            if(lexema == ' ' or lexema == '\t'):
-                #Renova parcialmente o buffer
-                self._renewBuff(buff,fluxo)
-                
-            elif(lexema == '\n'):
-                #Renova parcialmente o buffer
-                self._renewBuff(buff,fluxo)
-                
-                #Altera o meta dado relacionado ao posicionamento do token no arquivo
-                self.linha = self.linha + 1;
-            else:
-                #Verifica se chegou no final do lexema ou no fim do buffer
-                if( self.identifier.finishToken(VetAnt, VetPos) or buff.getCaracter() == ''):
-                    buff.back() #Voltou o ponteiro
-                    lexema = buff.getString() #Pega a string
-                    types = self.identifier.types(lexema) #Vetor com todos os tipos possiveis para o token
-                    if(lexema in self.identifier.reserved): #Verifica se o lexema é uma palavra reservada
-                        typeLexema = "reserved"
-                    else: #Caso o lexema não seja uma palavra reservada
-                        if(len(types)==1):
-                            typeLexema = types[0] #Caso não seja reservada há apenas uma RE que casa com a string
-                    #Cria um token
-                    token = Token.Token(lexema, typeLexema, self.linha);
-                    #Renova parcialmente o buffer
-                    self._renewBuff(buff, fluxo)
-                    return token
-                
-                else:
-                    buff.next()
 
-Scan()
+            #Token interrompido
+            now = lexema[-1]
+            if( now == '\n' or now == ' ' or now == '\t'):
+                #Elimina o ultimo caracter que causou o erro
+                lexema = lexema[:-1]
+
+                #Verifica se a linha foi alterada
+                linha = self.linha
+                if(now == '\n'):
+                    self.linha = self.linha + 1;
+
+                #Verifica se o lexema é uma palavra reservada
+                if(lexema in self.identifier.reserved): 
+                    typeLexema = "reserved"
+                else: #Caso o lexema não seja uma palavra reservada
+                    #Retorna o possivel tipo do token
+                    types = self.identifier.types(lexema)#Vetor com todos os tipos possiveis para o token
+                
+                    typeLexema = types[0] #Caso não seja reservada há apenas uma RE que casa com a string
+                #Cria um token
+                token = Token.Token(lexema, typeLexema, linha);
+                #Renova parcialmente o buffer
+                self._renewBuff(buff, fluxo)
+                return token
+
+            #Verifica se chegou no final do lexema
+            if( self.identifier.finishToken(VetAnt, VetPos)):
+                buff.back() #Voltou o ponteiro
+                lexema = buff.getString() #Pega a string
+                if(lexema in self.identifier.reserved): 
+                    typeLexema = "reserved"
+                else: #Caso o lexema não seja uma palavra reservada
+                    types = self.identifier.types(lexema) #Vetor com todos os tipos possiveis para o token
+                    typeLexema = types[0] #Caso não seja reservada há apenas uma RE que casa com a string
+                #Cria um token
+                token = Token.Token(lexema, typeLexema, self.linha);
+                #Renova parcialmente o buffer
+                self._renewBuff(buff, fluxo)
+                return token
+
+            #Caso o buffer tenha chegado no limite
+            elif(buff.getCaracter() == '' or buff.indiceBuffer == buff.indiceMax):
+                lexema = buff.getString() #Pega a string
+                if(lexema in self.identifier.reserved): #Verifica se o lexema é uma palavra reservada
+                    typeLexema = "reserved"
+                else: #Caso o lexema não seja uma palavra reservada
+                    types = self.identifier.types(lexema) #Vetor com todos os tipos possiveis para o token
+                    typeLexema = types[0]           
+                #Cria um token
+                token = Token.Token(lexema, typeLexema, self.linha);
+                #Renova parcialmente o buffer
+                self._renewBuff(buff, fluxo)
+                return token
+            else:
+                buff.next()

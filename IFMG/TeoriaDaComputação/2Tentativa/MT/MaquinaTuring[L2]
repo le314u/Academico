@@ -1,0 +1,60 @@
+; L2 a 		L2 = { w | w é palíndromo no alfabeto [ab] }
+ 
+
+0 a _ r leuA
+0 b _ r leuB
+0 _ _ * reject
+
+leuA _ _ l fimA
+leuA * * r leuA
+
+leuB _ _ l fimB
+leuB * * r leuB
+
+fimA a _ l retorna
+fimA _ _ * accept
+fimA * * * reject
+
+fimB b _ l retorna
+fimB _ _ * accept
+fimB * * * reject
+
+retorna _ _ * accept
+retorna * * l ret
+ret * * l ret
+ret _ _ r pog
+
+pog a _ r leuA
+pog b _ r leuB
+pog _ _ r accept
+
+accept * * * tudoEsquerdaAceita
+
+tudoEsquerdaAceita * * l tudoEsquerdaAceita
+tudoEsquerdaAceita _ _ r limpaFitaAceita
+
+limpaFitaAceita * _ r limpaFitaAceita
+limpaFitaAceita _ _ * escreveAceitaA
+
+escreveAceitaA * A r escreveAceitaC
+escreveAceitaC * C r escreveAceitaE
+escreveAceitaE * E r escreveAceitaI
+escreveAceitaI * I r escreveAceitaT
+escreveAceitaT * T r escreveAceitaA2
+escreveAceitaA2 * A r halt-accept
+
+reject * * * tudoEsquerdaRejeita
+
+tudoEsquerdaRejeita * * l tudoEsquerdaRejeita
+tudoEsquerdaRejeita _ _ r limpaFitaRejeita
+
+limpaFitaRejeita * _ r limpaFitaRejeita
+limpaFitaRejeita _ _ * escreveRejeitaR
+
+escreveRejeitaR * R r escreveRejeitaE
+escreveRejeitaE * E r escreveRejeitaJ
+escreveRejeitaJ * J r escreveRejeitaE2
+escreveRejeitaE2 * E r escreveRejeitaI
+escreveRejeitaI * I r escreveRejeitaT
+escreveRejeitaT * T r escreveRejeitaA
+escreveRejeitaA * A r halt-reject

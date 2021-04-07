@@ -1,0 +1,73 @@
+0 atrib ! 1vazio
+1vazio atrib # inicialvazio
+inicialvazio ler __vazio
+__vazio if a _Avazio
+__vazio if b _Bvazio
+__vazio if ! _!vazio
+__vazio if # _#vazio
+_!vazio atrib ! inicialvazio
+_#vazio ler #_vazio
+#_vazio if ! rejeita
+_Avazio ler ALeituravazio
+ALeituravazio if # checkAvazio
+ALeituravazio if a AAvazio
+ALeituravazio if b ABvazio
+ALeituravazio if ! A!vazio
+A!vazio atrib ! _Avazio
+_Bvazio ler BLeituravazio
+BLeituravazio if # checkBvazio
+BLeituravazio if a BAvazio
+BLeituravazio if b BBvazio
+BLeituravazio if ! B!vazio
+B!vazio atrib ! _Bvazio
+AAvazio atrib a _Avazio
+ABvazio atrib a _Bvazio
+BAvazio atrib b _Avazio
+BBvazio atrib b _Bvazio
+checkAvazio ler checkA_vazio
+checkA_vazio if a 1
+checkA_vazio if b rejeita
+checkA_vazio if # rejeita
+checkA_vazio if ! aceita
+checkBvazio ler checkB_vazio
+checkB_vazio if b 1
+checkB_vazio if a rejeita
+checkB_vazio if # rejeita
+checkB_vazio if ! aceita
+1 atrib # inicial
+inicial ler __
+__ if a _A
+__ if b _B
+__ if ! _!
+__ if # _#
+_! atrib ! inicial
+_# ler #_
+#_ if ! aceita
+_A ler ALeitura
+ALeitura if # checkA
+ALeitura if a AA
+ALeitura if b AB
+ALeitura if ! A!
+A! atrib ! _A
+_B ler BLeitura
+BLeitura if # checkB
+BLeitura if a BA
+BLeitura if b BB
+BLeitura if ! B!
+B! atrib ! _B
+AA atrib a _A
+AB atrib a _B
+BA atrib b _A
+BB atrib b _B
+checkA ler checkA_
+checkA_ if a 1
+checkA_ if b rejeita
+checkA_ if # rejeita
+checkA_ if ! aceita
+checkB ler checkB_
+checkB_ if b 1
+checkB_ if a rejeita
+checkB_ if # rejeita
+checkB_ if ! aceita
+aceita aceita
+rejeita rejeita

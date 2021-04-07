@@ -1,5 +1,0 @@
-function main(){
-    teste = 1 + 2;
-    string = "Testador"
-    teste = 3 + 4;
-}

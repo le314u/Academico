@@ -1,0 +1,178 @@
+# --------- inicio ---------
+0 atrib $ adiciona#
+adiciona# atrib # adiciona!
+adiciona! atrib ! shiftLeft
+# --------------------------
+# ------- ShiftLeft --------
+shiftLeft ler verificaLeitura
+verificaLeitura if a leuA
+verificaLeitura if b leuB
+verificaLeitura if $ leu$
+verificaLeitura if # leu#
+verificaLeitura if ! leu!
+leuA ler verificaLeituraA
+verificaLeituraA if a AA
+verificaLeituraA if b AB
+verificaLeituraA if $ A$
+verificaLeituraA if # A#
+verificaLeituraA if ! A!
+leuB ler verificaLeituraB
+verificaLeituraB if a BA
+verificaLeituraB if b BB
+verificaLeituraB if $ B$
+verificaLeituraB if # B#
+verificaLeituraB if ! B!
+leu$ ler verificaLeitura$
+verificaLeitura$ if a $A
+verificaLeitura$ if b $B
+verificaLeitura$ if $ $$
+verificaLeitura$ if # $#
+verificaLeitura$ if ! $!
+leu# atrib # inicioMeio
+leu! ler verificaLeitura!
+verificaLeitura! if a !A
+verificaLeitura! if b !B
+verificaLeitura! if $ !$
+verificaLeitura! if # !#
+verificaLeitura! if ! !!
+AA atrib a leuA
+AB atrib a leuB
+A$ atrib a leu$
+A# atrib a leu#
+A! atrib a leu!
+BA atrib b leuA
+BB atrib b leuB
+B$ atrib b leu$
+B# atrib b leu#
+B! atrib b leu!
+$A atrib $ leuA
+$B atrib $ leuB
+$$ atrib $ leu$
+$# atrib $ leu#
+$! atrib $ leu!
+#A atrib # leuA
+#B atrib # leuB
+#$ atrib # leu$
+## atrib # leu#
+#! atrib # leu!
+!A atrib ! leuA
+!B atrib ! leuB
+!$ atrib ! leu$
+!# atrib ! leu#
+!! atrib ! leu!
+# --------- acha meio ---------
+inicioMeio ler verificaLeituraMeio
+# --------- passa ! ---------
+verificaLeituraMeio if a leuMeioA
+verificaLeituraMeio if b leuMeioB
+verificaLeituraMeio if $ leuMeio$
+verificaLeituraMeio if # leuMeio#
+verificaLeituraMeio if ! leuMeio!
+leuMeioA ler verificaMeioLeituraA
+verificaMeioLeituraA if a meioAA
+verificaMeioLeituraA if b meioAB
+verificaMeioLeituraA if $ meioA$
+verificaMeioLeituraA if # meioA#
+verificaMeioLeituraA if ! meioA!
+leuMeioB ler verificaMeioLeituraB
+verificaMeioLeituraB if a meioBA
+verificaMeioLeituraB if b meioBB
+verificaMeioLeituraB if $ meioB$
+verificaMeioLeituraB if # meioB#
+verificaMeioLeituraB if ! meioB!
+leuMeio$ ler verificaMeioLeitura$
+verificaMeioLeitura$ if a meio$A
+verificaMeioLeitura$ if b meio$B
+verificaMeioLeitura$ if $ meio$$
+verificaMeioLeitura$ if # meio$#
+verificaMeioLeitura$ if ! meio$!
+leuMeio# atrib # inicioMeio
+leuMeio! ler verificaMeioLeitura!
+verificaMeioLeitura! if a meio!A
+verificaMeioLeitura! if b meio!B
+verificaMeioLeitura! if $ meio!$
+verificaMeioLeitura! if # meio!#
+verificaMeioLeitura! if ! meio!!
+meioAA atrib a leuMeioA
+meioAB atrib a leuMeioB
+meioA$ atrib a leuMeio$
+meioA# atrib a leuMeio#
+meioA! atrib a leuMeio!
+meioBA atrib b leuMeioA
+meioBB atrib b leuMeioB
+meioB$ atrib b leuMeio$
+meioB# atrib b leuMeio#
+meioB! atrib b leuMeio!
+meio$A atrib $ leuMeioA
+meio$B atrib $ leuMeioB
+meio$$ atrib $ leuMeio$
+meio$# atrib $ leuMeio#
+meio$! atrib $ leuMeio!
+meio!A atrib a meio!A2
+meio!A2 atrib ! lerAte$
+meio!B atrib b meio!B2
+meio!B2 atrib ! lerAte$
+meio!$ atrib $ preAlg
+# meio!# atrib # leuMeio#
+# meio!! atrib ! leuMeio!
+# --------- passa $ ---------
+lerAte$ ler verificaLeituraMeio$
+verificaLeituraMeio$ if a insereA
+verificaLeituraMeio$ if b insereB
+verificaLeituraMeio$ if $ rejeita
+insereA ler verificaInsereA
+verificaInsereA if a insereAA_
+verificaInsereA if b insereAB_
+verificaInsereA if $ achou$A
+insereB ler verificaInsereB
+verificaInsereB if a insereBA_
+verificaInsereB if b insereBB_
+verificaInsereB if $ achou$B
+insereAA_ atrib a insereA
+insereAB_ atrib a insereB
+insereBA_ atrib b insereA
+insereBB_ atrib b insereB
+achou$A atrib $ achou$A_
+achou$A_ atrib a inicioMeio
+achou$B atrib $ achou$B_
+achou$B_ atrib b inicioMeio
+# --------- preAlg ---------
+preAlg ler verificaPreAlgLeitura
+verificaPreAlgLeitura if a preAlgInsereA
+verificaPreAlgLeitura if b preAlgInsereB
+verificaPreAlgLeitura if # preAlgInsere#
+preAlgInsereA atrib a preAlg
+preAlgInsereB atrib b preAlg
+preAlgInsere# atrib # iniciaAlg
+iniciaAlg ler verificaAlgLeitura
+verificaAlgLeitura if a removeA
+verificaAlgLeitura if b removeB
+verificaAlgLeitura if $ aceita
+removeA ler remocaoA
+remocaoA if a insereAlgAA
+remocaoA if b insereAlgBA
+remocaoA if $ verificaProxA
+insereAlgAA atrib a removeA
+insereAlgBA atrib b removeA
+verificaProxA ler verificaProxA2
+verificaProxA2 if a adicionaAlg$
+verificaProxA2 if b rejeita
+removeB ler remocaoB
+remocaoB if a insereAlgAB
+remocaoB if b insereAlgBB
+remocaoB if $ verificaProxB
+insereAlgAB atrib a removeB
+insereAlgBB atrib b removeB
+verificaProxB ler verificaProxB2
+verificaProxB2 if a rejeita
+verificaProxB2 if b adicionaAlg$
+adicionaAlg$ atrib $ loopAlg
+loopAlg ler verificaLoopAlg
+verificaLoopAlg if a insereLoopA
+verificaLoopAlg if b insereLoopB
+verificaLoopAlg if # insereLoop#
+insereLoopA atrib a loopAlg
+insereLoopB atrib b loopAlg
+insereLoop# atrib # iniciaAlg
+aceita aceita
+rejeita rejeita

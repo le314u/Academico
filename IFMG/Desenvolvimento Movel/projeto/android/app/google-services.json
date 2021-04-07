@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "38441175124",
+    "project_id": "trabalho-moveis-b7074",
+    "storage_bucket": "trabalho-moveis-b7074.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38441175124:android:735bcc8ac81705bdde45c1",
+        "android_client_info": {
+          "package_name": "com.example.lucas_projeto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38441175124-oi2s0busdihls4h93abakubojqqobn94.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOsu8pr2wDiB4fDSIIs052__pYXKqy_88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38441175124-oi2s0busdihls4h93abakubojqqobn94.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

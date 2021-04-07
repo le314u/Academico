@@ -1,0 +1,27 @@
+Nome: Lucas Mateus Fernandes
+RA: 0035411
+
+# DJ da Computação
+link: https://www.urionlinejudge.com.br/judge/pt/problems/view/1265
+
+## Paradigma
+Mistura de Indução com Guloso
+
+### Primeira Etapa
+Verificar quantos digitos tem o Elemento que contem o indice
+
+### Segunda Etapa 
+Verificar qual é o elemento que contem o indice
+Para descobrir qual é o elemento descubro digito por digito
+primeiro descubro qual o digito mais significativo (mais a esquerda)
+e cosneguentemente avanço para o proximo até chegar ao digito menos significativo
+
+
+### Terceira Etapa 
+Verificar Quantos caracteres forem digitados até que o elemento apareça na lista lexicografica
+
+### Quarta Etapa
+Verifico Qual a diferença do indice procurado com o indice que aparece o elemento encontrado ou seja com isso consigo descobrir qual o indice dentro do elemento
+
+### Quinta Etapa
+Converto o valor do indice para o valor do Som

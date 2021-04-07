@@ -5,21 +5,40 @@ class Identifier:
     """Identifica se a string é comaptivel com o Afd"""
     def __init__(self):
         self.reserved = ["as","else","function","if","new","return","type","var","while"];
+        # self.typesRe = {
+        #     "reservado" : re.compile("(as)|(else)|(function)|(if)|(new)|(return)|(type)|(var)|(while)"),
+        #     "id" : re.compile("(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*"),
+        #     "number" : re.compile("(-)?([0-9])([0-9])*"),
+        #     "string" : re.compile("(\'.*\')|(\".*\")"),
+        #     "operadorBoolean" : re.compile("(==)|(~=)|(<=)|(>=)|(<)|(>)|(!)|(&&)|(||)"),
+        #     "operadorAritmetico" : re.compile("(\+)|(\-)|(\*)|(/)"),
+        #     "operadorTernario" : re.compile("(\?)|(:)"),
+        #     "bloco" : re.compile("({)|(})"),
+        #     "precedencia" : re.compile("(\()|(\))"),
+        #     "acesso" : re.compile("(\[)|(\])|(\.)"),
+        #     "atribuicao" : re.compile("="),
+        #     "fim" : re.compile(";"),
+        #     "outros" : re.compile("@"),
+        #     "comentario" : re.compile("#(.*)\\n")
+        # }
+
         self.typesRe = {
             "reservado" : re.compile("(as)|(else)|(function)|(if)|(new)|(return)|(type)|(var)|(while)"),
-            "id" : re.compile("(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*"),
-            "number" : re.compile("(-)?([0-9])([0-9])*"),
-            "string" : re.compile("(\'.*\')|(\".*\")"),
-            "operadorBoolean" : re.compile("(==)|(~=)|(<=)|(>=)|(<)|(>)|(!)|(&&)|(||)"),
+            "id" : re.compile("(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9]){0,31}"),
+            "numberHex" : re.compile("(-)?((0x)([0-9]|[A-F]|[a-f])*)"),
+            "number" : re.compile("(-)?((([0-9])+(\.)?([0-9])*))"),
+            "operadorBoolean" : re.compile("(==)|(~=)|(<=)|(>=)|(<)|(>)|(!)|(\&&)|(\|\|)"),
             "operadorAritmetico" : re.compile("(\+)|(\-)|(\*)|(/)"),
             "operadorTernario" : re.compile("(\?)|(:)"),
             "bloco" : re.compile("({)|(})"),
             "precedencia" : re.compile("(\()|(\))"),
             "acesso" : re.compile("(\[)|(\])|(\.)"),
+            "multiplo" : re.compile(","),
             "atribuicao" : re.compile("="),
             "fim" : re.compile(";"),
             "outros" : re.compile("@"),
-            "comentario" : re.compile("#(.*)\\n")
+            "comentario" : re.compile("#(.*)\\n"),
+            "erro":re.compile("(~)|(\&)|(\|)") #Gambiarra
         }
 
     def vetor(self,string):
@@ -38,7 +57,7 @@ class Identifier:
         return vetRetorno;
 
     def match(self, string, regex):
-        """Verifica se a string é compativel com o Afd"""
+        """Verifica se a string é compativel com o Afd 'regex'"""
         expressao = re.compile(regex);
         return (expressao.fullmatch(string) != None);
     

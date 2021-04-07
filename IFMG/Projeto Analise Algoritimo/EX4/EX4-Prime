@@ -1,0 +1,31 @@
+Nome: Lucas Mateus Fernandes
+RA: 0035411
+
+# Bolsa de Valores
+link: https://www.urionlinejudge.com.br/judge/pt/problems/view/1932
+
+## Paradigma
+Primeira abordagem tentada foi dividir para conquistar que estava dando O(n Log n )
+porem apos quebrar muito a cabeça e verificar um codigo que foi resolvido com O(n) cheguei na conclusão que é o paradigma correto é o Guloso
+
+### Primeira Etapa
+Decidir a regra que garante que uma decisão subOtima seja tomada e leve a uma decisão otima
+
+### Segunda Etapa 
+    Verificar quando Comprar uma ação
+    * A ação deve ser comprada no menor valor
+    * Uma ação so deve ser comparada caso tenah certeza que vai ser vendida
+
+### Terceira Etapa 
+    Verificar quando Vender uma ação
+    * A ação so pode ser vendida caso dê lucro ou seja (valor no Momento da Venda) - (taxa) - (valor no Momento da Compra) seja maior que 0 
+    * A ação deve ser vendida no maior valor possivel levando em consideração o menor espaço de tempo
+    Dado tal afirmação observasse que a soma dos subOtimos leva ao otimo
+
+### Quarta Etapa
+    Garantir que a ação será vendida no menor espaço de tempo garantindo lucro
+    * A ação so deve ser vendida caso não haja um valor nos dias seguintes que seja maior que o (valor Atual da ação) salvo exceções
+    * Caso haja um valor nos dias seguintes que seja maior que o (valor Atual da ação) a ação pode ser vendinda desde que exista um valor nos dias sub sequentes que seja inferior a ( (valor Atual da ação) - taxa ) e o valor atual seja o maior (otimo local) durante o periodo da compra e este valor sequente
+
+### Quinta Etapa
+    Somar o valor das vendas e retornar o lucro total

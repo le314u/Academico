@@ -1,0 +1,80 @@
+;L1 a 		L1 = { ww | w = [ab]* }
+
+0 a A r fimDireita
+0 b B r fimDireita
+0 _ _ * accept
+
+fimDireita A A L aux1
+fimDireita B B L aux1
+fimDireita _ _ L aux1
+fimDireita * * r fimDireita
+
+
+fimEsquerda A A r aux2
+fimEsquerda B B r aux2
+fimEsquerda * * l fimEsquerda
+
+aux1 a A l fimEsquerda
+aux1 b B l fimEsquerda
+aux1 A A r reject
+aux1 B B r reject
+
+aux2 a A r fimDireita
+aux2 b B r fimDireita
+aux2 A A l aux3
+aux2 B B l aux3
+
+aux3 A a l aux3
+aux3 B b l aux3
+aux3 _ _ r fim
+
+fim a A r procuraA
+fim b B r procuraB
+fim _ _ * accept
+
+procuraA a a r procuraA
+procuraA b b r procuraA
+procuraA A _ l volta
+procuraA B B l reject
+procuraA _ _ r procuraA
+
+procuraB a a r procuraB
+procuraB b b r procuraB
+procuraB A _ r reject
+procuraB B _ l volta
+procuraB _ _ r procuraB
+
+volta * * l volta
+volta A A r fim
+volta B B r fim
+
+accept * * * tudoEsquerdaAceita
+
+tudoEsquerdaAceita * * l tudoEsquerdaAceita
+tudoEsquerdaAceita _ _ r limpaFitaAceita
+
+limpaFitaAceita * _ r limpaFitaAceita
+limpaFitaAceita _ _ * escreveAceitaA
+
+escreveAceitaA * A r escreveAceitaC
+escreveAceitaC * C r escreveAceitaE
+escreveAceitaE * E r escreveAceitaI
+escreveAceitaI * I r escreveAceitaT
+escreveAceitaT * T r escreveAceitaA2
+escreveAceitaA2 * A r halt-accept
+
+reject * * * tudoEsquerdaRejeita
+
+tudoEsquerdaRejeita * * l tudoEsquerdaRejeita
+tudoEsquerdaRejeita _ _ r limpaFitaRejeita
+
+limpaFitaRejeita * _ r limpaFitaRejeita
+limpaFitaRejeita _ _ * escreveRejeitaR
+
+escreveRejeitaR * R r escreveRejeitaE
+escreveRejeitaE * E r escreveRejeitaJ
+escreveRejeitaJ * J r escreveRejeitaE2
+escreveRejeitaE2 * E r escreveRejeitaI
+escreveRejeitaI * I r escreveRejeitaT
+escreveRejeitaT * T r escreveRejeitaA
+escreveRejeitaA * A r halt-reject

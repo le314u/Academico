@@ -1,0 +1,41 @@
+Nome: Lucas Mateus Fernandes
+RA: 0035411
+
+# Química
+link: https://www.urionlinejudge.com.br/judge/pt/problems/view/1326
+
+## Paradigma
+A abordagem usada foi indução.
+
+### Primeira Etapa
+A primeira etapa é definir uma estrutura de dados a ser usada.
+
+* No caso em especifico foi usada uma pseudo Arvore ou seja um dicionário que simula uma arvore
+* O significado da arvore é que em cada nó é guardada a informação de quantos copos foram usados até o momento ou seja cada nó da arvore guarda o maximo de copos gastos até a sua produção
+* Cada Produto é compostos de dois elementos ( representados pelo no da esquerda + nó da direita)
+
+### Segunda Etapa 
+Dar valor semantico a estrutura escolhida definindo como a estrutura funciona e o que ela representa.
+* A pseudoRaiz de cada subArvore armazena o maximo de copos usados até o momento
+* Os elementos intermediarios diretamente acima das folhas podem ser feitos em um unico copo
+* A melhor estratégia é fazer o produto que gasta mais Copos primeiro.
+* Para a criação de um elemento intermediario composto de outros elementos intermediarios existe um ponto de sincronimos a abordagem é fazer o produto que gasta mais copos primeiro até chegar em um ponto de sincronismo e logo em seguida fazer o segundo produto que gasta mais copos sendo assim chega em um ponto de sincronismo e juntasse os dois produtos em um copo
+
+### Terceira Etapa 
+Verificar a regra que define quantos copos foram usados em cada Produto.
+
+* A regra que define quantos copos é a seguinte max(max(A,B),min(A,B)+1). Sendo A o ramo da esquerda e B o ramo da direita
+* Como vai ser escolhido fazer primeiro o elemento que demanda mais copos é necessário saber qual é este elemento max(A,B)
+* Como mencionado que existe um ponto de sincronismo e que vai se optar por fazer o ramo que demanda mais copos primeiro, será necessário gastar 1 copo para guardar a formula que chegou no ponto de sincronimo e continua a fazer o ramo que gasta menos copos ou seja min(A,B)+1
+* Se X = max(A,B) e Y = min(A,B)+1 então max(X,Y) faz a quantidade de copos usadas ser propagada para a raiz a fim de manter a maior quantidade de copos usados até o momento sem ocorrer o risco de perder a referencia
+Portanto é garantido que o valor de referencia na raiz resumi o custo para fazer seus elementos e que varios otimos locais levam a um otimo global
+
+### Quarta Etapa
+Percorrer a estrutura de dados.
+
+* Como não há ciclos foi usado recursão para definir o custo de cada elemento pois é garantido que o pai necessita diretamente dos filhos
+* Definido os casos bases e as regras que formam a metrica é garantido que a recursão para.
+* A arvore é percorrida da seguinte forma ( Esquerda, Direita, No Atual)
+
+### Quinta Etapa
+O valor da raiz representa o valor otimo

@@ -1,19 +1,14 @@
 #!/usr/bin/swipl
 
-rec([Head|List],Tam):-
-    (
-        Head \== [],
-        Tam = 1,
-        !
-    );
-    (
-        rec(List,Tam1), 
-        Tam is Tam1+1
-    ).
+tamanho([], 0).
+tamanho(List,Tam):.
+        [H|T]=List,
+        tamanho(T,Tam1),
+        Tam is Tam1+1.
 
-tamanho(List1,List2):-
-    rec(List1,Tam1),
-    rec(List2,Tam2),
-    Tam1 == Tam2.
+tamanho_igual(L1,L2):-
+    tamanho(L1,T1),
+    tamanho(L2,T2),
+    T1 == T2.
 
-tamanho([a,a,a],[b,b,b]).
+tamanho_igual([a,a,a],[b,b,b]).

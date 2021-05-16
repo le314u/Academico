@@ -1,0 +1,66 @@
+#!/usr/bin/swipl
+
+
+%Linha Coluna Simbolo
+%velha(L,C,S)
+velha(1,1,'').
+velha(1,2,'').
+velha(1,3,x).
+velha(2,1,o).
+velha(2,2,x).
+velha(2,3,o).
+velha(3,1,x).
+velha(3,2,'').
+velha(3,3,'').
+
+
+vencedor(S):-
+    %diagonal
+    (
+        (
+            velha(1,1,S),
+            velha(2,2,S),
+            velha(3,3,S)
+        );
+        (
+            velha(1,3,S),
+            velha(2,2,S),
+            velha(3,1,S)
+        )
+    );
+    %linha
+    (
+        (
+            velha(1,1,S),
+            velha(1,2,S),
+            velha(1,3,S)
+        );
+        (
+            velha(2,1,S),
+            velha(2,2,S),
+            velha(2,3,S)
+        );
+        (
+            velha(3,1,S),
+            velha(3,2,S),
+            velha(3,3,S)
+        )
+    );
+    %coluna
+    (
+        (
+            velha(1,1,S),
+            velha(2,1,S),
+            velha(3,1,S)
+        );
+        (
+            velha(1,2,S),
+            velha(2,2,S),
+            velha(3,2,S)
+        );
+        (
+            velha(1,3,S),
+            velha(2,3,S),
+            velha(3,3,S)
+        )
+    ).

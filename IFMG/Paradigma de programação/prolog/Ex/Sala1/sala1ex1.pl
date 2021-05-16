@@ -59,7 +59,8 @@ tix(X,Y) :-
         gerou(Ancestral,X),
         gerou(Ancestral,Genitor),
         gerou(Genitor,Y),
-        X \== Genitor
+        X \== Genitor,
+        !
     ).
 
 tio(X,Y) :-
